@@ -257,7 +257,7 @@
       (lambda ()
 	(static-error
 	  "unit linkage" 'term:unit-link-unbound-tag tag
-	  "unbound tag")))))
+	  (format "unbound tag: ~a" (z:read-object tag)))))))
 
 (define cu/s-tag-table-lookup/internal-error
   (lambda (table tag)
