@@ -2,6 +2,8 @@
 
 (begin-elaboration-time (require-library "macro.ss"))
 (begin-elaboration-time (require-library "mzlibs.ss"))
+(begin-elaboration-time (require-library "refer.ss"))
+(require-library "refer.ss")
 
 (define-signature zodiac:misc^
   (pretty-print debug-level symbol-append flush-printf print-and-return 
