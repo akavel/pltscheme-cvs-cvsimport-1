@@ -285,7 +285,7 @@
    info-frame%
    info-file-frame%
    pasteboard-frame%
-   pasteboard-file-frame%))
+   pasteboard-info-file-frame%))
 
 (define-signature mred:editor-frame^
   (make-editor-frame%
