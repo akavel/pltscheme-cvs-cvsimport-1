@@ -210,7 +210,7 @@
 						  rewritten expr (list m)
 						  #f
 						  (make-origin 'macro
-						    app-pos)))
+						    expr)))
 				  (expanded (expand-expr structurized env
 					      attributes vocab)))
 			    expanded)))
