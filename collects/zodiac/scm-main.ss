@@ -1656,9 +1656,7 @@
 	   (in-pattern-1 `(_ () ,@(get-expr-pattern #t)))
 	   (out-pattern-1 `(let-values () ,@(get-expr-pattern #t)))
 	   (in-pattern-2 `(_ ((param value) rest ...) ,@(get-expr-pattern #t)))
-	   (out-pattern-2 `(let* ((pz (#%in-parameterization
-				       (#%current-parameterization)
-				       param))
+	   (out-pattern-2 `(let* ((pz param)
 				  (orig (pz)))
 			     (dynamic-wind
 			      (lambda () (pz value))
