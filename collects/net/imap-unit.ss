@@ -383,8 +383,7 @@
       (define (no-expunges who imap)
 	(unless (tree-empty? (imap-expunges imap))
 	  (raise-mismatch-error who 
-				"session has pending expunge reports: "
-				imap)))
+				"session has pending expunge reports")))
 
       (define (imap-get-messages imap msgs field-list)
 	(no-expunges 'imap-get-messages imap)
