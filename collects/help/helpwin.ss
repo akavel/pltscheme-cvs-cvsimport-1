@@ -175,8 +175,7 @@
 								      (format "Help Desk is a complete source of ~
                                                                        information about PLT software, including DrScheme, ~
                                                                        MzScheme, and MrEd.~n~n~
-                                                                       Content: Copyright (c) 1995-99 PLT~n~
-                                                                       GUI: Copyright (c) 1999 PLT (Matthew Flatt)")))]
+                                                                       Copyright (c) 1995-99 PLT")))]
 				      [help-menu:after-about
 				       (lambda (menu)
 					 (make-object menu-item% "Help" menu
@@ -311,7 +310,7 @@
 					     v))]
 	       [else (loop (cdr l))])))
 
-	  (define top (make-object vertical-pane% f))
+	  (define top (make-object vertical-pane% (send f get-area-container)))
 	  (define search-text (make-object text-field% "Find docs for:" top
 					   (lambda (t e)
 					     (send search enable (positive? (send (send t get-editor) last-position))))))
