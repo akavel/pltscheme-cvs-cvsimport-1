@@ -1448,5 +1448,8 @@ int wxFontNameDirectory::GetFamily(int fontid)
   return item->family;
 }
 
+#include "::::wxcommon:FontDirectory.cxx"
+
 #include "::::wxcommon:Region.h"
 #include "::::wxcommon:Region.cxx"
+
