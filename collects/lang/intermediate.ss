@@ -1,6 +1,7 @@
 
 (module intermediate mzscheme
-  (require "private/teach.ss")
+  (require "private/teach.ss"
+	   (lib "docprovide.ss" "syntax"))
 
   ;; syntax:
   (provide (rename beginner-define define)
@@ -22,4 +23,5 @@
 
   ;; procedures:
   (provide-and-document
-   (all-from beginner: (lib "beginner.ss" "lang"))))
+   procedures
+   (all-from beginner: (lib "beginner.ss" "lang") procedures)))
