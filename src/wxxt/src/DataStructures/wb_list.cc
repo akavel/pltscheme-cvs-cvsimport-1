@@ -765,18 +765,29 @@ wxChildNode *wxChildList::FindNode(wxChildNode *after)
     i++;
   } else
     i = 0;
-  for (; i < size; i++)
+
+  return NextNode(i);
+}
+
+wxChildNode *wxChildList::NextNode(int &pos)
+{
+  int i;
+
+  for (i = pos; i < size; i++) {
     if (nodes[i]) {
       wxChildNode *node = nodes[i];
-
-      if (node->Data())
+      
+      if (node->Data()) {
+	pos = i + 1;
 	return node;
+      }
       /* GC: */
       node->strong = NULL;
       node->weak = NULL;
       nodes[i] = NULL;
       n--;
     }
+  }
 
   return NULL;
 }

@@ -101,6 +101,9 @@ wxWindow::wxWindow(void)
     saferef = (wxWindow **)MALLOC_SAFEREF(sizeof(wxWindow *));
     *saferef = this;
     misc_flags = 0;
+    /* except for frames, windows start out shown: */
+    if (!wxSubType(__type, wxTYPE_FRAME))
+      misc_flags |= SHOWN_FLAG;
     internal_disabled = 0;
 
     WXGC_IGNORE(parent);

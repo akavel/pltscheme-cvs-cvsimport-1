@@ -103,26 +103,26 @@ private:
     wxBitmap  *stipple;
 };
 
-class wxBrushList : public wxList {
+class wxBrushList : public wxObject {
 DECLARE_DYNAMIC_CLASS(wxBrushList)
+    wxChildList *list;
 public:
-    inline wxBrushList(void) : wxList() {};
+    wxBrushList(void);
     ~wxBrushList(void);
 
-    void  AddBrush(wxBrush *Brush)     { Append (Brush); } 
-    void  RemoveBrush(wxBrush *Brush)  { DeleteObject (Brush); }
+    void  AddBrush(wxBrush *Brush);
     wxBrush *FindOrCreateBrush(wxColour *colour, int style);
     wxBrush *FindOrCreateBrush(char *colour, int style);
 };
 
-class wxPenList : public wxList {
+class wxPenList : public wxObject {
 DECLARE_DYNAMIC_CLASS(wxPenList)
+    wxChildList *list;
 public:
-    inline wxPenList(void) : wxList() {};
+    wxPenList(void);
     ~wxPenList(void);
 
-    void  AddPen(wxPen *pen)     { Append (pen); } 
-    void  RemovePen(wxPen *pen)  { DeleteObject (pen); }
+    void  AddPen(wxPen *pen);
     wxPen *FindOrCreatePen(wxColour *colour, int width, int style);
     wxPen *FindOrCreatePen(char *colour, int width, int style);
 };

@@ -66,14 +66,14 @@ private:
     int    font_id; /* MATTHEW */
 };
 
-class wxFontList : public wxList {
+class wxFontList : public wxObject {
 DECLARE_DYNAMIC_CLASS(wxFontList)
+   wxChildList *list;
 public:
-    wxFontList(void) : wxList() { }
+    wxFontList(void);
     ~wxFontList(void);
 
-    void AddFont(wxFont *font)    { Append(font); }
-    void RemoveFont(wxFont *font) { DeleteObject(font); }
+    void AddFont(wxFont *font);
 
     wxFont *FindOrCreateFont(int PointSize, int FontIdOrFamily, int Style, 
 			     int Weight, Bool underline = FALSE);
