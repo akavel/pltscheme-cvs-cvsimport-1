@@ -207,6 +207,13 @@ wxBitmap::~wxBitmap(void)
 #endif
 }
 
+static int errorFlagged;
+static int FlagError(Display*, XErrorEvent*)
+{
+  errorFlagged = 1;
+  return 0;
+}
+
 // create empty bitmap with dimensions w,h,d
 Bool wxBitmap::Create(int w, int h, int d)
 {
@@ -242,14 +249,26 @@ Bool wxBitmap::Create(int w, int h, int d)
     Xbitmap->x_hot  = 0;
     Xbitmap->y_hot  = 0;
     // create pixmap
-    if (((Xbitmap->x_pixmap
-	  = XCreatePixmap(wxAPP_DISPLAY, wxAPP_ROOT, w, h, Xbitmap->depth)))
-	== None)
-    {
-	// create failed!
-	delete Xbitmap;
-	Xbitmap = NULL;
+
+    int (*old_handler)(Display*, XErrorEvent*);
+    old_handler = XSetErrorHandler(FlagError);
+    errorFlagged = 0;
+
+    Xbitmap->x_pixmap = XCreatePixmap(wxAPP_DISPLAY, wxAPP_ROOT, w, h, Xbitmap->depth);
+
+    XSync(wxAPP_DISPLAY, FALSE);
+
+    if (errorFlagged)
+      Xbitmap->x_pixmap = None;
+
+    XSetErrorHandler(old_handler);
+
+    if (Xbitmap->x_pixmap == None) {
+      // create failed!
+      delete Xbitmap;
+      Xbitmap = NULL;
     }
+
     return Ok();
 }
 
