@@ -554,7 +554,7 @@
 		     (let ([c  char])
 		       (get-char)
 		       (z:error "invalid # syntax"))])))]
-	     
+
 	     [scan-hash-stick
 	      (lambda ()
 		(let  loop  ([nest  1])

@@ -207,7 +207,16 @@
 						 [else ",@"]))))
                            (read-quote  type  token)]
                           [(eq?  type  'period) 
-                           (make-period  (zodiac-start  token))]
+			   (if (allow-improper-lists)
+			       (make-period  (zodiac-start  token))
+			       (let ([period-sym '|.|])
+				 (zodiac:make-symbol 
+				  (zodiac-origin token)
+				  (zodiac-start token)
+				  (zodiac-finish token)
+				  period-sym
+				  period-sym
+				  '(-1))))]
                           [(eq?  type  'box)  (read-box  token)]
                           [(or (eq?  type  'circular-obj)
                                (eq?  type  'circular-ref))
