@@ -1574,9 +1574,11 @@ Bool wxPostScriptDC::Blit (float xdest, float ydest, float fwidth, float fheight
     temp_mdc = new wxMemoryDC(1);
 
   temp_mdc->SelectObject(bm);
-  Blit(xdest, ydest, fwidth, fheight,
+  Bool r = Blit(xdest, ydest, fwidth, fheight,
        temp_mdc, xsrc, ysrc, rop);
   temp_mdc->SelectObject(NULL);
+  
+  return r;
 }
 
 float wxPostScriptDC::GetCharHeight (void)
