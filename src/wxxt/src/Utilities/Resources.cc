@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: read/write .Xdefaults
  *
@@ -155,32 +154,6 @@ static void wxXMergeDatabases(void)
       if ((userDB = wxXrmGetFileDatabase(dest)))
 	(void)XrmMergeDatabases(userDB, &wxResourceDatabase);
     }
-}
-
-//-----------------------------------------------------------------------------
-// called on application exit
-//-----------------------------------------------------------------------------
-void wxFlushResources(void)
-{
-  char nameBuffer[512];
-  wxNode *node;
-
-  node = wxResourceCache->First();
-  while (node) {
-    XrmDatabase database;
-    char *file = node->string_key;
-    wxNode *next;
-
-    // If file doesn't exist, create it first.
-    (void)GetResourcePath(nameBuffer, file, TRUE);
-
-    database = (XrmDatabase)node->Data();
-    XrmPutFileDatabase(database, nameBuffer);
-    XrmDestroyDatabase(database);
-    next = node->Next();
-    DELETE_OBJ node;
-    node = next;
-  }
 }
 
 //-----------------------------------------------------------------------------
