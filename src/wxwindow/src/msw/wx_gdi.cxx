@@ -957,7 +957,7 @@ wxBitmap::wxBitmap(char bits[], int the_width, int the_height)
   numColors = 0;
   bitmapColourMap = NULL;
 
-  ms_bitmap = CreateBitmap(the_width, the_height, no_bits, 1, bits);
+  ms_bitmap = CreateBitmap(the_width, the_height, 1, 1, bits);
 
   if (ms_bitmap)
     ok = TRUE;
