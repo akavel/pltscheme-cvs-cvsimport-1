@@ -37,9 +37,9 @@
 
   (provide with-public-inspector)
 
-  (provide/contract [small-step (-> (listof red?) any? any)]
-                    [big-step (-> (listof red?) any? any)]
-                    [small-step-sequence (-> (listof red?) any? list?)])
+  (provide/contract [small-step             (-> (listof red?) any? any)]
+                    [big-step               (-> (listof red?) any? any)]
+                    [small-step-sequence    (-> (listof red?) any? list?)])
 
   ;; small-step :: (Listof Reduction) Term -> (Union #f Term)
   ;; reduces term a single step; returns #f if no reduction possible.

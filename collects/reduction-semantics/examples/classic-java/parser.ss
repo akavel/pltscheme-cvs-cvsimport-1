@@ -27,6 +27,8 @@
    (define-struct temp-class (name superclass fields methods)))
 
   #;
+  ;; Wraps temp-class ctor with assertions on arguments.  Can't use contracts
+  ;; here, since temp-class not exported from this module.
   (set! make-temp-class
         (let ([old-ctor make-temp-class])
           (lambda (n s f m)
