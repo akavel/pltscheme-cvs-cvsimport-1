@@ -39,8 +39,7 @@
 		       `(lambda (e)
 			  (if (,z:list? e)
 			    (#%list (#%cons ',nestings
-				      (#%map (lambda (x)
-					       (,match-head x))
+				      (#%map ,match-head
 					(,expose-list e))))
 			    (esc #f)))))))
 	       ((pair? p)

@@ -677,7 +677,7 @@
       (let* ((kwd '())
 	      (in-pattern '(_ class name))
 	      (m&e (pat:make-match&env in-pattern kwd))
-	      (out-pattern '(#%uq-make-generic class (quote name))))
+	      (out-pattern '(#%make-generic/proc class (quote name))))
 	(lambda (expr env)
 	  (or (pat:match-and-rewrite expr m&e out-pattern kwd env)
 	    (static-error expr "Malformed make-generic"))))))
