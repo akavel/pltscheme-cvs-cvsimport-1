@@ -174,7 +174,8 @@
    unsaved-warning
    read-snips/chars-from-buffer
    open-input-buffer
-   print-paper-names))
+   print-paper-names
+   get-single-choice))
 
 (define-signature mred:console^
   (credits-proc
