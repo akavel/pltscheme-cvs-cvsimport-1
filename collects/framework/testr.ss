@@ -182,9 +182,6 @@
 
   (define (get-focused-window)
     (let ([f (get-active-frame)])
-      (printf "get-focused-window: ~a ~a ~n" f 
-	      (and f
-		   (send f get-focus-window)))
       (and f
 	   (send f get-focus-window))))
 
