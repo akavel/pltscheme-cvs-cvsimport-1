@@ -45,6 +45,7 @@
     create-vocabulary append-vocabulary
     add-on-demand-form find-on-demand-form 
     set-subexpr-vocab!
+    prepare-current-namespace-for-vocabulary
     (struct vocabulary-record
       (name this rest symbol-error literal-error list-error ilist-error))))
 
@@ -66,7 +67,7 @@
     set-top-level-status get-top-level-status at-top-level?
     set-internal-define-status get-internal-define-status at-internal-define?
     as-nested
-    process-top-level-resolution ensure-not-keyword
+    process-top-level-resolution ensure-not-syntax allow-global-rebind-syntax
     check-for-signature-name
     (struct parsed (back))
     (struct varref (var))

@@ -37,7 +37,7 @@
 		    (if (and (inside-unit? attributes)
 			     (check-export expr attributes))
 		      (loop top-level-resolution)
-		      (loop (ensure-not-keyword expr env vocab))))
+		      (loop (ensure-not-syntax expr env vocab))))
 		  (else
 		    (internal-error expr "Invalid resolution in ou: ~s" r))))))))
 

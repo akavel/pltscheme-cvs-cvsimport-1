@@ -278,7 +278,7 @@
 				      expr "empty file")
 				    (expand-expr
 				      (structurize-syntax
-					`(begin ,@code)
+					`(#%begin ,@code)
 					expr '(-1))
 				      env attributes vocab)))))
 			    (lambda ()
@@ -391,7 +391,7 @@
 					expr "empty file")
 				      (expand-expr
 					(structurize-syntax
-					  `(begin ,@code)
+					  `(#%begin ,@code)
 					  expr '(-1))
 					env attributes vocab)))))
 			      (lambda ()
