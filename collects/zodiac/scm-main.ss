@@ -1216,7 +1216,7 @@
 	    "time" 'kwd:time
 	    expr "malformed expression")))))
   
-  (add-primitivized-macro-form 'time intermediate-vocabulary
+  (add-primitivized-macro-form 'time advanced-vocabulary
     (make-time-macro #f))
   (add-primitivized-macro-form 'time scheme-vocabulary
     (make-time-macro #t))

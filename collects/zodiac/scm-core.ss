@@ -186,7 +186,7 @@
 		 (static-error 
 		  "keyword" 'term:keyword-out-of-context
 		  expr
-		  "Invalid use of keyword ~s" (z:symbol-orig-name expr)))])
+		  "invalid use of keyword ~s" (z:symbol-orig-name expr)))])
 	  (cond
 	   [(mzscheme-keyword-name? (z:read-object expr)) (bad)]
 	   [else (let ((r (resolve expr env vocab)))
@@ -203,7 +203,7 @@
 	  (static-error 
 	   "keyword" 'term:keyword-out-of-context
 	   expr
-	   "Invalid use of keyword ~s" name)))))
+	   "invalid use of keyword ~s" name)))))
 
   (define ensure-not-mzscheme-syntax-keyword
     (lambda (expr)
@@ -214,7 +214,7 @@
 	  (static-error 
 	   "keyword" 'term:keyword-out-of-context
 	   expr
-	   "Invalid use of keyword ~s" name)))))
+	   "invalid use of keyword ~s" name)))))
 
   (define (ensure-shadowable expr env vocab allow-shadow-syntax?)
     (if allow-shadow-syntax?
@@ -225,7 +225,7 @@
 	      (static-error 
 	       "keyword" 'term:keyword-out-of-context
 	       expr
-	       "Invalid use of keyword ~s" name)
+	       "invalid use of keyword ~s" name)
 	      expr))
 
 	(begin
