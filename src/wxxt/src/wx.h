@@ -59,6 +59,8 @@
 #include <Dialogs/Dialogs.h>
 #include <Utilities/Utilities.h>
 
+#include "../../wxcommon/wxGC.h"
+
 #endif // wx_h
 
 //=============================================================================

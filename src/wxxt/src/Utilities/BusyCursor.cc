@@ -39,6 +39,7 @@ void wxXSetNoCursor(wxWindow *win, wxCursor *cursor)
 {
   Cursor c;
   Cursor cc;
+  wxChildList *cl;
   wxChildNode *node;
 
   if (cursor || !win->cursor)
@@ -56,7 +57,8 @@ void wxXSetNoCursor(wxWindow *win, wxCursor *cursor)
     }
   }
   
-  for(node = win->GetChildren()->First(); node; node = node->Next()) {
+  cl = win->GetChildren();
+  for (node = cl->First(); node; node = node->Next()) {
     wxWindow *child;
     child = (wxWindow *) node->Data ();
     wxXSetNoCursor(child, cursor);
@@ -67,6 +69,7 @@ void wxXSetBusyCursor(wxWindow *win, wxCursor *cursor)
 {
   Cursor c;
   wxChildNode *node;
+  wxChildList *cl;
 
   if (cursor)
     c = GETCURSOR(cursor);
@@ -82,7 +85,8 @@ void wxXSetBusyCursor(wxWindow *win, wxCursor *cursor)
     XtVaSetValues(XtParent(win->X->handle), XtNcursor, c, NULL);
   }
 
-  for (node = win->GetChildren()->First(); node; node = node->Next()) {
+  cl = win->GetChildren();
+  for (node = cl->First(); node; node = node->Next()) {
     wxWindow *child;
     child = (wxWindow *) node->Data ();
     if (wxSubType(child->__type, wxTYPE_FRAME))

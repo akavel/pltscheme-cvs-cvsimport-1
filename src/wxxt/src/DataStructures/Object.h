@@ -34,8 +34,6 @@
 // wxObject: top level object
 //-----------------------------------------------------------------------------
 
-#include "../../wxcommon/wxGC.h"
-
 #ifdef MZ_PRECISE_GC
 # define WXGC_IGNORE(ptr) GC_finalization_weak_ptr((void **)&(ptr))
 # define WXGC_ATOMIC /* empty */
