@@ -162,6 +162,8 @@ MZ_MARK_POS_TYPE scheme_current_cont_mark_pos;
 
 static Scheme_Custodian *main_custodian;
 
+static Scheme_Object *scheduled_kills;
+
 long scheme_total_gc_time;
 static long start_this_gc_time;
 extern MZ_DLLIMPORT void (*GC_collect_start_callback)(void);
@@ -1035,6 +1037,27 @@ void scheme_add_atexit_closer(Scheme_Exit_Closer_Func f)
   }
 
   closers = scheme_make_pair((Scheme_Object *)f, closers);
+}
+
+void scheme_schedule_custodian_close(Scheme_Custodian *c)
+{
+  if (!scheduled_kills) {
+    REGISTER_SO(scheduled_kills);
+    scheduled_kills = scheme_null;
+  }
+
+  scheduled_kills = scheme_make_pair((Scheme_Object *)c, scheduled_kills);
+  scheme_fuel_counter = 0;
+}
+
+static void check_scheduled_kills()
+{
+  while (scheduled_kills && !SCHEME_NULLP(scheduled_kills)) {
+    Scheme_Object *k;
+    k = SCHEME_CAR(scheduled_kills);
+    scheduled_kills = SCHEME_CDR(scheduled_kills);
+    scheme_close_managed((Scheme_Custodian *)scheduled_kills);
+  }
 }
 
 /*========================================================================*/
@@ -2127,9 +2150,9 @@ void scheme_break_thread(Scheme_Thread *p)
 }
 
 void scheme_thread_block(float sleep_time)
-/* If we're blocked, `sleep_time' is a max sleep time,
-   not a min sleep time. Otherwise, it's a min & max sleep time.
-   This proc auto-resets p's blocking info if an escape occurs. */
+     /* If we're blocked, `sleep_time' is a max sleep time,
+	not a min sleep time. Otherwise, it's a min & max sleep time.
+	This proc auto-resets p's blocking info if an escape occurs. */
 {
   long start, d;
   Scheme_Thread *next, *p = scheme_current_thread;
@@ -2139,6 +2162,9 @@ void scheme_thread_block(float sleep_time)
     /* This thread is dead! Give up now. */
     exit_or_escape(p);
   }
+
+  /* Check scheduled_kills early and often. */
+  check_scheduled_kills();
 
   if (scheme_active_but_sleeping)
     scheme_wake_up();
@@ -2163,6 +2189,9 @@ void scheme_thread_block(float sleep_time)
 #ifdef USE_OSKIT_CONSOLE
   scheme_check_keyboard_input();
 #endif
+
+  /* Check scheduled_kills early and often. */
+  check_scheduled_kills();
 
   if (!do_atomic && (sleep_time >= 0.0)) {
     /* Find the next process. Skip processes that are definitely
@@ -2334,6 +2363,9 @@ void scheme_thread_block(float sleep_time)
 #ifdef USE_WIN32_THREAD_TIMER
   scheme_start_itimer_thread(MZ_THREAD_QUANTUM_USEC);
 #endif
+
+  /* Check scheduled_kills early and often. */
+  check_scheduled_kills();
 
   MZTHREADELEM(p, fuel_counter) = p->engine_weight;
 }
