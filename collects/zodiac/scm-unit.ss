@@ -884,17 +884,19 @@
 			  top-level?)
 			out)))
 		  (else (static-error expr "Malformed define-values")))))))
+
       (add-primitivized-micro-form 'define-values unit-clauses-vocab-delta
 	(define-values-helper
 	  (lambda (expr env attributes vocab p-env vars)
 	    (register-definitions vars attributes)
 	    (let* ((id-exprs (map (lambda (v)
-				    (unless (z:symbol? v)
-				      (static-error v
-					"Invalid in identifier position"))
-				    (ensure-not-macro/micro v env vocab)
-				    (process-top-level-resolution
-				      v env attributes vocab))
+				    (let ((parsed
+					    (expand-expr v env attributes
+					      define-values-id-parse-vocab)))
+				      (if (top-level-varref? parsed)
+					parsed
+					(process-top-level-resolution
+					  v env attributes vocab))))
 			       vars))
 		    (expr-expr (expand-expr
 				 (pat:pexpand 'val p-env kwd)
