@@ -773,6 +773,11 @@ static void ComputeMenuSize(MenuWidget mw, menu_state *ms)
 	}
 #       undef SET_MAX_VALUE
     }
+    if (!max_height && in_menubar) {
+      /* For menu bar: make it at least as tall as with an item */
+      max_height = mw->menu.font->ascent + mw->menu.font->descent
+	+ 2*mw->menu.vmargin + 2*mw->menu.shadow_width;      
+    }
     ms->w       = max_left_width + max_label_width + max_right_width
 	          + 2*mw->menu.shadow_width;
     ms->h       = max_height + 2*mw->menu.shadow_width;
