@@ -112,6 +112,7 @@ c_plmesh(PLFLT *x, PLFLT *y, PLFLT **z, PLINT nx, PLINT ny, PLINT opt)
  *
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plmeshc(PLFLT *x, PLFLT *y, PLFLT **z, PLINT nx, PLINT ny, PLINT opt,
 	 PLFLT *clevel, PLINT nlevel)
@@ -592,6 +593,7 @@ plsurf3d(PLFLT *x, PLFLT *y, PLFLT **z, PLINT nx, PLINT ny,
  * see plot3dc() bellow
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plot3d(PLFLT *x, PLFLT *y, PLFLT **z,
 	 PLINT nx, PLINT ny, PLINT opt, PLINT side)

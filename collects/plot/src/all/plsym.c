@@ -83,6 +83,7 @@ c_plsym(PLINT n, PLFLT *x, PLFLT *y, PLINT code)
  * therefore takes 4 strokes to draw).
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plpoin(PLINT n, PLFLT *x, PLFLT *y, PLINT code)
 {
@@ -342,6 +343,7 @@ plarrows(PLFLT *u, PLFLT *v, PLFLT *x, PLFLT *y, PLINT n,
  * Simple routine for labelling graphs.
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_pllab(const char *xlabel, const char *ylabel, const char *tlabel)
 {
@@ -513,6 +515,7 @@ c_plmtex(const char *side, PLFLT disp, PLFLT pos, PLFLT just,
  *	just = 0.5 => center of string is at (wx,wy) etc.
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plptex(PLFLT wx, PLFLT wy, PLFLT dx, PLFLT dy, PLFLT just, const char *text)
 {

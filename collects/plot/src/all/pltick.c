@@ -102,6 +102,7 @@ plery1(PLFLT x, PLFLT ymin, PLFLT ymax)
  * Plot horizontal error bars (xmin(i),y(i)) to (xmax(i),y(i)).
 \*----------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plerrx(PLINT n, PLFLT *xmin, PLFLT *xmax, PLFLT *y)
 {
@@ -122,6 +123,7 @@ c_plerrx(PLINT n, PLFLT *xmin, PLFLT *xmax, PLFLT *y)
  * Plot vertical error bars (x,ymin(i)) to (x(i),ymax(i)).
 \*----------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plerry(PLINT n, PLFLT *x, PLFLT *ymin, PLFLT *ymax)
 {

@@ -424,6 +424,7 @@ c_plaxes(PLFLT x0, PLFLT y0,
  * This is the 3-d analogue of plbox().
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plbox3(const char *xopt, const char *xlabel, PLFLT xtick, PLINT nsubx,
 	 const char *yopt, const char *ylabel, PLFLT ytick, PLINT nsuby,

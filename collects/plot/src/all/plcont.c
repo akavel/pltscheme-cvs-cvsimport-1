@@ -444,6 +444,7 @@ cont_store(PLFLT *x, PLFLT *y, PLFLT **z, PLINT nx, PLINT ny, PLINT kx, PLINT lx
  * plfcont, with a particular choice for f2eval and f2eval_data.
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plcont(PLFLT **f, PLINT nx, PLINT ny, PLINT kx, PLINT lx,
 	 PLINT ky, PLINT ly, PLFLT *clevel, PLINT nlevel,
@@ -909,6 +910,7 @@ pltr0(PLFLT x, PLFLT y, PLFLT *tx, PLFLT *ty, PLPointer pltr_data)
  * possible, but if so we could use linear extrapolation).
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 pltr1(PLFLT x, PLFLT y, PLFLT *tx, PLFLT *ty, PLPointer pltr_data)
 {

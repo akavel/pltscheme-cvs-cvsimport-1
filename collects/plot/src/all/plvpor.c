@@ -53,6 +53,7 @@ c_plenvi(PLFLT xmin, PLFLT xmax, PLFLT ymin, PLFLT ymax,
  *      axis=33 : Same as 32, but the grid will be also at the minor ticks.
 \*--------------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plenv(PLFLT xmin, PLFLT xmax, PLFLT ymin, PLFLT ymax,
 	PLINT just, PLINT axis)

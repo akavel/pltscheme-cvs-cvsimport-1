@@ -32,6 +32,7 @@ static void  buildlist	(PLINT, PLINT, PLINT, PLINT, PLINT, PLINT, PLINT);
  * to prevent clipping problems.
 \*----------------------------------------------------------------------*/
 
+MZ_DLLEXPORT
 void
 c_plfill(PLINT n, PLFLT *x, PLFLT *y)
 {
