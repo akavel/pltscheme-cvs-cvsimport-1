@@ -453,7 +453,7 @@ char *wxColourDatabase::FindName(wxColour& colour)
     for (wxNode *node = First(); node; node = node->Next()) {
       wxColour *col = (wxColour*)node->Data ();
       if (col->Red()==red && col->Green()==green && col->Blue()==blue) {
-	char *found = node->key.string;
+	char *found = node->string_key;
 	if (found)
 	  return found;
       }
