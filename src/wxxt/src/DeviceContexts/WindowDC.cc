@@ -222,7 +222,7 @@ Bool wxWindowDC::Blit(float xdest, float ydest, float w, float h, wxBitmap *src,
 Bool wxWindowDC::GCBlit(float xdest, float ydest, float w, float h, wxBitmap *src,
 			float xsrc, float ysrc)
 {
-    /* A non-allocating blit */
+    /* A non-allocating (of collectable memory) blit */
 
     if (!DRAWABLE) // ensure that a drawable has been associated
       return FALSE;
