@@ -49,7 +49,7 @@
 
 	[group : framework:group^ 
 	       ((require-relative-library-unit/sig "group.ss")
-		mred exit
+		mred exit frame
 		(core function) (core file))]
 
 	[canvas : framework:canvas^ ((require-relative-library-unit/sig "canvas.ss") mred preferences)]
