@@ -35,46 +35,6 @@ class wxPanel;
 
 // Constructors
 
-#ifndef wx_mac
-wxbPanel::wxbPanel(void)
-{
-  __type = wxTYPE_PANEL;
-  defaultItem = NULL;
-  new_line = FALSE;
-  label_position = wxHORIZONTAL;
-  window_parent = NULL;
-}
-
-wxbPanel::wxbPanel(wxWindow *parent, int x, int y, int width, int height, long style,
-                  char *name)
-{
-  __type = wxTYPE_PANEL;
-  windowStyle = style;
-  defaultItem = NULL;
-  new_line = FALSE;
-  label_position = wxHORIZONTAL;
-
-  window_parent = parent;
-}
-
-/*
-wxbPanel::wxbPanel(wxPanel *frame, int x, int y, int width, int height, long style,
-                   char *name)
-{
-  __type = wxTYPE_PANEL;
-  windowStyle = style;
-  defaultItem = NULL;
-  new_line = FALSE;
-  label_position = wxHORIZONTAL;
-
-  if (!frame)
-    return;
-
-  window_parent = frame;
-}
-*/
-#endif // wx_mac
-
 wxbPanel::~wxbPanel(void)
 {
 }
@@ -405,7 +365,6 @@ Bool wxbPanel::LoadFromResource(wxWindow *parent, char *resourceName)
 }
 #endif
 
-#ifdef wx_mac
 //=============================================================================
 // Protected constructors
 //=============================================================================
@@ -491,5 +450,3 @@ void wxbPanel::InitMoreDefaults(void) // Poor name for this method
 		label_position = wxHORIZONTAL;
 	}
 }
-
-#endif // wx_mac
