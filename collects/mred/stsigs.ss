@@ -7,6 +7,7 @@
 (define-signature mred:testable-window^
   (test:get-active-frame
    test:get-focused-window
+   test:current-get-eventspaces
    testable-panel%
    testable-canvas%
    testable-media-canvas%
