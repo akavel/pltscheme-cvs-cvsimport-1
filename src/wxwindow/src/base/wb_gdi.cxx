@@ -96,7 +96,20 @@ char *wxbFont::GetFamilyString(void)
 /* MATTHEW: [4] New font system */
 char *wxbFont::GetFaceString(void)
 {
-  return wxTheFontNameDirectory.GetFontName(fontid); 
+  /* If it's one of the portable faceless fonts, return NULL */
+  switch (GetFamily())
+  {
+  case wxDECORATIVE:
+  case wxROMAN:
+  case wxSCRIPT:
+  case wxSWISS:
+  case wxMODERN:
+  case wxTELETYPE:
+  case wxSYSTEM:
+    return NULL;
+  default:
+    return wxTheFontNameDirectory.GetFontName(fontid); 
+  }
 }
 
 char *wxbFont::GetStyleString(void)

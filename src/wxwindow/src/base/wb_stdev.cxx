@@ -48,6 +48,8 @@ wxPopupEvent::wxPopupEvent()
 
 wxScrollEvent::wxScrollEvent()
 {
+  direction = wxHORIZONTAL;
+  moveType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
 }
 
 /*
