@@ -139,6 +139,7 @@ typedef struct _menu_item {
     Boolean           set;	  /* used for toggles and radios */
     struct _menu_item *contents;  /* pointer to submenu */
     struct _menu_item *next;	  /* pointer to next menu item same level */
+    struct _menu_item *prev;	  /* pointer to prev menu item same level */
     void              *user_data; /* data associated with menu item */
     /* private data */
     Position          start, end;       /* start and end of item in window */

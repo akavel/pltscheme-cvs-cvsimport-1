@@ -65,6 +65,7 @@ public:
     // search for item by label
     int   FindMenuItem(char *menu, char *label);
     void Stop();
+    void SelectAMenu();
 private:
     // search for internal data by id
     wxMenuItem  *FindItemForId(long id, wxMenu **menu=NULL);

@@ -176,3 +176,11 @@ KeySym CharCodeWXToX(int id)
   // keysym not handled by wx
   return 0;
 }
+
+Bool wxIsAlt(KeySym key_sym)
+{
+  if ((key_sym == XK_Alt_L) || (key_sym == XK_Alt_R)) {
+    return TRUE;
+  }
+  return FALSE;
+}
