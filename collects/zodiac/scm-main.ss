@@ -1653,7 +1653,7 @@
     (lambda (expr env)
       (static-error expr "Unquote-splicing outside quasiquote")))
 
-  (include "qq.ss")
+  (include "quasi.ss")
 
 ;  (include "shared.ss")
 
