@@ -272,10 +272,12 @@ extern void wxDispatchEventsUntil(int (*)(void *), void *);
 
 static int clipget_in_progress;
 
+#if 0
 static int CheckNotInProgress(void *WXUNUSED(v))
 {
   return !clipget_in_progress;
 }
+#endif
 
 static int CheckReadyTarget(void *WXUNUSED(v))
 {
