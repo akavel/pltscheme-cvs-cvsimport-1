@@ -1746,18 +1746,12 @@ void wxCanvasDC::TryColour(wxColour *src, wxColour *dest)
 
   HDC dc = ThisDC();
   if (!dc) {
-
-	  dest->Set(0, 0, 0);
-
-	  return;
-
+    dest->Set(0, 0, 0);
+    return;
   }
 
-
   result = GetNearestColor(dc, RGB(src->Red(), src->Blue(), src->Green()));
-
   dest->Set(GetRValue(result), GetGValue(result), GetBValue(result));
-  
   DoneDC(dc);
 }
 
