@@ -307,14 +307,14 @@ DataStructures/$(OBJDIR)/TypeTree.o:\
 	DataStructures/Object.h ../../wxcommon/wx_list.h \
 	../../wxcommon/wx_hash.h DataStructures/TypeTree.h
 
-DataStructures/wb_$(OBJDIR)/wb_hash.o:\
-	DataStructures/wb_hash.cc \
+DataStructures/$(OBJDIR)/wb_hash.o:\
+	DataStructures/wb_hash.cc ../../wxcommon/wb_hash.cxx \
 	DataStructures/Object.h ../../wxcommon/wx_list.h \
 	../../wxcommon/wx_hash.h
 
-DataStructures/wb_$(OBJDIR)/wb_list.o:\
-	DataStructures/wb_list.cc DataStructures/Object.h \
-	../../wxcommon/wx_list.h
+DataStructures/$(OBJDIR)/wb_list.o:\
+	DataStructures/wb_list.cc ../../wxcommon/wb_list.cxx \
+	DataStructures/Object.h ../../wxcommon/wx_list.h
 
 DeviceContexts/$(OBJDIR)/DC.o:\
 	DeviceContexts/DC.cc DataStructures/Object.h \

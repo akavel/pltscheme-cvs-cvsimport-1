@@ -25,7 +25,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-wxHashTable::wxHashTable (int the_key_type, int size)
+wxHashTable::wxHashTable (int, int size)
 {
   __type = wxTYPE_HASH_TABLE;
   n = size;
