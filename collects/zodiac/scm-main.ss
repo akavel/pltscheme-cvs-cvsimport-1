@@ -2080,7 +2080,8 @@
 	   (build-path base name))))
   (define (get-on-demand-form name vocab)
     (let ([dir (norm-path (current-load-relative-directory))])
-      (and (equal?
+      (and dir
+	   (equal?
 	     (normalize-path (normal-case-path dir))
 	     (normalize-path
 	       (normal-case-path
@@ -2134,8 +2135,7 @@
 			      (apply m3-macro-body-evaluator real-handler
 				     (cdr (sexp->raw m-expr cache-table)))
 			      m-expr '() cache-table
-			      (make-origin 'macro expr))))
-			  (update-current-namespace real-name))))
+			      (make-origin 'macro expr)))))))
 		  (expand-expr (structurize-syntax '(#%void) expr
 						   '() #f (make-origin 'micro expr))
 		    env attributes vocab)))))
