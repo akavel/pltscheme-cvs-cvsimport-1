@@ -1138,7 +1138,7 @@
 					form-name
 					(sexp->raw (quote-form-expr f))
 					(if sig? "signed " ""))
-				      ((debug-info-handler)))))
+				      (#%current-continuation-marks))))
 				  result)
 			       expr '(-1))
 			      env attributes vocab)
@@ -1208,7 +1208,7 @@
 					  '"mzlib"
 					  raw-cs)
 				      (if sig? "signed " ""))
-				    ((#%debug-info-handler)))))
+				    (#%current-continuation-marks))))
 				result)
 			     expr '(-1))
 			    env attributes vocab))))))
