@@ -7,7 +7,7 @@
 			   [core:pretty-print : mzlib:pretty-print^]
 			   [core:file : mzlib:file^]
 			   [core:thread : mzlib:thread^]
-			   [mred : mred-interfaces^]
+			   [mred : mred^]
 			   [keys : framework:keys^]
 			   [test : framework:test^])
   (link [application : framework:application^ ((require-relative-library "app.ss"))]

@@ -4,7 +4,7 @@
 
 (compound-unit/sig
   (import [core : mzlib:core^]
-	  [mred : mred-interfaces^])
+	  [mred : mred^])
   (link [keys : framework:keys^ ((require-relative-library "keys.ss"))]
 	[test : framework:test^ ((require-relative-library "testr.ss") mred keys)]
 	[f : frameworkc^ ((require-relative-library "frameworkc.ss")
