@@ -157,6 +157,7 @@
 
 (define-signature mred:finder^
   (filter-match?
+   dialog-parent-parameter
    common-put-file 
    common-get-file 
    std-put-file 
