@@ -467,7 +467,7 @@
 	  (else
 	    (static-error expr "Invalid export clause"))))))
 
-  '(when (language>=? 'advanced)
+  (when (language>=? 'advanced)
     (add-primitivized-micro-form 'compound-unit scheme-vocabulary
       (let* ((kwd `(import link export))
 	      (in-pattern `(_
