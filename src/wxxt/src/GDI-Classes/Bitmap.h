@@ -94,10 +94,4 @@ private:
     wxCursor_Xintern *Xcursor;
 };
 
-class wxGDIList : public wxList { // GDI list representation (list of bitmaps)
-public:
-    wxGDIList(void);
-    ~wxGDIList(void);
-};
-
 #endif // Bitmap_h

@@ -34,6 +34,7 @@ class wxCommandEvent;
 class wxItem;
 class wxKeyEvent;
 class wxMouseEvent;
+class wxScrollEvent;
 class wxWindow;
 
 class wxEvtHandler : public wxObject {

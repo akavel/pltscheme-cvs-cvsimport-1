@@ -59,7 +59,6 @@ wxColourDatabase* wxTheColourDatabase = 0;
 wxPenList*        wxThePenList = 0;
 wxBrushList*	  wxTheBrushList = 0;
 wxFontList*	  wxTheFontList = 0;
-wxGDIList*	  wxTheBitmapList = 0;
 
 //-- misc ---------------------------------------------------------------------
 

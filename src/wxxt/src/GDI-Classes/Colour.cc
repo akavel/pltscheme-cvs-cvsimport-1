@@ -452,9 +452,11 @@ char *wxColourDatabase::FindName(wxColour *colour)
     unsigned char red   = colour->Red();
     unsigned char green = colour->Green();
     unsigned char blue  = colour->Blue();
+    wxNode *node;
     
-    for (wxNode *node = First(); node; node = node->Next()) {
-      wxColour *col = (wxColour*)node->Data ();
+    for (node = First(); node; node = node->Next()) {
+      wxColour *col;
+      col = (wxColour*)node->Data ();
       if (col->Red()==red && col->Green()==green && col->Blue()==blue) {
 	char *found = node->string_key;
 	if (found)

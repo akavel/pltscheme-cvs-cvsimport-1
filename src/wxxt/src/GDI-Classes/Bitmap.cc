@@ -589,22 +589,3 @@ wxCursor::~wxCursor(void)
 }
 
 void* wxCursor::GetHandle(void) { return (Xcursor ? &(Xcursor->x_cursor) : NULL); }
-
-//-----------------------------------------------------------------------------
-// GDIList
-//-----------------------------------------------------------------------------
-
-wxGDIList::wxGDIList(void) : wxList()
-{
-}
-
-wxGDIList::~wxGDIList (void)
-{
-    wxNode *node = First();
-    while (node) {
-	wxObject *object = (wxObject*)node->Data();
-	wxNode *next = node->Next();
-	delete object;
-	node = next;
-    }
-}

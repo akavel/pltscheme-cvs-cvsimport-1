@@ -205,7 +205,6 @@ void wxCommonInit(void)
     wxThePenList = DEBUG_NEW wxPenList();
     wxTheBrushList = DEBUG_NEW wxBrushList();
     wxTheFontList = DEBUG_NEW wxFontList();
-    wxTheBitmapList = DEBUG_NEW wxGDIList();
 
     wxNORMAL_FONT = DEBUG_NEW wxFont (12, wxMODERN, wxNORMAL, wxNORMAL);
     wxSMALL_FONT = DEBUG_NEW wxFont (10, wxSWISS, wxNORMAL, wxNORMAL);

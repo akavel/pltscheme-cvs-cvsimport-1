@@ -36,7 +36,11 @@
 
 #include "../../wxcommon/wxGC.h"
 
-#define WXGC_IGNORE(ptr) GC_general_register_disappearing_link((void **)&(ptr), NULL)
+#ifdef MZ_PRECISE_GC
+# define WXGC_IGNORE(ptr) GC_finalization_weak_ptr((void **)&(ptr))
+#else
+# define WXGC_IGNORE(ptr) GC_general_register_disappearing_link((void **)&(ptr), NULL)
+#endif
 #define WXGC_ATOMIC (AtomicGC)
 #define WXGC_NO_CLEANUP FALSE
 

@@ -51,6 +51,14 @@ public:
     wxColour* CopyFrom(wxColour*);
     wxColour* CopyFrom(const char*);
 
+#ifndef MZ_PRECISE_GC
+    wxColour& operator =(wxColour& x) { 
+      printf("Error: shouldn't use = on color objects anymore\n");
+      CopyFrom(&x);
+      return *this;
+    }
+#endif
+
     Bool Ok(void) { return (X!=NULL); }
 
     void Get(unsigned char *r, unsigned char *b, unsigned char *g);

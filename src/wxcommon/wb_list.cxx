@@ -259,6 +259,16 @@ Bool wxList::DeleteObject (wxObject * object)
 }
 
 
+wxNode *wxList::Append(wxObject *object)
+{
+  wxNode *node = new wxNode(this, last_node, NULL, object);
+  if (!first_node)
+    first_node = node;
+  last_node = node;
+  n ++;
+  return node;
+}
+
 // Insert new node at front of list
 wxNode *wxList::Insert (wxObject * object)
 {

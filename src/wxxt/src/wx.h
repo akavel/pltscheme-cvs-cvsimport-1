@@ -221,17 +221,6 @@
 #	define Uses_wxObject
 #endif
 
-//--- drawing classes ---------------------------------------------------------
-
-#if defined(Uses_wxGraphLayout)
-#	define Uses_wxDC
-#endif
-
-#if defined(Uses_wxTreeLayout)
-#	define Uses_wxDC
-#	define Uses_wxList
-#endif
-
 //--- device contexts ---------------------------------------------------------
 
 #if defined(Uses_wxCanvasDC) || defined(Uses_wxPanelDC) \

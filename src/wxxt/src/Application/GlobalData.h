@@ -39,7 +39,6 @@ class wxColourMap;
 class wxCursor;
 class wxFont;
 class wxFontList;
-class wxGDIList;
 class wxList;
 class wxChildList;
 class wxPen;
@@ -91,7 +90,6 @@ extern wxColourDatabase* wxTheColourDatabase;
 extern wxPenList*	 wxThePenList;
 extern wxBrushList*	 wxTheBrushList;
 extern wxFontList*	 wxTheFontList;
-extern wxGDIList*	 wxTheBitmapList;
 
 //-- misc ---------------------------------------------------------------------
 

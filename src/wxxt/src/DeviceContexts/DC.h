@@ -139,10 +139,7 @@ public:
     void  DrawSpline(float x1,float y1, float x2,float y2, float x3,float y3);
     void  EndDrawing(void)
 	{}
-    wxColour *GetBackground(void)
-	{ wxColour *c = new wxColour();
-          *c = current_background_color;
-	  return c; }
+    wxColour *GetBackground(void);
     wxBrush *GetBrush(void)
 	{ return current_brush; }
     wxFont *GetFont(void)
