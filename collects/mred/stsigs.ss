@@ -5,7 +5,7 @@
 ;;
 
 (define-signature mred:test:active-frame^
-  (get-active-frame
+  (test:get-active-frame
    testable-frame%
    testable-dialog-box%))
 
@@ -31,8 +31,7 @@
    get-repl-canvas))
 
 (define-signature mred:self-test^
-  ((open mred:test:active-frame^)
-   (open mred:test:struct^)
+  ((open mred:test:struct^)
    (open mred:test:run^)
    (open mred:test:primitives^)
    (open mred:test:drscheme^)))

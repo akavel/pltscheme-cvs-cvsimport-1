@@ -7,12 +7,10 @@
 (compound-unit/sig
 
   (import 
-    [wx : mred:wx^])
+    [wx : mred:wx^]
+    [frame : mred:test:active-frame^])
 
   (link
-    [frame : mred:test:active-frame^
-      ((reference-unit/sig "stframe.ss") wx)]
-    
     [struct : mred:test:struct^
       ((unit/sig mred:test:struct^
 	(import)
@@ -31,7 +29,6 @@
       ((reference-unit/sig "stdrs.ss") wx struct global)])
 
   (export
-    (open frame)
     (open struct)
     (open run)
     (open prim)
