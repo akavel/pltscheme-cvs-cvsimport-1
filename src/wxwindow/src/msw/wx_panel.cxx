@@ -139,8 +139,8 @@ Bool wxPanel::Create(wxWindow *parent, int x, int y, int width, int height, long
     labelColour = parentPanel->labelColour;
     buttonColour = parentPanel->buttonColour;
   } else {
-    labelFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
-    buttonFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
+    labelFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxNORMAL, wxNORMAL, FALSE);
+    buttonFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxNORMAL, wxNORMAL, FALSE);
     backColour = NULL;
     labelColour = NULL;
     buttonColour = NULL;

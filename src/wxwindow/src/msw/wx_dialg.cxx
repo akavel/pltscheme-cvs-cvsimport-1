@@ -190,8 +190,8 @@ Bool wxDialogBox::Create(wxWindow *Parent, char *Title, Bool Modal,
   current_hspacing = hSpacing ;
   current_vspacing = vSpacing ;
   
-  labelFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
-  buttonFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
+  labelFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxNORMAL, wxNORMAL, FALSE);
+  buttonFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxNORMAL, wxNORMAL, FALSE);
 
   if (Parent) Parent->AddChild(this);
   window_parent = Parent;
