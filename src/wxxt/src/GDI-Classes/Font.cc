@@ -59,6 +59,8 @@ static XFontStruct *wxLoadQueryNearestFont(int point_size, int fontid,
 
 wxFont::wxFont(void)
 {
+    wxList *sl;
+
     __type = wxTYPE_FONT;
 
     font_id       = wxDEFAULT;
@@ -68,12 +70,15 @@ wxFont::wxFont(void)
     point_size    = 12;
     underlined    = FALSE;
 
-    scaled_xfonts = new wxList(wxKEY_INTEGER);
+    sl            = new wxList(wxKEY_INTEGER);
+    scaled_xfonts = sl;
 }
 
 wxFont::wxFont(int PointSize, int FontIdOrFamily, int Style, int Weight,
 	       Bool Underlined)
 {
+    wxList *sl;
+
     __type = wxTYPE_FONT;
 
     font_id       = FontIdOrFamily;
@@ -82,12 +87,15 @@ wxFont::wxFont(int PointSize, int FontIdOrFamily, int Style, int Weight,
     weight        = Weight == wxNORMAL ? wxNORMAL_WEIGHT : Weight;
     point_size    = PointSize;
     underlined    = Underlined;
-    scaled_xfonts = new wxList(wxKEY_INTEGER);
+    sl            = new wxList(wxKEY_INTEGER);
+    scaled_xfonts = sl;
 }
 
 wxFont::wxFont(int PointSize, const char *Face, int Family, int Style, 
 	       int Weight, Bool Underlined)
 {
+    wxList *sl;
+
     __type = wxTYPE_FONT;
 
     font_id       = wxTheFontNameDirectory->FindOrCreateFontId(Face, Family);
@@ -96,7 +104,8 @@ wxFont::wxFont(int PointSize, const char *Face, int Family, int Style,
     weight        = Weight == wxNORMAL ? wxNORMAL_WEIGHT : Weight;
     point_size    = PointSize;
     underlined    = Underlined;
-    scaled_xfonts = new wxList(wxKEY_INTEGER);
+    sl            = new wxList(wxKEY_INTEGER);
+    scaled_xfonts = sl;
 }
 
 wxFont::~wxFont(void)

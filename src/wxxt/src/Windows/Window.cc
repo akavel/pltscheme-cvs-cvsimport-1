@@ -1333,8 +1333,12 @@ void wxWindow::ScrollEventHandler(Widget    WXUNUSED(w),
   wxScrollEvent *wxevent;
 
   wxWindow *win = *winp;
-  if (!win)
+  if (!win) {
+#ifdef MZ_PRECISE_GC
+    XFORM_RESET_VAR_STACK;
+#endif
     return;
+  }
 
   wxevent = new wxScrollEvent();
   
@@ -1428,6 +1432,10 @@ void wxWindow::ScrollEventHandler(Widget    WXUNUSED(w),
 
     wxevent->eventHandle = NULL;
   }
+
+#ifdef MZ_PRECISE_GC
+  XFORM_RESET_VAR_STACK;
+#endif
 }
 
 extern Bool wxIsAlt(KeySym key_sym);

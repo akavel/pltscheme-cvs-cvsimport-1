@@ -652,12 +652,8 @@ void wxChildList::Show(wxObject *object, int show)
 	  return;
 
 #ifdef MZ_PRECISE_GC
-	if (show < 0)
-	  weak = GC_malloc_weak_box(object, NULL);
-	else {
-	  weak = GC_malloc_atomic(sizeof(short) + sizeof(short) + sizeof(void *));
-	  *(void **)(weak + 2 * sizeof(short)) = object;
-	}
+	/* FIXME: Is the order on finalizers/weak boxes right? */
+	weak = GC_malloc_weak_box(object, NULL);
 #else
 	weak = new WXGC_ATOMIC wxObject*;
 	*weak = object;
