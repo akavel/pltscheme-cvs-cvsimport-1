@@ -338,6 +338,8 @@ Bool wxFrame::Create(wxFrame *Parent, char *title, int x, int y,
   sr_height = height;
   GetEventHandler()->OnSize(width, height);
 
+  AddPreHandlers(workArea);
+
   return TRUE;
 }
 

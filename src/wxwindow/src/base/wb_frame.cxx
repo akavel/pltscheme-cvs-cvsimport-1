@@ -124,7 +124,7 @@ void wxbFrame::OnSize(int WXUNUSED(x), int WXUNUSED(y))
 
 // Default activation behaviour - set the focus for the first child
 // subwindow found.
-void wxbFrame::OnActivate(Bool flag)
+void wxbFrame::OnActivate(Bool WXUNUSED(flag))
 {
 #if 0
 #ifndef wx_msw

@@ -270,15 +270,18 @@ void wxbItem::DrawBoundingBox(wxPanelDC *dc, int x, int y, int w, int h)
 }
 
 // If selectionHandle is zero, not dragging the selection handle.
-void wxbItem::OnDragBegin(int x, int y, int WXUNUSED(keys), wxPanelDC *dc, int selectionHandle)
+void wxbItem::OnDragBegin(int WXUNUSED(x), int WXUNUSED(y), int WXUNUSED(keys), 
+			  wxPanelDC *WXUNUSED(dc), int WXUNUSED(selectionHandle))
 {
 }
 
-void wxbItem::OnDragContinue(Bool paintIt, int x, int y, int WXUNUSED(keys), wxPanelDC *dc, int selectionHandle)
+void wxbItem::OnDragContinue(Bool WXUNUSED(paintIt), int WXUNUSED(x), int WXUNUSED(y), 
+			     int WXUNUSED(keys), wxPanelDC *WXUNUSED(dc), int WXUNUSED(selectionHandle))
 {
 }
 
-void wxbItem::OnDragEnd(int x, int y, int WXUNUSED(keys), wxPanelDC *dc, int selectionHandle)
+void wxbItem::OnDragEnd(int WXUNUSED(x), int WXUNUSED(y), int WXUNUSED(keys), 
+			wxPanelDC *WXUNUSED(dc), int WXUNUSED(selectionHandle))
 {
 }
 
@@ -638,7 +641,7 @@ wxMenuItem *wxbMenuBar::FindItemForId (int Id, wxMenu ** itemMenu)
   wxMenuItem *item = NULL;
   int i;
   for (i = 0; i < n; i++)
-    if (item = menus[i]->FindItemForId (Id, itemMenu))
+    if ((item = menus[i]->FindItemForId (Id, itemMenu)))
       return item;
   return NULL;
 }
@@ -647,23 +650,19 @@ void wxbMenuBar::SetHelpString (int Id, char *helpString)
 {
   int i;
   for (i = 0; i < n; i++)
-    {
-      if (menus[i]->FindItemForId (Id))
-	{
-	  menus[i]->SetHelpString (Id, helpString);
-	  return;
-	}
+    if (menus[i]->FindItemForId (Id)) {
+      menus[i]->SetHelpString (Id, helpString);
+      return;
     }
 }
 
 char *wxbMenuBar::GetHelpString (int Id)
 {
   int i;
-  for (i = 0; i < n; i++)
-    {
-      if (menus[i]->FindItemForId (Id))
-	return menus[i]->GetHelpString (Id);
-    }
+  for (i = 0; i < n; i++) {
+    if (menus[i]->FindItemForId(Id))
+      return menus[i]->GetHelpString (Id);
+  }
   return NULL;
 }
 
