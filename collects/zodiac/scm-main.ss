@@ -439,7 +439,8 @@
 	    (if (or (language>=? 'side-effecting)
 		  (z:symbol? (cadr contents)))
 	      (create-quote-form (cadr contents) expr)
-	      (static-error (cadr contents) "Not appropriate for a symbol"))
+	      (static-error expr "'~s is not a symbol"
+		(sanitized-sexp->raw (cadr contents))))
 	    (static-error expr "Malformed quote")))
 	(static-error expr "Malformed quote"))))
 
