@@ -53,7 +53,8 @@ long NewId(wxItem *item)
 
 void DoneIds(wxItem *item)
 {
-  wxItemIdList->DeleteObject(item);
+  if (wxItemIdList)
+    wxItemIdList->DeleteObject(item);
 }
 
 IMPLEMENT_ABSTRACT_CLASS(wxItem, wxWindow)
