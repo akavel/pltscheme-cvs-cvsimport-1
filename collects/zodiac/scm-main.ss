@@ -1932,7 +1932,7 @@
 			      (else
 			       (static-error expr
 					     (string-append "Malformed " kwd-string))))))])
-	      (add-micro-form kwd-symbol beginner-vocabulary micro)
+	      (add-micro-form kwd-symbol full-vocabulary micro)
 	      (if on-demand?
 		  (add-on-demand-form 'micro kwd-symbol scheme-vocabulary micro)
 		  (add-micro-form kwd-symbol scheme-vocabulary micro))))))
