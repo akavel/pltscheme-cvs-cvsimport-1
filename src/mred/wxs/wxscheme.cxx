@@ -1443,7 +1443,7 @@ static Scheme_Object *file_type_and_creator(int argc, Scheme_Object **argv)
     FInfo info;
 
 #ifndef OS_X
-    spec_ok = scheme_mac_path_to_spec(file, &spec);
+    spec_ok = scheme_mac_path_to_spec(filename, &spec);
 # else
     {
       FSRef ref;
@@ -1454,29 +1454,29 @@ static Scheme_Object *file_type_and_creator(int argc, Scheme_Object **argv)
 	was_dir = 1;
       else if (!err) {
 	err = FSGetCatalogInfo(&ref, kFSCatInfoNone, NULL, NULL, &spec, NULL);
-	if (!err) {
-	  err = FSpGetFInfo(&spec, &info);
-	  spec_ok = !err;
-	}
+	spec_ok = !err;
       }
     }
 # endif
 
     if (spec_ok) {
-      if (argc > 1) {
-	info.fdCreator = *(unsigned long *)SCHEME_STR_VAL(argv[1]);
-	info.fdType = *(unsigned long *)SCHEME_STR_VAL(argv[2]);
-	err = FSpSetFInfo(&spec, &info);
+      err = FSpGetFInfo(&spec, &info);
+      if (!err) {
+	if (argc > 1) {
+	  info.fdCreator = *(unsigned long *)SCHEME_STR_VAL(argv[1]);
+	  info.fdType = *(unsigned long *)SCHEME_STR_VAL(argv[2]);
+	  err = FSpSetFInfo(&spec, &info);
 
-	if (!err)
-	  return scheme_void;
-	write_failed = 1;
-      } else {
-	Scheme_Object *a[2];
+	  if (!err)
+	    return scheme_void;
+	  write_failed = 1;
+	} else {
+	  Scheme_Object *a[2];
 
-	a[0] = scheme_make_sized_string((char *)&info.fdCreator, 4, 1);
-	a[1] = scheme_make_sized_string((char *)&info.fdType, 4, 1);
-	return scheme_values(2, a);
+	  a[0] = scheme_make_sized_string((char *)&info.fdCreator, 4, 1);
+	  a[1] = scheme_make_sized_string((char *)&info.fdType, 4, 1);
+	  return scheme_values(2, a);
+	}
       }
     }
   }
@@ -2556,7 +2556,7 @@ static void wxScheme_Install(Scheme_Env *global_env)
 			   global_env);
 
   scheme_install_xc_global("file-creator-and-type", 
-			   scheme_make_prim_w_arity(file_type_and_creator,
+			   scheme_make_prim_w_arity(CAST_SP file_type_and_creator,
 						    "file-creator-and-type", 
 						    1, 3), 
 			   global_env);
