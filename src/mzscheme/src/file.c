@@ -4173,30 +4173,70 @@ static long check_four(char *name, int which, int argc, Scheme_Object **argv)
 static int appl_name_to_spec(char *name, int find_path, Scheme_Object *o, FSSpec *spec)
 {
   if (find_path) {
+    HVolumeParam volPB;
+    HIOParam paramPB;
+    GetVolParmsInfoBuffer volinfo;
     DTPBRec rec;
     Str255 nm;
     short vrefnum;
     long junk;
     long creator = check_four(name, 0, 1, &o);
 
-    if (HGetVol(nm, &vrefnum, &junk))
-      return 0;
-    rec.ioNamePtr = NULL;
-    rec.ioVRefNum = vrefnum;
-
-    if (PBDTGetPath(&rec))
-      return 0;
-
-    rec.ioIndex = 0;
-    rec.ioNamePtr = nm;
-    rec.ioFileCreator = creator;
-
-    if (PBDTGetAPPL(&rec, 0))
-      return 0;
+    /* try current volume: */
+    scheme_os_setcwd(SCHEME_STR_VAL(scheme_get_param(scheme_config, 
+						     MZCONFIG_CURRENT_DIRECTORY)),
+		     0);
+    if (HGetVol(nm, &vrefnum, &junk) == noErr) {
+      rec.ioNamePtr = NULL;
+      rec.ioVRefNum = vrefnum;
       
-    memcpy(spec->name, nm, 32);
-    spec->vRefNum = vrefnum;
-    spec->parID = rec.ioAPPLParID;
+      if (PBDTGetPath(&rec)) {
+	rec.ioIndex = 0;
+	rec.ioNamePtr = nm;
+	rec.ioFileCreator = creator;
+
+	if (PBDTGetAPPL(&rec, 0)) {
+	  memcpy(spec->name, nm, 32);
+	  spec->vRefNum = vrefnum;
+	  spec->parID = rec.ioAPPLParID;
+	  
+	  return 1;
+	}
+      }
+    }
+
+    volPB.ioNamePtr = NULL;
+    paramPB.ioNamePtr = NULL;
+    paramPB.ioBuffer = (Ptr)&volinfo;
+    paramPB.ioReqCount = sizeof(volinfo);
+
+    /* Loop over all volumes: */
+    for (volPB.ioVolIndex = 1; PBHGetVInfoSync ((HParmBlkPtr)&volPB) == noErr; volPB.ioVolIndex++) {
+      /* Call PBHGetVolParms call to ensure the volume is a local volume. */
+      paramPB.ioVRefNum = volPB.ioVRefNum;
+
+      if (PBHGetVolParmsSync ((HParmBlkPtr)&paramPB) == noErr && volinfo.vMServerAdr == 0) {
+	rec.ioNamePtr = NULL;
+	rec.ioVRefNum = volPB.ioVRefNum;
+	
+	if (PBDTGetPath(&rec))
+	  break;
+
+	rec.ioIndex = 0;
+	rec.ioNamePtr = nm;
+	rec.ioFileCreator = creator;
+
+	if (PBDTGetAPPL(&rec, 0))
+	  break;
+      
+	memcpy(spec->name, nm, 32);
+	spec->vRefNum = vrefnum;
+	spec->parID = rec.ioAPPLParID;
+
+	return 1;
+      }
+    }
+    return 0;
   } else {
     char *s;
     
