@@ -364,7 +364,7 @@ static void make_init_env(void)
   
   scheme_add_global_constant("syntax-local-value", 
 			     scheme_make_prim_w_arity(local_exp_time_value,
-						      "syntax-value",
+						      "syntax-local-value",
 						      1, 2),
 			     env);
   scheme_add_global_constant("syntax-local-name", 
@@ -1163,6 +1163,17 @@ scheme_static_distance(Scheme_Object *symbol, Scheme_Comp_Env *env, int flags)
     val->type = scheme_module_variable_type;
 
     SCHEME_PTR1_VAL(val) = modidx;
+    SCHEME_PTR2_VAL(val) = SCHEME_STX_SYM(symbol);
+
+    return val;
+  }
+
+  if (!modname && (flags & SCHEME_SETTING) && genv->module) {
+    /* Need to return a variable reference in this case, too. */
+    val = scheme_alloc_object();
+    val->type = scheme_module_variable_type;
+
+    SCHEME_PTR1_VAL(val) = genv->module->self_modidx;
     SCHEME_PTR2_VAL(val) = SCHEME_STX_SYM(symbol);
 
     return val;
