@@ -41,7 +41,7 @@
 	[pasteboard : framework:pasteboard^ ((require-relative-library "pasteboard.ss")
 					     mred editor)]
 	[text : framework:text^ ((require-relative-library "text.ss")
-				 mred editor preferences keymap gui-utils
+				 mred icon editor preferences keymap gui-utils
 				 core:function)]
 
 	[gui-utils : framework:gui-utils^ ((require-relative-library "guiutils.ss") mred)]
