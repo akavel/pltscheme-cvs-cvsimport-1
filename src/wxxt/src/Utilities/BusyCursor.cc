@@ -44,7 +44,10 @@ void wxXSetNoCursor(wxWindow *win, wxCursor *cursor)
   else
     c = GETCURSOR(win->cursor);
 
-  XtVaSetValues(win->X->handle, XtNcursor, c, NULL);
+  Cursor cc;
+  XtVaGetValues(win->X->handle, XtNcursor, &cc, NULL);
+  if (cc != c)
+    XtVaSetValues(win->X->handle, XtNcursor, c, NULL);
   
   for(wxChildNode *node = win->GetChildren()->First(); node; node = node->Next()) {
     wxWindow *child = (wxWindow *) node->Data ();

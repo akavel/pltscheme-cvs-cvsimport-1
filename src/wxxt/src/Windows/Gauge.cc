@@ -124,6 +124,8 @@ Bool wxGauge::Create(wxPanel *panel, char *label, int _range,
 			    : lvh + wxDEFAULT_GAUGE_HEIGHT)));
     AddEventHandlers();
 
+    SetValue(0);
+
     return TRUE;
 }
 
