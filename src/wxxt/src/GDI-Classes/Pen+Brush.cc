@@ -39,10 +39,13 @@
 
 wxPen::wxPen(void)
 {
+    wxColour *c;
+
     __type = wxTYPE_PEN;
 
     stipple = NULL;
-    colour.CopyFrom(wxBLACK);
+    c = new wxColour(wxBLACK);
+    colour  = c;
     style   = wxSOLID;
     join    = wxJOIN_ROUND;
     cap     = wxCAP_ROUND;
@@ -54,9 +57,12 @@ wxPen::wxPen(void)
 
 wxPen::wxPen(wxColour *col, int Width, int Style)
 {
+    wxColour *c;
+
     __type = wxTYPE_PEN;
 
-    colour.CopyFrom(col);
+    c = new wxColour(col);
+    colour  = c;
     width   = Width;
     style   = Style;
     stipple = NULL;
@@ -69,9 +75,12 @@ wxPen::wxPen(wxColour *col, int Width, int Style)
 
 wxPen::wxPen(const char *col, int Width, int Style)
 {
+    wxColour *c;
+
     __type = wxTYPE_PEN;
 
-    colour.CopyFrom(col);
+    c = new wxColour(col);
+    colour  = c;
     width   = Width;
     style   = Style;
     stipple = NULL;
@@ -107,32 +116,41 @@ void wxPen::SetStipple(wxBitmap *s)
 
 wxBrush::wxBrush(void)
 {
+    wxColour *c;
+
     __type = wxTYPE_BRUSH;
 
-    colour.CopyFrom(wxWHITE);
+    c = new wxColour(wxWHITE);
+    colour  = c;
     stipple = NULL;
     style   = wxSOLID;
-    locked = 0;
+    locked  = 0;
 }
 
 wxBrush::wxBrush(wxColour *col, int Style)
 {
+    wxColour *c;
+
     __type = wxTYPE_BRUSH;
 
-    colour.CopyFrom(col);
+    c = new wxColour(col);
+    colour  = c;
     style   = Style;
     stipple = NULL;
-    locked = 0;
+    locked  = 0;
 }
 
 wxBrush::wxBrush(const char *col, int Style)
 {
+    wxColour *c;
+
     __type = wxTYPE_BRUSH;
 
-    colour.CopyFrom(col);
+    c = new wxColour(col);
+    colour  = c;
     style   = Style;
     stipple = NULL;
-    locked = 0;
+    locked  = 0;
 }
 
 wxBrush::~wxBrush(void)

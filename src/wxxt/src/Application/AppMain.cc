@@ -45,6 +45,7 @@ wxApp::wxApp()
   
   // no application and/or application not initialized
   initialized = FALSE;
+  wxREGGLOB(wxTheApp);
   wxTheApp = this;
 }
 
