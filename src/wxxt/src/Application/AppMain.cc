@@ -252,22 +252,9 @@ int wxEntry(int argc, char *argv[])
     // initialize global data
     wxCommonInit();
 
-    // initialize first top_level_frame
-    if (wxTheApp->OnInit())
-	wxTheApp->initialized = TRUE;
+    wxTheApp->OnInit();
 
-    // if top_level_frame start main loop
-    if (wxTheApp->Initialized())
-	wxTheApp->MainLoop();
-
-    // exit application if keep_going == False
-    int retval = wxTheApp->OnExit();
-
-    // destroy global data
-    wxCommonCleanUp();
-
-    // return properly
-    return (retval);
+    return 0;
 }
 
 // If the compiler really, really wants main() to be in the main program
