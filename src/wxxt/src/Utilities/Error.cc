@@ -25,7 +25,9 @@
 
 #include "wx.h"
 
-#include <stdarg.h>
+#if 0
+# include <stdarg.h>
+#endif
 
 void wxDebugMsg(const char *WXUNUSED(fmt), ...)
 {
@@ -40,7 +42,7 @@ void wxDebugMsg(const char *WXUNUSED(fmt), ...)
 }
 
 void wxError(const char *msg, const char *title)
-{
+{  
     fprintf(stderr, "%s: %s\n", title, msg);
 }
 

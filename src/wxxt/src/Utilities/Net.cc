@@ -38,7 +38,7 @@ extern "C" {
 #include <sys/types.h>
 #include <unistd.h>
 
-#if defined(__alpha)
+#if defined(__digital__) && defined(__unix__)
 extern "C" {
 extern int gethostname(char *, int);
 };
