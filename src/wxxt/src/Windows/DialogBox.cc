@@ -37,30 +37,34 @@ IMPLEMENT_DYNAMIC_CLASS(wxDialogBox, wxFrame)
 
 wxDialogBox::wxDialogBox(void) : wxFrame()
 {
-    __type = wxTYPE_DIALOG_BOX;
-
-    modal = modal_showing = FALSE;
+  __type = wxTYPE_DIALOG_BOX;
+  
+  modal = modal_showing = FALSE;
 }
 
 wxDialogBox::wxDialogBox(wxFrame *parent, char *title, Bool _modal, int x,
 			 int y, int width, int height, long style, char *name)
     : wxFrame()
 {
-    __type = wxTYPE_DIALOG_BOX;
-
-    modal = modal_showing = FALSE;
-
-    Create(parent, title, _modal, x, y, width, height, style, name);
+  __type = wxTYPE_DIALOG_BOX;
+  
+  modal = modal_showing = FALSE;
+  
+  style |= wxTRANSIENT;
+  
+  Create(parent, title, _modal, x, y, width, height, style, name);
 }
 
 Bool wxDialogBox::Create(wxFrame *parent, char *title, Bool _modal, int x,
 			 int y, int width, int height, long style, char *name)
 {
-    (void)wxFrame::Create(parent, title, x, y, width, height, style, name);
+  style |= wxTRANSIENT;
 
-    modal = _modal; /* MATTHEW */
-
-    return TRUE;
+  (void)wxFrame::Create(parent, title, x, y, width, height, style, name);
+  
+  modal = _modal; /* MATTHEW */
+  
+  return TRUE;
 }
 
 extern void wxDispatchEventsUntil(int (*)(void *), void *);

@@ -819,8 +819,10 @@ void wxWindowDC::SetPen(wxPen *pen)
 		dashdef  = dashdefs[style-wxFIRST_DASH];
 	    }
 	    if ((scaleddef = new wxDash[num_dash])) {
+	        int dscale = scale;
+		if (!dscale) dscale = 1;
 		for (int i=0; i<num_dash; ++i)
-		    scaleddef[i] = scale * dashdef[i];
+		    scaleddef[i] = dscale * dashdef[i];
 		XSetDashes(DPY, PEN_GC, 0, (char*)scaleddef, num_dash);
 		delete[] scaleddef;
 	    } else { // not enough memory to scale

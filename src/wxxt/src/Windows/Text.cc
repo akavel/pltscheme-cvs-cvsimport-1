@@ -209,5 +209,5 @@ void wxText::SetEditable(Bool on)
 void wxText::ChangeToGray(Bool gray)
 {
   wxWindow::ChangeToGray(gray);
-  XtSetSensitive((Widget)porthole, !gray);
+  XtSetSensitive((Widget)(porthole ? porthole : X->handle), !gray);
 }

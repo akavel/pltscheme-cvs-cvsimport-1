@@ -113,7 +113,7 @@ void wxTextWindow::Clear(void)
 
 char *wxTextWindow::GetContents(void)
 {
-    return NULL;
+    return "";
 }
 
 long wxTextWindow::GetInsertionPoint(void)
