@@ -1,4 +1,3 @@
-changing
 (module annotate mzscheme
   (require (prefix kernel: (lib "kerncase.ss" "syntax"))
            (lib "specs.ss" "framework")
@@ -1190,9 +1189,9 @@ changing
                                                  [foot-wrap?
                                                   (if (and (memq (syntax-e var) pre-defined-names)
                                                            (not (memq (syntax-e var) beginner-defined:must-reduce)))
-                                                      (wcm-wrap (make-debug-info-normal free-varrefs) var)
+                                                      (wcm-wrap (make-debug-info-normal free-varrefs) expr)
                                                       (wcm-break-wrap (make-debug-info-normal free-varrefs)
-                                                                      (return-value-wrap var)))])
+                                                                      (return-value-wrap expr)))])
                                           free-varrefs))]
                             
                             [var-stx
