@@ -1634,7 +1634,7 @@
 	      (expand-expr
 		(structurize-syntax
 		  (pat:pexpand
-		    '(reference-library filename "standard")
+		    '(reference-library filename "mzlib")
 		    p-env kwd)
 		  expr)
 		env attributes vocab)))
@@ -1659,7 +1659,7 @@
 			raw-f))
 		    (expand-expr
 		      (structurize-syntax
-			(if (and (string=? raw-c "standard")
+			(if (and (string=? raw-c "mzlib")
 			      (member raw-f mzscheme-libraries-provided))
 			  `(#%void)
 			  `(require-library ,(quote-form-expr f)

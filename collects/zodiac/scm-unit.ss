@@ -919,7 +919,7 @@
 		  (expand-expr
 		    (structurize-syntax
 		      (pat:pexpand
-			`(,form-name filename "standard")
+			`(,form-name filename "mzlib")
 			p-env kwd)
 		      expr)
 		    env attributes vocab)))

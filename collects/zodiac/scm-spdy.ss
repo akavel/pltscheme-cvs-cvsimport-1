@@ -281,7 +281,7 @@
 	      (expand-expr
 		(structurize-syntax
 		  (pat:pexpand
-		    '(reference-library file "standard")
+		    '(reference-library file "mzlib")
 		    p-env kwd)
 		  expr)
 		env attributes vocab)))
@@ -308,7 +308,7 @@
 			      (static-error f
 				"Library path ~s must be a relative path"
 				raw-f))))
-		    (if (and (string=? raw-c "standard")
+		    (if (and (string=? raw-c "mzlib")
 			  (member raw-f mzscheme-libraries-provided))
 		      (expand-expr (structurize-syntax '(#%void) expr)
 			env attributes vocab)
@@ -410,7 +410,7 @@
 		  (expand-expr
 		    (structurize-syntax
 		      (pat:pexpand
-			`(,form-name file "standard")
+			`(,form-name file "mzlib")
 			p-env kwd)
 		      expr)
 		    env attributes vocab)))
