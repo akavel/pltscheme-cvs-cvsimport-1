@@ -757,7 +757,7 @@
 		(when (or (inherit-varref? id-expr)
 			(rename-varref? id-expr))
 		  (static-error var-p
-		    "Cannot mutate inherit's and rename's"))
+		    "Cannot mutate inherited or renamed variables"))
 		(create-set!-form id-expr expr-expr expr))
 	      (static-error expr "Malformed set!"))))))
 

@@ -329,7 +329,7 @@
   (define valid-syntactic-id?
     (lambda (id)
       (or (z:symbol? id) 
-	(static-error id "~e is not an identifier" (sexp->raw id)))))
+	(static-error id "~s is not an identifier" (sexp->raw id)))))
 
   (define valid-syntactic-id/s?
     (lambda (ids)

@@ -551,8 +551,7 @@
 					  vocab 'unit-clauses-vocab)])
 		  (set-top-level-status attributes #t)
 		  (set-internal-define-status attributes #f)
-		  (when old-top-level
-		    (put-attribute attributes 'top-levels (make-hash-table)))
+		  (put-attribute attributes 'top-levels (make-hash-table))
 		  (let ((in:imports (pat:pexpand '(imports ...) p-env kwd))
 			(in:exports (pat:pexpand '(exports ...) p-env kwd))
 			(in:clauses (pat:pexpand '(clauses ...) p-env kwd)))
@@ -599,8 +598,7 @@
 		      (remove-vars-attribute attributes)
 		      (remove/update-unresolved-attribute attributes
 							  unresolveds)
-		      (when old-top-level
-			(put-attribute attributes 'top-levels old-top-level))
+		      (put-attribute attributes 'top-levels old-top-level)
 		      (set-top-level-status attributes top-level?)
 		      (set-internal-define-status attributes internal?)
 		      
