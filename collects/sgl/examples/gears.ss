@@ -338,7 +338,7 @@
 	  (set! step? #f)
 	  (queue-callback (lambda x (send this run))))))
 
-    (super-instantiate () (style '(gl no-autoclear)) (gl-config cfg))))
+    (super-instantiate () (style '(gl no-autoclear)))))
 (define (f)
   (let* ((f (make-object frame% "gears.ss" #f))
          (c (instantiate gears-canvas% (f) (min-width 300) (min-height 300))))
