@@ -88,7 +88,8 @@
 (define-signature mred:application^
   (console
    app-name
-   eval-string))
+   eval-string
+   startup))
 
 (define-signature mred:html-mode^
   ())
@@ -98,7 +99,6 @@
 (define-signature mred:constants^
   (debug-on
    debug-param
-   plt-home-directory
    original-input-port
    original-output-port))
 
