@@ -37,7 +37,6 @@
          (lib "class.ss")
          (lib "math.ss")
          (prefix gl- (lib "sgl.ss" "sgl"))
-	 (lib "gl.ss" "sgl")
          (lib "gl-vectors.ss" "sgl"))
          
          
