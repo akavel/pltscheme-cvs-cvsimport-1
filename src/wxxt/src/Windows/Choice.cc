@@ -337,7 +337,7 @@ void wxChoice::OnEvent(wxMouseEvent *e)
 void wxChoice::MenuEventCallback(wxObject* obj, wxCommandEvent* ev)
 {
     wxChoice       *choice;
-    wxPopupEvent *pu = (wxPopupEvent *)&ev;
+    wxPopupEvent *pu = (wxPopupEvent *)ev;
     wxCommandEvent *event;
 
     choice = (wxChoice*)((wxMenu *)obj)->GetClientData();
