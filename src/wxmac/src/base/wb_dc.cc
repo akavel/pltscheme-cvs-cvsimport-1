@@ -60,6 +60,7 @@ wxbDC::wxbDC(void)
   title = NULL;
   clipping = FALSE;
   autoSetting = TRUE ;
+  current_bk_mode = wxTRANSPARENT;
 }
 
 wxbDC::~wxbDC(void)
