@@ -1092,7 +1092,7 @@
 		       (small-sig
 			 (expand-expr sig env attributes sig-vocab)))
 		  (with-handlers
-		    ((exn:unit:signature:match:missing?
+		    ((exn:unit?
 		       (lambda (exn)
 			 (static-error expr
 			   (exn-message exn)))))
@@ -1116,7 +1116,7 @@
 		     (small-sig
 		       (expand-expr sig env attributes sig-vocab)))
 		(with-handlers
-		  ((exn:unit:signature:match:missing?
+		  ((exn:unit?
 		     (lambda (exn)
 		       (static-error expr
 			 (exn-message exn)))))
@@ -1190,7 +1190,7 @@
 		       (small-sig
 			 (expand-expr sig env attributes sig-vocab)))
 		  (with-handlers
-		    ((exn:unit:signature:match:missing?
+		    ((exn:unit?
 		       (lambda (exn)
 			 (static-error expr
 			   (exn-message exn)))))
@@ -1216,7 +1216,7 @@
 		     (small-sig
 		       (expand-expr sig env attributes sig-vocab)))
 		(with-handlers
-		  ((exn:unit:signature:match:missing?
+		  ((exn:unit?
 		     (lambda (exn)
 		       (static-error expr
 			 (exn-message exn)))))
