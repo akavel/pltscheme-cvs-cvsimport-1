@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: common utilities
  *
@@ -58,10 +57,9 @@ char *wxGetTempFileName(char *prefix, char *dest);
 #define PathOnly wxPathOnly
 
 // Network functions
-Bool wxGetHostName(char *buf, int sz);
-Bool wxGetEmailAddress(char *buf, int sz);
-Bool wxGetUserId(char *buf, int sz);
-Bool wxGetUserName(char *buf, int sz);
+extern "C" {
+#include "Net.h"
+}
 
 // String functions
 char *copystring(const char *s);
