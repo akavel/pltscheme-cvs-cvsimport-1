@@ -2139,8 +2139,6 @@
 	      "define-macro" 'kwd:define-macro
 	      expr "malformed definition"))))))
 
-  ;; >> Broken by current embedded define hacks! <<
-  ;; e.g., (let ([a 7]) (let-macro a void (a))
   (add-primitivized-micro-form 'let-macro common-vocabulary
     (let* ((kwd '())
 	    (in-pattern `(_ macro-name macro-handler b0 b1 ...))
@@ -2180,11 +2178,14 @@
 			    (cdr (sexp->raw m-expr cache-table)))
 			  m-expr '() cache-table
 			  (make-origin 'macro expr))))
-		    (expand-expr
-		      (structurize-syntax body expr
-					  '() 
-					  #f (make-origin 'micro expr))
-		      env attributes extended-vocab))))))
+		    (as-nested 
+		     attributes
+		     (lambda ()
+		       (expand-expr
+			(structurize-syntax body expr
+					    '() 
+					    #f (make-origin 'micro expr))
+			env attributes extended-vocab))))))))
 	  (else
 	    (static-error
 	      "let-macro" 'kwd:let-macro
