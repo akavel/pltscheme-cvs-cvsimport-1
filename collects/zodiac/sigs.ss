@@ -1,7 +1,7 @@
 ; $Id$
 
 (begin-elaboration-time
- (reference-relative-library "namedarg.ss"))
+ (require-relative-library "namedarg.ss"))
 
   (define-argument-list zodiac:scheme-expand/nal
     (kwd expression: expr)

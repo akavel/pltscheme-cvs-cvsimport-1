@@ -1747,7 +1747,7 @@
 	  (else
 	    (static-error expr "Malformed reference"))))))
 
-  (add-primitivized-micro-form 'reference-library scheme-vocabulary
+  (add-primitivized-micro-form 'require-library scheme-vocabulary
     (let* ((kwd '())
 	    (in-pattern '(_ filename collections ...))
 	    (m&e (pat:make-match&env in-pattern kwd)))
@@ -1791,9 +1791,9 @@
 			expr '(-1))
 		      env attributes vocab))))))
 	  (else
-	    (static-error expr "Malformed reference-library"))))))
+	    (static-error expr "Malformed require-library"))))))
 
-  (add-primitivized-micro-form 'reference-relative-library scheme-vocabulary
+  (add-primitivized-micro-form 'require-relative-library scheme-vocabulary
     (let* ((kwd '())
 	    (in-pattern '(_ filename collections ...))
 	    (m&e (pat:make-match&env in-pattern kwd)))
@@ -1837,7 +1837,7 @@
 			expr '(-1))
 		      env attributes vocab))))))
 	  (else
-	    (static-error expr "Malformed reference-relative-library"))))))
+	    (static-error expr "Malformed require-relative-library"))))))
 
   (add-macro-form 'define-constructor scheme-vocabulary
     (let* ((kwd '())

@@ -1,14 +1,14 @@
 ; $Id$
 
-(reference-library "macro.ss")
-(reference-library "cores.ss")
+(require-library "macro.ss")
+(require-library "cores.ss")
 
-(reference-library "zsigs.ss" "zodiac")
-(reference-library "sigs.ss" "zodiac")
+(require-library "zsigs.ss" "zodiac")
+(require-library "sigs.ss" "zodiac")
 
 ; All this stuff needs to be disappeared.
 
-(reference-library "sparams.ss" "backward")
+(require-library "sparams.ss" "backward")
 
 (define zodiac:system@
-  (reference-library-unit/sig "link.ss" "zodiac"))
+  (require-library-unit/sig "link.ss" "zodiac"))

@@ -644,7 +644,7 @@
 		  (valid-syntactic-id? name)
 		  (expand-expr
 		    (structurize-syntax
-		      `(#%uq-ivar ,object (quote ,name))
+		      `(#%ivar/proc ,object (quote ,name))
 		      expr '(-1))
 		    env attributes vocab))))
 	    (else

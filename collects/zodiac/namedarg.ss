@@ -1,11 +1,11 @@
 ; $Id$
 
-(begin-construction-time (reference-library "match.ss"))
-(begin-construction-time (reference-library "macro.ss"))
+(begin-construction-time (require-library "match.ss"))
+(begin-construction-time (require-library "macro.ss"))
 
 (begin-construction-time 
  (invoke-open-unit
-  (reference-relative-library "namedargr.ss")))
+  (require-relative-library "namedargr.ss")))
 
 (define-macro define-argument-list
   (lambda args
