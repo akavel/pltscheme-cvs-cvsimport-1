@@ -66,6 +66,4 @@
   (define testable-multi-text%   (add-get-focus wx:multi-text%))
   
   (define testable-frame%        (add-get-focus (add-get-active wx:frame%)))
-  (define testable-dialog-box%   (add-get-focus (add-get-active wx:dialog-box%)))
-  
-  )
+  (define testable-dialog-box%   (add-get-focus (add-get-active wx:dialog-box%))))

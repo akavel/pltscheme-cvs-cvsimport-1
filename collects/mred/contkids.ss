@@ -141,6 +141,17 @@
 		get-client-size
 		get-size)
 	    
+	      (rename [super-enable enable])
+	      (private [enabled? #t])
+	      (public
+		[enable
+		 (lambda (b)
+		   (begin0 (super-enable b)
+			   (set! enabled? b)))]
+		[is-enabled? (lambda () enabled?)])
+		       
+
+
               (rename
                 [super-set-size set-size])
 	    
