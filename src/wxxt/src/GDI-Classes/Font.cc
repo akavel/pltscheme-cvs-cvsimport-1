@@ -32,7 +32,7 @@
 #define  Uses_wxFontDirectory
 #include "wx.h"
 
-static char *wx_font_spec [] = {
+char *wx_font_spec [] = {
     "wxDEFAULT",
     // families
     "wxDECORATIVE", "wxMODERN", "wxROMAN", "wxSCRIPT", "wxSWISS", "wxTELETYPE",
@@ -40,6 +40,8 @@ static char *wx_font_spec [] = {
     "wxNORMAL", "wxSLANT", "wxITALIC",
     // weight
     "wxNORMAL", "wxBOLD", "wxLIGHT",
+    // More families
+    "wxSYSTEM", "wxSYMBOL"
 };
 
 // local function prototypes
@@ -68,7 +70,6 @@ wxFont::wxFont(void)
     point_size    = 12;
     underlined    = FALSE;
 
-    wx_desc       = wx_font_spec;
     scaled_xfonts = new wxList(wxKEY_INTEGER);
 
 #if !WXGARBAGE_COLLECTION_ON
@@ -87,7 +88,6 @@ wxFont::wxFont(int PointSize, int FontIdOrFamily, int Style, int Weight,
     weight        = Weight == wxNORMAL ? wxNORMAL_WEIGHT : Weight;
     point_size    = PointSize;
     underlined    = Underlined;
-    wx_desc       = wx_font_spec;
     scaled_xfonts = new wxList(wxKEY_INTEGER);
 
 #if !WXGARBAGE_COLLECTION_ON
@@ -106,7 +106,6 @@ wxFont::wxFont(int PointSize, const char *Face, int Family, int Style,
     weight        = Weight == wxNORMAL ? wxNORMAL_WEIGHT : Weight;
     point_size    = PointSize;
     underlined    = Underlined;
-    wx_desc       = wx_font_spec;
     scaled_xfonts = new wxList(wxKEY_INTEGER);
 
 #if !WXGARBAGE_COLLECTION_ON
@@ -141,6 +140,7 @@ char *wxFont::GetFaceString(void)
   case wxSWISS:
   case wxTELETYPE:
   case wxSYSTEM:
+  case wxSYMBOL:
     return NULL;
   default:
     return wxTheFontNameDirectory.GetFontName(font_id); 

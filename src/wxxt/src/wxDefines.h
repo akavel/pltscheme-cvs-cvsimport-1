@@ -375,6 +375,7 @@ enum {
 #define wxSWISS         5
 #define wxTELETYPE      6
 #define wxSYSTEM        13
+#define wxSYMBOL        14
 //--- styles
 #define wxNORMAL        7
 #define wxSLANT         8
