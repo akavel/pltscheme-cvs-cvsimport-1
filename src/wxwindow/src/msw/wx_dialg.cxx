@@ -64,8 +64,6 @@ extern void wxCreatedWindow(wxWindow *w);
 
 extern void wxDestroyedWindow(void *context, wxWindow *w);
 
-
-
 class wxDialogWnd : public wxSubWnd
 {
 public:
@@ -246,15 +244,12 @@ wxDialogBox::~wxDialogBox()
     Show(FALSE);
 
   modal_showing = FALSE;
-  if (wnd)
-  {
+  if (wnd) {
     ShowWindow(wnd->handle, SW_HIDE);
   }
 
   if (!modal)
     wxModelessWindows.DeleteObject(this);
-
-
 
   wxDestroyedWindow(context, this);
 }
@@ -373,12 +368,9 @@ Bool wxDialogBox::Show(Bool show)
   if (window_parent)
     window_parent->GetChildren()->Show(this, show);
 
-  if (modal)
-  {
-    if (show)
-    {
-      if (modal_showing)
-      {
+  if (modal) {
+    if (show) {
+      if (modal_showing) {
 	wxwmBringWindowToTop(dialog->handle);
 	return TRUE;
       }
@@ -389,9 +381,7 @@ Bool wxDialogBox::Show(Bool show)
 
       wxwmBringWindowToTop(dialog->handle);
 
-      wxWindow *saveModal;
-      saveModal = wxGetModalWindow(this);
-      wxPutModalWindow(this, this);
+      wxPushModalWindow(this, this);
       
       wxList *disabled_windows;
       wxChildNode *cnode;
@@ -408,8 +398,8 @@ Bool wxDialogBox::Show(Bool show)
       }
       
       wxDispatchEventsUntil(CheckDialogShowing, (void *)this);
-      
-      wxPutModalWindow(this, saveModal);
+
+      wxPopModalWindow(this, this);
       
       for (node = disabled_windows->First(); node; node = node->Next()) {
 	wxWindow *w = (wxWindow *)node->Data();
@@ -417,32 +407,25 @@ Bool wxDialogBox::Show(Bool show)
       } 
 
       ShowWindow(dialog->handle, SW_HIDE);
-    }
-    else
-    {
+    } else {
       modal_showing = FALSE;
     }
-  }
-  else
-  {
-    if (show)
-    {
+  } else {
+    if (show) {
       ShowWindow(dialog->handle, SW_SHOW);
-		wxwmBringWindowToTop(dialog->handle);
-	 }
-    else
-    {
+      wxwmBringWindowToTop(dialog->handle);
+    } else {
       // Try to highlight the correct window (the parent)
       HWND hWndParent = 0;
-      if (GetParent())
-      {
+      if (GetParent()) {
         hWndParent = GetParent()->GetHWND();
         if (hWndParent)
-			 wxwmBringWindowToTop(hWndParent);
-		}
+	  wxwmBringWindowToTop(hWndParent);
+      }
       ShowWindow(dialog->handle, SW_HIDE);
     }
   }
+
   return TRUE;
 }
 

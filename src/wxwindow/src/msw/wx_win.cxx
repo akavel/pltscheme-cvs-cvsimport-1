@@ -1671,6 +1671,12 @@ void wxWnd::DestroyWindow(void)
   HWND oldHandle = handle;
   handle = NULL;
 
+#if 0
+  /* We can't use this because DestroyWindow() is called at
+     finalization time, which is during GC, which might be during
+     a context switch. BringWindowToTop is going to callback
+     to Scheme. */
+
   // For some reason, wxWindows can activate another task altogether
   // when a frame is destroyed after a modal dialog has been invoked.
   // Try to bring the parent or main frame to the top.
@@ -1683,7 +1689,8 @@ void wxWnd::DestroyWindow(void)
     if (hWnd)
       ::BringWindowToTop(hWnd);
   }
-  
+#endif
+
   wxwmDestroyWindow(oldHandle);
 }
 
