@@ -174,7 +174,6 @@
 			(expand-expr e env attributes vocab))
 		      contents)))
 	      (when (and (language<=? 'structured)
-		      (null? (cdr bodies))
 		      (not (top-level-varref? (car bodies))))
 		(static-error (car bodies)
 		  "First term after parenthesis is illegal in an application"))
