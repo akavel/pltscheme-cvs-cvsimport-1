@@ -63,6 +63,7 @@ public:
     virtual void SetScrollbars(int h_pixels, int v_pixels, int x_len, int y_len,
 			       int x_page, int y_page, int x_pos=0, int y_pos=0,
 			       Bool setVirtualSize = TRUE);
+    void SetBackgroundToGray(void);
     void ViewStart(int *x, int *y);
     void WarpPointer(int x, int y);
     // overriden callback methods
