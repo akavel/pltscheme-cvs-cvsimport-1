@@ -167,8 +167,9 @@ void wxMenu::Append(long id, char *label, char *help, Bool checkable)
       /* Hack to avoid parse: */
       item->label= copystring(label);
       item->key_binding = NULL;
-    } else
+    } else {
       wxGetLabelAndKey(label, &item->label, &item->key_binding);
+    }
     item->help_text = help;
     item->ID        = id; 
     item->enabled   = TRUE;

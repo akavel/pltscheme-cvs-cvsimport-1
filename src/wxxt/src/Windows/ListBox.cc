@@ -513,3 +513,37 @@ void wxListBox::EventCallback(Widget WXUNUSED(w),
 
     lbox->ProcessCommand(event);
 }
+
+void wxListBox::OnChar(wxKeyEvent &e)
+{
+  int delta = 0;
+
+  switch (e.keyCode) {
+  case WXK_UP:
+    delta = -1;
+    break;
+  case WXK_DOWN:
+    delta = 1;
+    break;
+  }
+
+  if (delta && num_choices) {
+    int *sels;
+    int n = GetSelections(&sels);
+    if (n <= 1) {
+      int s;
+      if (n == 1)
+	s = sels[0];
+      else if (delta < 0)
+	s = 2;
+      else
+	s = -1;
+
+      SetSelection(s + delta);
+      if (s != GetSelection()) {
+	wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_CHOICE_COMMAND);
+	ProcessCommand(*event);
+      }
+    }
+  }
+}

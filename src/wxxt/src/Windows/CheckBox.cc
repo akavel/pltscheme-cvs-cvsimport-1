@@ -69,7 +69,7 @@ Bool wxCheckBox::Create(wxPanel *panel, wxFunction function, char *label,
 {
     ChainToPanel(panel, style, name);
 
-    label = wxGetCtlLabel(label);
+    // label = wxGetCtlLabel(label);
     bm_label = NULL;
 
     // create frame

@@ -116,7 +116,9 @@ char *wxGetCtlLabel(char *label)
   if (!label)
     return NULL;
 
+#if 0
   wxGetLabelAndKey(label, &label, NULL);
+#endif
 
   return label;
 }

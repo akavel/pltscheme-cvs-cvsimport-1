@@ -80,7 +80,8 @@ public:
     Bool  SetStringSelection(char *s);
     int   GetFirstItem();
     int   NumberOfVisibleItems();
-    void Command(wxCommandEvent &event);
+    void  Command(wxCommandEvent &event);
+    void  OnChar(wxKeyEvent &e);
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget w, XtPointer, XtPointer);

@@ -66,7 +66,7 @@ static void do_nothing()
 Bool wxMessage::Create(wxPanel *panel, char *message,
 		      int x, int y, long style, char *name)
 {
-    message = wxGetCtlLabel(message);
+  // message = wxGetCtlLabel(message);
 
     bm_label = NULL;
 
