@@ -1,5 +1,6 @@
 (module annotate mzscheme
-  (require (prefix utils: "utils.ss")
+  (require (prefix kernel: (lib "kerncase.ss" "syntax"))
+           (prefix utils: "utils.ss")
            "marks.ss"
            ;(prefix s: "model.ss")
            "shared.ss"
@@ -303,7 +304,7 @@
   ;    only of varrefs.  This one might go away later, or be toggled into a "no-opt" flag.
   ;
   
-  (define (annotate read-expr parsed-expr input-struct-proc-names break wrap-style . wrap-opts-list)
+  (define (annotate read-expr expr input-struct-proc-names break wrap-style . wrap-opts-list)
     (local
 	((define cheap-wrap? (eq? wrap-style 'cheap-wrap))
          (define ankle-wrap? (eq? wrap-style 'ankle-wrap))
@@ -405,7 +406,7 @@
                   null])
                null))
          
-         (define struct-proc-names (append (struct-procs-defined parsed-expr)
+         (define struct-proc-names (append (struct-procs-defined expr)
                                            input-struct-proc-names))
          
          (define (non-annotated-proc? varref)
@@ -538,11 +539,11 @@
                                  (syntax-property annotated-lambda 'inferred-name (car procedure-name-info))])
                           (2vals
                            (ccond [foot-wrap? 
-                                   (wcm-wrap (make-debug-info-normal new-free-bindings)
+                                   (wcm-wrap (make-debug-info-normal free-varrefs)
                                              captured)]
                                   [ankle-wrap? 
                                    captured]) ; no wcm is needed because evaluation of closures cannot cause exceptions.
-                           new-free-bindings))))]
+                           free-varrefs))))]
 ;                  
 ;                  L      EEEEEE TTTTTTT
 ;                  L      E         T
@@ -583,7 +584,7 @@
                   [let-abstraction
                    (lambda (stx output-identifier check-fn make-init-list)
                      (with-syntax ([(_ ([var val] ...) . bodies) stx]
-                                   [(_ (binding ...) . _) stx])
+                                   [(_a (binding ...) . _b) stx])
                        (let*-2vals
                            ([binding-sets (map syntax->list (syntax->list (syntax (var ...))))]
                             [binding-list (foldl append null binding-sets)]
@@ -591,37 +592,37 @@
                             [_1 (check-fn vals binding-list)]
                             [lifted-var-sets (map (lambda (x) (map get-lifted-var x)) binding-sets)]
                             [lifted-vars (apply append lifted-var-sets)]
-                            [(annotated-vals free-binding-sets-vals)
+                            [(annotated-vals free-varref-sets-vals)
                              (2vals-map let-rhs-recur vals binding-sets lifted-var-sets)]
-                            [(annotated-bodies free-binding-sets-bodies)
+                            [(annotated-bodies free-varref-sets-bodies)
                              (2vals-map (let-body-recur binding-list) (syntax->list (syntax bodies)))]
                             [free-bindings (varref-set-remove-bindings 
-                                            (varref-set-union (append free-binding-sets-body 
-                                                                      free-binding-sets-vals)) 
+                                            (varref-set-union (append free-varref-sets-bodies 
+                                                                      free-varref-sets-vals)) 
                                             binding-list)])
                        (ccond [cheap-wrap?
                                (let* ([bindings
                                        (map (lambda (binding-loc bindings val)
                                               (d->so binding-loc `(,bindings ,val)))
-                                            (syntax->list (syntax binding ...))
+                                            (syntax->list (syntax (binding ...)))
                                             binding-sets
                                             annotated-vals)]
                                       [annotated
                                        (d->so expr `(,output-identifier ,bindings ,@annotated-bodies))])
                                  (2vals (appropriate-wrap annotated free-bindings) free-bindings))]
                               [(or ankle-wrap? foot-wrap?)
-                               (let* ([unevaluated-list (make-init-list binding-names)]
+                               (let* ([unevaluated-list (make-init-list binding-list)]
                                       [outer-initialization
                                        (if ankle-wrap?
-                                           (d->so #f `((,binding-names (values ,@unevaluated-list))))
-                                           (d->so #f `([,(append lifted-gensyms binding-names)
+                                           (d->so #f `((,binding-list (values ,@unevaluated-list))))
+                                           (d->so #f `([,(append lifted-vars binding-list)
                                                         (values ,@(append (map (lambda (binding)
                                                                                    (d->so #f `(,binding-indexer))) 
                                                                                  binding-list)
                                                                             unevaluated-list))])))]
                                       [set!-clauses
                                        (map (lambda (binding-set val)
-                                              (d->so #f `(set!-values ,(map get-binding-name binding-set) ,val)))
+                                              (d->so #f `(set!-values ,binding-set ,val)))
                                             binding-sets
                                             annotated-vals)]
                                       ; time to work from the inside out again
@@ -629,7 +630,7 @@
                                       [middle-begin
                                        (double-break-wrap (d->so #f `(begin ,@set!-clauses 
                                                                             ,(late-let-break-wrap binding-list
-                                                                                                  lifted-gensyms
+                                                                                                  lifted-vars
                                                                                                   (car annotated-bodies))
                                                                             ,@(cdr annotated-bodies))))]
                                       [wrapped-begin
@@ -652,7 +653,7 @@
 ;               (set-expr-read! expr (find-read-expr expr))) 
 
                              
-             (syntax-case expr 
+             (kernel:kernel-syntax-case expr #f
 
                [(lambda . clause)
                 (let*-2vals ([(annotated-clause free-varrefs)
@@ -663,14 +664,14 @@
                   (outer-lambda-abstraction annotated-lambda free-varrefs))]
                
                [(case-lambda . clauses)
-                (let*-2vals ([(annotated-cases free-bindings-cases)
+                (let*-2vals ([(annotated-cases free-varrefs-cases)
                               (2vals-map lambda-clause-abstraction (syntax->list (syntax clauses)))]
                              [annotated-case-lambda (with-syntax ([annotated-cases annotated-cases])
                                                       (syntax/loc expr (case-lambda . annotated-cases)))]
                              [free-varrefs (varref-set-union free-varrefs-cases)])
                   (outer-lambda-abstraction annotated-case-lambda free-varrefs))]
                
-               ; for if's, we assume that the "test" is a varref, and thus the if does not
+               ; for if's, we assume (for foot-wrap) that the "test" is a varref, and thus the if does not
                ; need to be rewritten to move the non-tail part outside of the source break
                ; (this is true in beginner, intermediate, & advanced)
                
@@ -687,6 +688,24 @@
                                                            free-varrefs-else))]
                      [annotated-if
                       (d->so expr `(if ,annotated-test ,annotated-then ,annotated-else))])
+                  (2vals
+                   (if foot-wrap?
+                       (wcm-wrap (make-debug-info-normal free-varrefs) annotated-if)
+                       (appropriate-wrap annotated-if free-varrefs))
+                   free-varrefs))]
+               
+               ; yecch: should abstract over if with & without else clauses
+               
+               [(if test then)
+		(let*-2vals
+                    ([(annotated-test free-varrefs-test) 
+                      (non-tail-recur (syntax test))]
+                     [(annotated-then free-varrefs-then) 
+                      (tail-recur (syntax then))]
+                     [free-varrefs (varref-set-union (list free-varrefs-test 
+                                                           free-varrefs-then))]
+                     [annotated-if
+                      (d->so expr `(if ,annotated-test ,annotated-then))])
                   (2vals
                    (if foot-wrap?
                        (wcm-wrap (make-debug-info-normal free-varrefs) annotated-if)
@@ -714,14 +733,14 @@
                          [free-varrefs (varref-set-union (cons free-varrefs-final free-varrefs-a))]
                          [debug-info (make-debug-info-normal free-varrefs)]
                          [annotated (d->so expr `(begin ,@(append annotated-a (list annotated-final))))])
-                       (values (ccond [(or cheap-wrap? ankle-wrap?) (appropriate-wrap annotated free-bindings)]
+                       (values (ccond [(or cheap-wrap? ankle-wrap?) (appropriate-wrap annotated free-varrefs)]
                                       [foot-wrap? (wcm-wrap debug-info annotated)])
                                free-varrefs)))]
                
               [(begin0 . bodies-stx)
-               (let*-values
+               (let*-2vals
                    ([bodies (syntax->list (syntax bodies-stx))]
-                    [(annotated-first free-varrefss-first)
+                    [(annotated-first free-varrefs-first)
                      (result-recur (car bodies))]
                     [(annotated-bodies free-varref-sets)
                      (2vals-map non-tail-recur (cdr bodies))]
@@ -758,17 +777,17 @@
                 (let*-2vals
                     ([(annotated-val val-free-varrefs)
                       (set!-rhs-recur (syntax val) (syntax-case (syntax var) (#%top)
-                                                     [(#%top . real-var) (syntax->symbol (syntax real-var))]
+                                                     [(#%top . real-var) (syntax-e (syntax real-var))]
                                                      [else (syntax var)]))]
                      [free-varrefs (varref-set-union (list (syntax-case (syntax var) (#%top)
                                                              [(#%top . real-var) null]
                                                              [else (list (syntax var))])
                                                            val-free-varrefs))]
                      [debug-info (make-debug-info-normal free-varrefs)]
-                     [annotated (d->so expr `(set! ,(syntax var) ,annotated-body))])
-                  (2vals (ccond [(or cheap-wrap? ankle-wrap?) (appropriate-wrap annotated free-bindings)]
+                     [annotated (d->so expr `(set! ,(syntax var) ,annotated-val))])
+                  (2vals (ccond [(or cheap-wrap? ankle-wrap?) (appropriate-wrap annotated free-varrefs)]
                                 [foot-wrap?
-                                 (wcm-wrap (make-debug-info-normal free-bindings) annotated)])
+                                 (wcm-wrap (make-debug-info-normal free-varrefs) annotated)])
                          free-varrefs))]
                
                
@@ -795,7 +814,7 @@
                               (result-recur (syntax body))])
                   (ccond [(or cheap-wrap? ankle-wrap?)
                           (let*-2vals
-                              ([free-varrefs (varref-set-union (list free-varrefs-key free-varrefs-val free-varrefs-body))]
+                              ([free-varrefs (varref-set-union (list free-varrefs-key free-varrefs-mark free-varrefs-body))]
                                [annotated (d->so expr `(with-continuation-mark ,annotated-key
                                                                                ,annotated-mark
                                                                                ,annotated-body))])
@@ -866,8 +885,8 @@
                                (let ([debug-info (make-debug-info-app tail-bound free-varrefs 'called)])
                                  (wcm-break-wrap debug-info annotated-terms))
                                
-                               (let* ([arg-temps (build-list (length sub-exprs) get-arg-var)] 
-                                      [let-clauses (d->so #f `((,arg-temp-syms 
+                               (let* ([arg-temps (build-list (length annotated-terms) get-arg-var)] 
+                                      [let-clauses (d->so #f `((,arg-temps 
                                                                 (values ,@(map (lambda (_) *unevaluated*) arg-temps)))))]
                                       [set!-list (map (lambda (arg-symbol annotated-sub-expr)
                                                         (d->so #f `(set! ,arg-symbol ,annotated-sub-expr)))
@@ -900,9 +919,9 @@
 		(let*-2vals
                     ([vars (syntax->list (syntax vars-stx))]
                      [(annotated-val free-varrefs-val)
-                      (define-values-recur body (if (not (null? vars))
-                                                   (syntax-e (car vars))
-                                                   #f))])
+                      (define-values-recur (syntax body) (if (not (null? vars))
+                                                             (syntax-e (car vars))
+                                                             #f))])
                   (2vals
                    (d->so expr `(define-values (syntax vars-stx) ,annotated-val))
                    free-varrefs-val))]
