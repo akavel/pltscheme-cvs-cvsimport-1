@@ -189,6 +189,9 @@
    credits
    copyright-string
    welcome-message
+
+   separator-snip%
+
    console-max-save-previous-exprs
    
    show-interactions-history
