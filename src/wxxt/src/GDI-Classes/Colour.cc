@@ -277,7 +277,7 @@ unsigned long wxColour::GetPixel(wxColourMap *cmap, Bool is_color, Bool fg)
 	    if (!wxAllocColor(wxAPP_DISPLAY, X->xcolormap, &xcol)
 		&& !alloc_close_color(wxAPP_DISPLAY, X->xcolormap, &xcol)) {
 	      // failed => used default
-	      static message_printed = FALSE;
+	      static int message_printed = FALSE;
 	      if (!message_printed) {
 		wxError("Colour allocation failed, using black.\n(Future allocations may fail without reports.)", 
 			"wxColour");
