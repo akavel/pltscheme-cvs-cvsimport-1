@@ -1666,21 +1666,13 @@ Bool wxIntersectPathRgn::Install(long target, Bool reverse, Bool align)
   else
     CGContextClip(CGCG);
   CGPathRelease(CGPATH);
-  {
-    CGMutablePathRef *p;
-    p = CGPathCreateMutable();
-    CGPATH = p;
-  }
+  CGPATH = CGPathCreateMutable();
 #endif
 #if defined(wx_msw)
   wxGSetClip(GP_G, GP, GP_DID_ONE ? CombineModeIntersect : CombineModeReplace);
   GP_DID_ONE = 1;
   wxGPathRelease(GP);
-  {
-    GraphicsPath *p;
-    p = wxGPathNew(FillModeAlternate);
-    GP = p;
-  }
+  GP = wxGPathNew(FillModeAlternate);
 #endif
   return b->Install(target, reverse, align);
 }
