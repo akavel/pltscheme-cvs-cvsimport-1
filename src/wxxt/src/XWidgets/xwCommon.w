@@ -939,16 +939,19 @@ highlight border.
         XtError("focusIn action may only be bound to FocusIn events");
     if (! $traversalOn)
         return;
+
     if (event->xfocus.detail == NotifyAncestor
         || event->xfocus.detail == NotifyInferior
         || event->xfocus.detail == NotifyNonlinear) {
-        if (! $traversal_focus) (void) $accept_focus($, &time);
-    } else if (event->xfocus.detail != NotifyPointer)
+        if (!$traversal_focus)
+	  $accept_focus($, &time);
+    } else if (event->xfocus.detail != NotifyPointer) {
       if ($traversal_focus) {
         $unhighlight_border($);
         $traversal_focus = False;
         $hilite_callbacks($);
       }
+   }
 }
 
 

@@ -171,7 +171,7 @@ wxFontList::~wxFontList(void)
 void wxFontList::AddFont(wxFont *Font) 
 { 
   list->Append(Font); 
-  list->Show(Font, FALSE); /* so it can be collected */
+  list->Show(Font, -1); /* so it can be collected */
 } 
 
 //-----------------------------------------------------------------------------
