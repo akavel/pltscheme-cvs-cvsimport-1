@@ -274,19 +274,22 @@
    make-standard-menus-frame%
    make-searchable-frame%
    make-info-frame%
+   make-file-frame%
+   make-pasteboard-frame%
 
    empty-frame%
    menu-frame%
    standard-menus-frame%
    simple-menu-frame%
    searchable-frame%
-   info-frame%))
+   info-frame%
+   info-file-frame%
+   pasteboard-frame%
+   pasteboard-file-frame%))
 
 (define-signature mred:editor-frame^
   (make-editor-frame%
    editor-frame%
-   make-pasteboard-frame%
-   pasteboard-frame%
    make-status-frame%))
 
 (define-signature mred:group^
