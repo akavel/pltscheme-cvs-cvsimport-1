@@ -1126,4 +1126,12 @@
   (reference-library-unit-maker 'reference-relative-library-unit #f #t)
   (reference-library-unit-maker 'reference-relative-library-unit/sig #t #t)
 
+  (define (reset-unit-attributes attr)
+    (put-attribute attr c-unit-link-import/body-vocab-attr null)
+    (put-attribute attr c-unit-current-link-tag-attribute null)
+    (put-attribute attr 'unit-vars null)
+    (put-attribute attr 'unresolved-unit-vars null))
+
+  (attributes-resetters (cons reset-unit-attributes (attributes-resetters)))
+  
   )

@@ -48,7 +48,8 @@
 	(eval `(,x ,@(map (lambda (x) `(#%quote ,x)) args))))))
 
 (define-signature zodiac:misc^
-  (pretty-print debug-level symbol-append flush-printf print-and-return))
+  (pretty-print debug-level symbol-append flush-printf print-and-return 
+   attributes-resetters))
 
 (define-signature zodiac:correlate^
   (make-correlator add-to-correlator find-in-correlator))
