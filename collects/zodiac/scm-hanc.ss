@@ -602,7 +602,7 @@
 	    (static-error expr "Malformed signature->symbols"))))))
 
 (add-primitivized-micro-form 'signature->symbols full-vocabulary signature->symbols-micro)
-(add-on-demand-form 'micro 'signature->symbols scheme-vocabulary signature->symbols-micro)
+(add-on-demand-form 'micro 'signature->symbols common-vocabulary signature->symbols-micro)
 
 (define define-signature-micro
     (let* ((kwd '())

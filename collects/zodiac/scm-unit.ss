@@ -1053,7 +1053,7 @@
 		  (else
 		   (static-error expr "Malformed ~a" form-name)))))])
 	(add-primitivized-micro-form form-name full-vocabulary micro)
-	(add-on-demand-form 'micro form-name scheme-vocabulary micro))))
+	(add-on-demand-form 'micro form-name common-vocabulary micro))))
 
   (reference-unit-maker 'require-unit #f)
   (reference-unit-maker 'require-unit/sig #t)
@@ -1122,7 +1122,7 @@
 		   (static-error expr
 				 (string-append "Malformed ~a" form-name))))))])
 	(add-primitivized-micro-form form-name full-vocabulary micro)
-	(add-on-demand-form 'micro form-name scheme-vocabulary micro))))
+	(add-on-demand-form 'micro form-name common-vocabulary micro))))
 
   (reference-library-unit-maker 'require-library-unit #f #f)
   (reference-library-unit-maker 'require-library-unit/sig #t #f)

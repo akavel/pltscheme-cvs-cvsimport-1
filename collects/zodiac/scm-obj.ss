@@ -738,7 +738,7 @@
 	    (static-error expr "Malformed send*")))))
 
   (add-primitivized-macro-form 'send* full-vocabulary send*-macro)
-  (add-on-demand-form 'macro 'send* scheme-vocabulary send*-macro)
+  (add-on-demand-form 'macro 'send* common-vocabulary send*-macro)
 
   (define make-generic-macro
       (let* ((kwd '())
