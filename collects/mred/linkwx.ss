@@ -55,7 +55,9 @@
 					(minimal constants))]
 	[icon : mred:icon^ ((reference-unit/sig "icon.ss") wx (minimal constants))]
 	[menu : mred:menu^ ((reference-unit/sig "menu.ss") wx 
-			    (minimal constants) (core function@))]
+			    (minimal constants)
+			    preferences
+			    (core function@))]
 	[edit : mred:edit^ 
 	      ((reference-unit/sig "edit.ss") wx 
 	       (minimal constants) (minimal connections) autosave finder path-utils mode
