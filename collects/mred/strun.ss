@@ -7,7 +7,9 @@
 
 (unit/sig mred:test:run^
   
-  (import [mred:test : mred:test:global^])
+  (import 
+    [mred:test : mred:test:struct^]
+    [mred:test : mred:test:globals^])
   
   (define run-error error)
   
