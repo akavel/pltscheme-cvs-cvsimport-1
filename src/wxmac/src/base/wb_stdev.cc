@@ -306,6 +306,7 @@ wxKeyEvent::wxKeyEvent(WXTYPE type)
   controlDown = FALSE;
   altDown = FALSE;
   keyCode = 0;
+  keyUpCode = WXK_PRESS;
 }
 
 static wxEvent *wxKeyEventConstructor(WXTYPE eventClass, WXTYPE eventType)
