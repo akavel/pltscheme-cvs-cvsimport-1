@@ -22,19 +22,7 @@
 
 (unit/sig framework:test:run^
   
-  (import [mred : mred^])
-  
-  (define current-eventspaces
-    (make-parameter (lambda () (list (current-eventspace)))))
-
-  (define (get-active-frame)
-    (ormap get-top-level-focus-window
-	   ((current-eventspaces))))
-
-  (define (get-focused-window)
-    (let ([f (get-active-frame)])
-      (and f
-	   (send f get-focus-window))))
+  (import [mred : mred-interfaces^])
 
   (define initial-run-interval 100)  ;; milliseconds
   
@@ -65,7 +53,7 @@
   
   (define timer-callback%
     (class mred:timer% (thunk)
-      (public [notify  thunk])
+      (override [notify thunk])
       (sequence (super-init))))
   
   (define install-timer
@@ -164,7 +152,7 @@
 	(letrec
 	    ([start
 	      (lambda ()
-		(yield)  ;; flush out real events.
+		(mred:yield)  ;; flush out real events.
 		(install-timer (run-interval) return)
 		(unless (is-exn?)
 		  (begin-action)
