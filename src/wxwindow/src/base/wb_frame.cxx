@@ -57,7 +57,7 @@ Bool wxbFrame::Create(wxFrame *Parent, char *WXUNUSED(title), int WXUNUSED(x), i
   windowStyle = style;
 
   context = (void *)wxGetContextForFrame();
-  WXGC_IGNORE(context);
+  /* WXGC_IGNORE(context); - NO context itself is not finalized */
 
   if (!Parent) {
     wxTopLevelWindows(this)->Append(this);

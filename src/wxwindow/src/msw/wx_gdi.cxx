@@ -171,7 +171,7 @@ HFONT wxFont::BuildInternalFont(HDC dc, Bool screenFont)
   
   Bool ff_underline = underlined;
   
-  cfont = CreateFont(nHeight, 0, 0, 0,ff_weight,ff_italic,(BYTE)ff_underline,
+  cfont = CreateFont(-nHeight, 0, 0, 0,ff_weight,ff_italic,(BYTE)ff_underline,
 		     0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 		     PROOF_QUALITY, DEFAULT_PITCH | ff_family, ff_face);
   
