@@ -1023,17 +1023,13 @@
 				  (format "Malformed ~a" formname)))))))])
     (add-patterned-macro 'tprompt
 			 '(tprompt E ...)
-			 '(let ([grab-Turtles Turtles]
-				[grab-Cache Cache])
-			    (begin E ...)
-			    (set! Turtles grab-Turtles)
-			    (set! Cache grab-Cache)))
+			 '(tpromptfn (lambda () E ...)))
     (add-patterned-macro 'split
 			 '(split E ...)
 			 '(splitfn (lambda () E ...)))
     (add-patterned-macro 'split*
 			 '(split* E ...)
-			 '(split*fn (lambda () E) ...)))
+			 '(split*fn (list (lambda () E) ...))))
   
   (define (make-let*-macro begin?)
       (let* ((kwd '())
