@@ -2011,6 +2011,7 @@ wxPrintSetupData::wxPrintSetupData(void)
     print_colour = TRUE;
     print_level_2 = TRUE;
     printer_file = NULL;
+    emargin_v = emargin_h = 36;
 }
 
 wxPrintSetupData::~wxPrintSetupData(void)

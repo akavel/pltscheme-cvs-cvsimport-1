@@ -110,6 +110,7 @@ Bool wxListBox::Create(wxPanel *panel, wxFunction func, char *title,
 	 XtNshadeSurplus,   FALSE,
 	 XtNdefaultColumns, 1,
 	 XtNforceColumns,   TRUE,
+	 XtNcursor,         NULL,
 	 XtNmaxSelectable,  (multiple & (wxMULTIPLE | wxEXTENDED)) ? 10000 : 1,
 	 XtNclickExtends,   (Boolean)(multiple & wxEXTENDED),
 	 NULL);
