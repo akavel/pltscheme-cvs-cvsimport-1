@@ -93,6 +93,17 @@
   ;; contract that recognizes unary predicates
   (define predicate? (any? . -> . boolean?))
 
-  (provide/contract (sexp? contract?)
-                    (predicate? contract?)
-                    (nelistof (-> (union contract? predicate?) contract?))))
+  ;; map, but for functions that return 2 values.
+  (define mv-map
+    (lambda (f l)
+      (if (null? l)
+          (values null null)
+          (let-values ([(bs cs) (mv-map f (cdr l))]
+                       [(b c) (f (car l))])
+            (values (cons b bs) (cons c cs))))))
+
+  (provide mv-map)
+
+  (provide/contract [sexp? contract?]
+                    [predicate? contract?]
+                    [nelistof (-> (union contract? predicate?) contract?)]))
