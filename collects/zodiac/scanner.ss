@@ -537,7 +537,10 @@
                       (let ([c  char]
                             [num  (text->number l)])
                         (get-char)
-                        (if (index-integer? num)
+                        (if #t
+			  ; Used to have
+			  ; (index-integer? num)
+			  ; here, but this is gone now.
                             (z:token  size-vec-tag  (list  num  c)
                                       start-loc  (prev-loc))
                             (z:error  "vector constant size too large")))]
