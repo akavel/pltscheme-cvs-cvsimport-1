@@ -161,7 +161,6 @@ void wxListBox::SetSize(int x, int y, int width, int height, int flags)
     if (width > -1)
 	XtVaSetValues(X->handle, XtNlongest, Dimension(width), NULL); 
     wxItem::SetSize(x, y, width, height, flags);
-    /* MATTHEW: [6] */
     XtVaSetValues(X->handle, XtNwidth, 0, NULL);
 }
 

@@ -296,6 +296,7 @@ board.
 	/* propagate key events from frame to child widget */
 	if ($traverseToChild)
 	    XtVaSetValues($frame, XtNpropagateTarget, $CW, NULL);
+	XtVaSetValues($board, XtNpropagateTarget, $CW, NULL);
 	configure($, $, NULL, &dummy);
     } else {
 	char s[500];
