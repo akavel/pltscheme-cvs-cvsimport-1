@@ -147,18 +147,6 @@ void wxbDC::DrawSpline(float x1, float y1, float x2, float y2, float x3, float y
   point_list->Append((wxObject*)point3);
 
   DrawSpline(point_list);
-
-  for(wxNode *node = point_list->First(); node; node = node->Next()) {
-    wxPoint *p = (wxPoint *)node->Data();
-    delete p;
-  }
-  delete point_list;
-/*
-  wxSpline spline(point_list);
-
-  wx_draw_open_spline(this, &spline);
-  spline.DeletePoints();
- */
 }
 #endif
 
