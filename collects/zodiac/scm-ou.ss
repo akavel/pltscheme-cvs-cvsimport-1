@@ -59,6 +59,8 @@
 			"Invalid use of keyword ~a" (z:symbol-orig-name expr))))
 		  (else
 		    (internal-error expr "Invalid resolution in ou: ~s" r))))))))
+
+    (add-sym-micro full-vocabulary handler)
     (add-sym-micro scheme-vocabulary handler)
     (add-sym-micro unit-clauses-vocab-delta handler))
 

@@ -38,8 +38,7 @@
     (struct top-level-resolution ())
     introduce-identifier introduce-fresh-identifier introduce-bound-id
     create-vocabulary append-vocabulary
-    add-sub-vocab find-sub-vocab
-    add-on-demand-form get-on-demand-form 
+    add-on-demand-form find-on-demand-form 
     (struct vocabulary-record
       (name this rest symbol-error literal-error list-error ilist-error))))
 
@@ -51,11 +50,15 @@
     generate-name
     elaboration-evaluator user-macro-body-evaluator
     scheme-expand scheme-expand-program
+    common-vocabulary
     beginner-vocabulary
     intermediate-vocabulary
     advanced-vocabulary
+    full-vocabulary
     scheme-vocabulary
     set-top-level-status get-top-level-status at-top-level?
+    set-internal-define-status get-internal-define-status at-internal-define?
+    as-nested
     process-top-level-resolution ensure-not-macro/micro
     (struct parsed (back))
     (struct varref (var))
@@ -78,6 +81,7 @@
     (struct sym-optarglist ())
     (struct list-optarglist ())
     (struct ilist-optarglist ())
+    nonempty-arglist-decls-vocab proper-arglist-decls-vocab full-arglist-decls-vocab
     optarglist-decls-vocab
     make-optargument-list
     paroptarglist-pattern

@@ -21,7 +21,6 @@
       zodiac:structures^
       zodiac:scanner-structs^
       (zodiac : zodiac:reader-structs^)
-      (parm : plt:parameters^)
       zodiac:scanner-parameters^
       (report : zodiac:interface^)
       zodiac:scanner-code^)
