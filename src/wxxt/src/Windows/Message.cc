@@ -57,6 +57,13 @@ wxMessage::wxMessage(wxPanel *panel, wxBitmap *bitmap,
     Create(panel, bitmap, x, y, style, name);
 }
 
+wxMessage::wxMessage(wxPanel *panel, int iconId,
+		   int x, int y, long style, char *name) : wxItem()
+{
+    __type = wxTYPE_MESSAGE;
+    Create(panel, "<no icon>", x, y, style, name);
+}
+
 static void do_nothing()
 {
 }
