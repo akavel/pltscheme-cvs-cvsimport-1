@@ -23,7 +23,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifdef wx_x
+#ifdef wx_xt
 # define  Uses_wxApp
 # define  Uses_wxFontNameDirectory
 # include "wx.h"

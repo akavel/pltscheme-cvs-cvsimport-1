@@ -235,49 +235,36 @@ DESTLIBDIR     = $(WXDIR)/wxxt/lib
 # .SUFFIXES: $(OBJDIR)/.o .w .c .cc .h
 
 Application/$(OBJDIR)/%.o: Application/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 DataStructures/$(OBJDIR)/%.o: DataStructures/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 DeviceContexts/$(OBJDIR)/%.o: DeviceContexts/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 Dialogs/$(OBJDIR)/%.o: Dialogs/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 EventHandling/$(OBJDIR)/%.o: EventHandling/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 GDI-Classes/$(OBJDIR)/%.o: GDI-Classes/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 Misc/$(OBJDIR)/%.o: Misc/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 Utilities/$(OBJDIR)/%.o: Utilities/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 Windows/$(OBJDIR)/%.o: Windows/%.cc
-	$(RM) $@
 	$(CXX) -c $(CXXFLAGS) $(_WX_CXX_FLAGS) -o $@ $<
 
 XWidgets/$(OBJDIR)/%.o: XWidgets/%.c
-	$(RM) $@
 	$(CC) -c $(CFLAGS) $(_WX_C_FLAGS) -o $@ $<
 
 XWidgets/%.c: XWidgets/%.w
-	# $(RM) $@ $*.h $*P.h $*.c
 	$(WBUILD) ${$<.dep}
 
 XWidgets/%.h: XWidgets/%.w
-	# $(RM) $@ $*.h $*P.h $*.c
 	$(WBUILD) ${$<.dep}
  
 all:: $(WXLIBDIR)/lib$(LIBNAME).a
 
 $(WXLIBDIR)/lib$(LIBNAME).a: $(OBJS)
-	$(RM) $@
 	$(AR) $(ARFLAGS) $@ $(OBJS)
 	$(RANLIB) $@
 
@@ -702,15 +689,6 @@ XWidgets/$(OBJDIR)/xwScrollWin.o:	 ${XWidgets/xwScrollWin.w.dep}
 # common rules for all Makefiles - do not edit
 
 emptyrule::
-
-clean::
-	$(RM_CMD) "#"*
-
-Makefile::
-	-@if [ -f Makefile ]; then set -x; \
-	$(RM) Makefile.bak; $(MV) Makefile Makefile.bak; \
-	else exit 0; fi
-	$(IMAKE_CMD) -DTOPDIR=$(TOP) -DCURDIR=$(CURRENT_DIR)
 
 tags::
 	$(TAGS) -w *.[ch]
