@@ -127,8 +127,10 @@ or |foreground|.
 	make_graygc($);
 
     if ($old$label != $label) {
-	XtFree($old$label);
-	$label = XtNewString($label);
+	if ($old$label)
+	  XtFree($old$label);
+	if ($label)
+	  $label = XtNewString($label);
 	need_redraw = True;
     }
     if ($font != $old$font || $foreground != $old$foreground) {
