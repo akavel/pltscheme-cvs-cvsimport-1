@@ -758,7 +758,7 @@ BOOL wxApp::OnIdle(void)
 
 // Windows specific. Intercept keyboard input: by default,
 // route it to the active frame or dialog box.
-Bool wxApp::OnCharHook(wxKeyEvent& event)
+Bool wxApp::OnCharHook(wxKeyEvent *event)
 {
   wxWindow *win = wxGetActiveWindow();
   if (win)

@@ -124,16 +124,9 @@ wxWindow *wxbApp::GetTopWindow(void)
 
 void wxCommonInit(void)
 {
-#ifdef wx_msw
   wxBuffer = new char[1500];
-#else
-  wxBuffer = new char[BUFSIZ + 512];
-#endif
-#if USE_DYNAMIC_CLASSES
-  wxClassInfo::InitializeClasses();
-#endif
   
-  wxTheFontNameDirectory.Initialize(); /* MATTHEW: [5] (Forgot marker earlier) */
+  wxInitializeFontNameDirectory();
 
   wxTheColourDatabase = new wxColourDatabase(wxKEY_STRING);
   wxTheColourDatabase->Initialize();
@@ -141,11 +134,9 @@ void wxCommonInit(void)
   wxInitStandardTypes();
 
   // For PostScript printing
-#if USE_POSTSCRIPT
   wxInitializePrintSetupData();
   wxThePrintPaperDatabase = new wxPrintPaperDatabase;
   wxThePrintPaperDatabase->CreateDatabase();
-#endif
 
 }
 
@@ -158,11 +149,10 @@ void wxCommonCleanUp(void)
   delete wxTheFontList;
   delete wxTheBitmapList;
   delete wxTheColourDatabase;
-#if USE_POSTSCRIPT
+
   wxInitializePrintSetupData(FALSE);
   delete wxThePrintPaperDatabase;
   wxThePrintPaperDatabase = NULL;
-#endif
 
   delete[] wxBuffer;
 }

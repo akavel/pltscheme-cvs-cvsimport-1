@@ -162,9 +162,9 @@ wxMetaFileDC::wxMetaFileDC(char *file)
 
   current_pen = wxBLACK_PEN;
   current_brush = wxBLACK_BRUSH;
-  current_background_color = *wxWHITE;
-  current_text_foreground = *wxBLACK;
-  current_text_background = *wxWHITE;
+  current_background_color = new wxColour(wxWHITE);
+  current_text_foreground = new wxColour(wxBLACK);
+  current_text_background = new wxColour(wxWHITE);
   Colour = wxColourDisplay();
 }
 

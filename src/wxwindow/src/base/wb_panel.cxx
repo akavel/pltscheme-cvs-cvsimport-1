@@ -116,7 +116,7 @@ void wxbPanel::OnDefaultAction(wxItem *WXUNUSED(initiatingItem))
   if (but)
   {
     wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_BUTTON_COMMAND);
-    but->Command(*event);
+    but->Command(event);
   }
 }
 
@@ -151,7 +151,7 @@ void wxbPanel::SetButtonColour(wxColour *col)
  */
 
 // An event outside any items: may be a drag event.
-void wxbPanel::OnEvent(wxMouseEvent& /* event */)
+void wxbPanel::OnEvent(wxMouseEvent * /* event */)
 {
 }
 
