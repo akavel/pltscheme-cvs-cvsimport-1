@@ -71,7 +71,7 @@ public:
     // X representation
     virtual Bool  Ok(void) { return (Xbitmap != NULL); }
     virtual void* GetHandle(void); // return type Pixmap*
-protected:
+public:
     wxBitmap_Xintern *Xbitmap;
     wxColourMap      *cmap;
 
@@ -83,8 +83,7 @@ public:
 class wxCursor : public wxBitmap { // cursor representation
 public:
     wxCursor(void);
-    wxCursor(char bits[], int width, int height /* , int x=0, int y=0 */);
-    wxCursor(char *name, long flags = wxBITMAP_DEFAULT, int x=0, int y=0);
+    wxCursor(wxBitmap *bm, wxBitmap *mask, int x=0, int y=0);
     wxCursor(int cursor_type);
     ~wxCursor(void);
     // X representation
