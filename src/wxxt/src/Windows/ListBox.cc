@@ -98,6 +98,7 @@ Bool wxListBox::Create(wxPanel *panel, wxFunction func, char *title,
 	 XtNhideHScrollbar, TRUE,
 	 XtNbackground, bg->GetPixel(cmap), /* MATTHEW */
 	 XtNdoScroll, FALSE,
+	 XtNhighlightThickness, 2,
 	 NULL);
     // create multi list
     X->handle = XtVaCreateManagedWidget
