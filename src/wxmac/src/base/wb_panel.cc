@@ -188,9 +188,9 @@ void wxbPanel::InitMoreDefaults(void) // Poor name for this method
 	{
 		backColour = NULL;
 		buttonColour = NULL;
-		buttonFont = NULL;
+		buttonFont = wxNORMAL_FONT;
 		labelColour = NULL;
-		labelFont = NULL;
+		labelFont = wxNORMAL_FONT;
 		label_position = wxHORIZONTAL;
 	}
 }
