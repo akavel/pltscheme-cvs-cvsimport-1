@@ -37,8 +37,8 @@ char  *wxGetTypeName(WXTYPE type);
 
 class wxTypeDef : public wxObject {
 public:
-    inline wxTypeDef(void) : wxObject(FALSE)  { name = NULL; __type = wxTYPE_TYPEDEF; }
-    inline ~wxTypeDef(void)  { if (name) delete name; }
+  wxTypeDef(void);
+
 private:
     friend Bool wxSubType(WXTYPE type1, WXTYPE type2);
     friend char *wxGetTypeName(WXTYPE type);

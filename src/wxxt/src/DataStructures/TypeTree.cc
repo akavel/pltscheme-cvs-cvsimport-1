@@ -30,6 +30,13 @@
 #define  Uses_wxTypeTree
 #include "wx.h"
 
+wxTypeDef::wxTypeDef()
+: wxObject(FALSE) 
+{ 
+  name = NULL; 
+  __type = wxTYPE_TYPEDEF;
+}
+
 typedef struct {
     WXTYPE my_type;
     WXTYPE parent_type;

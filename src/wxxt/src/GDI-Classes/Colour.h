@@ -101,7 +101,7 @@ private:
 
 class wxColourDatabase : public wxList { // colour database representation
 public:
-    wxColourDatabase(void) : wxList(wxKEY_STRING) {};
+    wxColourDatabase(void);
     ~wxColourDatabase(void);
 
     wxColour *FindColour(const char *colour);

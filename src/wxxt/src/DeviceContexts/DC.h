@@ -38,18 +38,45 @@
 // wxPoint
 class wxPoint : public wxObject {
 public:
-    wxPoint(void) : wxObject(WXGC_NO_CLEANUP) { x = y = 0.0; }
-    wxPoint(float a, float b) : wxObject(WXGC_NO_CLEANUP) { x = a; y = b; }
-    float x, y;
+  inline wxPoint(void);
+  inline wxPoint(float a, float b);
+  float x, y;
 };
+
+inline wxPoint::wxPoint(void) 
+: wxObject(WXGC_NO_CLEANUP)
+{ 
+  x = y = 0.0;
+}
+
+inline wxPoint::wxPoint(float a, float b) 
+: wxObject(WXGC_NO_CLEANUP)
+{
+  x = a;
+  y = b;
+}
 
 // wxIntPoint
 class wxIntPoint : public wxObject {
 public:
-    wxIntPoint(void) : wxObject(WXGC_NO_CLEANUP) { x = y = 0; }
-    wxIntPoint(int a, int b)  : wxObject(WXGC_NO_CLEANUP) { x = a; y = b; }
-    int x, y;
+  inline wxIntPoint(void);
+  inline wxIntPoint(int a, int b);
+  int x, y;
 };
+
+inline wxIntPoint::wxIntPoint(void) 
+: wxObject(WXGC_NO_CLEANUP)
+{
+  x = y = 0;
+}
+
+inline wxIntPoint::wxIntPoint(int a, int b)
+: wxObject(WXGC_NO_CLEANUP)
+{
+  x = a;
+  y = b;
+}
+
 
 class wxBitmap;
 class wxBrush;
