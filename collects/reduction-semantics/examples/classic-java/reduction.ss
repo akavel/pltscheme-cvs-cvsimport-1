@@ -361,7 +361,7 @@
       (program_ store_ (in-hole context_ (cast class-name_ null)))
       (term (program_
              store_
-             (replace (term context_) (term hole) 'null)))]
+             ,(replace (term context_) (term hole) 'null)))]
 
      ;; [nget]
      [reduction
@@ -375,6 +375,14 @@
      [reduction
       cj-lang
       (program_ store_ (in-hole context_ (set null id id value)))
+      (term (program_
+             store_
+             "error: dereferenced null"))]
+
+     ;; [ncall]
+     [reduction
+      cj-lang
+      (program_ store_ (in-hole context_ (send null id_meth value_arg ...)))
       (term (program_
              store_
              "error: dereferenced null"))]
