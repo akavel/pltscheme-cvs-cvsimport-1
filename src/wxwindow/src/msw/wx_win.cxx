@@ -695,7 +695,8 @@ void wxWindow::GetTextExtent(const char *string, float *x, float *y,
 
   SIZE sizeRect;
   TEXTMETRIC tm;
-  GetTextExtentPoint(dc, string, (int)strlen(string), &sizeRect);
+  int len = (int)strlen(string);
+  GetTextExtentPoint(dc, len ? string : " ", len ? len : 1, &sizeRect);
   GetTextMetrics(dc, &tm);
 
   if (fontToUse && fnt && was) 
@@ -703,7 +704,7 @@ void wxWindow::GetTextExtent(const char *string, float *x, float *y,
 
   wxwmReleaseDC(hWnd, dc);
 
-  *x = (float)sizeRect.cx;
+  *x = (len ? (float)sizeRect.cx : (float)0.0);
   *y = (float)sizeRect.cy;
   if (descent) *descent = (float)tm.tmDescent;
   if (externalLeading) *externalLeading = (float)tm.tmExternalLeading;
