@@ -219,6 +219,57 @@ Bool wxWindowDC::Blit(float xdest, float ydest, float w, float h, wxBitmap *src,
     return retval; // someting wrong with the drawables
 }
 
+Bool wxWindowDC::GCBlit(float xdest, float ydest, float w, float h, wxBitmap *src,
+			float xsrc, float ysrc)
+{
+    /* A non-allocating blit */
+
+    if (!DRAWABLE) // ensure that a drawable has been associated
+      return FALSE;
+    
+    if (!src->Ok())
+      return FALSE;
+
+    FreeGetPixelCache();
+
+    if (src->selectedTo)
+      src->selectedTo->EndSetPixel();
+    
+    xsrc = floor(xsrc);
+    ysrc = floor(ysrc);
+
+    Bool retval = FALSE;
+
+    int scaled_width
+	= src->GetWidth()  < XLOG2DEVREL(w) ? src->GetWidth()  : XLOG2DEVREL(w);
+    int scaled_height
+	= src->GetHeight() < YLOG2DEVREL(h) ? src->GetHeight() : YLOG2DEVREL(h);
+
+    if (DRAWABLE && src->Ok()) {
+      XGCValues values;
+      GC gc = XCreateGC(DPY, DRAWABLE, 0, &values);
+      
+      retval = TRUE;
+      // Check if we're copying from a mono bitmap
+      if (src->GetDepth() == 1) {
+	XCopyPlane(DPY, GETPIXMAP(src), DRAWABLE, gc,
+		   (long)xsrc, (long)ysrc,
+		   scaled_width, scaled_height,
+		   XLOG2DEV(xdest), YLOG2DEV(ydest), 1);
+      } else if (src->GetDepth() == (int)DEPTH) {
+	XCopyArea(DPY, GETPIXMAP(src), DRAWABLE, gc,
+		  (long)xsrc, (long)ysrc,
+		  scaled_width, scaled_height,
+		  XLOG2DEV(xdest), YLOG2DEV(ydest));
+      } else
+	retval = FALSE;
+
+      XFreeGC(DPY, gc);
+    }
+
+    return retval; // someting wrong with the drawables
+}
+
 void wxWindowDC::Clear(void)
 {
     if (!DRAWABLE) // ensure that a drawable has been associated

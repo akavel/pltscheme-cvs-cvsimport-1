@@ -103,8 +103,8 @@ Bool wxCanvas::Create(wxPanel *panel, int x, int y, int width, int height,
     dc->SetBackground(wxWHITE); // white brush as default for canvas background
     // position in panel
     panel->PositionItem(this, x, y,
-			(width  > -1 ? width  : wxCANVAS_WIDTH),
-			(height > -1 ? height : wxCANVAS_HEIGHT));
+			(width  > -1 ? width  : /* wxCANVAS_WIDTH */ 0),
+			(height > -1 ? height : /* wxCANVAS_HEIGHT */ 0));
 
 #if 0
     // resize canvas

@@ -492,7 +492,7 @@ keyboard events. If so, it sets the focus to itself and returns
     int i;
 
     if (! XtIsRealized($) || ! $sensitive || ! $traversalOn
-        || ! $visible || ! $ancestor_sensitive || ! $managed
+        /* || ! $visible */ || ! $ancestor_sensitive || ! $managed
         || ! $mapped_when_managed || $being_destroyed) return False;
     for (i = 0; i < $num_children; i++)
         if (XtCallAcceptFocus($children[i], time)) return True;

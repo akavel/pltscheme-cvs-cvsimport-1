@@ -101,6 +101,8 @@ public:
     // virtual methods, declared in wxDC
     Bool  Blit(float xdest, float ydest, float w, float h, wxBitmap *bm,
 	       float xsrc, float ysrc, int rop=wxSOLID, wxColour *c=NULL);
+    Bool  GCBlit(float xdest, float ydest, float w, float h, wxBitmap *bm,
+		 float xsrc, float ysrc);
     Bool  CanGetTextExtent(void) { return TRUE; }
     Bool  CanDrawBitmap(void) { return TRUE; }
     void  Clear(void);
