@@ -1468,7 +1468,8 @@ plOpenFile(PLStream *pls)
 	if ((pls->OutFile = fopen(pls->FileName, "wb+")) == NULL) 
 	    fprintf(stdout, "Can't open %s.\n", pls->FileName);
 	else
-	    fprintf(stderr, "Opened %s\n", pls->FileName);
+//	    fprintf(stderr, "Opened %s\n", pls->FileName);
+// 	    this is not needed
     }
 }
 
