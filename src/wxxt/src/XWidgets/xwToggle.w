@@ -231,6 +231,7 @@ button and then possibly adds a tick mark.
         values.foreground = WhitePixelOfScreen(XtScreen($));
         values.stipple    = GetGray($);
         break;
+    case XfwfBlack:
     case XfwfAuto:
         if (DefaultDepthOfScreen(XtScreen($)) > 4
             && $set_color($, $background_pixel, &values.foreground)) {
