@@ -647,7 +647,8 @@ void wxWindow::CaptureMouse(void)
 
 void wxWindow::ChangeToGray(Bool gray)
 {
-  XtSetSensitive(X->handle, !gray);
+  if (!wxSubType(__type, wxTYPE_FRAME))
+    XtSetSensitive(X->handle, !gray);
   if (XtIsSubclass(X->frame, xfwfEnforcerWidgetClass))
     XtVaSetValues(X->frame, XtNdrawgray, (Boolean)gray, NULL);
 }

@@ -623,6 +623,10 @@ Bool wxFrame::Show(Bool show)
     XRaiseWindow(XtDisplay(frameShell), XtWindow(frameShell));
     FrameForceFocus(frameShell);
   } else {
+    /* XWithdrawWindow does the right thing for iconified windows */
+    XWithdrawWindow(XtDisplay(frameShell), XtWindow(frameShell), 
+		    XScreenNumberOfScreen(XtScreen(frameShell)));
+
     XtUnmapWidget(frameShell);
 //    XmUpdateDisplay(wxTheApp->topLevel); // Experimental: may be responsible for crashes
   }

@@ -196,9 +196,9 @@ int wxEntry(int argc, char *argv[])
   Display *dpy = XtOpenDisplay(wxTheApp->appContext,(String)NULL,NULL,
 			       wxTheApp->GetClassName(),NULL,
 #  if XtSpecificationRelease < 5
-			       0,(Cardinal*) &argc, argv
+			       0,(Cardinal*) &xargc, argv
 #  else
-			       0,&argc,argv
+			       0,&xargc,argv
 #  endif
 			       );
   if (!dpy) {

@@ -87,7 +87,8 @@ wxFrame::~wxFrame(void)
     // destroy children first to popdown child frames
     DestroyChildren();
     // adjust list of top level frames
-    wxTopLevelFrames(this)->DeleteObject(this);
+    if (!parent)
+      wxTopLevelFrames(this)->DeleteObject(this);
 #if !WXGARBAGE_COLLECTION_ON
     if (wxTopLevelFrames.Number() == 0) {
 	wxTheApp->ExitMainLoop();
@@ -416,7 +417,8 @@ Bool wxFrame::Show(Bool show)
     return TRUE;
   }
 
-  wxTopLevelFrames(this)->Show(this, show);
+  if (!parent)
+    wxTopLevelFrames(this)->Show(this, show);
 
   SetShown(show);
   if (show) {
