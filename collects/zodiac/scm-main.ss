@@ -2003,7 +2003,11 @@
 		  (if (null? params)
 		      `(#%let-values () ,@body)
 		      `(#%let ,(append
-				(map list pzs params)
+				(map list
+				  pzs
+				  (map (lambda (p)
+					 `(#%check-parameter-procedure ,p))
+				    params))
 				(map list saves vals))
 			 (#%let ((,swap (#%lambda ()
 					 ,@(map 
