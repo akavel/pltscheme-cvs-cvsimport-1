@@ -15,7 +15,6 @@
   
   (import 
     [wx : mred:wx^]
-    [mred:test : mred:test:struct^]
     [mred:test : mred:test:globals^])
   
   (define drs-error error)
