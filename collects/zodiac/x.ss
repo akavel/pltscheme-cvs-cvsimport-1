@@ -219,8 +219,8 @@
 		(static-error expr
 		  (vocabulary-record-ilist-error vocab))))))
 	(else
-	  (static-error expr
-	    "Invalid body")))))
+	  (internal-error expr
+	    "Invalid body: ~s" expr)))))
 
   (define zodiac-user-parameterization (current-parameterization))
 
