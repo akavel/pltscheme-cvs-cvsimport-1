@@ -1351,7 +1351,7 @@
   (define-struct cond-clause (text question answer else? =>? or?))
 
   (define (make-cond-clause-vocab)
-    (let([qa-error-msg "Not a clause in question-answer format"])
+    (let([qa-error-msg "Clause is not in question-answer format"])
       (create-vocabulary 'cond-clause-vocab #f
 			 qa-error-msg    ; symbol
 			 qa-error-msg    ; literal
