@@ -2112,7 +2112,7 @@
     (define/override (handles-key-code code alpha? meta?) 
       #f)
 
-    (super-instantiate (mred proxy parent -1 -1 -1 -1 null))
+    (super-instantiate (mred proxy parent -1 -1 -1 -1 '(transparent)))
 
     (set-background-to-gray)
 
@@ -2169,7 +2169,8 @@
 	   (send dc clear)
 	   (send dc draw-text lbl group-right-inset 0)
 	   (send dc set-pen light-pen)
-	   (let-values ([(w h) (my-get-client-size)])
+	   (let-values ([(w h) (my-get-client-size)]
+			[(tw th ta td) (send dc get-text-extent lbl)])
 	     (send dc draw-line 
 		   1 (/ lbl-h 2)
 		   (- group-right-inset 2) (/ lbl-h 2))
@@ -2185,8 +2186,8 @@
 	     (send dc draw-line
 		   (- w 2) (/ lbl-h 2)
 		   (min (- w 2)
-			(+ group-right-inset 4 lbl-w))
-		    (/ lbl-h 2)))))))
+			(+ group-right-inset 4 tw))
+		   (/ lbl-h 2)))))))
 
     (define/private (my-get-client-size)
       (get-two-int-values (lambda (a b) (get-client-size a b))))
@@ -2198,7 +2199,7 @@
       (set! lbl l)
       (on-paint))
 
-    (super-instantiate (mred proxy parent -1 -1 -1 -1 null))
+    (super-instantiate (mred proxy parent -1 -1 -1 -1 '(transparent)))
 
     (set-background-to-gray)
 
@@ -3017,6 +3018,9 @@
 	       (raise-mismatch-error 'container-redraw 
 				     "result from place-children is not a list of 4-integer lists with the correct length: "
 				     l))
+	     (when hidden-child
+	       ;; This goes with the hack for macos and macosx below
+	       (send hidden-child set-phantom-size width height))
 	     (panel-redraw children children-info (if hidden-child
 						      (cons (list 0 0 width 
 								  (if (memq (system-type) '(macos macosx)) ;; Yucky hack
