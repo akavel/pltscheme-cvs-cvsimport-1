@@ -689,3 +689,8 @@ void wxbWindow::ForEach(void (*foreach)(wxWindow *w, void *data), void *data)
 
   foreach((wxWindow *)this, data);
 }
+
+Bool wxbWindow::GetsFocus()
+{
+  return TRUE;
+}
