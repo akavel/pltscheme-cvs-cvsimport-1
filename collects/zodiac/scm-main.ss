@@ -719,6 +719,20 @@
 
   (when (language>=? 'structured)
     (let* ((kwd '())
+	    (in-pattern '(_ (type-spec fields ...)))
+	    (out-pattern '(define-struct type-spec (fields ...)))
+	    (m&e (pat:make-match&env in-pattern kwd)))
+      (add-primitivized-macro-form 'define-structure scheme-vocabulary
+	(lambda (expr env)
+	  (or (pat:match-and-rewrite expr m&e out-pattern kwd env)
+	    (static-error expr "Malformed define-structure"))))
+      (add-primitivized-macro-form 'define-structure local-extract-vocab
+	(lambda (expr env)
+	  (or (pat:match-and-rewrite expr m&e out-pattern kwd env)
+	    (static-error expr "Malformed define-structure"))))))
+
+  (when (language>=? 'structured)
+    (let* ((kwd '())
 	    (in-pattern `(_ type-spec (fields ...) ,@expr-pattern))
 	    (m&e-in (pat:make-match&env in-pattern kwd)))
       (let ((ls-core
