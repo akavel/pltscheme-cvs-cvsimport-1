@@ -88,8 +88,7 @@
 (define-signature mred:application^
   (console
    app-name
-   eval-string
-   startup))
+   eval-string))
 
 (define-signature mred:html-mode^
   ())
@@ -434,3 +433,5 @@
    (open mred:testable-window^)
    (unit test : mred:self-test-export^)
    (open mred:url^)))
+
+(define-signature mred:application-imports^ (argv))

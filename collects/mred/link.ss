@@ -5,7 +5,6 @@
   (compound-unit/sig
 
     (import [core : mzlib:core^]
-	    [trigger : mzlib:trigger^]
 	    [application : mred:application^])
 
     (link [wx : mred:wx^ ((begin-elaboration-time
@@ -78,7 +77,7 @@
 	  [gui-utils : mred:gui-utils^
 		     ((reference-unit/sig "guiutils.ss") wx 
 		      constants frame container canvas edit
-		      (core function@) trigger)]
+		      (core function@))]
 	  [finder : mred:finder^
 		  ((reference-unit/sig "finder.ss") wx 
 		   constants container preferences
@@ -127,8 +126,7 @@
 		    preferences edit frame canvas find-string
 		    exit finder handler gui-utils scheme-mode
 		    scheme-paren icon hyper-frame version application
-		    (core function@) (core string@) (core pretty-print@)
-		    trigger)]
+		    (core function@) (core string@) (core pretty-print@))]
 	  [scheme-mode : mred:scheme-mode^ 
 		       ((reference-unit/sig "ssmode.ss") wx 
 			constants
