@@ -12,7 +12,9 @@
 
 // #include "wx.h" // Uncomment this line for Borland precomp. headers to work
 
+#ifdef __GNUG__
 #pragma implementation
+#endif
 
 #include "common.h"
 #include "wx_setup.h"

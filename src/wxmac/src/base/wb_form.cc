@@ -13,9 +13,15 @@
 /* static const char sccsid[] = "@(#)wb_form.cc	1.2 5/9/94"; */
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation "wx_form.h"
+#endif
+#ifdef __GNUG__
 #pragma implementation
+#endif
+#ifdef __GNUG__
 #pragma interface
+#endif
 #endif
 
 #include "common.h"

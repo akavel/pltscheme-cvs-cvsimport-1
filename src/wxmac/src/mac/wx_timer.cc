@@ -14,7 +14,9 @@ static const char sccsid[] = "@(#)wx_timer.cc	1.2 5/9/94";
 #if 0
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation
+#endif
 #endif
 
 #include <time.h>

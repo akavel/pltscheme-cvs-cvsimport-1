@@ -13,9 +13,15 @@
 // #include "wx.h" // Uncomment this line for Borland precomp. headers to work
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation "wb_dc.h"
+#endif
+#ifdef __GNUG__
 #pragma implementation "wb_dccan.h"
+#endif
+#ifdef __GNUG__
 #pragma implementation "wb_dcmem.h"
+#endif
 #endif
 
 #include "common.h"

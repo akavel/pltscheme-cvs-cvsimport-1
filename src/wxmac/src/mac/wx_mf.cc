@@ -11,7 +11,9 @@
 static const char sccsid[] = "@(#)wx_mf.cc	1.2 5/9/94";
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation
+#endif
 #endif
 
 #include "common.h"

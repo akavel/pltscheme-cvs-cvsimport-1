@@ -13,7 +13,9 @@
 /* static const char sccsid[] = "@(#)wb_obj.cc	1.2 5/9/94"; */
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation "wx_obj.h"
+#endif
 #endif
 
 #include "wx_obj.h"

@@ -13,9 +13,15 @@
 /* static const char sccsid[] = "@(#)wb_ipc.cc	1.2 5/9/94"; */
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation
+#endif
+#ifdef __GNUG__
 #pragma implementation "wb_ipcob.h"
+#endif
+#ifdef __GNUG__
 #pragma implementation "wb_ipc.h"
+#endif
 #endif
 
 #include "common.h"

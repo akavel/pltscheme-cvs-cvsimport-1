@@ -13,7 +13,9 @@
 /* static const char sccsid[] = "@(#)wb_help.cc	1.2 5/9/94"; */
 
 #ifdef __GNUG__
+#ifdef __GNUG__
 #pragma implementation "wx_help.h"
+#endif
 #endif
 
 #include "common.h"
