@@ -707,7 +707,8 @@
 					 (path->complete-path base
 					   (or original-directory 
 					     (current-directory))))
-				       original-directory)])
+				       (or original-directory
+					 (current-directory)))])
 		      (dynamic-wind
 			void
 			(lambda ()
