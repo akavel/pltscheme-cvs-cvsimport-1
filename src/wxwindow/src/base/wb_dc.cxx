@@ -39,13 +39,7 @@
 
 #include <math.h>
 
-#if USE_SPLINES
-# if USE_XFIG_SPLINE_CODE
-#    include "../base/xfspline.cxx"
-# else
-#  include "../base/wxspline.cxx"
-# endif
-#endif // USE_SPLINES
+#include "../base/xfspline.cxx"
 
 // Default constructor
 wxbDC::wxbDC(void)
