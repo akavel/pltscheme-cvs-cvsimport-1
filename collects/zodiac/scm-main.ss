@@ -1664,7 +1664,7 @@
 		     (body (pat:pexpand body p-env kwd))
 		     (pzs (map generate-name params))
 		     (saves (map generate-name params))
-		     (swap (generate-name)))
+		     (swap (generate-name (structurize-syntax 'swap expr '(-1)))))
 		(expand-expr
 		 (structurize-syntax
 		  (if (null? params)
