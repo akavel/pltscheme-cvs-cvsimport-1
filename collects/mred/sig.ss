@@ -9,6 +9,12 @@
 
 (reference-library "dates.ss")
 
+(define-signature mred:graph^
+  (node-snip%
+   make-node-snip%
+   graph-pasteboard%
+   make-graph-pasteboard%))
+
 (define-signature mred:connections^
   (connections-frame%
    connections-dialog-box%
@@ -432,6 +438,7 @@
    (open mred:hyper-edit^) (open mred:hyper-dialog^) (open mred:hyper-frame^)
    (open mred:testable-window^)
    (unit test : mred:self-test-export^)
-   (open mred:url^)))
+   (open mred:url^)
+   (open mred:graph^)))
 
 (define-signature mred:application-imports^ (argv))
