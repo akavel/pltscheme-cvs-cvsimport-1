@@ -61,7 +61,7 @@ public:
     inline int  GetSelection() { return commandInt; }
     inline char *GetString() { return commandString; }
     inline Bool Checked() { return (Bool)commandInt; }
-    inline Bool IsSelection() { return (Bool)extraLong; }
+    inline Bool IsSelection() { return (Bool)(extraLong == 1); }
 
     char    *commandString; // String event argument
     int     commandInt;     // Integer event argument

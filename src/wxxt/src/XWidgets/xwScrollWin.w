@@ -569,6 +569,14 @@ sliders in the scrollbars.
   XtVaGetValues($board, XtNwidth, x, XtNheight, y, NULL);
 }
 
+@proc ScrollWinViewableHeight($, int *boardht)
+{
+  Position boardx, boardy;
+  int boardwd;
+	
+  $compute_inside($, &boardx, &boardy, &boardwd, boardht);  
+}
+
 @IMPORTS
 
 @incl <stdio.h>
