@@ -701,6 +701,7 @@ the frame. The contents of the GC depend on the resources
         if (DefaultDepthOfScreen(XtScreen($)) > 4
             && $darker_color($, $background_pixel, &values.foreground)) {
             mask = GCForeground;
+	    $highlightColor = values.foreground;
         } else {
             mask = GCFillStyle | GCBackground | GCForeground | GCStipple;
             values.fill_style = FillOpaqueStippled;
