@@ -121,7 +121,8 @@ Bool wxChoice::Create(wxPanel *panel, wxFunction function, char *label,
       for (int i = 0; i < n; i++) {
 	float w, h;
 	GetTextExtent(choices[i], &w, &h, NULL, NULL, label_font);
-	maxw = w;
+	if (w > maxw)
+	  maxw = w;
       }
       
       if (label && !vert) {

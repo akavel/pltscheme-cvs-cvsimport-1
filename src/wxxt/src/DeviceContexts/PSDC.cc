@@ -1618,7 +1618,7 @@ float wxPostScriptDC::GetCharWidth (void)
 }
 
 void wxPostScriptDC::GetTextExtent (const char *string, float *x, float *y,
-				    float *descent, float *externalLeading, wxFont *theFont,
+				    float *descent, float *topSpace, wxFont *theFont,
 				    Bool WXUNUSED(use16))
 {
   wxFont *fontToUse = theFont;
@@ -1641,8 +1641,8 @@ void wxPostScriptDC::GetTextExtent (const char *string, float *x, float *y,
   *y = (float) height;
   if (descent)
     *descent = 0.0;
-  if (externalLeading)
-    *externalLeading = 0.0;
+  if (topSpace)
+    *topSpace = 0.0;
 #else
   // +++++ start of contributed code +++++
   
@@ -1828,10 +1828,8 @@ void wxPostScriptDC::GetTextExtent (const char *string, float *x, float *y,
     }
   }
 
-  // currently no idea how to calculate this!
-  // if (externalLeading) *externalLeading = 0.0;
-  if (externalLeading)
-    *externalLeading = 0.0;
+  if (topSpace)
+    *topSpace = 0.0;
 
   // ----- end of contributed code -----
 #endif
