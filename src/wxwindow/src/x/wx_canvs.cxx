@@ -529,8 +529,8 @@ void wxCanvas::PhysicalScroll(int x, int y, int w, int h,
     x2, y2);
 
   GetDC()->autoSetting = TRUE;
-  SetBrush(GetDC()->current_background_brush);
-//  SetBrush(wxRED_BRUSH);
+  GetDC()->SetBrush(wxTheBrushList->FindOrCreateBrush(&(GetDC()->current_background_color), wxSOLID));
+  //  SetBrush(wxRED_BRUSH);
 
   // We'll add rectangles to the list of update rectangles
   // according to which bits we've exposed.

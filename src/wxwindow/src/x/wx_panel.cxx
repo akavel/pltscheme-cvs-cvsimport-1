@@ -48,8 +48,6 @@ wxPanel::wxPanel (void)
   current_hspacing = hSpacing;
   current_vspacing = vSpacing;
 
-  panelBackgroundBrush = NULL;
-
   labelFont = NULL;
   buttonFont = NULL;
   backColour = NULL;
@@ -103,8 +101,6 @@ Create (wxWindow *parent, int x, int y, int width, int height,
     return FALSE;
 
   window_parent = parent;
-
-  panelBackgroundBrush = NULL;
 
   has_child = FALSE;
   windowStyle = style;
@@ -185,59 +181,17 @@ Create (wxWindow *parent, int x, int y, int width, int height,
   wxCanvas::Create(parent, x, y, width, height, style, name);
   panelWidget = (Widget)handle;
 
-  // Construct a new brush that takes on the
-  // real background colour of this panel.
-  panelBackgroundBrush = new wxBrush;
-  Pixel thePix;
-  XtVaGetValues(panelWidget, XmNbackground, &thePix, NULL);
-  panelBackgroundBrush->colour.pixel = thePix;
-  GetPanelDC()->SetBackground(panelBackgroundBrush);
   return TRUE;
 }
 
 wxPanel::~wxPanel (void)
 {
-  if (panelBackgroundBrush)
-  {
-    wx_dc->SetBackground(NULL);
-    delete panelBackgroundBrush;
-  }
   DestroyChildren ();
-
-/*
-  if (borderWidget)
-    {
-      // This patch come from Torsten. (lier@lier1)
-      // I do not know if it is needed in j1 version??
-      wxWidgetHashTable->Delete ((long) borderWidget);
-      XtDestroyWidget (borderWidget);
-      borderWidget = 0;
-    }
-*/
 }
 
 void wxPanel:: SetSize (int x, int y, int w, int h, int sizeFlags)
 {
-#if 0
-  /* MATTHEW: [15] Make widget bigger for adding controls */
-  Dimension oldw, oldh;
-  if (panelWidget) {
-    XtVaGetValues(panelWidget, XmNwidth, &oldw, XmNheight, &oldh, NULL);
-    XtUnmanageChild(panelWidget);
-  } else
-    oldw = oldh = 0;
-#endif
-
   wxCanvas::SetSize(x, y, w, h, sizeFlags);
-
-#if 0
-  if (panelWidget) {
-    if (oldw < w) oldw = w;
-    if (oldh < h) oldh = h;
-    XtVaSetValues (panelWidget, XmNwidth, oldw, XmNheight, oldh, NULL);
-    XtManageChild(panelWidget);
-  }
-#endif
 }
 
 void wxPanel:: SetClientSize (int w, int h)
