@@ -52,8 +52,6 @@ public:
     // data
     int    argc;
     char** argv;
-    static char* wx_class;
-    static char* appName;
 private:
     friend int wxEntry(int argc, char **argv);
 

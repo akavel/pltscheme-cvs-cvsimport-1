@@ -38,10 +38,6 @@
 // wxApp implementation
 //-----------------------------------------------------------------------------
 
-// references to global data for compatibility
-char* wxApp::wx_class        = wxAPP_CLASS;
-char* wxApp::appName         = wxAPP_NAME;
-
 wxApp::wxApp()
 {
   __type = wxTYPE_APP;
