@@ -59,6 +59,7 @@
     full-vocabulary
     scheme-vocabulary
     get-mred-vocabulary
+    reset-previous-attribute
     set-top-level-status get-top-level-status at-top-level?
     set-internal-define-status get-internal-define-status at-internal-define?
     as-nested

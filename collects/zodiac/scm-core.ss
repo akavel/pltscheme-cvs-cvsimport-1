@@ -309,6 +309,9 @@
 
   (define previous-attribute (make-attributes))
 
+  (define (reset-previous-attribute)
+    (set! previous-attribute (make-attributes)))
+
   (define (reset-internal-attributes attr)
     (set-top-level-status attr #t)
     (set-internal-define-status attr #f)
