@@ -163,6 +163,8 @@
 	 [(null? (cdr l)) (send repl-buffer (car l))
 			  (set-cdr! l null)]
 	 [else (loop (cdr l))]))))
+  (define (next-input)
+    (send repl-buffer set-input (car previous-expressions)))
   (define (remember exp)
     (set! previous-expressions
 	  (let loop ([n 50]
@@ -206,15 +208,15 @@
   (install-standard-text-bindings repl-buffer)
   (define console-keymap (make-object keymap%))
   (send console-keymap add-key-function
-	"previous-input"
+	"previous-sexp"
 	(lambda (value key-event) (previous-input)))
   (send console-keymap add-key-function
-	"next-input"
+	"next-sexp"
 	(lambda (value key-event) (next-input)))
-  (send console-keymap map-function "m:p" "previous-input")
-  (send console-keymap map-function "m:n" "next-input")
-  (send console-keymap map-function "a:p" "previous-input")
-  (send console-keymap map-function "a:n" "next-input")
+  (send console-keymap map-function "m:p" "previous-sexp")
+  (send console-keymap map-function "m:n" "next-sexp")
+  (send console-keymap map-function "a:p" "previous-sexp")
+  (send console-keymap map-function "a:n" "next-sexp")
   (send repl-buffer chain-to-keymap console-keymap)
 
 
