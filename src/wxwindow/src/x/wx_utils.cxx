@@ -9,10 +9,13 @@
  */
 
 // $Log$
-// Revision 1.2  1998/04/11 13:58:22  mflatt
-// cursors
+// Revision 1.3  1998/04/23 20:40:07  mflatt
+// menus: count, rename submenu, delete bool
 //
-// Revision 1.2  1998-04-11 13:58:22  mflatt
+// Revision 1.3  1998-04-23 20:40:07  mflatt
+// menus: count, rename submenu, delete bool
+//
+// Revision 1.2  1998/04/11 13:58:22  mflatt
 // cursors
 //
 // Revision 1.1.1.1  1997/12/22 16:12:05  mflatt
@@ -1059,7 +1062,7 @@ wxBeginBusyCursor (wxCursor * cursor)
   if (wxBusyCursorCount == 1) {
     for(wxChildNode *node = wxTopLevelWindows(NULL)->First (); node; node = node->Next()) {
       wxWindow *win = (wxWindow *) node->Data ();
-      if (win && node->IsShown())
+      if (win)
 	wxXSetBusyCursor(win, cursor);
     }
   }
@@ -1078,7 +1081,7 @@ wxEndBusyCursor (void)
   if (wxBusyCursorCount == 0) {
     for(wxChildNode *node = wxTopLevelWindows(NULL)->First (); node; node = node->Next()) {
       wxWindow *win = (wxWindow *) node->Data ();
-      if (win && node->IsShown())
+      if (win)
 	wxXSetBusyCursor (win, NULL);
     }
   }

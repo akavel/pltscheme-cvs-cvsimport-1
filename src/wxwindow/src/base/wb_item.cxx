@@ -586,34 +586,41 @@ void wxbMenuBar::Append (wxMenu * menu, char *title)
 }
 
 /* MATTHEW: [6] */
-void wxbMenuBar::Delete(wxMenu * menu, int i)
+Bool wxbMenuBar::Delete(wxMenu * menu, int i)
 {
   int j;
 
   if (menu) {
-	 for (i = 0; i < n; i++) {
-		if (menus[i] == menu)
+    for (i = 0; i < n; i++) {
+      if (menus[i] == menu)
 	break;
-	 }
-	 if (i >= n)
-		return;
+    }
+    if (i >= n)
+      return FALSE;
   } else {
-	 if (i < 0 || i >= n)
-		return;
-	 menu = menus[i];
+    if (i < 0 || i >= n)
+      return FALSE;
+    menu = menus[i];
   }
 
   if (!OnDelete(menu, i))
-	 return;
+    return FALSE;
 
   /* MATTHEW: [11] */
   menu->SetParent(NULL);
 
   --n;
   for (j = i; j < n; j++) {
-	 menus[j] = menus[j + 1];
-	 titles[j] = titles[j + 1];
+    menus[j] = menus[j + 1];
+    titles[j] = titles[j + 1];
   }
+
+  return TRUE;
+}
+
+int wxbMenuBar::Number(void)
+{
+  return n;
 }
 
 // Find the menu menuString, item itemString, and return the item id.
