@@ -150,6 +150,10 @@ extern wxColour* wxGREEN;
 extern wxColour* wxCYAN;
 extern wxColour* wxLIGHT_GREY;
 
+extern unsigned long wxWHITE_PIXEL;
+extern unsigned long wxBLACK_PIXEL;
+extern unsigned long wxGREY_PIXEL;
+
 extern wxCursor* wxSTANDARD_CURSOR;
 extern wxCursor* wxHOURGLASS_CURSOR;
 extern wxCursor* wxCROSS_CURSOR;

@@ -70,7 +70,6 @@ public:
     Bool  Show(int item, Bool show);
     char  *GetString(int which);
     // root methods to parent class
-    virtual void  ChangeColours(void);
     virtual void  Enable(Bool enable)	{ wxItem::Enable(enable); }
     virtual char  *GetLabel(void)	{ return wxItem::GetLabel(); }
     virtual void  SetLabel(char *label)	{ wxItem::SetLabel(label); }

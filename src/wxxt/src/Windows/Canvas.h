@@ -60,8 +60,6 @@ public:
 			       Bool setVirtualSize = TRUE);
     void ViewStart(int *x, int *y);
     void WarpPointer(int x, int y);
-    // override parent methods
-    virtual void ChangeColours(void);
     // overriden callback methods
     virtual void OnChar(wxKeyEvent *event);
 private:

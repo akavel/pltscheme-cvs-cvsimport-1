@@ -123,6 +123,10 @@ wxPen* wxGREY_PEN = 0;
 wxPen* wxMEDIUM_GREY_PEN = 0;
 wxPen* wxLIGHT_GREY_PEN = 0;
 
+unsigned long wxWHITE_PIXEL;
+unsigned long wxBLACK_PIXEL;
+unsigned long wxGREY_PIXEL;
+
 //-- Types --------------------------------------------------------------------
 
 wxTypeTree *wxAllTypes;
