@@ -145,6 +145,9 @@
    make-console-edit%
    console-edit%
 
+   transparent-io-edit%
+   make-transparent-io-edit%
+
    make-console-frame%
    console-frame%))
 
