@@ -219,7 +219,6 @@ to define them here. They will end up in the private(!) header file.
 
 	@def max(a, b) = ((a) > (b) ? (a) : (b))
 	@def min(a, b) = ((a) < (b) ? (a) : (b))
-	@def abs(a) = ((a) < 0 ? -(a) : (a))
 
 
 @ A private variable is used to track the keyboard focus, but only

@@ -300,7 +300,7 @@ and clears the old rectangle to the background color.
 
 @proc move_thumb($, int oldx, int oldy, int wd, int ht, int newx, int newy)
 {
-    int h;
+    int h, ah;
 
     XCopyArea(XtDisplay($), XtWindow($), XtWindow($),
 	      DefaultGCOfScreen(XtScreen($)),
@@ -316,12 +316,13 @@ and clears the old rectangle to the background color.
 	    XClearArea(XtDisplay($), XtWindow($), oldx, newy + ht, wd,h,False);
 	else if (h < 0)
 	    XClearArea(XtDisplay($), XtWindow($), oldx, oldy, wd, -h, False);
+	ah = (h < 0) ? -h : h;
 	if (newx < oldx)
 	    XClearArea(XtDisplay($), XtWindow($), newx + wd,
-		       max(oldy, newy), oldx - newx, ht - abs(h), False);
+		       max(oldy, newy), oldx - newx, ht - ah, False);
 	else if (oldx < newx)
 	    XClearArea(XtDisplay($), XtWindow($), oldx, max(oldy, newy),
-		       newx - oldx, ht - abs(h), False);
+		       newx - oldx, ht - ah, False);
     }
 }
 

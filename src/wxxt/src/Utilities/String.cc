@@ -27,6 +27,10 @@
 
 #include <string.h>
 
+#ifdef _AIX41
+# include <strings.h>
+#endif
+
 char *copystring(const char *s)
 {
     if (s == NULL) s = "";
