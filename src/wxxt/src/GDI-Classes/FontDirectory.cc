@@ -110,7 +110,7 @@ char *font_defaults[] = {
   "ScreenSlant", "o",
 
   "ScreenSystemBase", "*-lucida",
-  "ScreenDefaultBase", "misc-fixed",
+  "ScreenDefaultBase", "*-lucida",
   "ScreenRomanBase", "*-times",
   "ScreenDecorativeBase", "*-helvetica",
   "ScreenModernBase", "*-courier",
