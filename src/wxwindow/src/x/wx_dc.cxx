@@ -1917,6 +1917,44 @@ Bool wxCanvasDC::Blit(float xdest, float ydest, float width, float height,
   return retval;
 }
 
+Bool wxCanvasDC::GCBlit(float xdest, float ydest, float width, float height,
+			wxBitmap *source, float xsrc, float ysrc)
+{
+  /* Non-allocating (of collectable memory) Blit */
+
+  FreeGetPixelCache();
+
+  Bool retval = FALSE;
+
+  if (source->selectedTo) 
+    source->selectedTo->EndSetPixel();
+
+  int scaled_width
+    = source->GetWidth()  < XLOG2DEVREL(width) ? source->GetWidth()  : XLOG2DEVREL(width);
+  int scaled_height
+    = source->GetHeight() < YLOG2DEVREL(height) ? source->GetHeight() : YLOG2DEVREL(height);
+
+  if (pixmap && source->Ok()) {
+    XGCValues values;
+    GC gc = XCreateGC(display, pixmap, 0, &values);
+
+    if (!color || (source->GetDepth() == 1)) {
+      XCopyPlane (display, source->x_pixmap, pixmap, gc,
+		  (long)xsrc, (long)ysrc, scaled_width, scaled_height,
+		  XLOG2DEV(xdest), YLOG2DEV(ydest), 1);
+    } else {
+      XCopyArea (display, source->x_pixmap, pixmap, gc,
+		 (long)xsrc, (long)ysrc, scaled_width, scaled_height,
+		 XLOG2DEV(xdest), YLOG2DEV(ydest));
+    }
+    
+    XFreeGC(display, gc);
+  
+    retval = TRUE;
+  }
+
+  return retval;
+}
 
 /*
  * Memory DC

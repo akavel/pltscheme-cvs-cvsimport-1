@@ -979,13 +979,13 @@ void wxFrame::SetMenuBar (wxMenuBar * menu_bar)
       wxMenu *menu = menu_bar->menus[i];
       menu->buttonWidget = menu->CreateMenu (menu_bar, MenuBar, menu, menu_bar->titles[i], TRUE);
 
+      wxStripMenuCodes (menu_bar->titles[i], wxBuffer);
+
       /*
        * COMMENT THIS OUT IF YOU DON'T LIKE A RIGHT-JUSTIFIED HELP MENU
        */
-      wxStripMenuCodes (menu_bar->titles[i], wxBuffer);
-
       if (strcmp (wxBuffer, wxSTR_MENU_HELP) == 0)
-	XtVaSetValues (MenuBar, XmNmenuHelpWidget, menu->buttonWidget, NULL);
+	XtVaSetValues(MenuBar, XmNmenuHelpWidget, menu->buttonWidget, NULL);
     }
 
   XtRealizeWidget (MenuBar);

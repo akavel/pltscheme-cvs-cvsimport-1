@@ -216,12 +216,14 @@ void wxItem::SetSize (int x, int y, int w, int h, int sizeFlags)
 void wxItem::SetLabel (char *label)
 {
   char buf[400];
+  char mnem = wxFindMnemonic (label);
   wxStripMenuCodes(label, buf);
   if (!labelWidget)
     return;
   XmString text = XmStringCreateSimple (buf);
   XtVaSetValues (labelWidget,
 		 XmNlabelString, text,
+		 XmNmnemonic, mnem,
 		 NULL);
   XmStringFree (text);
 }
