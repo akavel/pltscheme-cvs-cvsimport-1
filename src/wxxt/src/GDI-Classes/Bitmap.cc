@@ -30,6 +30,7 @@
 #define  Uses_XLib
 #define  Uses_wxBitmap
 #define  Uses_wxColour
+#define  Uses_wxMemoryDC
 #include "wx.h"
 
 #if USE_XPM
@@ -457,6 +458,9 @@ static int write_pixmap_as_bitmap(Display *display, Pixmap pm, char *fname,
 Bool wxBitmap::SaveFile(char *fname, int type, wxColourMap *WXUNUSED(cmap))
 {
     if (Xbitmap) {
+      if (selectedTo)
+	selectedTo->EndSetPixel();
+
 	switch (type) {
 	case wxBITMAP_TYPE_XBM:
 	    if (Xbitmap->depth == 1)
