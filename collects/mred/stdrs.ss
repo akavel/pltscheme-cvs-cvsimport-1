@@ -14,7 +14,7 @@
 (unit/sig mred:test:drscheme^
   
   (import 
-    [wx   : mred:wx^]
+    mred:wx^
     [mred : mred:testable-window^])
   
   (define drs-error error)  ;; naive error reporting.
