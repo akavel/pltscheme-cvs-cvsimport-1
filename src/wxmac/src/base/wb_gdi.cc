@@ -14,6 +14,7 @@
 
 #ifdef __GNUG__
 #pragma implementation
+#pragma implementation "FontDirectory.h"
 #endif
 
 #include "common.h"
