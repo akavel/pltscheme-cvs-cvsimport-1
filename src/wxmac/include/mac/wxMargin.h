@@ -14,7 +14,7 @@
    atomic. It has no pointers, after all. */
 #ifdef MZ_PRECISE_GC
 START_XFORM_SKIP;
-#endif
+#endf
 
 class wxMargin
 {
@@ -39,6 +39,6 @@ class wxMargin
 
 #ifdef MZ_PRECISE_GC
 END_XFORM_SKIP;
-#endif
+#endf
 
 #endif // wxMarginh
