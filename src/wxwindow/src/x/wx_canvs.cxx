@@ -1640,7 +1640,6 @@ wxCanvasInputEvent (Widget drawingArea, XtPointer data, XmDrawingAreaCallbackStr
 	wxevent.controlDown = local_event.xbutton.state & ControlMask;
         wxevent.altDown = /* local_event.xbutton.state & Mod3Mask */ FALSE;
         wxevent.metaDown = local_event.xbutton.state & Mod1Mask;
-	wxevent.eventObject = canvas;
         wxevent.SetTimestamp(local_event.xbutton.time);
 
 	if (!canvas->CallPreOnEvent(canvas, &wxevent))
@@ -1696,7 +1695,6 @@ wxCanvasInputEvent (Widget drawingArea, XtPointer data, XmDrawingAreaCallbackStr
 	  */
 	if (local_event.xkey.state & Mod1Mask)
 	  event.metaDown = TRUE;
-	event.eventObject = canvas;
 	event.keyCode = id;
         event.SetTimestamp(local_event.xkey.time);
 
@@ -1776,12 +1774,12 @@ wxCursor *wxCanvas:: SetCursor (wxCursor * cursor)
 }
 
 // Default scrolling behaviour
-void wxCanvas::OnScroll(wxCommandEvent& event)
+void wxCanvas::OnScroll(wxScrollEvent& event)
 {
   DoRefresh(TRUE);
 }
 
-void wxCanvas::DoScroll(wxCommandEvent &event)
+void wxCanvas::DoScroll(wxScrollEvent &event)
 {
   if (!scrolls_set_size)
     return;
@@ -1792,9 +1790,9 @@ void wxCanvas::DoScroll(wxCommandEvent &event)
   int oldScrollY = vStart;
 
   Bool doScroll = FALSE;
-  int value = WXSCROLLPOS(event);
+  int value = event.pos;
 
-  if (WXSCROLLORIENT(event) == wxHORIZONTAL)
+  if (event.direction == wxHORIZONTAL)
   {
     if (hScrollingEnabled)
       doScroll = TRUE;

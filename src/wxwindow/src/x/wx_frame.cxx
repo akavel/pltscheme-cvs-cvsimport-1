@@ -1057,13 +1057,6 @@ wxFrame::~wxFrame (void)
   wxUnregisterFrameWidget(frameShell);
 
   handle = NULL;
-
-  if (this == wxTheApp->wx_frame)
-    {
-      int retValue = wxTheApp->OnExit ();
-      wxCleanUp ();
-      exit (retValue);
-    }
 }
 
 void wxFrame::CaptureMouse(void)
