@@ -906,9 +906,9 @@ void wxFrameWnd::OnMenuSelect(WORD nItem, WORD nFlags, HMENU hSysMenu)
 BOOL wxFrameWnd::ProcessMessage(MSG* pMsg)
 {
   if (accelerator_table != NULL &&
-          ::TranslateAccelerator(handle, (HACCEL)accelerator_table, pMsg))
+      ::TranslateAccelerator(handle, (HACCEL)accelerator_table, pMsg))
     return TRUE;
-	
+  
   return FALSE;
 }
 
@@ -1123,7 +1123,7 @@ BOOL wxMDIFrame::ProcessMessage(MSG* pMsg)
      return TRUE;
 	
   if (accelerator_table != NULL &&
-          ::TranslateAccelerator(handle, (HACCEL)accelerator_table, pMsg))
+      ::TranslateAccelerator(handle, (HACCEL)accelerator_table, pMsg))
     return TRUE;
 	
   if (pMsg->message == WM_KEYDOWN || pMsg->message == WM_SYSKEYDOWN)
