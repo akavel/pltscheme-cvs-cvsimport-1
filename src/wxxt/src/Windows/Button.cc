@@ -38,11 +38,6 @@
 // create and destroy button
 //-----------------------------------------------------------------------------
 
-wxButton::wxButton(void) : wxItem()
-{
-    __type = wxTYPE_BUTTON;
-}
-
 wxButton::wxButton(wxPanel *panel, wxFunction function, char *label,
 		   int x, int y, int width, int height,
 		   long style, char *name) : wxItem()

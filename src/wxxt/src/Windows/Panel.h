@@ -39,15 +39,10 @@ class wxItem;
 class wxPanel : public wxWindow {
 public:
     wxPanel(void); 
-    wxPanel(wxPanel *parent, int x=-1, int y=-1, int width=-1, int height=-1,
-	    int style=0, char *name="panel");
     wxPanel(wxWindow *parent, int x=-1, int y=-1, int width=-1, int height=-1,
 	    int style=0, char *name="panel");
     // panel creation
     Bool  Create(wxPanel *parent, 
-		 int x=-1, int y=-1, int width=-1, int height=-1,
-		 int style=0, char *name="panel");
-    Bool  Create(wxWindow *parent, 
 		 int x=-1, int y=-1, int width=-1, int height=-1,
 		 int style=0, char *name="panel");
     // resize/layout panel

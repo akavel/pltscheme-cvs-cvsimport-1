@@ -36,7 +36,6 @@ class wxPanel;
 // Choice item
 class wxChoice : public wxItem {
 public:
-    wxChoice(void);
     wxChoice(wxPanel *panel, wxFunction func, char *label,
 	     int x = -1, int y = -1, int width = -1, int height = -1,
 	     int n = 0, char **choices = NULL,

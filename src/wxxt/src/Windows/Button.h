@@ -35,7 +35,6 @@ class wxPanel;
 
 class wxButton : public wxItem {
 public:
-    wxButton(void);
     ~wxButton(void);
 
     wxButton(wxPanel *panel, wxFunction func, char *label,
