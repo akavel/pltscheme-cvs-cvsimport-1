@@ -26,9 +26,11 @@
 #define  Uses_XLib
 #include "wx.h"
 
+extern int wx_visual_depth;
+
 int wxDisplayDepth(void)
 {
-    return DefaultDepthOfScreen(wxAPP_SCREEN);
+  return wx_visual_depth;
 }
 
 Bool wxColourDisplay(void)
