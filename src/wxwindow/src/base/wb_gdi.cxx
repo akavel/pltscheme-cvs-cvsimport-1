@@ -1123,11 +1123,11 @@ char *font_defaults[] = {
   "ScreenSystem__", "MS Sans Serif",
   "ScreenDefault__", "MS Sans Serif",
   "ScreenRoman__", "Times New Roman",
-  "ScreenDecorative__", "Modern",
+  "ScreenDecorative__", "Arial",
   "ScreenModern__", "Courier New",
   "ScreenTeletype__", "${ScreenModern$[weight];$[style]}",
   "ScreenSwiss__", "Arial",
-  "ScreenScript__", "Script",
+  "ScreenScript__", "Arial",
 #endif
   NULL
 };
