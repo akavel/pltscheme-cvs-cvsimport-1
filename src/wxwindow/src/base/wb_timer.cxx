@@ -52,7 +52,7 @@ extern "C" int gettimeofday(struct timeval *tp, void *);
 #endif
 #endif
 
-wxbTimer::wxbTimer(void)
+wxbTimer::wxbTimer(void) : wxObject(WXGC_NO_CLEANUP)
 {
   __type = wxTYPE_TIMER;
 #if 0

@@ -94,15 +94,13 @@ LONG wxDialogWnd::DefWindowProc(UINT nMsg, UINT wParam, LONG lParam)
 
 BOOL wxDialogWnd::ProcessMessage(MSG* pMsg)
 {
+#if 0
   wxWindow *w = wx_window->FindItemByHWND(::GetFocus());
 
-
-
   if (w && !wxSubType(w->__type, wxTYPE_CANVAS))
-
     return ::IsDialogMessage(handle, pMsg);
-
   else
+#endif
 
     return FALSE;
 }
@@ -338,6 +336,11 @@ void wxDialogBox::GetPosition(int *x, int *y)
 
   *x = rect.left;
   *y = rect.top;
+
+  if (*x < -10000)
+    *x = -10000;
+  if (*y < -10000)
+    *y = -10000;
 }
 
 extern void wxDispatchEventsUntil(int (*f)(void *), void *data);

@@ -1404,6 +1404,15 @@ void wxCanvasDC::TryColour(wxColour *src, wxColour *dest)
   DoneDC(dc);
 }
 
+Bool wxCanvasDC::GCBlit(float xdest, float ydest, float width, float height,
+			wxBitmap *source, float xsrc, float ysrc)
+{
+  if (blit_dc)
+    return Blit(xdest, ydest, width, height, source, xsrc, ysrc, wxSTIPPLE, NULL);
+  else
+    return FALSE;
+}
+
 IMPLEMENT_CLASS(wxPrinterDC, wxDC)
 
 static BOOL DoPrintDlg(PRINTDLG *pd, HWND parent)

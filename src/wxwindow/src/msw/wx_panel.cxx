@@ -56,11 +56,14 @@ LONG wxPanelWnd::DefWindowProc(UINT nMsg, UINT wParam, LONG lParam)
 
 BOOL wxPanelWnd::ProcessMessage(MSG* pMsg)
 {
+#if 0
   wxWindow *w = wx_window->FindItemByHWND(::GetFocus());
 
   if (w && !wxSubType(w->__type, wxTYPE_CANVAS))
     return ::IsDialogMessage(handle, pMsg);
   else
+#endif
+
     return FALSE;
 }
 
