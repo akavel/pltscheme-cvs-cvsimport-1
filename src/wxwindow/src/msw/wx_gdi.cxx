@@ -945,7 +945,24 @@ wxBitmap::wxBitmap(char bits[], int the_width, int the_height)
   numColors = 0;
   bitmapColourMap = NULL;
 
-  ms_bitmap = CreateBitmap(the_width, the_height, 1, 1, bits);
+  int rowwidth = ((width + 7) / 8), offset;
+  if (rowwidth % sizeof(WORD))
+    /* byte-aligned => word aligned */
+    offset = 1;
+  else
+    offset = 0;
+
+  char *copy = new char[(rowwidth + offset) * height], *sp, *cp;
+  sp = bits; cp = copy;
+  int i, j;
+  for (i = 0; i < height; i++) {
+    for (j = 0; j < rowwidth; j++, sp++, cp++) {
+      *cp = 0xFF ^ *sp;
+    }
+    cp += offset;
+  }
+
+  ms_bitmap = CreateBitmap(the_width, the_height, 1, 1, copy);
 
   if (ms_bitmap)
     ok = TRUE;

@@ -326,11 +326,11 @@ void wxCanvas::GetVirtualSize (int *x, int *y)
 
   wxWnd *wnd = (wxWnd *) handle;
   if (wnd && wnd->calcScrolledOffset) {
-	if (wnd->xscroll_lines > 0)
+    if (wnd->xscroll_lines > 0)
       *x = wnd->xscroll_pixels_per_line * wnd->xscroll_lines;
-	if (wnd->yscroll_lines > 0)
+    if (wnd->yscroll_lines > 0)
       *y = wnd->yscroll_pixels_per_line * wnd->yscroll_lines;
-  }	  
+  }
 }
 
 void wxCanvas::WarpPointer (int x_pos, int y_pos)
@@ -357,7 +357,7 @@ void wxCanvas::WarpPointer (int x_pos, int y_pos)
 }
 
 // Where the current view starts from
-void wxCanvas::ViewStart (int *x, int *y)
+void wxCanvas::ViewStart(int *x, int *y, Bool)
 {
   wxWnd *wnd = (wxWnd *) handle;
   *x = wnd->xscroll_position;
