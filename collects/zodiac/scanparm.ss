@@ -27,10 +27,26 @@
    (define  return   13)
    (define  rubout  127)
    
-   (define  scan:paren-relation  '( (#\( #\) )  (#\[ #\] )))
-   
-   (define  scan:self-delim-symbols  (list #\{ #\} ))
-   
+   (define scan:paren-relation
+     (let ((base '((#\( #\)))))
+       (let ((w/-brackets (if (read-square-bracket-as-paren)
+			    (cons '(#\[ #\]) base)
+			    base)))
+	 (let ((w/-braces (if (read-curly-brace-as-paren)
+			    (cons '(#\{ #\}) w/-brackets)
+			    w/-brackets)))
+	   w/-braces))))
+
+   (define scan:self-delim-symbols
+     (let ((base '()))
+       (let ((w/-brackets (if (read-square-bracket-as-paren)
+			    base
+			    (append '(#\[ #\]) base))))
+	 (let ((w/-braces (if (read-curly-brace-as-paren)
+			    w/-brackets
+			    (append '(#\{ #\}) w/-brackets))))
+	   w/-braces))))
+
    (define  scan:newline-list  (list  newline  return))
    (define  scan:tab-list      (list  tab))
    (define  scan:whitespace-list
