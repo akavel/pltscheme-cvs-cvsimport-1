@@ -700,8 +700,10 @@ the frame. The contents of the GC depend on the resources
     case XfwfAuto:
         if (DefaultDepthOfScreen(XtScreen($)) > 4
             && $darker_color($, $background_pixel, &values.foreground)) {
+            Pixel hi;
             mask = GCForeground;
-	    $highlightColor = values.foreground;
+            $darker_color($, values.foreground, &hi);
+	    $highlightColor = values.foreground; /* BlackPixelOfScreen(XtScreen($)); */
         } else {
             mask = GCFillStyle | GCBackground | GCForeground | GCStipple;
             values.fill_style = FillOpaqueStippled;
