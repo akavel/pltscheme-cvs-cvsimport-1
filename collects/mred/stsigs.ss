@@ -34,6 +34,6 @@
   ((open mred:test:struct^)
    (open mred:test:run^)
    (open mred:test:primitives^)
-   (open mred:test:drscheme^)))
+   (unit drs : mred:test:drscheme^)))
 
 (define-signature mred:self-test-export^ mred:self-test^)
