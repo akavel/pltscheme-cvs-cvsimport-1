@@ -56,7 +56,7 @@ public:
     char  *GetString(int n);
     char  *GetStringSelection(void);
     void  SetSelection(int n);
-    void  SetStringSelection(char *s);
+    Bool  SetStringSelection(char *s);
     inline int Number() { return num_choices; }
 
     /* MATTHEW: [6] */

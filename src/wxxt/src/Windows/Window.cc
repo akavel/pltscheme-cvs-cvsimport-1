@@ -1536,9 +1536,7 @@ void wxWindow::CreateDC(void)
     wxWindowDC_Xinit init;
     init.dpy      = wxAPP_DISPLAY; // display is global to application
     init.scn      = wxAPP_SCREEN;  //  screen is global to application
-    init.drawable = 0;		   //  drawable will be initialized on window creation time
-
-    /* MATTHEW: Canvas now realized, so init drawable now */
+    init.owner    = this;
     init.drawable = XtWindow(X->handle);
     dc->ok = TRUE;
     

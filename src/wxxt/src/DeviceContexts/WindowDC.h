@@ -50,7 +50,8 @@ class wxWindowDC_Xinit {
 public:
     Display* dpy;		// display of drawable
     Screen* scn;		// screen of drawable
-    Drawable drawable;		// init to 0 if drawable is not created;
+    Drawable drawable;		// init to 0 if drawable is not created
+    wxWindow *owner;
 };
 class wxWindowDC_Xintern { // X GDI data
 public:
@@ -61,6 +62,7 @@ public:
     Drawable     drawable;
     Window       draw_window;
     unsigned int width, height, depth;
+    wxWindow     *owner;
 
     /* MATTHEW: [5] Implement GetPixel */
     XImage *get_pixel_image_cache;

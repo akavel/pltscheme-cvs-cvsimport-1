@@ -970,6 +970,8 @@ void wxWindowDC::Initialize(wxWindowDC_Xinit* init)
     }
     Colour = (DEPTH != 1); // accept everything else than depth one as colour display
 
+    X->owner = init->owner;
+
     XGCValues values; unsigned long mask;
     values.foreground = BlackPixelOfScreen(SCN);
     values.background = WhitePixelOfScreen(SCN);

@@ -211,9 +211,14 @@ void wxChoice::SetSelection(int n)
     }
 }
 
-void wxChoice::SetStringSelection(char *s)
+Bool wxChoice::SetStringSelection(char *s)
 {
-    SetSelection(FindString(s));
+  int i = FindString(s);
+  if (i > -1) {
+    SetSelection(i);
+    return TRUE;
+  } else
+    return FALSE;
 }
 
 void wxChoice::Command(wxCommandEvent &event)
