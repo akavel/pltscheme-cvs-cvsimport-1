@@ -250,6 +250,13 @@
 	      (let* ((vars (pat:pexpand '(var ...) p-env kwd))
 		      (_ (map valid-syntactic-id? vars))
 		      (val (pat:pexpand 'val p-env kwd)))
+		(for-each (lambda (var)
+			    (let ((r (resolve var env vocab)))
+			      (unless (top-level-resolution? r)
+				(static-error var
+				  "Cannot bind keyword ~s"
+				  (z:symbol-orig-name var)))))
+		  vars)
 		(make-internal-definition vars val))))
 	  (else
 	    (static-error expr
