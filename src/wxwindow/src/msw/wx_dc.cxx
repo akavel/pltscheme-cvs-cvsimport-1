@@ -1270,6 +1270,26 @@ int wxDC::LogicalToDeviceYRel(float y)
   return MS_YLOG2DEVREL(y);
 }
 
+float wxDC::FLogicalToDeviceX(float x)
+{
+  return MS_XLOG2DEV(x);
+}
+
+float wxDC::FLogicalToDeviceXRel(float x)
+{
+  return MS_XLOG2DEVREL(x);
+}
+
+float wxDC::FLogicalToDeviceY(float y)
+{
+  return MS_YLOG2DEV(y);
+}
+
+float wxDC::FLogicalToDeviceYRel(float y)
+{
+  return MS_YLOG2DEVREL(y);
+}
+
 Bool wxDC::Blit(float xdest, float ydest, float width, float height,
                 wxBitmap *source, float xsrc, float ysrc, int rop,
 		wxColour *c)
