@@ -289,7 +289,7 @@ Bool wxFrame::Create(wxFrame *Parent, char *title, int x, int y,
 
   XtVaSetValues(frameShell, 
                  // Allows menu to resize
-                 XmNallowShellResize, True,
+                 XmNallowShellResize, (style & wxRESIZE_BORDER) ? False : True,
                  XmNdeleteResponse, XmDO_NOTHING,
                  XmNmappedWhenManaged, False,
                  XmNiconic, (style & wxICONIZE) ? TRUE : FALSE,
@@ -376,7 +376,6 @@ Bool wxFrame::Create(wxFrame *Parent, char *title, int x, int y,
       decor |= MWM_DECOR_TITLE;
     if (!(style & wxNO_THICK_FRAME))
       decor |= MWM_DECOR_BORDER;
-
     XtVaSetValues(frameShell,XmNmwmDecorations,decor,NULL) ;
   }
 
@@ -1087,5 +1086,26 @@ void wxFrame::ReleaseMouse(void)
     XtRemoveGrab(frameShell);
 
   winCaptured = FALSE;
+}
+
+
+void wxFrame::GrowReady()
+{
+  XtVaSetValues(frameWidget,
+		XmNresizePolicy, XmRESIZE_GROW,
+		NULL);
+  XtVaSetValues(workArea,
+		XmNresizePolicy, XmRESIZE_GROW,
+		NULL);
+}
+
+void wxFrame::GrowDone()
+{
+  XtVaSetValues(frameWidget,
+		XmNresizePolicy, XmRESIZE_NONE,
+		NULL);
+  XtVaSetValues(workArea,
+		XmNresizePolicy, XmRESIZE_NONE,
+		NULL);
 }
 

@@ -1047,3 +1047,11 @@ Bool wxWindow::CallPreOnEvent(wxWindow *win, wxMouseEvent *event)
   return ((p && CallPreOnEvent(p, event)) || win->PreOnEvent(this, event));
 }
 
+void wxWindow::GrowReady()
+{
+}
+
+void wxWindow::GrowDone()
+{
+}
+
