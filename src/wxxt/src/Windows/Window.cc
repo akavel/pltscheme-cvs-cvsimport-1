@@ -33,6 +33,7 @@
 #define  Uses_wxMenu
 #define  Uses_wxTypeTree
 #define  Uses_wxWindow
+#define  Uses_wxDialogBox
 #include "wx.h"
 #define  Uses_ScrollWinWidget
 #define  Uses_ShellWidget
@@ -1131,6 +1132,22 @@ void wxWindow::FrameEventHandler(Widget w,
 	// notify size and position change
 	win->GetEventHandler()->OnMove(xev->xconfigure.width, xev->xconfigure.height);
 	win->GetEventHandler()->OnSize(xev->xconfigure.width, xev->xconfigure.height);
+	break;
+    case UnmapNotify:
+        if (wxSubType(win->__type, wxTYPE_DIALOG_BOX)) {
+	  /* Check for a frame in the parent hierarchy: */
+	  wxWindow *p = win->GetParent();
+	  while (p) {
+	    if (!wxSubType(p->__type, wxTYPE_DIALOG_BOX))
+	      break;
+	    p = p->GetParent();
+	  }
+	  if (!p) {
+            if (win->IsShown()) {
+              ((wxDialogBox *)win)->Iconize(FALSE);
+	    }
+	  }
+	}
 	break;
     }
 }
