@@ -210,12 +210,13 @@ void wxPenList::AddPen(wxPen *Pen)
 wxPen *wxPenList::FindOrCreatePen(wxColour *colour, int w, int style)
 {
   wxPen *pen;
+  wxChildNode *node;
   int i = 0;
   
   if (!colour)
     return NULL;
   
-  while (wxChildNode *node = list->NextNode(i)) {
+  while ((node = list->NextNode(i))) {
     wxPen *each_pen = (wxPen*)node->Data();
     if (each_pen &&
 	each_pen->GetWidth() == w &&
@@ -264,12 +265,13 @@ void wxBrushList::AddBrush(wxBrush *Brush)
 wxBrush *wxBrushList::FindOrCreateBrush(wxColour *colour, int style)
 {
   wxBrush *brush;
+  wxChildNode *node;
   int i = 0;
 
   if (!colour)
     return NULL;
 
-  while (wxChildNode *node = list->NextNode(i)) {
+  while ((node = list->NextNode(i))) {
     wxBrush *each_brush = (wxBrush*)node->Data();
     if (each_brush &&
 	each_brush->GetStyle() == style &&
