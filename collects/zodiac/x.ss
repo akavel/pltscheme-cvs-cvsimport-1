@@ -112,7 +112,9 @@
 	  (map (lambda (n id)
 		 (hash-table-put! v id r))
 	       names ids)
-	  (unless stdname?
+;	  (unless stdname? -- see PR 1622
+	  (when (and (not stdname?)
+		  (vocabulary-record-namespace-based? vocab))
 	    (for-each
 	     (lambda (name id)
 	       (global-defined-value name id))
