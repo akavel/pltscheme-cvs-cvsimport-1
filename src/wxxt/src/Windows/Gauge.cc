@@ -57,7 +57,7 @@ wxGauge::wxGauge(wxPanel *panel, char *label, int _range,
     Create(panel, label, _range, x, y, width, height, style, name);
 }
 
-#define wxDEFAULT_GAUGE_WIDTH		150
+#define wxDEFAULT_GAUGE_WIDTH		100
 #define wxDEFAULT_GAUGE_HEIGHT		 24
 
 Bool wxGauge::Create(wxPanel *panel, char *label, int _range,
@@ -116,11 +116,11 @@ Bool wxGauge::Create(wxPanel *panel, char *label, int _range,
 			 ? (int)width  
 			 : ((style & wxVERTICAL) 
 			    ? (int)lhw + wxDEFAULT_GAUGE_HEIGHT
-			    : wxDEFAULT_GAUGE_WIDTH)),
+			    : (int)lhw + wxDEFAULT_GAUGE_WIDTH)),
 			(height > -1 
 			 ? (int)height 
 			 : ((style & wxVERTICAL) 
-			    ? wxDEFAULT_GAUGE_WIDTH
+			    ? (int)lvh + wxDEFAULT_GAUGE_WIDTH
 			    : (int)lvh + wxDEFAULT_GAUGE_HEIGHT)));
     AddEventHandlers();
 
