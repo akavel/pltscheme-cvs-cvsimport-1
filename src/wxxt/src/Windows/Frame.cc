@@ -376,7 +376,7 @@ void wxFrame::CreateStatusLine(int number, char *)
 void wxFrame::SetStatusText(char *text, int number)
 {
     if (number < num_status)
-	status[number]->SetLabel(text ? text : "");
+	status[number]->SetLabel(text ? text : (char *)"");
 }
 
 Bool wxFrame::StatusLineExists(void)

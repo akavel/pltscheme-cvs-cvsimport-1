@@ -259,7 +259,7 @@ Bool wxRadioBox::Create(wxPanel *panel, wxFunction func, char *label,
 	  choices[i]->selectedIntoDC++;
 	} else {
 	  kind = XtNlabel;
-	  label = "<bad-image>";
+	  label = (char *)"<bad-image>";
 	  bm_labels[i] = NULL;
 	}
 
@@ -319,7 +319,7 @@ wxRadioBox::~wxRadioBox(void)
   }
 
   if (num_toggles) {
-    delete toggles;
+    // delete toggles;
     num_toggles = 0;
   }
 }
