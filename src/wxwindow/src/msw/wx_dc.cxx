@@ -34,7 +34,7 @@
 
 #endif
 
-#include "wx_rgn.h"
+#include "../../../wxcommon/Region.h"
 #include "wx_pdf.h"
 
 #include <math.h>
