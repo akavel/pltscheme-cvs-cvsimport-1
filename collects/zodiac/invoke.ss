@@ -30,7 +30,7 @@
 (define zodiac:mzscheme-parameters@
   (unit/sig plt:parameters^
     (import (plt : plt:parameters^))
-    (define check-syntax-level 'core)))
+    (define check-syntax-level 'advanced)))
 ; plt:check-syntax-level
 
 ; (define language-levels '(core structured side-effecting advanced))
