@@ -1,12 +1,12 @@
 
-(module sig mzscheme
-  (import (lib "unitsig.ss"))
+(module xml-sig mzscheme
+  (require (lib "unitsig.ss"))
   
-  (import "private/sig.ss")
+  (require "private/sig.ss")
 
   (define-signature xml^ ((open xml-structs^) (open reader^) (open writer^) (open xexpr^) (open space^)))
 
-  (export xml^))
+  (provide xml^))
 
 
 
