@@ -1814,11 +1814,13 @@ void wxWnd::OnMenuSelect(WORD WXUNUSED(item), WORD WXUNUSED(flags), HMENU WXUNUS
 {
 }
 
-BOOL wxWnd::OnActivate(BOOL state, BOOL WXUNUSED(minimized), HWND WXUNUSED(activate))
+BOOL wxWnd::OnActivate(BOOL state, BOOL minimized, HWND WXUNUSED(activate))
 {
   if (wx_window)
   {
     if ((state == WA_ACTIVE) || (state == WA_CLICKACTIVE)) {
+      if (minimized) return TRUE; /* Ignore spurious activate while iconized */
+
       if (!wx_window->focusWindow) {
 	/* Try to find one... */
 	wx_window->focusWindow = wx_window->FindFocusWindow();
