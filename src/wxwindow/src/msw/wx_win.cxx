@@ -1707,8 +1707,8 @@ void wxWnd::Create(wxWnd *parent, char *wclass, wxWindow *wx_win, char *title,
   is_dialog = (dialog_template != NULL);
   int x1 = 0;
   int y1 = 0;
-  int w2 = 100;
-  int h2 = 100;
+  int w2 = 5;
+  int h2 = 5;
   if (wx_window && wx_window->GetWindowStyleFlag() & wxUSER_COLOURS)
     userColours = TRUE;
   else

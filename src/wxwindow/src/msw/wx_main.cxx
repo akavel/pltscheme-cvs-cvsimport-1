@@ -243,7 +243,7 @@ void wxInitialize(HINSTANCE hInstance)
   wndclass.hIcon         = wxSTD_FRAME_ICON;
   wndclass.hCursor       = NULL /* LoadCursor( NULL, IDC_ARROW ) */;
 #if FAFA_LIB
-  wndclass.hbrBackground =  (HBRUSH)(COLOR_APPWORKSPACE+1) ;
+  wndclass.hbrBackground =  (HBRUSH)(COLOR_BTNFACE+1) ;
 #else
   wndclass.hbrBackground = GetStockObject( WHITE_BRUSH );
 #endif
@@ -293,7 +293,7 @@ void wxInitialize(HINSTANCE hInstance)
   wndclass4.hIcon         = wxSTD_MDICHILDFRAME_ICON;
   wndclass4.hCursor       = NULL /* LoadCursor( NULL, IDC_ARROW ) */;
 #if FAFA_LIB
-  wndclass4.hbrBackground =  (HBRUSH)(COLOR_WINDOW+1) ;
+  wndclass4.hbrBackground =  (HBRUSH)(COLOR_BTNFACE+1) ;
 #else
   wndclass4.hbrBackground = NULL;
 #endif
