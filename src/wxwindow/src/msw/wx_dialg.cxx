@@ -61,7 +61,10 @@ wxList wxModalDialogs;
 wxList wxModelessWindows;  // Frames and modeless dialogs
 
 extern void wxCreatedWindow(wxWindow *w);
+
 extern void wxDestroyedWindow(void *context, wxWindow *w);
+
+
 
 class wxDialogWnd : public wxSubWnd
 {
@@ -93,9 +96,14 @@ BOOL wxDialogWnd::ProcessMessage(MSG* pMsg)
 {
   wxWindow *w = wx_window->FindItemByHWND(::GetFocus());
 
+
+
   if (w && !wxSubType(w->__type, wxTYPE_CANVAS))
+
     return ::IsDialogMessage(handle, pMsg);
+
   else
+
     return FALSE;
 }
 
@@ -225,6 +233,8 @@ Bool wxDialogBox::Create(wxWindow *Parent, char *Title, Bool Modal,
 
   wxCreatedWindow(this);
 
+  wx_cursor = wxSTANDARD_CURSOR;  
+
   wx_dc = new wxPanelDC (this);
 
   modal = Modal;
@@ -245,6 +255,8 @@ wxDialogBox::~wxDialogBox()
 
   if (!modal)
     wxModelessWindows.DeleteObject(this);
+
+
 
   wxDestroyedWindow(context, this);
 }
@@ -273,10 +285,16 @@ void wxDialogBox::Fit(void)
 }
 
 void wxDialogBox::ChangeToGray(Bool gray)
+
 {
+
   wxWindow::ChangeToGray(gray);
+
   InternalGrayChildren(gray);
+
 }
+
+
 
 void wxDialogBox::Iconize(Bool WXUNUSED(iconize))
 {
@@ -333,6 +351,8 @@ Bool wxDialogBox::Show(Bool show)
 {
   wxWnd *dialog = (wxWnd *)handle;
 
+
+
   if (show == IsShown()) {
     if (show)
       wxwmBringWindowToTop(dialog->handle);
@@ -376,7 +396,10 @@ Bool wxDialogBox::Show(Bool show)
       modal_showing = TRUE;
 
       ShowWindow(dialog->handle, SW_SHOW);
+
       wxwmBringWindowToTop(dialog->handle);
+
+
 
 #if 1
       wxWindow *saveModal;
@@ -403,6 +426,8 @@ Bool wxDialogBox::Show(Bool show)
 	wxWindow *w = (wxWindow *)node->Data();
 	w->InternalEnable(TRUE);
       } 
+
+
 
       ShowWindow(dialog->handle, SW_HIDE);
 #else

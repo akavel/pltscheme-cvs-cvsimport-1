@@ -92,4 +92,5 @@ wxColour *wxLIGHT_GREY;
 wxCursor *wxSTANDARD_CURSOR = NULL;
 wxCursor *wxHOURGLASS_CURSOR = NULL;
 wxCursor *wxCROSS_CURSOR = NULL;
+wxCursor *wxIBEAM_CURSOR = NULL;
 
