@@ -16,7 +16,7 @@
       (structurize-syntax e source)
       env attributes vocab)))
 
-(add-primitivized-micro-form 'quasiquote common-vocabulary
+(define quasiquote-micro
   (let* ((kwd '())
 	  (in-pattern '(_ template))
 	  (m&e (pat:make-match&env in-pattern kwd))
@@ -115,3 +115,7 @@
 		expr env attributes vocab))))
 	(else
 	  (static-error expr "Malformed quasiquote"))))))
+
+(add-primitivized-micro-form 'quasiquote intermediate-vocabulary quasiquote-micro)
+(add-primitivized-micro-form 'quasiquote scheme-vocabulary quasiquote-micro)
+

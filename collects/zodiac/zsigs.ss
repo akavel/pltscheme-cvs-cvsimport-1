@@ -92,5 +92,5 @@
 ;;
 
 (define-signature  zodiac:scanner-code^  (scan))
-(define-signature  zodiac:reader-code^   (read allow-improper-lists))
+(define-signature  zodiac:reader-code^   (read allow-improper-lists allow-reader-quasiquote))
 
