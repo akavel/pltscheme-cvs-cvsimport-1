@@ -16,7 +16,7 @@
       (structurize-syntax e source)
       env attributes vocab)))
 
-(add-primitivized-micro-form 'quasiquote scheme-vocabulary
+(add-primitivized-micro-form 'quasiquote common-vocabulary
   (let* ((kwd '())
 	  (in-pattern '(_ template))
 	  (m&e (pat:make-match&env in-pattern kwd))
