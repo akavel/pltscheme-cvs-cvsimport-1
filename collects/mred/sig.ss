@@ -191,6 +191,8 @@
    welcome-message
    console-max-save-previous-exprs
    
+   show-interactions-history
+
    make-scheme-mode-edit%
    scheme-mode-edit%
    
