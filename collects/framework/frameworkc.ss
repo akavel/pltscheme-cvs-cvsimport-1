@@ -49,7 +49,7 @@
 	[finder : framework:finder^
 		((require-relative-library "finder.ss")
 		 mred
-		 preferences gui-utils
+		 preferences gui-utils keymap
 		 core:string core:function core:file)]
 
 	[group : framework:group^ 
