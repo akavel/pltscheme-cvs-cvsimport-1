@@ -494,7 +494,6 @@ wxInitializeStockObjects (void)
   wxTheBitmapList = new wxGDIList;
 #ifdef wx_mac
   wxTheCursorList = new wxGDIList;
-  wxTheIconList =  new wxGDIList;
 #endif
   // wxTheColourList =  new wxGDIList;
 

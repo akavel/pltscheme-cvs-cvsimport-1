@@ -98,7 +98,6 @@ void wxCommonCleanUp(void)
   delete wxTheBitmapList;
 #ifdef wx_mac
   delete wxTheCursorList;
-  delete wxTheIconList;
 #endif
   delete wxThePrintPaperDatabase;
 
