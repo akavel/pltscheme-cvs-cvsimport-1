@@ -311,10 +311,18 @@ static Boolean MenuSetValues(gcurrent, grequest, gnew)
 	(gcurrent, grequest, gnew, NULL, 0);
 
     /* To be sure */
-    ComputeMenuSize(new, new->menu.state);
-    new->menu.state->w = new->core.width;
-    new->menu.state->h = new->core.height;
-    redisplay = TRUE;
+    {
+      int ow, oh;
+      ow = new->menu.state->w;
+      oh = new->menu.state->h;
+      ComputeMenuSize(new, new->menu.state);
+      new->menu.state->w = new->core.width;
+      new->menu.state->h = new->core.height;
+      if ((ow != new->menu.state->w)
+	  || (oh != new->menu.state->h)) {
+	redisplay = TRUE;
+      }
+    }
 
     if (CHANGED_bg_
 	|| CHANGED(be_nice_to_cmap)
