@@ -35,7 +35,7 @@
     (define unmatched-cond/case-is-error? plt:unmatched-cond/case-is-error?)
     (define allow-set!-on-undefined? plt:allow-set!-on-undefined?)
     (define allow-improper-lists? plt:allow-improper-lists?)
-    (define check-syntax-level 'structured)))
+    (define check-syntax-level 'core)))
 ; plt:check-syntax-level)))
 
 ; (define language-levels '(core structured side-effecting advanced))
