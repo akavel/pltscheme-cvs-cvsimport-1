@@ -46,12 +46,14 @@
           backward-containing-sexp
           forward-match
           insert-close-paren
-	  classify-position
-          
-          get-colorer-blank-style))
+	  classify-position))
 
       (define text-mixin
         (mixin (text:basic<%>) (-text<%>)
+
+          ;; For profiling
+          (define time #f)
+          
           ;; ---------------------- Coloring modes ----------------------------
           
           ;; The tokenizer is stopped.  This is used by the surrogate to enter
@@ -181,6 +183,7 @@
 			  ;; Allow breaks while getting tokens
 			  (parameterize-break #t
 			    (get-token in))])
+              ;(printf "~a~n" lexeme)
 	      ;; Also allow breaks while trying to enter the critical region:
 	      (semaphore-wait/enable-break mutex-lock)
 	      (unless (eq? 'eof type)
@@ -292,6 +295,7 @@
 						       (lambda (x) #f))
 			       current-pos))
                 (set! up-to-date? #t)
+                ;(printf "~a~n" (- (current-milliseconds) time))
                 (semaphore-post mutex-lock)
                 (thread-suspend (current-thread))))
             (background-colorer))
@@ -318,6 +322,7 @@
 		(parameterize-break #f
 		  (set! background-thread
 			(thread (lambda () (background-colorer-entry))))))
+              ;(set! time (current-milliseconds))
               (do-insert/delete start-pos 0)))
             
           ;; See docs
@@ -333,8 +338,6 @@
               (set! pairs null)
               (set! token-sym->style #f)
               (set! get-token #f)))
-          
-          (define/public (get-colorer-blank-style) (send (get-style-list) find-named-style "Standard"))
           
           (define/public (is-frozen?) frozen?)
           
