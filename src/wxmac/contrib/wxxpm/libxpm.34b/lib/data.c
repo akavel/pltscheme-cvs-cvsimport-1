@@ -176,7 +176,9 @@ xpmNextString(xpmData *mdata)
 
 	/* get to the end of the current string */
 	if (mdata->Eos)
-	    while ((c = *mdata->cptr++) && c != mdata->Eos);
+	    while ((c = *mdata->cptr++) && c != mdata->Eos){  
+	      // do nothing
+	    }
 
 	/*
 	 * then get to the beginning of the next string looking for possible
@@ -197,7 +199,9 @@ xpmNextString(xpmData *mdata)
 
 	/* get to the end of the current string */
 	if (mdata->Eos)
-	    while ((c = getc(file)) != mdata->Eos && c != EOF);
+	    while ((c = getc(file)) != mdata->Eos && c != EOF){
+	      // do nothing
+	    }
 
 	/*
 	 * then get to the beginning of the next string looking for possible
