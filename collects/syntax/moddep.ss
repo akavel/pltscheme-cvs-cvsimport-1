@@ -1,6 +1,7 @@
 
 (module moddep mzscheme
 
+  (provide with-module-reading-parameterization)
   (define (with-module-reading-parameterization thunk)
     (parameterize ((read-case-sensitive #f)
 		   (read-square-bracket-as-paren #t)
@@ -105,6 +106,7 @@
 					re:suffix file
 					(case (system-type)
 					  [(windows) ".dll"]
+					  [(macosx) ".dylib"]
 					  [else ".so"])))
 			   #f))]
 	     [ok-kind? (lambda (file) (eq? mode 'all))]
