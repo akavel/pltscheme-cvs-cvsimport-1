@@ -411,11 +411,16 @@ focus, the parent is asked to give it to another widget.
     Widget parent = XtParent($);
     Time time = CurrentTime;
 
+#if 0
+    /* For MrEd: no focus delegation. If the widget is being destroyed,
+       it can't still have the efefctive focus. (Either the widget is hidden
+       or its parent is hidden.) */
     if ($traversal_focus) {
         $sensitive = False;
         if (XtIsSubclass(parent, xfwfCommonWidgetClass))
             $parent$traverse(parent, TraverseHome, $, &time);
     }
+#endif
 
     XtCallCallbackList($, $onDestroy, NULL);
     if ($bordergc) XtReleaseGC($, $bordergc); $bordergc = NULL;

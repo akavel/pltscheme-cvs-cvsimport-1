@@ -325,7 +325,7 @@ the |rv_gc| GC.
 			     rend, to - rend, $tabs, $font);
  	if (w4)
  	    XfwfDrawString(dpy, win, $hl_gc, x + w5, y, $label
- 			     + hstart, hend - hstart, $tabs, $font);
+ 			     + hstart, hend - hstart, $tabs, $font, 1);
     } while (0)
 
 @proc _expose

@@ -255,14 +255,14 @@ char *wxChoice::GetString(int n)
 {
   char *s = choice_menu->GetLabel(n);
 
-  return s ? unprotect_amp(s) : NULL;
+  return s ? unprotect_amp(s) : (char *)NULL;
 }
 
 char *wxChoice::GetStringSelection(void)
 {
   char *s = choice_menu->GetLabel(selection);
   
-  return s ? unprotect_amp(s) : NULL;
+  return s ? unprotect_amp(s) : (char *)NULL;
 }
 
 void wxChoice::SetSelection(int n)
