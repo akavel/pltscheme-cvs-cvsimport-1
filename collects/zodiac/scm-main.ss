@@ -1781,7 +1781,7 @@
 	     (out-pattern-4 `(#%let ((tmp val))
 			       (#%if (#%eqv? tmp test-expr)
 				   (#%begin ,@(get-expr-pattern #t))
-				   (#%evcase tmp rest ...))))
+				   (evcase tmp rest ...))))
 	     (m&e-1 (pat:make-match&env in-pattern-1 kwd-1))
 	     (m&e-2 (pat:make-match&env in-pattern-2 kwd-2))
 	     (m&e-3 (pat:make-match&env in-pattern-3 kwd-3))
