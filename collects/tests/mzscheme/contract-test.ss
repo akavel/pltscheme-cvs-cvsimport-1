@@ -899,6 +899,74 @@
    '->r22
    '((contract (->r () rst (listof number?) any/c) (lambda w 1) 'pos 'neg) #f))
 
+  
+  (test/spec-passed/result
+   '->r23
+   '((contract (->r ((i number?) (j (and/c number? (>=/c i)))) number?)
+               (λ (i j) 1)
+               'pos
+               'neg)
+     1
+     2)
+   1)
+
+  (test/spec-passed/result
+   '->r24
+   '((contract (->r ((i number?) (j (and/c number? (>=/c i)))) any)
+               (λ (i j) 1)
+               'pos
+               'neg)
+     1
+     2)
+   1)
+
+  (test/spec-passed/result
+   '->r25
+   '(call-with-values
+    (λ ()
+      ((contract (->r ((i number?) (j (and/c number? (>=/c i)))) (values [x number?] [y number?]))
+                 (λ (i j) (values 1 2))
+                 'pos
+                 'neg)
+       1
+       2))
+    list)
+   '(1 2))
+
+  (test/spec-passed/result
+   '->r26
+   '((contract (->r ((i number?) (j (and/c number? (>=/c i)))) rest-args any/c number?)
+               (λ (i j . z) 1)
+               'pos
+               'neg)
+     1
+     2)
+   1)
+
+  (test/spec-passed/result
+   '->r27
+   '((contract (->r ((i number?) (j (and/c number? (>=/c i)))) rest-args any/c any)
+               (λ (i j . z) 1)
+               'pos
+               'neg)
+     1
+     2)
+   1)
+
+(test/spec-passed/result
+ '->r28
+ '(call-with-values
+   (λ ()
+     ((contract (->r ((i number?) (j (and/c number? (>=/c i)))) rest-args any/c (values [x number?] [y number?]))
+                (λ (i j . z) (values 1 2))
+                'pos
+                'neg)
+      1
+      2))
+   list)
+ '(1 2))
+
+  
   (test/pos-blame
    '->pp1
    '((contract (->pp ([x number?]) (= x 1) number? result (= x 2))
@@ -1313,12 +1381,12 @@
    '(let ()
       (eval '(module contract-test-suite8 mzscheme
                (require (lib "contract.ss"))
-               (define-struct integer-set (contents))
-               (define (well-formed-set? x) #t)
+               (define-struct i-s (contents))
+               (define (w-f-s? x) #t)
                (provide/contract 
-                (struct integer-set ((contents (flat-named-contract "integer-set-list" well-formed-set?)))))))
+                (struct i-s ((contents (flat-named-contract "integer-set-list" w-f-s?)))))))
       (eval '(require contract-test-suite8))
-      (eval '(integer-set-contents (make-integer-set 1)))))
+      (eval '(i-s-contents (make-i-s 1)))))
    
   (test/spec-passed
    'provide/contract8
