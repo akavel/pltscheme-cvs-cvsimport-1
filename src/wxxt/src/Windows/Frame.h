@@ -88,6 +88,7 @@ protected:
     wxMessage  **status;
     int        num_status;
     wxBitmap   *frame_icon;
+    wxBitmap   *frame_mask;
     Bool       being_destroyed;
     long       last_shown_time;
 };

@@ -356,6 +356,7 @@ void wxFrame::SetIcon(wxBitmap *icon, wxBitmap *mask)
       XtVaSetValues(X->frame, XtNiconPixmap, GETPIXMAP(bm), NULL);
       
       frame_icon = bm;
+      frame_mask = mask;
     }
   }
 }
