@@ -35,7 +35,7 @@
 extern int wxGetBusyState();
 extern void wxSetBusyState(int);
 
-static void wxXSetNoCursor(wxWindow *win, wxCursor *cursor)
+void wxXSetNoCursor(wxWindow *win, wxCursor *cursor)
 {
   Cursor c;
 
