@@ -1,3 +1,14 @@
+;;
+;; $Id$
+;;
+;; The signatures for all scanner/reader units.
+;;
+
+;;
+;; Top-level zodiac structures (outside the hierarchy)
+;; and base of zodiac hierarchy.
+;;
+
 (define-signature  zodiac:structures^
   ((struct  origin    (who  how))
    (struct  location  (line  column  offset  file))
