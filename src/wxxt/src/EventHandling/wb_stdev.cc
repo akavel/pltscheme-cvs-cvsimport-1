@@ -23,7 +23,10 @@
 
 wxScrollEvent::wxScrollEvent() : wxEvent() {}
 
-wxPopupEvent::wxPopupEvent() : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT) { }
+wxPopupEvent::wxPopupEvent() : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT) 
+{ 
+  __type = wxTYPE_POPUP_EVENT;
+}
 
 IMPLEMENT_DYNAMIC_CLASS(wxCommandEvent, wxEvent)
 

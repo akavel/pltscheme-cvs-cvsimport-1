@@ -554,7 +554,9 @@ sliders in the scrollbars.
 
 @proc xws_set_scroll_direct($, long hlen, long hpage, long hpos, long vlen, long vpage, long vpos)
 {
+  if (!hpage) hpage = 1;
   XfwfSetScrollbar($hscroll, !hlen ? 0 : (float)hpos / hlen, (float)hpage / (hlen + hpage));
+  if (!vpage) vpage = 1;
   XfwfSetScrollbar($vscroll, !vlen ? 0 : (float)vpos / vlen, (float)vpage / (vlen + vpage));
 }
 

@@ -65,8 +65,7 @@ public:
     inline virtual void OnCommand(wxWindow& WXUNUSED(win),
 				  wxCommandEvent& WXUNUSED(event)) {};
     inline virtual void OnDefaultAction(wxItem *WXUNUSED(initiatingItem)) {};
-    inline virtual void OnDropFiles(int WXUNUSED(n), char *WXUNUSED(files)[],
-				    int WXUNUSED(x), int WXUNUSED(y)) {};
+    inline virtual void OnDropFile(char *WXUNUSED(file)) {};
     inline virtual void OnEvent(wxMouseEvent& WXUNUSED(event)) {};
     inline virtual Bool OnFunctionKey(wxKeyEvent &WXUNUSED(event)) { return FALSE; };
     inline virtual void OnItemEvent(wxItem *WXUNUSED(item),

@@ -133,7 +133,7 @@ typedef struct _menu_item {
     char              *label;
     char              *key_binding;
     char              *help_text;
-    int               ID;
+    long              ID;
     menu_item_type    type;
     Boolean           enabled;
     Boolean           set;	  /* used for toggles and radios */
