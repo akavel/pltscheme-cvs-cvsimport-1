@@ -373,8 +373,8 @@ void wxColourDatabase::Initialize (void)
   APPEND ("MEDIUM VIOLET RED", new wxColour (219, 112, 147));
   APPEND ("MIDNIGHT BLUE", new wxColour (47, 47, 79));
   APPEND ("NAVY", new wxColour (35, 35, 142));
-  APPEND ("ORANGE", new wxColour (204, 50, 50));
-  APPEND ("ORANGE RED", new wxColour (255, 0, 127));
+  APPEND ("ORANGE", new wxColour (255, 165, 0));
+  APPEND ("ORANGE RED", new wxColour (255, 120, 0));
   APPEND ("ORCHID", new wxColour (219, 112, 219));
   APPEND ("PALE GREEN", new wxColour (143, 188, 143));
   APPEND ("PINK", new wxColour (188, 143, 234));
