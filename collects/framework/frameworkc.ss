@@ -74,7 +74,8 @@
 		mred
 		group preferences icon handler application panel
 		gui-utils exit finder keymap text pasteboard editor canvas
-		core:function)]
+		core:function
+		core:file)]
 	[scheme : framework:scheme^ 
 		((require-relative-library "scheme.ss")
 		 mred preferences match-cache paren
