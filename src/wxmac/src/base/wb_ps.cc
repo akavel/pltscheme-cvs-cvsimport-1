@@ -1210,7 +1210,6 @@ Bool wxPostScriptDC::StartDoc (char *message)
     pstream = new PSStream(filename);
 
     if (!pstream || !pstream->good()) {
-      wxMessageBox (wxSTR_ERROR, "Cannot open PostScript output file", wxOK);
       ok = FALSE;
       pstream = NULL;
       return FALSE;
@@ -2047,6 +2046,11 @@ void wxPrintSetupData::copy(wxPrintSetupData& data)
 
 void wxInitializePrintSetupData(Bool /* init */)
 {
+#ifdef wx_mac
+  wxThePrintPaperDatabase = new wxPrintPaperDatabase;
+  wxThePrintPaperDatabase->CreateDatabase();
+#endif
+  
   wxPrintSetupData *wxThePrintSetupData;
   
   wxThePrintSetupData = new wxPrintSetupData;
