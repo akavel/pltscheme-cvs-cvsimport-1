@@ -166,6 +166,19 @@ Bool wxRadioBox::Create(wxPanel *panel, wxFunction func, char *label,
     panel->PositionItem(this, x, y, width, height);
     AddEventHandlers();
 
+    for (int i=0; i < num_toggles; ++i)
+      XtInsertEventHandler(((Widget*)toggles)[i],
+			   KeyPressMask |	// for PreOnChar
+			   ButtonPressMask |	// for PreOnEvent
+			   ButtonReleaseMask |
+			   ButtonMotionMask |
+			   PointerMotionMask |
+			   PointerMotionHintMask,
+			   FALSE,
+			   (XtEventHandler)wxWindow::WindowEventHandler,
+			   (XtPointer)saferef,
+			   XtListHead);
+
     return TRUE;
 }
 
@@ -274,6 +287,19 @@ Bool wxRadioBox::Create(wxPanel *panel, wxFunction func, char *label,
     // panel positioning
     panel->PositionItem(this, x, y, width, height);
     AddEventHandlers();
+
+    for (int i=0; i < num_toggles; ++i)
+      XtInsertEventHandler(((Widget*)toggles)[i],
+			   KeyPressMask |	// for PreOnChar
+			   ButtonPressMask |	// for PreOnEvent
+			   ButtonReleaseMask |
+			   ButtonMotionMask |
+			   PointerMotionMask |
+			   PointerMotionHintMask,
+			   FALSE,
+			   (XtEventHandler)wxWindow::WindowEventHandler,
+			   (XtPointer)saferef,
+			   XtListHead);
 
     return TRUE;
 }

@@ -117,6 +117,18 @@ Bool wxChoice::Create(wxPanel *panel, wxFunction function, char *label,
     panel->PositionItem(this, x, y, width, height);
     AddEventHandlers();
 
+    XtInsertEventHandler(button,
+			 KeyPressMask |	// for PreOnChar
+			 ButtonPressMask |	// for PreOnEvent
+			 ButtonReleaseMask |
+			 ButtonMotionMask |
+			 PointerMotionMask |
+			 PointerMotionHintMask,
+			 FALSE,
+			 (XtEventHandler)wxWindow::WindowEventHandler,
+			 (XtPointer)saferef,
+			 XtListHead);
+
     return TRUE;
 }
 

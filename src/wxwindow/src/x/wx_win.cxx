@@ -32,6 +32,8 @@ static const char sccsid[] = "@(#)wx_win.cc	1.2 5/9/94";
 #include "wx_dialg.h"
 #include <Xm/RowColumn.h>
 
+extern void wxFrameCheckFocus(wxWindow *w);
+
 // Constructor
 IMPLEMENT_DYNAMIC_CLASS(wxWindow, wxEvtHandler)
 
@@ -935,7 +937,8 @@ void wxWindow::AddPreHandlers(Widget w, Widget hash_w)
 			   | ButtonReleaseMask
 			   | ButtonMotionMask
 			   | PointerMotionMask
-			   | PointerMotionHintMask),
+			   | PointerMotionHintMask
+			   | FocusChangeMask),
 		       FALSE,
 		       (XtEventHandler)wxWindow::WindowEventHandler,
 		       (XtPointer)hash_w,
@@ -992,6 +995,11 @@ void wxWindow::WindowEventHandler(Widget WXUNUSED(w),
       }
     }
   break;
+  case FocusIn:
+  case FocusOut:
+    /* Check focus in Frame/Dialog: */
+    wxFrameCheckFocus(win);
+    break;
   }  
 }
 

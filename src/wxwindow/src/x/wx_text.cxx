@@ -41,6 +41,8 @@ static void
 wxTextWindowLoseFocusProc (Widget w, XtPointer clientData, XmAnyCallbackStruct *cbs);
 #endif
 
+extern void wxFrameCheckFocus(wxWindow *w);
+
 IMPLEMENT_DYNAMIC_CLASS(wxTextWindow, wxWindow)
 
 wxTextWindow::wxTextWindow (void)
@@ -104,7 +106,7 @@ Create (wxWindow * parent, int x, int y, int width, int height,
 
   XtAddCallback(textWidget, XmNmodifyVerifyCallback, (XtCallbackProc)wxTextWindowModifyProc, (XtPointer)this);
 
-//  XtAddCallback(textWidget, XmNactivateCallback, (XtCallbackProc)wxTextWindowModifyProc, (XtPointer)this);
+  //  XtAddCallback(textWidget, XmNactivateCallback, (XtCallbackProc)wxTextWindowModifyProc, (XtPointer)this);
 
   XtAddCallback(textWidget, XmNfocusCallback, (XtCallbackProc)wxTextWindowGainFocusProc, (XtPointer)this);
 
@@ -548,7 +550,10 @@ wxTextWindowGainFocusProc (Widget w, XtPointer clientData, XmAnyCallbackStruct *
     return;
 
   wxTextWindow *tw = (wxTextWindow *) clientData;
+  wxFrameCheckFocus(tw);
+#if 0
   tw->GetEventHandler()->OnSetFocus();
+#endif
 }
 
 static void 
@@ -558,7 +563,10 @@ wxTextWindowLoseFocusProc (Widget w, XtPointer clientData, XmAnyCallbackStruct *
     return;
 
   wxTextWindow *tw = (wxTextWindow *) clientData;
+  wxFrameCheckFocus(tw);
+#if 0
   tw->GetEventHandler()->OnKillFocus();
+#endif
 }
 
 void wxTextWindow::OnChar(wxKeyEvent& event)
