@@ -30,7 +30,8 @@
 		  core:file)] 
 	[keymap : framework:keymap^
 		((require-relative-library "keymap.ss")
-		 mred keys preferences finder handler scheme-paren frame)]
+		 mred keys preferences finder handler scheme-paren frame
+		 core:function)]
 	[match-cache : framework:match-cache^ ((require-relative-library "mcache.ss"))]
 	[paren : framework:paren^ ((require-relative-library "paren.ss"))]
 	[scheme-paren : framework:scheme-paren^
