@@ -175,7 +175,7 @@ wxObject *wxHashTable::Get (long key)
   else
     {
       wxNode *node = hash_table[position]->Find (key);
-      return node ? node->Data () : NULL;
+      return node ? node->Data() : (wxObject *)NULL;
     }
 }
 
@@ -188,7 +188,7 @@ wxObject *wxHashTable::Get (const char *key)
   else
     {
       wxNode *node = hash_table[position]->Find (key);
-      return node ? node->Data () : NULL;
+      return node ? node->Data() : (wxObject *)NULL;
     }
 }
 

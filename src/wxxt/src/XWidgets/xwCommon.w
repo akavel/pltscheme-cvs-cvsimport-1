@@ -530,7 +530,7 @@ keyboard events. If so, it sets the focus to itself and returns
 
 @proc hilite_callbacks($)
 {
-  XtPointer on = (XtPointer)$traversal_focus;
+  XtPointer on = (XtPointer)(long)$traversal_focus;
 
   while ($ && XtIsSubclass($, xfwfCommonWidgetClass) && !$focusHiliteChange)
     $ = XtParent($);

@@ -252,9 +252,9 @@ have to use it as a stipple.
     attributes->cursor = $cursor;
     #realize($, mask, attributes);
 
-    $gray = NULL;
-    $lightGray = NULL;
-    $darkGray = NULL;
+    $gray = (Pixmap)NULL;
+    $lightGray = (Pixmap)NULL;
+    $darkGray = (Pixmap)NULL;
 
     create_lightgc($);
     create_darkgc($);

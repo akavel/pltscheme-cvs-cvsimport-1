@@ -302,7 +302,7 @@ wxPrintPaperType *wxPrintPaperDatabase::FindPaperType(char *name)
 {
   wxNode *node;
 
-    if (node = Find(name))
+    if ((node = Find(name)))
 	return (wxPrintPaperType*)node->Data();
     else
 	return NULL;
