@@ -1399,7 +1399,7 @@
 			      `(#%raise
 				 (#%make-exn:else
 				  ,(if (and had-no-clauses? (not allow-empty?))
-				       "cond must contain at leat one clause"
+				       "cond must contain at least one clause"
 				       "no matching cond clause")
 				  ,debug-info-handler-expression)))
 			    (let ((first (car exps))
