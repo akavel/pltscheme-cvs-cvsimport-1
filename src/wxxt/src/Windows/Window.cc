@@ -1150,6 +1150,7 @@ void wxWindow::FrameEventHandler(Widget w,
 	      break;
 	    p = p->GetParent();
 	  }
+	  /* No parent? Can't iconize. */
 	  if (!p) {
             if (win->IsShown()) {
               ((wxDialogBox *)win)->Iconize(FALSE);
