@@ -90,7 +90,9 @@
     (struct sym-optarglist ())
     (struct list-optarglist ())
     (struct ilist-optarglist ())
-    nonempty-arglist-decls-vocab proper-arglist-decls-vocab full-arglist-decls-vocab
+    nonempty-arglist-decls-vocab lambda-nonempty-arglist-decls-vocab
+    proper-arglist-decls-vocab lambda-proper-arglist-decls-vocab
+    full-arglist-decls-vocab lambda-full-arglist-decls-vocab
     optarglist-decls-vocab
     make-optargument-list
     paroptarglist-pattern
