@@ -304,9 +304,7 @@ void wxWindowDC::Clear(void)
     // SetCanvasClipping();
 
     // clear canvas
-    if (DRAW_WINDOW)
-	XClearWindow(DPY, DRAW_WINDOW);
-    else {
+    {
       unsigned int w, h;
       Window wdummy; int sdummy; unsigned int udummy;
       XGetGeometry(DPY, DRAWABLE, &wdummy, &sdummy, &sdummy,
@@ -645,9 +643,8 @@ void wxWindowDC::SetBackground(wxColour *c)
     unsigned long pixel = current_background_color.GetPixel(current_cmap, IS_COLOR, 0);
 
     if (DRAW_WINDOW)
-	XSetWindowBackground(DPY, DRAW_WINDOW, pixel);
-    else
-	XSetForeground(DPY, BG_GC, pixel);
+      XSetWindowBackground(DPY, DRAW_WINDOW, pixel);
+    XSetForeground(DPY, BG_GC, pixel);
     XSetBackground(DPY, PEN_GC, pixel);
     XSetBackground(DPY, BRUSH_GC, pixel);
 
@@ -735,10 +732,10 @@ void wxWindowDC::SetBrush(wxBrush *brush)
 
 void wxWindowDC::SetColourMap(wxColourMap *new_cmap)
 {
-    current_cmap = new_cmap ? new_cmap : wxAPP_COLOURMAP;
-
-    if (DRAW_WINDOW)
-	XSetWindowColormap(DPY, DRAW_WINDOW, CMAP);
+  current_cmap = new_cmap ? new_cmap : wxAPP_COLOURMAP;
+  
+  if (DRAW_WINDOW)
+    XSetWindowColormap(DPY, DRAW_WINDOW, CMAP);
 }
 
 void wxWindowDC::SetPen(wxPen *pen)
