@@ -1413,7 +1413,7 @@ void wxCanvasDC::TryColour(wxColour *src, wxColour *dest)
     return;
   }
 
-  result = GetNearestColor(dc, RGB(src->Red(), src->Blue(), src->Green()));
+  result = GetNearestColor(dc, RGB(src->Red(), src->Green(), src->Blue()));
   dest->Set(GetRValue(result), GetGValue(result), GetBValue(result));
   DoneDC(dc);
 }
