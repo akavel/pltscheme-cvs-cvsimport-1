@@ -570,6 +570,17 @@
 			  (distinct-valid-id/s? (append new-names
 						  (map car
 						    proc:initvars)))
+			  (let ((external-ivars
+				  (apply append
+				    (map
+				      (lambda (e)
+					(cond
+					  ((public-entry? e)
+					    (public-entry-exports e))
+					  (else null)))
+				      proc:ivar-info))))
+			    (distinct-valid-syntactic-id/s? external-ivars)
+			    (void))
 			  (extend-env extensions env)
 			  (let
 			    ((result

@@ -319,7 +319,10 @@
 	(let loop ((ids (valid-id/s? input-ids)) (index 0))
 	  (or (null? ids)
 	    (if (memq (car ids) (cdr ids))
-	      (static-error (list-ref input-ids index) "Repeated identifier")
+	      (let ((v (list-ref input-ids index)))
+		(static-error v
+		  "Repeated identifier ~e"
+		  (car ids)))
 	      (loop (cdr ids) (add1 index))))))))
 
   (define id/s->ids

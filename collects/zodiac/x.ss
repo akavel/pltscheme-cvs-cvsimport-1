@@ -128,6 +128,7 @@
   (define expand-expr
     (lambda (expr env attributes vocab)
       ; (printf "Expanding~n") (pretty-print (sexp->raw expr))
+      ; (printf "top-level-status: ~s~n" (get-top-level-status attributes))
       ; (printf "Expanding~n~s~n~n" (sexp->raw expr))
       ; (printf "Expanding~n") (pretty-print expr) (newline)
       ; (printf "Expanding~n") (display expr) (newline) (newline)
