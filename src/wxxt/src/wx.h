@@ -48,6 +48,7 @@
 // standard include files needed in addition to wx include files
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // standard wx include files
 #include <wxSetup.h>
