@@ -182,7 +182,7 @@ scheme_init_type (Scheme_Env *env)
 
   set_name(scheme_subprocess_type, "<subprocess>");
 
-  set_name(scheme_c_pointer_type, "<c-pointer>");
+  set_name(scheme_cpointer_type, "<cpointer>");
 
   set_name(scheme_wrap_chunk_type, "<wrap-chunk>");
 
@@ -445,7 +445,7 @@ void scheme_register_traversers(void)
   GC_REG_TRAV(scheme_null_type, char_obj); /* small */
   GC_REG_TRAV(scheme_pair_type, cons_cell);
   GC_REG_TRAV(scheme_vector_type, vector_obj);
-  GC_REG_TRAV(scheme_c_pointer_type, c_pointer_obj);
+  GC_REG_TRAV(scheme_cpointer_type, c_pointer_obj);
 
   GC_REG_TRAV(scheme_bucket_type, bucket_obj);
 
