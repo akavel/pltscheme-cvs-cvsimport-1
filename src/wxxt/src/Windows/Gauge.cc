@@ -113,15 +113,15 @@ Bool wxGauge::Create(wxPanel *panel, char *label, int _range,
 
     panel->PositionItem(this, x, y, 
 			(width  > -1 
-			 ? width  
+			 ? (int)width  
 			 : ((style & wxVERTICAL) 
-			    ? lhw + wxDEFAULT_GAUGE_HEIGHT
+			    ? (int)lhw + wxDEFAULT_GAUGE_HEIGHT
 			    : wxDEFAULT_GAUGE_WIDTH)),
 			(height > -1 
-			 ? height 
+			 ? (int)height 
 			 : ((style & wxVERTICAL) 
 			    ? wxDEFAULT_GAUGE_WIDTH
-			    : lvh + wxDEFAULT_GAUGE_HEIGHT)));
+			    : (int)lvh + wxDEFAULT_GAUGE_HEIGHT)));
     AddEventHandlers();
 
     SetValue(0);
