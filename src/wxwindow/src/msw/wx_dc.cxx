@@ -1089,7 +1089,7 @@ float wxDC::GetCharWidth(void)
 }
 
 void wxDC::GetTextExtent(const char *string, float *x, float *y,
-                         float *descent, float *externalLeading, 
+                         float *descent, float *topSpace, 
 			 wxFont *theFont, Bool use16bt)
 {
   wxFont *oldFont = NULL;
@@ -1104,7 +1104,7 @@ void wxDC::GetTextExtent(const char *string, float *x, float *y,
     *x = 5;
     *y = 10;
     if (descent) *descent = 0;
-    if (externalLeading) *externalLeading= 0;
+    if (topSpace) *topSpace= 0;
     return;
   }
   
@@ -1120,7 +1120,7 @@ void wxDC::GetTextExtent(const char *string, float *x, float *y,
   *x = (len ? (float)XDEV2LOGREL(sizeRect.cx) : (float)0.0);
   *y = (float)YDEV2LOGREL(sizeRect.cy);
   if (descent) *descent = (float)tm.tmDescent;
-  if (externalLeading) *externalLeading = (float)tm.tmExternalLeading;
+  if (topSpace) *topSpace = (float)tm.tmInternalLeading;
   
   if (oldFont)
     SetFont(oldFont);
