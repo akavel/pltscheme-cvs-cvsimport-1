@@ -212,11 +212,11 @@ Bool wxDialogBox::Create(wxWindow *Parent, char *Title, Bool Modal,
   wxDialogWnd *wnd;
   if (!(style & wxNO_CAPTION)) {
     wnd = new wxDialogWnd(cparent, this, x, y, width, height,
-                          "wxCaptionDialog");
+                          (style & wxMAXIMIZE) ? "wxCaptionResizeDialog" : "wxCaptionDialog");
   }
   else{
     wnd = new wxDialogWnd(cparent, this, x, y, width, height,
-                          "wxNoCaptionDialog");
+                          (style & wxMAXIMIZE) ? "wxNoCaptionResizeDialog" : "wxNoCaptionDialog");
   }
 
   handle = (char *)wnd;
