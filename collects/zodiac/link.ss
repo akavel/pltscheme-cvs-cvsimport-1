@@ -29,7 +29,8 @@
 	SCAN-PARMS INTERFACE SCAN-CODE)]
     [SEXP : zodiac:sexp^
       ((require-relative-library-unit/sig "sexp.ss")
-	MISC TOP-STRUCTS READ-STRUCTS INTERFACE)]
+	MISC TOP-STRUCTS READ-STRUCTS INTERFACE
+	SCHEME-MAIN)]
     [PATTERN : zodiac:pattern^
       ((require-relative-library-unit/sig "pattern.ss")
 	MISC SEXP READ-STRUCTS SCHEME-CORE)]

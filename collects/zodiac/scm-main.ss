@@ -30,9 +30,17 @@
 	(zodiac-start s) (zodiac-finish s)
 	(make-empty-back-box) c)))
 
-  (add-lit-micro common-vocabulary
-    (lambda (expr env attributes vocab)
-      (create-const expr expr)))
+  (define expands<%> (interface () expand))
+
+  (add-lit-micro
+   common-vocabulary
+   (lambda (expr env attributes vocab)
+     (if (z:external? expr)
+	 (let ([obj (z:read-object expr)])
+	   (if (is-a? obj expands<%>)
+	       (expand-expr (send obj expand expr) env attributes vocab)
+	       (create-const expr expr)))
+	 (create-const expr expr))))
 
   ; ----------------------------------------------------------------------
 

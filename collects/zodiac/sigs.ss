@@ -123,7 +123,7 @@
     (struct case-lambda-form (args bodies))         create-case-lambda-form
     (struct with-continuation-mark-form (key val body)) create-with-continuation-mark-form
     generate-struct-names
-    ))
+    expands<%>))
 
 (define-signature zodiac:scheme-objects^
   (create-class*/names-form

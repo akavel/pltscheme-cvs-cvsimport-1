@@ -4,7 +4,8 @@
   (import zodiac:misc^
     zodiac:structures^
     (z : zodiac:reader-structs^)
-    zodiac:interface^)
+    zodiac:interface^
+    zodiac:scheme-main^)
 
   (define identity (lambda (x) x))
 
@@ -58,6 +59,9 @@
 		     (z:make-boolean origin start finish expr))
 		   ((char? expr)
 		     (z:make-char origin start finish expr))
+		   [(and (object? expr)
+			 (is-a? expr expands<%>))
+		    (z:make-external origin start finish expr)]
 		   (else
 		     (z:make-list origin start finish
 		       (list
