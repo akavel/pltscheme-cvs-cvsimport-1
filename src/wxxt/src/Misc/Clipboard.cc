@@ -230,6 +230,23 @@ void wxClipboard::SetClipboardString(char *str, long time)
   }
 }
 
+void wxClipboard::SetClipboardBitmap(wxBitmap *bm, long time)
+{
+  if (clipOwner) {
+    clipOwner->BeingReplaced();
+    clipOwner = NULL;
+  }
+
+  cbString = NULL;
+
+  /* Don't know how to put a bitmap into the clipboard. */
+}
+
+wxBitmap *wxClipboard::GetClipboardBitmap(long time)
+{
+  return NULL;
+}
+
 static void wxGetTargets(Widget WXUNUSED(w), XtPointer WXUNUSED(cbv), Atom *WXUNUSED(sel), Atom *WXUNUSED(type),
 			 XtPointer value, unsigned long *len, int *WXUNUSED(format))
 {
