@@ -475,9 +475,9 @@
 	     [(let-values-form? expr)
 	      (set-let-values-form-vals! expr (map fix (let-values-form-vals expr)))
 	      (set-let-values-form-body! expr (fix (let-values-form-body expr)))]
-	     [(letrec*-values-form? expr)
-	      (set-letrec*-values-form-vals! expr (map fix (letrec*-values-form-vals expr)))
-	      (set-letrec*-values-form-body! expr (fix (letrec*-values-form-body expr)))]
+	     [(letrec-values-form? expr)
+	      (set-letrec-values-form-vals! expr (map fix (letrec-values-form-vals expr)))
+	      (set-letrec-values-form-body! expr (fix (letrec-values-form-body expr)))]
 	     [(define-values-form? expr)
 	      (set-define-values-form-val! expr (fix (define-values-form-val expr)))]
 	     [(set!-form? expr)

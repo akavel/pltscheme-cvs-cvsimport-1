@@ -117,7 +117,7 @@
     (struct begin-form (bodies))                    create-begin-form
     (struct begin0-form (bodies))                   create-begin0-form
     (struct let-values-form (vars vals body))       create-let-values-form
-    (struct letrec*-values-form (vars vals body))   create-letrec*-values-form
+    (struct letrec-values-form (vars vals body))    create-letrec-values-form
     (struct define-values-form (vars val))          create-define-values-form
     (struct set!-form (var val))                    create-set!-form
     (struct case-lambda-form (args bodies))         create-case-lambda-form
