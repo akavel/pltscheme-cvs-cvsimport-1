@@ -1,7 +1,7 @@
 ; $Id$
 
-(begin-construction-time (require-library "macro.ss"))
-(begin-construction-time (require-library "mzlibs.ss"))
+(begin-elaboration-time (require-library "macro.ss"))
+(begin-elaboration-time (require-library "mzlibs.ss"))
 
 (define-signature zodiac:misc^
   (pretty-print debug-level symbol-append flush-printf print-and-return 
