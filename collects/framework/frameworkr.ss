@@ -28,10 +28,14 @@
 		      ((require-unit/sig "sparen.ss") paren)]
 	[path-utils : mred:path-utils^ ((require-unit/sig "fileutil.ss"))]
 	[icon : mred:icon^ ((require-unit/sig "icon.ss"))]
+
+	;; these three to come later
 	[editor : framework:editor^ ((require-library "editor.ss"))]
 	[pasteboard : framework:pasteboard^ ((require-library "pasteboard.ss") editor)]
 	[text : framework:text^ ((require-library "text.ss") editor)]
+
 	[gui-utils : mred:gui-utils^ ((require-unit/sig "guiutils.ss"))]
+
 	[finder : mred:finder^
 		((require-unit/sig "finder.ss") preferences
 		 gui-utils
@@ -42,6 +46,9 @@
 		(minimal constants) preferences editor-frame gui-utils
 		exit autosave handler (core function@)
 		(core file@))]
+
+	;; stopped here
+
 	[canvas : mred:canvas^ 
 		((require-unit/sig "canvas.ss") wx 
 		 (minimal constants) (minimal container) edit preferences 
