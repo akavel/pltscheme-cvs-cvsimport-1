@@ -159,6 +159,8 @@ public:
     void EndSetPixel();
     void SetPixel(float x, float y, wxColour *col);
 
+    void FillPrivateColor(wxColour *c);
+
     /* MATTHEW: */
     virtual Bool Ok(void);
 protected:
