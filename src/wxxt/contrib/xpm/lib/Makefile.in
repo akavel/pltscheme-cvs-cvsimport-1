@@ -70,7 +70,7 @@ OBJS= data.o create.o misc.o rgb.o \
 all: libXpm.a
 
 clean: 
-	rm *.o libXpm.a
+	rm -f *.o libXpm.a
 
 libXpm.a: $(OBJS)
 	$(AR) $(ARFLAGS) libXpm.a $(OBJS)
@@ -121,7 +121,7 @@ parse.o:
 	$(XPM_CC) $(srcdir)/parse.c -o parse.o
 rgb.o:
 	$(XPM_CC) $(srcdir)/rgb.c -o rgb.o
-scan.o:
+scan.o: $(srcdir)/scan.c
 	$(XPM_CC) $(srcdir)/scan.c -o scan.o
 Attrib.o:
 	$(XPM_CC) $(srcdir)/Attrib.c -o Attrib.o
