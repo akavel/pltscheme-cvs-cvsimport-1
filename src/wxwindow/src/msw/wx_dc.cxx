@@ -1509,7 +1509,7 @@ wxPrinterDC::wxPrinterDC(char *driver_name, char *device_name, char *file, Bool 
     pd->hwndOwner=NULL;
     pd->hDevMode=(HANDLE)NULL;
     pd->hDevNames=(HANDLE)NULL;
-    pd->Flags=PD_RETURNDC | PD_NOSELECTION | PD_NOPAGENUMS;
+    pd->Flags = PD_RETURNDC | PD_NOSELECTION | PD_NOPAGENUMS | PD_HIDEPRINTTOFILE;
     pd->nFromPage=0;
     pd->nToPage=0;
     pd->nMinPage=0;
