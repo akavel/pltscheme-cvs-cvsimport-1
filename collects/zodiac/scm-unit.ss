@@ -466,7 +466,7 @@
 	  (else
 	    (static-error expr "Invalid export clause"))))))
 
-  (add-primitivized-micro-form 'compound-unit scheme-vocabulary
+  '(add-primitivized-micro-form 'compound-unit scheme-vocabulary
     (let* ((kwd `(import link export))
 	    (in-pattern `(_
 			   (import imports ...)
