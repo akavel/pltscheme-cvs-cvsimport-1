@@ -62,7 +62,7 @@ public:
     unsigned char Blue(void);
 
     // alloc and free X pixel value
-    unsigned long GetPixel(wxColourMap* cmap=wxAPP_COLOURMAP);
+    unsigned long GetPixel(wxColourMap* cmap=wxAPP_COLOURMAP, Bool is_color=1, Bool fg=1);
     void FreePixel(Bool del);
 
     inline Bool  IsMutable(void) { return !locked; } 

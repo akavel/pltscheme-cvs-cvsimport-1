@@ -136,6 +136,8 @@ void wxDC::SetUserScale(float xs, float ys)
     user_scale_x = xs;
     user_scale_y = ys;
     ComputeScaleAndOrigin();
+    SetFont(current_font);
+    SetPen(current_pen);
 }
 
 //-----------------------------------------------------------------------------

@@ -1519,10 +1519,12 @@ void wxWindow::CreateDC(void)
     dc->ok = TRUE;
     
     dc->Initialize(&init);
+#if 0
     // adjust background colour
     wxBrush bgbrush(*bg, wxSOLID); // I need a temporary background brush
     dc->SetBackground(&bgbrush);   // set GCs to current background colour
     dc->SetBackground(NULL);       // don't use a background brush
+#endif
 
     dc->X->is_window = TRUE;
 }

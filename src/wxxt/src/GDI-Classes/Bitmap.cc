@@ -220,7 +220,7 @@ Bool wxBitmap::Create(int w, int h, int d)
     Destroy(); // destroy old bitmap if any
 
     /* MATTHEW: [5] */
-    if (d > 0) {
+    if (d > 1) {
       int c, *depths, n;
 
       n = ScreenCount(wxAPP_DISPLAY);
