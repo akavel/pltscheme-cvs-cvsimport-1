@@ -1263,7 +1263,7 @@ plLibOpenPdfstrm(char *fn)
  * This function is only defined under Unix for now.
 \*--------------------------------------------------------------------------*/
 
-#ifdef __unix
+#ifdef do_not_do // changed, this is unnessisary in this build anyway
 int 
 plFindName(char *p)
 {
@@ -1727,3 +1727,4 @@ plstrdup(const char *src)
 
     return dest;
 }
+ 
