@@ -88,7 +88,7 @@ wxWindow::wxWindow(void)
     fg     = wxBLACK;
     bg     = wxGREY;
     cmap   = wxAPP_COLOURMAP;
-    cursor = wxSTANDARD_CURSOR;
+    cursor = NULL /* wxSTANDARD_CURSOR */;
     font   = wxSYSTEM_FONT;
     // misc info
     allow_dclicks    = FALSE;
@@ -445,17 +445,18 @@ void wxWindow::SetBackgroundColour(wxColour *col)
 
 wxCursor *wxWindow::SetCursor(wxCursor *new_cursor)
 {
-    if (!X->handle) // forbid, if no widget associated
-	return NULL;
-
-    wxCursor *previous = cursor;
-
-    if (new_cursor && new_cursor->Ok()) {
-	cursor = new_cursor;
-	if (!wxIsBusy())
-	  XtVaSetValues(X->handle, XtNcursor, GETCURSOR(new_cursor), NULL);
-    }
-    return previous;
+  if (!X->handle) // forbid, if no widget associated
+    return NULL;
+  
+  wxCursor *previous = cursor;
+  
+  if (!new_cursor || (new_cursor && new_cursor->Ok())) {
+    cursor = new_cursor;
+    if (!wxIsBusy())
+      XtVaSetValues(X->handle, XtNcursor, new_cursor ? GETCURSOR(new_cursor) : None, NULL);
+  }
+  
+  return previous;
 }
 
 // merged with DC-method: void wxWindow::SetFont(wxFont *new_font)

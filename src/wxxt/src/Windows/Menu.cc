@@ -110,6 +110,7 @@ Bool wxMenu::PopupMenu(Widget in_w, int root_x, int root_y)
 	 XtNfont,       font->GetInternalFont(),
 	 XtNforeground, fg->GetPixel(wxAPP_COLOURMAP),
 	 XtNbackground, bg->GetPixel(wxAPP_COLOURMAP),
+	 XtNcursor,     None,
 	 NULL);
     XtRealizeWidget(X->shell);
     XtAddCallback(X->menu, XtNonSelect, wxMenu::EventCallback, this);

@@ -160,6 +160,7 @@ wxColour* wxLIGHT_GREY = 0;
 wxCursor* wxSTANDARD_CURSOR = 0;
 wxCursor* wxHOURGLASS_CURSOR = 0;
 wxCursor* wxCROSS_CURSOR = 0;
+wxCursor* wxIBEAM_CURSOR = 0;
 
 wxFont* wxNORMAL_FONT = 0;
 wxFont* wxSMALL_FONT = 0;

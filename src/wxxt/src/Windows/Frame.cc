@@ -179,6 +179,11 @@ Bool wxFrame::Create(wxFrame *frame_parent, char *title,
 		      False, (XtEventHandler)wxFrameMapProc,
 		      (XtPointer)saferef);
 
+    cursor = wxSTANDARD_CURSOR;
+
+    if (wxIsBusy())
+      wxXSetBusyCursor(this, wxHOURGLASS_CURSOR);
+
     return TRUE;
 }
 

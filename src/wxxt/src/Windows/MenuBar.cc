@@ -101,6 +101,7 @@ Bool wxMenuBar::Create(wxPanel *panel)
 	 XtNhMargin,     4,
 	 XtNfont,        font->GetInternalFont(),
 	 XtNmenu,        top,
+	 XtNcursor,      None,
 	 NULL);
     // callbacks
     XtAddCallback(X->handle, XtNonSelect,  wxMenuBar::CommandEventCallback, this);

@@ -131,6 +131,9 @@ Bool wxText::Create(wxPanel *panel, wxFunction function, char *label,
     XEvent dummy;
     XtCallActionProc(X->handle, "redraw-display", &dummy, NULL, 0);
     AddEventHandlers();
+
+    cursor = wxIBEAM_CURSOR;
+
     return TRUE;
 }
 

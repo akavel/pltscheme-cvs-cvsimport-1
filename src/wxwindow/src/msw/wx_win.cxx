@@ -537,6 +537,10 @@ void wxWindow::ClientToScreen(int *x, int *y)
 wxCursor *wxWindow::SetCursor(wxCursor *cursor)
 {
   wxCursor *old_cursor = wx_cursor;
+
+  if (cursor && !cursor->Ok())
+    return old_cursor;
+
   wx_cursor = cursor;
   if (wx_cursor)
   {

@@ -359,6 +359,7 @@ void wxCommonInit(void)
     wxSTANDARD_CURSOR = DEBUG_NEW wxCursor (wxCURSOR_ARROW);
     wxHOURGLASS_CURSOR = DEBUG_NEW wxCursor (wxCURSOR_WAIT);
     wxCROSS_CURSOR = DEBUG_NEW wxCursor (wxCURSOR_CROSS);
+    wxIBEAM_CURSOR = DEBUG_NEW wxCursor (wxCURSOR_IBEAM);
 }
 
 void wxCommonCleanUp(void)

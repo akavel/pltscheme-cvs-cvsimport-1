@@ -206,6 +206,7 @@ extern wxColour* wxLIGHT_GREY;
 extern wxCursor* wxSTANDARD_CURSOR;
 extern wxCursor* wxHOURGLASS_CURSOR;
 extern wxCursor* wxCROSS_CURSOR;
+extern wxCursor* wxIBEAM_CURSOR;
 
 //-- Types --------------------------------------------------------------------
 

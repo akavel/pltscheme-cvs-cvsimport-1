@@ -44,7 +44,7 @@ wxbWindow::wxbWindow(void)
   handle = NULL;
   windowName = NULL;
   callback = 0;
-  wx_cursor = wxSTANDARD_CURSOR;
+  wx_cursor = NULL /* wxSTANDARD_CURSOR */;
   children = new wxChildList;
   paintingEnabled = TRUE;
   doubleClickAllowed = 0 ;

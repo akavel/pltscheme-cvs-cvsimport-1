@@ -279,6 +279,7 @@ protected:
 #   endif
 protected:
     friend void wxXSetBusyCursor(wxWindow *, wxCursor *); /* MATTHEW */
+    friend void wxXSetNoCursor(wxWindow *, wxCursor *); /* MATTHEW */
     // X representation
     wxWindow_Xintern *X;
     // device context
