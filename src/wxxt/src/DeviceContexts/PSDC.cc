@@ -498,7 +498,8 @@ void wxPostScriptDC::SetClippingRegion(wxRegion *r)
 
   if (r) {
     *pstream << "newpath\n";
-    *pstream << r->ps->GetString();
+    if (r->ps) /* => non-empty region */
+      *pstream << r->ps->Lift()->GetString();
     *pstream << "clip\n";
 
     clipping = r;
