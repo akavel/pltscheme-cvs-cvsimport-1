@@ -27,7 +27,9 @@
 #define FontDirectory_h
 
 #ifdef __GNUG__
-#pragma interface
+# ifndef wx_mac
+#  pragma interface
+# endif
 #endif
 
 class wxHashTable;
