@@ -29,7 +29,7 @@
 (unit/sig framework:test^
   (import [mred : mred^])
 
-  (define initial-run-interval 100)  ;; milliseconds
+  (define initial-run-interval 0)  ;; milliseconds
 
   ;;
   ;; The minimum time an action is allowed to run before returning from
