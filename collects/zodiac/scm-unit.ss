@@ -905,7 +905,7 @@
   (reference-unit-maker 'reference-unit/sig #t)
 
   (define reference-library-unit-maker
-    (lambda (form-name sig?)
+    (lambda (form-name sig? relative?)
       (when (language>=? 'advanced)
 	(add-primitivized-micro-form form-name scheme-vocabulary
 	  (let* ((kwd '())
@@ -948,7 +948,9 @@
 			      raw-f))
 			  (expand-expr
 			    (structurize-syntax
-			      `(let ((result (#%require-library
+			      `(let ((result (,(if relative?
+						   '#%require-relative-library
+						   '#%require-library)
 					       ,(quote-form-expr f)
 					       ,(quote-form-expr c))))
 				 (unless (,(if sig?
@@ -973,7 +975,9 @@
 		(else
 		  (static-error expr "Malformed ~a" form-name)))))))))
 
-  (reference-library-unit-maker 'reference-library-unit #f)
-  (reference-library-unit-maker 'reference-library-unit/sig #t)
+  (reference-library-unit-maker 'reference-library-unit #f #f)
+  (reference-library-unit-maker 'reference-library-unit/sig #t #f)
+  (reference-library-unit-maker 'reference-relative-library-unit #f #t)
+  (reference-library-unit-maker 'reference-relative-library-unit/sig #t #t)
 
   )
