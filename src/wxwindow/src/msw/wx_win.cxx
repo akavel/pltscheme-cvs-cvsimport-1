@@ -1694,20 +1694,20 @@ wxWnd::~wxWnd(void)
 HDC wxWnd::GetHDC(void)
 {
   if (cdc)
-	 return(cdc) ;
+    return(cdc);
   if (dc_count==0)
-	 ldc = wxwmGetDC(handle) ;
-  dc_count++ ;
-  return(ldc) ;
+    ldc = wxwmGetDC(handle);
+  dc_count++;
+  return ldc;
 }
 
 void wxWnd::ReleaseHDC(void)
 {
   if (cdc)
-    return ;
-  dc_count-- ;
+    return;
+  dc_count--;
   if (dc_count==0)
-	 wxwmReleaseDC(handle,ldc) ;
+    wxwmReleaseDC(handle,ldc);
   if (dc_count < 0)
     dc_count = 0;
 }

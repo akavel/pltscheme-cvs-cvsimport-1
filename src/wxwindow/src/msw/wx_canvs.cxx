@@ -117,13 +117,12 @@ wxCanvas::~wxCanvas (void)
   // to call this code BEFORE we destroy the window (or how
   // do we get hold of the DC?)
     
-  if (wx_dc)
-  {
+  if (wx_dc) {
     wxWnd *wnd = (wxWnd *)handle;
-	 HDC dc = wxwmGetDC(wnd->handle);
-    wx_dc->SelectOldObjects (dc);
-	 wxwmReleaseDC(wnd->handle, dc);
-	 delete wx_dc;
+    HDC dc = wxwmGetDC(wnd->handle);
+    wx_dc->SelectOldObjects(dc);
+    wxwmReleaseDC(wnd->handle, dc);
+    delete wx_dc;
   }
 }
 
