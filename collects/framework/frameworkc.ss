@@ -40,7 +40,9 @@
 
 	[editor : framework:editor^ ((require-relative-library "editor.ss")
 				     mred
-				     autosave finder path-utils keymap icon preferences text pasteboard)]
+				     autosave finder path-utils keymap icon
+				     preferences text pasteboard frame
+				     core:file)]
 	[pasteboard : framework:pasteboard^ ((require-relative-library "pasteboard.ss")
 					     mred editor)]
 	[text : framework:text^ ((require-relative-library "text.ss")
