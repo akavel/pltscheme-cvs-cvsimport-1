@@ -539,7 +539,8 @@
 		 (unless (null? func)
 		   (let ([evt (make-object wx:command-event% wx:const-event-type-listbox-command)])
 		     (send evt set-extra-long 2)
-		     (func this evt))))]))))
+		     (func this evt))))])
+	    (sequence (apply super-init parent func args)))))
 	  
       (define message%
 	(make-item% mred:testable-message% 
