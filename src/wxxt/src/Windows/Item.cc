@@ -67,12 +67,16 @@ void wxItem::ChainToPanel(wxPanel *panel, long _style, char *name)
 void wxItem::ChangeColours(void)
 {
     if (X->frame && X->frame != X->handle) {
-	if (parent->GetBackgroundColour())
-	    XtVaSetValues(X->frame, XtNbackground,
-			  parent->GetBackgroundColour()->GetPixel(cmap), NULL);
-	if (label_fg)
-	    XtVaSetValues(X->frame, XtNforeground,
-			  label_fg->GetPixel(cmap), NULL);
+      wxColour *bgc;
+      bgc = parent->GetBackgroundColour();
+      if (bgc) {
+	unsigned long pixel;
+	pixel = bgc->GetPixel(cmap);
+	XtVaSetValues(X->frame, XtNbackground, pixel, NULL);
+      }
+      if (label_fg)
+	XtVaSetValues(X->frame, XtNforeground,
+		      label_fg->GetPixel(cmap), NULL);
     }
     if (X->handle) {
 	if (bg)

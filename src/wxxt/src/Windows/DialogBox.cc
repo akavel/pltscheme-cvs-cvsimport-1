@@ -87,6 +87,11 @@ Bool wxDialogBox::Show(Bool show)
     // handle modality
     if (show) {
       if (modal) {
+	wxList *disabled_windows;
+	wxNode *node;
+	wxChildNode *cnode;
+	wxChildList *tlf;
+
 	if (modal_showing)
 	  return TRUE;
 	
@@ -94,13 +99,10 @@ Bool wxDialogBox::Show(Bool show)
 	
 	wxPushModalWindow(this, this);
 	
-	wxList *disabled_windows;
-	wxNode *node;
-	wxChildNode *cnode;
-
 	disabled_windows = new wxList;
-	
-	for (cnode = wxTopLevelFrames(this)->First(); cnode; cnode = cnode->Next()) {
+
+	tlf = wxTopLevelFrames(this);
+	for (cnode = tlf->First(); cnode; cnode = cnode->Next()) {
 	  wxWindow *w;
 	  w = (wxWindow *)cnode->Data();
 	  if (w && w != this && cnode->IsShown()) {
