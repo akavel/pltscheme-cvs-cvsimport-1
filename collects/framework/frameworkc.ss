@@ -51,7 +51,7 @@
 				 gui-utils color-model frame
 				 core:function)]
 
-	[gui-utils : framework:gui-utils^ ((require-relative-library "guiutils.ss") mred)]
+	[gui-utils : framework:gui-utils^ ((require-relative-library "guiutilsr.ss") mred)]
 
 	[finder : framework:finder^
 		((require-relative-library "finder.ss")
