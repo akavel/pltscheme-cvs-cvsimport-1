@@ -171,11 +171,10 @@
 	       
 	       [pass-errors-out
 		(lambda (thunk)
-		  (parameterize
-		      ([current-exception-handler
-			(lambda (exn)
-			  (end-action-with-error exn)
-			  ((error-escape-handler)))])
+		  (parameterize ([current-exception-handler
+				  (lambda (exn)
+				    (end-action-with-error exn)
+				    ((error-escape-handler)))])
 		    (thunk)))]
 	       
 	       [return (lambda () (semaphore-post sem))])

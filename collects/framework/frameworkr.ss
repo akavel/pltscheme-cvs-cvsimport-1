@@ -7,7 +7,7 @@
 	  [mred : mred-interfaces^])
   (link [keys : framework:keys^ ((require-relative-library "keys.ss"))]
 	[test : framework:test^ ((require-relative-library "testr.ss") mred keys)]
-	[F : frameworkc^ ((require-relative-library "frameworkc.ss")
+	[f : frameworkc^ ((require-relative-library "frameworkc.ss")
 			  (core string)
 			  (core function)
 			  (core pretty-print)
@@ -19,4 +19,4 @@
   (export
    (unit keys)
    (unit test)
-   (open F)))
+   (open f)))
