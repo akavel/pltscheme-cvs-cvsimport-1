@@ -1227,7 +1227,7 @@ string_copy_bang(int argc, Scheme_Object *argv[])
 			       argc, argv, 4, 5, 
 			       &ostart, &ofinish);
 
-  if (ofinish - ostart > ifinish - istart) {
+  if ((ofinish - ostart) < (ifinish - istart)) {
     scheme_arg_mismatch("string-copy!",
 			"not enough room in output string: ",
 			argv[3]);
@@ -1638,8 +1638,8 @@ int mz_native_strcoll(char *s1, int d1, int l1, char *s2, int d2, int l2, int cv
   CFStringRef str1, str2;
   CFComparisonResult r;
 
-  str1 = CFStringCreateWithBytes(NULL, s1 + (d1 * 2), (l1 * 2), kCFStringEncodingUnicode, FALSE);
-  str2 = CFStringCreateWithBytes(NULL, s2 + (d2 * 2), (l2 * 2), kCFStringEncodingUnicode, FALSE);
+  str1 = CFStringCreateWithBytes(NULL, s1 XFORM_OK_PLUS (d1 * 2), (l1 * 2), kCFStringEncodingUnicode, FALSE);
+  str2 = CFStringCreateWithBytes(NULL, s2 XFORM_OK_PLUS (d2 * 2), (l2 * 2), kCFStringEncodingUnicode, FALSE);
   
   r = CFStringCompare(str1, str2, (kCFCompareLocalized 
 				   | (cvt_case ? kCFCompareCaseInsensitive : 0)));
@@ -1825,7 +1825,7 @@ char *do_native_recase(int to_up, char *in, int delta, int len, long *olen)
   CFStringRef str;
   char *result;
 
-  str = CFStringCreateWithBytes(NULL, in + (delta * 2), (len * 2), kCFStringEncodingUnicode, FALSE);
+  str = CFStringCreateWithBytes(NULL, in XFORM_OK_PLUS (delta * 2), (len * 2), kCFStringEncodingUnicode, FALSE);
   mstr = CFStringCreateMutableCopy(NULL, 0, str);
   CFRelease(str);
   
@@ -2623,7 +2623,7 @@ static Scheme_Object *convert_one(const char *who, int opos, int argc, Scheme_Ob
   if (argc > opos) {
     if (!SCHEME_MUTABLE_STRINGP(argv[opos]))
       scheme_wrong_type(who, "mutable string", opos, argc, argv);  
-    r = SCHEME_STR_VAL(argv[4]);
+    r = SCHEME_STR_VAL(argv[opos]);
     scheme_get_substring_indices("substring", argv[opos], argc, argv, opos + 1, opos + 2, &ostart, &ofinish);
   } else {
     r = NULL;
@@ -2643,7 +2643,7 @@ static Scheme_Object *convert_one(const char *who, int opos, int argc, Scheme_Ob
 		 &amt_read, &amt_wrote,
 		 &status);
   
-  if (argc < 5) {
+  if (argc <= opos) {
     a[0] = scheme_make_sized_string(r, amt_wrote, 0);
   } else {
     a[0] = scheme_make_integer(amt_wrote);
