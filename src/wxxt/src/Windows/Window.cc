@@ -1110,7 +1110,7 @@ void wxWindow::ExposeEventHandler(Widget     WXUNUSED(w),
 	if (win->dc) {
 	    if (!(win->dc->ok)) { // setup drawable of dc on first expose
 		win->dc->X->draw_window = win->dc->X->drawable = XtWindow(win->X->handle);
-		win->dc->SetBackground(win->dc->current_background_color);
+		win->dc->SetBackground(&win->dc->current_background_color);
 		win->dc->Clear();
 		win->dc->ok = TRUE;
 	    }
@@ -1512,7 +1512,7 @@ void wxWindow::WindowEventHandler(Widget w,
 	    // setup drawable of dc if dc available
 	    if (!(win->dc->ok)) { // first expose call
 		win->dc->X->draw_window = win->dc->X->drawable = XtWindow(win->X->handle);
-		win->dc->SetBackground(win->dc->current_background_color);
+		win->dc->SetBackground(&win->dc->current_background_color);
 		win->dc->Clear();
 		win->dc->ok = TRUE;
 	    }

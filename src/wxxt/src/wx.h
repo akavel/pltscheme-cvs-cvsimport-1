@@ -400,6 +400,10 @@
 #	include "GDI-Classes/Pen+Brush.h"
 #endif
 
+#if defined(Uses_wxRegion)
+#	include "GDI-Classes/Region.h"
+#endif
+
 //--- device contexts ---------------------------------------------------------
 
 #if defined(Uses_wxDC)

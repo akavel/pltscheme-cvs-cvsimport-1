@@ -742,7 +742,17 @@ $(WXLIBDIR)/lib$(LIBNAME).a: $(OBJS)
 	$(RANLIB) $@
 
 clean::
-	echo Unimplemented
+	rm -f Application/$(OBJDIR)/*.o
+	rm -f DataStructures/$(OBJDIR)/*.o
+	rm -f DeviceContexts/$(OBJDIR)/*.o
+	rm -f Dialogs/$(OBJDIR)/*.o
+	rm -f EventHandling/$(OBJDIR)/*.o
+	rm -f GDI-Classes/$(OBJDIR)/*.o
+	rm -f IPC-Classes/$(OBJDIR)/*.o
+	rm -f Misc/$(OBJDIR)/*.o
+	rm -f Utilities/$(OBJDIR)/*.o
+	rm -f Windows/$(OBJDIR)/*.o
+	rm -f XWidgets/$(OBJDIR)/*.o
 
 #------------------------------------------------------------------------------
 # additional rules
@@ -991,12 +1001,13 @@ GDI-Classes/$(OBJDIR)/FontDirectory.o:\
 	GDI-Classes/FontDirectory.cc DataStructures/Object.h \
 	DataStructures/wx_list.h GDI-Classes/FontDirectory.h
 
-GDI-Classes/Pen+$(OBJDIR)/Brush.o:\
+GDI-Classes/$(OBJDIR)/Pen+Brush.o:\
 	GDI-Classes/Pen+Brush.cc \
 	DataStructures/Object.h DataStructures/wx_list.h \
-	GDI-Classes/Colour.h GDI-Classes/Pen+Brush.h
+	GDI-Classes/Colour.h GDI-Classes/Pen+Brush.h \
+        GDI-Classes/Region.h GDI-Classes/Region.cc
 
-HighLevel/wb_$(OBJDIR)/form.o:\
+HighLevel/$(OBJDIR)/wb_form.o:\
 	HighLevel/wb_form.cc DataStructures/Object.h \
 	DataStructures/wx_list.h DataStructures/wx_hash.h \
 	EventHandling/wx_sysev.h EventHandling/wx_stdev.h EventHandling/EvtHandler.h \
