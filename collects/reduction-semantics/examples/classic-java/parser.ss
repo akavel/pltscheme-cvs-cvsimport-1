@@ -45,6 +45,10 @@
   ;; Temp-Class ::= (make-temp-class Class-Name (Union Class-Name #f)
   ;;                                 (Listof Field) (Listof Method))
 
+  ;; display the parse exception in human-readable form (for debugging)
+  ;; USAGE: (expand-parse-exn body)
+  ;;    Evaluates to result of body.  If body throws an exn:aj:parse, evaluates
+  ;;    to structure describing exception.
   (define-syntax expand-parse-exn
     (syntax-rules ()
       [(_ expr)
