@@ -159,6 +159,7 @@ fi
 MROPTIONS=
 
 if test "${enable_mred}" = "yes" ; then
+  CXXFLAGS="$CXXFLAGS $X_CFLAGS$"
   AC_LANG_CPLUSPLUS 
 
 [ msg="new and new[] are different"   ]
