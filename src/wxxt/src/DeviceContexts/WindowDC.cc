@@ -321,23 +321,23 @@ void wxWindowDC::Clear(void)
 void wxWindowDC::CrossHair(float x, float y)
 {
   int xx, yy;
+  float w, h;
 
-    if (!DRAWABLE) // ensure that a drawable has been associated
-	return;
+  if (!DRAWABLE) // ensure that a drawable has been associated
+    return;
 
-    /* MATTHEW: [5] Implement GetPixel */
-    FreeGetPixelCache();
+  /* MATTHEW: [5] Implement GetPixel */
+  FreeGetPixelCache();
     
-    if (!current_pen || current_pen->GetStyle() == wxTRANSPARENT)
-	return;
-    xx = XLOG2DEV(x);
-    yy = YLOG2DEV(y);
+  if (!current_pen || current_pen->GetStyle() == wxTRANSPARENT)
+    return;
+  xx = XLOG2DEV(x);
+  yy = YLOG2DEV(y);
 
-    float w, h;
-    GetSize(&w, &h);
+  GetSize(&w, &h);
 
-    XDrawLine(DPY, DRAWABLE, PEN_GC, 0, yy, (int)w, yy);
-    XDrawLine(DPY, DRAWABLE, PEN_GC, xx, 0, xx, (int)h);
+  XDrawLine(DPY, DRAWABLE, PEN_GC, 0, yy, (int)w, yy);
+  XDrawLine(DPY, DRAWABLE, PEN_GC, xx, 0, xx, (int)h);
 }
 
 void wxWindowDC::DrawArc(float x, float y, float w, float h, float start, float end)

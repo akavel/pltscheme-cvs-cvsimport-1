@@ -103,8 +103,11 @@ wxWindow::wxWindow(void)
     style            = 0;
     user_edit_mode   = FALSE;
 
-    /* MATTHEW */
-    saferef = (wxWindow **)MALLOC_SAFEREF(sizeof(wxWindow *));
+    {
+      wxWindow **wa;
+      wa = (wxWindow **)MALLOC_SAFEREF(sizeof(wxWindow *));
+      saferef = wa;
+    }
     *saferef = this;
     misc_flags = 0;
     /* except for frames, windows start out shown: */
