@@ -32,6 +32,7 @@
 /* Static functions */
 
 /* Used by any external init code to suggest a path */
+MZ_DLLEXPORT
 char* plplotLibDir = 0;
 
 static void
