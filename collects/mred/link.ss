@@ -97,7 +97,7 @@
 				container canvas (core function@))]
 	  [frame : mred:frame^ 
 		 ((reference-unit/sig "frame.ss") wx 
-		  constants
+		  constants console
 		  preferences edit container canvas icon
 		  menu group finder find-string hyper-frame
 		  handler keymap exit autosave
