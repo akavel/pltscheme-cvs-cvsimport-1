@@ -354,4 +354,13 @@
 			       '(internal-error:dummy-for-sake-of-cdr!))))))
 	  names))))
 
+  (define copy-env
+    (lambda (env)
+      (let ([new (make-hash-table)])
+	(hash-table-for-each
+	 env
+	 (lambda (key val)
+	   (hash-table-put! new key val)))
+	new)))
+
   )
