@@ -415,7 +415,7 @@ static int run_from_cmd_line(int argc, char *_argv[],
       char *path;
       HANDLE fd;
 
-      path = (char *)malloc(1024);
+      path = malloc(1024);
       GetModuleFileName(NULL, path, 1024);
       fd = CreateFile(path, GENERIC_READ,
 		      FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -424,22 +424,21 @@ static int run_from_cmd_line(int argc, char *_argv[],
 		      0,
 		      NULL);
       if (fd == INVALID_HANDLE_VALUE)
-	p = (unsigned char *)"\0\0\0";
+	p = "\0\0\0";
       else {
-	long start, len;
-	DWORD got;
+	long start, len, got;
 	start = *(long *)&cmdline_exe_hack[4];
 	len = *(long *)&cmdline_exe_hack[8];
-	p = (unsigned char *)malloc(len);
+	p = malloc(len);
 	SetFilePointer(fd, start, 0, FILE_BEGIN);
 	ReadFile(fd, p, len, &got, NULL);
 	CloseHandle(fd);
 	if (got != len)
-	  p = (unsigned char *)"\0\0\0";
+	  p = "\0\0\0";
       }
     } else
 #endif
-      p = (unsigned char *)cmdline_exe_hack + 1;
+      p = cmdline_exe_hack + 1;
 
     /* Command line is encoded as a sequence of pascal-style strings;
        we use four whole bytes for the length, though, little-endian. */
