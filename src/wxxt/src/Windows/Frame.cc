@@ -318,7 +318,10 @@ void wxFrame::CreateStatusLine(int number, char *)
 	    constr->width.Unconstrained();
 	}
 	status[i]->SetConstraints(constr);
+
     }
+
+    Layout();
 }
 
 void wxFrame::SetStatusText(char *text, int number)
