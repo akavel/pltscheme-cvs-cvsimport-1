@@ -1241,7 +1241,7 @@
 				 (#%make-exn:else
 				   ,(if had-no-clauses?
 				      "cond must contain at least one clause"
-				      "no clause was matched")
+				      "no clause in the cond was matched")
 				   ,debug-info-handler-expression)))
 			    (let ((first (car exps))
 				   (rest (cdr exps)))
