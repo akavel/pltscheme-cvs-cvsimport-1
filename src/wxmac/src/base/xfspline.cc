@@ -44,6 +44,13 @@ static void wx_spline_draw_point_array(wxbDC *dc);
 
 static wxList wx_spline_point_list;
 
+void wxRegisterSplinePointList();
+
+void wxRegisterSplinePointList()
+{
+	wxREGGLOB(wx_spline_point_list);
+}
+
 void wxbDC::DrawSpline(wxList *pts)
 {
     wxPoint *p;

@@ -32,6 +32,7 @@ wxTypeTree *wxAllTypes;
 
 void wxInitStandardTypes(void)
 {
+  wxREGGLOB(wxAllTypes);
   wxAllTypes = new wxTypeTree;
 
   // Define explicit type hierarchy

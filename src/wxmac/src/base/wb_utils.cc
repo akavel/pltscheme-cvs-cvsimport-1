@@ -152,7 +152,10 @@ wxPathOnly (char *path)
     {
       static char *buf = NULL;
 
-	  if (!buf) buf = new char[_MAXPATHLEN];
+	  if (!buf) {
+	    wxREGGLOB(buf);
+	    buf = new char[_MAXPATHLEN];
+	  }
 
       // Local copy
       strcpy (buf, path);

@@ -72,20 +72,32 @@ int wxbApp::OnExit(void)
   return 0;
 }
 
+// prototypes for wxREGGLOB'ing functions:
+void wxRegisterSplinePointList();
+void wxRegisterAbortWindow();
+void wxRegisterEntered();
+void wxRegisterOldFrontWindow();
+void wxRegisterCurCursor();
+
+
 void wxCommonInit(void)
 {
-#if defined(wx_msw) || defined(wx_mac)
+  wxREGGLOB(wxBuffer);
   wxBuffer = new char[1500];
-#else
-  wxBuffer = new char[BUFSIZ + 512];
-#endif
-//  wxTheColourList = new wxGDIList ;
+  wxREGGLOB(wxTheColourDatabase);
   wxTheColourDatabase = new wxColourDatabase(wxKEY_STRING);
   wxTheColourDatabase->Initialize();
   wxInitializeFontNameDirectory();
   wxInitializeStockObjects();
   wxInitStandardTypes();
+  wxREGGLOB(wxThePrintPaperDatabase);
   wxThePrintPaperDatabase = new wxPrintPaperDatabase;
+  wxREGGLOB(wxWindow::gMouseWindow);
+  wxRegisterAbortWindow();
+  wxRegisterSplinePointList();
+  wxRegisterEntered();
+  wxRegisterOldFrontWindow();
+  wxRegisterCurCursor();
 }
 
 void wxCommonCleanUp(void)
@@ -95,8 +107,6 @@ void wxCommonCleanUp(void)
   delete wxTheBrushList;
   delete wxThePenList;
   delete wxTheFontList;
-  delete wxTheBitmapList;
-  delete wxTheCursorList;
 
   delete wxThePrintPaperDatabase;
 
