@@ -315,6 +315,7 @@ static Boolean MenuSetValues(gcurrent, grequest, gnew)
       int ow, oh;
       ow = new->menu.state->w;
       oh = new->menu.state->h;
+      new->menu.state->menu = new->menu.contents;
       ComputeMenuSize(new, new->menu.state);
       new->menu.state->w = new->core.width;
       new->menu.state->h = new->core.height;

@@ -267,6 +267,9 @@ int wxMenu::Number()
   for (found = (menu_item*)top; found; found = found->next)
     n++;
 
+  if (n && topdummy)
+    --n;
+
   return n;
 }
 

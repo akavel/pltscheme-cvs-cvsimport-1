@@ -201,6 +201,11 @@ Bool wxMenuBar::Delete(wxMenu *menu, int pos)
     if (prev)
       prev->next = i->next;
 
+    if (!top) {
+      Append(NULL, NULL); // to have something if associated to frame
+      topdummy = top;
+    }
+
     if (i->contents) {
       delete i->label;
       /* Release menu: */
