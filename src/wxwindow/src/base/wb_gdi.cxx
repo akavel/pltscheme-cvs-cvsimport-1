@@ -502,7 +502,7 @@ wxInitializeStockObjects (void)
   wxFontPool = new XFontPool;
 #endif
 
-  wxNORMAL_FONT = new wxFont (12, wxMODERN, wxNORMAL, wxNORMAL);
+  wxNORMAL_FONT = new wxFont (12, wxSYSTEM, wxNORMAL, wxNORMAL);
   wxSMALL_FONT = new wxFont (10, wxSWISS, wxNORMAL, wxNORMAL);
   wxITALIC_FONT = new wxFont (12, wxROMAN, wxITALIC, wxNORMAL);
   wxSWISS_FONT = new wxFont (12, wxSWISS, wxNORMAL, wxNORMAL);
@@ -1102,6 +1102,8 @@ char *font_defaults[] = {
   "ScreenStdSuffix", "-${Screen$[weight]}-${Screen$[style]}"
     "-normal-*-*-%d-*-*-*-*-*-*",
 
+  "ScreenSystem__",
+  "+-${ScreenSystemBase}${ScreenStdSuffix}",
   "ScreenDefault__",
   "+-${ScreenDefaultBase}${ScreenStdSuffix}",
   "ScreenRoman__",
