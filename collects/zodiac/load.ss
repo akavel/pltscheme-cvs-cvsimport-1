@@ -3,8 +3,8 @@
 (reference-library "macro.ss")
 (reference-library "cores.ss")
 
-(reference "zsigs.ss")
-(reference "sigs.ss")
+(reference-library "zsigs.ss")
+(reference-library "sigs.ss")
 
 ; All this stuff needs to be disappeared.
 
