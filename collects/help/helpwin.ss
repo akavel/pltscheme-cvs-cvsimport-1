@@ -175,7 +175,8 @@
 								      (format "Help Desk is a complete source of ~
                                                                        information about PLT software, including DrScheme, ~
                                                                        MzScheme, and MrEd.~n~n~
-                                                                       Copyright (c) 1995-99 PLT")))]
+                                                                       Content: Copyright (c) 1995-99 PLT~n~
+                                                                       GUI: Copyright (c) 1999 PLT (Matthew Flatt)")))]
 				      [help-menu:after-about
 				       (lambda (menu)
 					 (make-object menu-item% "Help" menu
