@@ -3,7 +3,11 @@
 (unit/sig zodiac:misc^
   (import (mz-pp : mzlib:pretty-print^))
 
-  (define attributes-resetters (make-parameter null))
+  (define attributes-resetters
+    (let ([x null])
+      (case-lambda
+       [() x]
+       [(y) (set! x y)])))
 
   ; This is to get around an ordering problem.  Otherwise uses of
   ; pretty-print show up as #<undefined>, since this pretty-print
