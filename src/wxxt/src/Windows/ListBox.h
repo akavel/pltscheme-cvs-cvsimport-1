@@ -77,6 +77,7 @@ public:
     void  SetFirstItem(char *s);
     void  SetSelection(int c, Bool select = TRUE);
     Bool  SetStringSelection(char *s);
+    int NumberOfVisibleItems();
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget w, XtPointer, XtPointer);

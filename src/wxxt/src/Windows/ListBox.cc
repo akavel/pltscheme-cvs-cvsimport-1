@@ -331,6 +331,19 @@ void wxListBox::SetFirstItem(char *s)
     }
 }
 
+int wxListBox::NumberOfVisibleItems()
+{
+  Dimension row_height;
+  XtVaGetValues(X->handle, XtNrowHeight, &row_height, NULL);
+
+  int cw, ch;
+  GetClientSize(&cw, &ch);
+  
+  ch = ch / row_height;
+
+  return max(1, ch);
+}
+
 //-----------------------------------------------------------------------------
 // change state of wxListBox
 //-----------------------------------------------------------------------------
