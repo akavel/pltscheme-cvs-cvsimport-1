@@ -620,7 +620,7 @@ void wxPostScriptDC::DrawPoint (float x, float y)
   CalcBoundingBox(XSCALEBND(x), YSCALEBND(y));
 }
 
-void wxPostScriptDC::DrawPolygon (int n, wxPoint points[], float xoffset, float yoffset, int WXUNUSED(fillStyle))
+void wxPostScriptDC::DrawPolygon (int n, wxPoint points[], float xoffset, float yoffset, int fillStyle)
 {
   if (!pstream)
     return;
@@ -644,7 +644,7 @@ void wxPostScriptDC::DrawPolygon (int n, wxPoint points[], float xoffset, float 
 	      *pstream << XSCALE(xx) << " " << YSCALE(yy) << " lineto\n";
 	      CalcBoundingBox(XSCALEBND(xx), YSCALEBND(yy));
 	    }
-	  *pstream << "fill\n";
+	  *pstream << ((fillStyle == wxODDEVEN_RULE) ? "eofill\n" : "fill\n");
 	}
 
       if (current_pen && current_pen->GetStyle () != wxTRANSPARENT)
