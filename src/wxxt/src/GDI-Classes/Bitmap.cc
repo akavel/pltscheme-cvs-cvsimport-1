@@ -132,14 +132,13 @@ wxBitmap::wxBitmap(char **data, wxItem *WXUNUSED(anItem)) // anItem used for MOT
     Xbitmap = new wxBitmap_Xintern;
     // what I want to get from XPM
 #ifdef MZ_PRECISE_GC
-    /* FIXME: double-check atomic: */
     {
       XpmAttributes *attr;
       attr = (XpmAttributes *)GC_malloc_atomic(sizeof(XpmAttributes));
       Xbitmap->xpm = attr;
     }
 #else
-    Xbitmap->xpm = new XpmAttributes;
+    Xbitmap->xpm = new WXGC_ATOMIC XpmAttributes;
 #endif
     Xbitmap->xpm->valuemask = XpmReturnInfos | XpmReturnPixels | XpmCloseness;
     Xbitmap->xpm->closeness = 40000;
@@ -329,14 +328,13 @@ Bool wxBitmap::LoadFile(char *fname, long flags)
 
       // what I want to get
 #ifdef MZ_PRECISE_GC
-      /* FIXME: double-check atomic: */
       {
 	XpmAttributes *attr;
 	attr = (XpmAttributes *)GC_malloc_atomic(sizeof(XpmAttributes));
 	Xbitmap->xpm = attr;
       }
 #else
-      Xbitmap->xpm = new XpmAttributes;
+      Xbitmap->xpm = new WXGC_ATOMIC XpmAttributes;
 #endif
       Xbitmap->xpm->valuemask = XpmReturnInfos | XpmReturnPixels | XpmCloseness | XpmDepth;
       Xbitmap->xpm->closeness = 40000;

@@ -377,8 +377,8 @@ void wxHashTable::Clear (void)
 
 
 /* This is a hash table implementation which does not lock the objects
-   from garbage collection.
- */
+   from garbage collection. */
+/* FIXME: doesn't work for precise GC */
 
 typedef struct Bucket {
   long widget;

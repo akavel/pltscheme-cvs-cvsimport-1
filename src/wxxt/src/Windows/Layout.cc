@@ -561,7 +561,7 @@ void wxWindow::Layout(void)
 	  child  = (wxWindow *)node->Data();
 	  if (wxSubType(child->__type, wxTYPE_FRAME))
 	    continue;
-	  child->GetConstraints();
+	  constr = child->GetConstraints();
 	  changes |= constr->SatisfyConstraints(child);
 	}
       } while (changes && --left_iterations);
