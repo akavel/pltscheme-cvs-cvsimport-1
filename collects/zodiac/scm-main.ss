@@ -1680,7 +1680,8 @@
 		    (expand-expr
 		      (structurize-syntax
 			(if (and (or (null? raw-cs)
-				   (string=? (car raw-cs) "mzlib"))
+				   (and (null? (cdr raw-cs))
+				     (string=? (car raw-cs) "mzlib")))
 			      (member raw-f mzscheme-libraries-provided))
 			  `(#%void)
 			  `(#%require-library ,(quote-form-expr f)
@@ -1725,7 +1726,8 @@
 		    (expand-expr
 		      (structurize-syntax
 			(if (and (or (null? raw-cs)
-				   (string=? (car raw-cs) "mzlib"))
+				   (and (null? (cdr raw-cs))
+				     (string=? (car raw-cs) "mzlib")))
 			      (member raw-f mzscheme-libraries-provided))
 			  `(#%void)
 			  `(#%require-relative-library ,(quote-form-expr f)
