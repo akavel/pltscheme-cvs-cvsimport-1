@@ -25,13 +25,10 @@
 #endif
 
 #if USE_IMAGE_LOADING_IN_MSW
-#include "..\..\utils\dib\dib.h"
+# include "..\..\utils\dib\dib.h"
 #endif
 
-#if USE_XPM_IN_MSW
-#define FOR_MSW 1
 #include "xpm34.h"
-#endif
 #include "wximgfil.h"
 #include "wximgxbm.h"
 
