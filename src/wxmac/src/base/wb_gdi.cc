@@ -1456,6 +1456,16 @@ char *wxFontNameDirectory::GetScreenName(int fontid, int weight, int style)
   return item->screen.map[WCoordinate(weight)][SCoordinate(style)];
 }
 
+void wxFontNameDirectory::SetScreenName(int fontid, int weight, int style, char *s)
+{
+  wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
+  
+  if (!item)
+    return NULL;
+
+  item->screen.map[WCoordinate(weight)][SCoordinate(style)] = s;
+}
+
 char *wxFontNameDirectory::GetPostScriptName(int fontid, int weight, int style)
 {
   wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
@@ -1466,6 +1476,16 @@ char *wxFontNameDirectory::GetPostScriptName(int fontid, int weight, int style)
   return item->printing.map[WCoordinate(weight)][SCoordinate(style)];
 }
 
+void wxFontNameDirectory::SetPostScriptName(int fontid, int weight, int style, char *s)
+{
+  wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
+
+  if (!item)
+    return NULL;
+
+  item->printing.map[WCoordinate(weight)][SCoordinate(style)] = s;
+}
+
 char *wxFontNameDirectory::GetAFMName(int fontid, int weight, int style)
 {
   wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
@@ -1474,6 +1494,16 @@ char *wxFontNameDirectory::GetAFMName(int fontid, int weight, int style)
     return NULL;
 
   return item->afm.map[WCoordinate(weight)][SCoordinate(style)];
+}
+
+void wxFontNameDirectory::SetAFMName(int fontid, int weight, int style, char *s)
+{
+  wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
+
+  if (!item)
+    return NULL;
+
+  item->afm.map[WCoordinate(weight)][SCoordinate(style)] = s;
 }
 
 char *wxFontNameDirectory::GetFontName(int fontid)
