@@ -19,6 +19,8 @@ public:
     int   Number(void);
     void  SetSelection(int n);
     void  Enable(Bool enable);
+    void  Append(char *);
+    void  Delete(int);
 };
 
 wxTabChoice::wxTabChoice(wxPanel *panel, wxFunction func, char *label,
@@ -30,6 +32,8 @@ int wxTabChoice::GetSelection(void) { return 0; }
 int wxTabChoice::Number(void) { return 0; }
 void wxTabChoice::SetSelection(int n) { }
 void wxTabChoice::Enable(Bool enable) { }
+void wxTabChoice::Append(char *name) { }
+void wxTabChoice::Delete(int which) { }
 #endif
 
 @HEADER
@@ -46,7 +50,11 @@ void wxTabChoice::Enable(Bool enable) { }
 
 @MACRO cStringList = (SCHEME_LISTP({x}) && (XC_SCHEME_NULLP({x}) || SCHEME_STRINGP(SCHEME_CAR({x}))))
 
-@CREATOR (wxPanel!,wxFunction/bCallback/ubCallback/cCallback//spCallback/nopush,nstring,-int=0,string[]=NULL/bList/ubList/cStringList///push); : : ubCallbackSetup/glueListSet[string.3.4.3.METHODNAME("tab-group","initialization")]/glueCleanup[4]/ubCallbackCreatorFinish
+@BEGINSYMBOLS tabStyle > > PRED BUNDLE
+@SYM "inactive" : wxINVISIBLE
+@ENDSYMBOLS
+
+@CREATOR (wxPanel!,wxFunction/bCallback/ubCallback/cCallback//spCallback/nopush,nstring,-int=0,string[]=NULL/bList/ubList/cStringList///push,SYM[tabStyle]=0); : : ubCallbackSetup/glueListSet[string.3.4.3.METHODNAME("tab-group","initialization")]/glueCleanup[4]/ubCallbackCreatorFinish
 
 @INCLUDE wxs_item.xci
 
