@@ -34,15 +34,3 @@ void wxBell(void)
 {
     XBell(wxAPP_DISPLAY, 100);
 }
-
-long wxGetFreeMemory(void)
-{
-    return -1; // cannot determine amount (UNIX)
-}
-
-int wxGetOsVersion(int *majorVsn, int *minorVsn)
-{
-    if (majorVsn)  *majorVsn = X_PROTOCOL;
-    if (minorVsn)  *minorVsn = XlibSpecificationRelease;
-    return wxXT_X;
-}

@@ -89,8 +89,6 @@ void wxError(const char *msg, const char *title="wxWindows Error");
 Bool wxExecute(char **argv, Bool Async = FALSE);
 Bool wxExecute(const char *command, Bool Async = FALSE);
 void wxFatalError(const char *msg, const char *title="wxWindows Fatal Error");
-long wxGetFreeMemory(void);
-int wxGetOsVersion(int *majorVsn, int *minorVsn);
 char *wxNow(void);
 
 // read/write resources
