@@ -49,7 +49,7 @@ wxObject::wxObject(void)
   wx_object_count++;
 }
 
-wxObject::wxObject(Bool cleanup) : gc_cleanup((int)cleanup)
+wxObject::wxObject(Bool cleanup) : gc((int)cleanup)
 {
   __type = wxTYPE_ANY;
 
