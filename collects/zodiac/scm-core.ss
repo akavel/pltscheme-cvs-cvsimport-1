@@ -258,12 +258,15 @@
   (define (as-nested attributes f)
     (let ([top? (get-top-level-status attributes)]
 	  [internal? (get-internal-define-status attributes)])
-      (set-top-level-status attributes #f)
-      (set-internal-define-status attributes #f)
-      (begin0
-       (f)
-       (set-top-level-status attributes top?)
-       (set-internal-define-status attributes internal?))))
+      (if (or top? internal?)
+	  (begin
+	    (set-top-level-status attributes #f)
+	    (set-internal-define-status attributes #f)
+	    (begin0
+	     (f)
+	     (set-top-level-status attributes top?)
+	     (set-internal-define-status attributes internal?)))
+	  (f))))
 
   ; --------------------------------------------------------------------
 
