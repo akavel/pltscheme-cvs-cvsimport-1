@@ -537,10 +537,12 @@
                       (let ([c  char]
                             [num  (text->number l)])
                         (get-char)
-                        (if #t
-			  ; Used to have
-			  ; (index-integer? num)
-			  ; here, but this is gone now.
+			; The vector-constant-size test is now to let mzscheme
+			; try the malloc and see if it succeeds or raises exn.
+			(if (with-handlers
+			      (((lambda (x) #t) (lambda (x) #f)))
+			      (make-vector num 0)
+                              #t)
                             (z:token  size-vec-tag  (list  num  c)
                                       start-loc  (prev-loc))
                             (z:error  "vector constant size too large")))]
