@@ -496,7 +496,7 @@ wxMenuItem *wxbMenuBar::FindItemForId (int Id, wxMenu ** itemMenu)
 
   wxMenuItem *item = NULL;
   for (int i = 0; i < n; i++)
-    if (item = menus[i]->FindItemForId (Id, itemMenu))
+    if ((item = menus[i]->FindItemForId (Id, itemMenu)))
       return item;
   return NULL;
 }
@@ -966,7 +966,7 @@ wxbListBox::wxbListBox
 		no_items (N),
 		selected (-1)
 {
-	__type == wxTYPE_LIST_BOX;
+	__type = wxTYPE_LIST_BOX;
 }
 
 // ------------- Slider ---------------
@@ -985,7 +985,7 @@ wxbSlider::wxbSlider
 	) : 
 		wxItem (panel, x, y, width, -1, style, windowName)
 {
-	__type == wxTYPE_SLIDER;
+	__type = wxTYPE_SLIDER;
 }
 
 //-----------------------------------------------------------------------------
@@ -1000,7 +1000,7 @@ wxbMenu::wxbMenu // Constructor (given Title)
 		top_level_menu (NULL), // Kludge: will be set in wxMenu constructor
 		menu_bar (NULL)
 {
-	__type == wxTYPE_MENU;
+	__type = wxTYPE_MENU;
 }
 
 //-----------------------------------------------------------------------------
@@ -1014,7 +1014,7 @@ wxbMenuBar::wxbMenuBar // Constructor (given objectType)
 		titles (NULL),
 		menu_bar_frame (NULL)
 {
-	__type == wxTYPE_MENU_BAR;
+	__type = wxTYPE_MENU_BAR;
 }
 
 //-----------------------------------------------------------------------------
@@ -1031,7 +1031,7 @@ wxbMenuBar::wxbMenuBar // Constructor (given Menus)
 		titles (Titles),
 		menu_bar_frame (NULL)
 {
-	__type == wxTYPE_MENU_BAR;
+	__type = wxTYPE_MENU_BAR;
 	for (int i = 0; i < n; i++)
 	{
 		menus[i]->menu_bar = (wxMenuBar*) this;
