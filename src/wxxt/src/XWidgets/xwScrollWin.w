@@ -246,6 +246,7 @@ The |scrollResponse| resource may not be changed.
 	$scrollResponse = $old$scrollResponse;
 	XtWarning("scrollResponse resource may only be queried, not set");
     }
+
     return False;
 }
 

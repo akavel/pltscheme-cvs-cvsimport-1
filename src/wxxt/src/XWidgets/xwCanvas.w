@@ -48,5 +48,6 @@ widget.
 	    XChangeWindowAttributes(XtDisplay($), XtWindow($), mask, &attributes);
 	}
     }
+
     return FALSE; /* there is no need to redraw */
 }

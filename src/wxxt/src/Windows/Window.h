@@ -190,6 +190,7 @@ protected:
     static void WindowEventHandler(Widget w,   wxWindow **win,
 				   XEvent *ev, Boolean *continue_to_dispatch_return);
     static void ScrollEventHandler(Widget w, wxWindow **win, XtPointer p_XfwfScrollInfo);
+    void RegisterAll(Widget ww);
 #   endif
 protected:
     friend void wxXSetBusyCursor(wxWindow *, wxCursor *); /* MATTHEW */

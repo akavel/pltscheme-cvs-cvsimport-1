@@ -385,6 +385,7 @@ needs to be redrawn.
 	$scrollResponse = $old$scrollResponse;
 	XtWarning("scrollResponse resource may only be queried, not set");
     }
+
     return need_redisplay;
 }
 

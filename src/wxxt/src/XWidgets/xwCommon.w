@@ -552,7 +552,7 @@ resources are set and none of the children wants the focus.
     int i;
     Widget child;
 
-    if (! XtIsRealized($) || ! $sensitive || ! $visible || ! $traversalOn)
+    if (! XtIsRealized($) || ! $sensitive || ! $ancestor_sensitive || ! $visible || ! $traversalOn)
         return False;
     else {
         for (i = 0; i < $num_children; i++) {

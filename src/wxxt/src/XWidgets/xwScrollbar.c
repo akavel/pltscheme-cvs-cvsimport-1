@@ -3,11 +3,11 @@
  */
 #include <X11/IntrinsicP.h>
 #include <X11/StringDefs.h>
-#line 508 "XWidgets/xwScrollbar.w"
-#include <xwArrow.h>
 #line 509 "XWidgets/xwScrollbar.w"
-#include <xwSlider2.h>
+#include <xwArrow.h>
 #line 510 "XWidgets/xwScrollbar.w"
+#include <xwSlider2.h>
+#line 511 "XWidgets/xwScrollbar.w"
 #include <stdio.h>
 #include <./xwScrollbarP.h>
 #line 445 "XWidgets/xwScrollbar.w"
@@ -318,6 +318,7 @@ static void Scroll(self,event,params,num_params)Widget self;XEvent*event;String*
 	break;
     default: break;				/* Not understood */
     }
+
     XtCallCallbackList(self, ((XfwfScrollbarWidget)self)->xfwfScrollbar.scrollCallback, &info);
 }
 
@@ -543,7 +544,7 @@ void XfwfSetScrollbar(self,pos,size)Widget self;double  pos;double  size;
     if (! XtIsSubclass(self, xfwfScrollbarWidgetClass))
 	XtError("XfwfSetScrollbar called with incorrect widget type");
     if (pos < 0.0 || pos > 1.0 || size < 0.0 || size > 1.0)
-	XtError("XfwfSetScrollbar called with incorrect arguments: %lf %lf", pos, size);
+	XtError("XfwfSetScrollbar called with incorrect arguments");
     if (((XfwfScrollbarWidget)self)->xfwfScrollbar.vertical) {
 	XfwfResizeThumb(((XfwfScrollbarWidget)self)->xfwfScrollbar.slider, 1.0, size);
 	XfwfMoveThumb(((XfwfScrollbarWidget)self)->xfwfScrollbar.slider, 0.0, pos);
