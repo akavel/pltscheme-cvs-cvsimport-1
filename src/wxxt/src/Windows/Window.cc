@@ -1518,8 +1518,10 @@ void wxWindow::WindowEventHandler(Widget w,
       if (win->misc_flags & LAST_WAS_ALT_DOWN_FLAG)
 	win->misc_flags -= LAST_WAS_ALT_DOWN_FLAG;
       {
-        wxMouseEvent *wxevent = new wxMouseEvent;
+        wxMouseEvent *wxevent;
 
+	wxevent = new wxMouseEvent;
+	
 	switch (xev->xbutton.button) {
 	case Button1: wxevent->eventType = wxEVENT_TYPE_LEFT;   break;
 	case Button2: wxevent->eventType = wxEVENT_TYPE_MIDDLE; break;
