@@ -157,6 +157,21 @@
     (create-vocabulary 'scheme-vocabulary
 		       common-vocabulary))
 
+  (define mred-vocabulary #f)
+  (define (get-mred-vocabulary)
+    (or mred-vocabulary
+	(let ([v (create-vocabulary 'mred-vocabulary
+				    scheme-vocabulary)]
+	      [e (with-input-from-file
+		     (build-path (collection-path "mred") "sig.ss")
+		   read)]
+	      [loc (make-location 0 0 0 "inlined")])
+	  (scheme-expand (structurize-syntax e (make-zodiac #f loc loc))
+			 'previous
+			 v)
+	  (set! mred-vocabulary v)
+	  v)))
+
   (define ensure-not-macro/micro
     (lambda (expr env vocab)
       (let ((r (resolve expr env vocab)))

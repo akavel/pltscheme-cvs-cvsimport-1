@@ -58,6 +58,7 @@
     advanced-vocabulary
     full-vocabulary
     scheme-vocabulary
+    get-mred-vocabulary
     set-top-level-status get-top-level-status at-top-level?
     set-internal-define-status get-internal-define-status at-internal-define?
     as-nested
