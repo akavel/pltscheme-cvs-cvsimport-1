@@ -124,7 +124,7 @@
 
   (extend-parsed->raw letrec*-values-form?
     (lambda (expr p->r)
-      `(letrec*-values 
+      `(letrec-values 
 	 ,(map (lambda (vars val)
 		 (list (map p->r vars) (p->r val)))
 	    (letrec*-values-form-vars expr) (letrec*-values-form-vals expr))
