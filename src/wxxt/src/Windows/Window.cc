@@ -142,7 +142,10 @@ wxWindow *wxWindow::GetGrandParent(void)
 
 void wxWindow::AddChild(wxWindow *child)
 {
-    children->Append(child);
+  /* Propagate busy cursor flag */
+  child->user_edit_mode = user_edit_mode;
+
+  children->Append(child);
 }
 
 void wxWindow::DestroyChildren(void)
@@ -470,7 +473,7 @@ wxCursor *wxWindow::SetCursor(wxCursor *new_cursor)
   
   if (!new_cursor || (new_cursor && new_cursor->Ok())) {
     cursor = new_cursor;
-    if (!wxIsBusy()) {
+    if (!user_edit_mode) { /* really indicates busy_cursor */
       XtVaSetValues(X->handle, XtNcursor, new_cursor ? GETCURSOR(new_cursor) : None, NULL);
       if (__type == wxTYPE_LIST_BOX) {
 	/* Yuck. Set cursor for total client area of listbox */
