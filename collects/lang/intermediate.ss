@@ -1,7 +1,6 @@
 
 (module intermediate mzscheme
-  (require "private/teach.ss"
-	   (lib "docprovide.ss" "syntax"))
+  (require "private/teach.ss")
 
   ;; syntax:
   (provide (rename beginner-define define)
