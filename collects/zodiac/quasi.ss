@@ -42,8 +42,6 @@
 		(qq-normalize
 		  (let qq ((x template)
 			    (level 0))
-		    (pretty-print (sexp->raw x))
-		    (newline)
 		    (let ((qq-list (lambda (x level)
 				     (let* ((old-first (syntax-car x))
 					     (old-rest (syntax-cdr x))
@@ -89,7 +87,7 @@
 					x
 					(list '#%cons
 					  (list '#%cons
-					    (list '#%quote '#%unquote-splicing)
+					    (list '#%quote 'unquote-splicing)
 					    (list '#%cons
 					      (qq-normalize q-body body)
 					      '()))
