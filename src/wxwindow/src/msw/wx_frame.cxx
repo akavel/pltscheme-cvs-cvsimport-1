@@ -356,11 +356,9 @@ Bool wxFrame::Show(Bool show)
     wxModelessWindows.DeleteObject(this);
   }
 
-  if (window_parent) {
+  wxTopLevelWindows(this)->Show(this, show);
+  if (window_parent)
     window_parent->GetChildren()->Show(this, show);
-  } else {
-    wxTopLevelWindows(this)->Show(this, show);
-  }
 
   if (!show) {
     // Try to highlight the correct window (the parent)

@@ -873,11 +873,10 @@ void wxDC::DrawText(const char *text, float x, float y, Bool use16bit)
     old_background = SetBkColor(dc, current_text_background.pixel);
   }
   
-  if (current_bk_mode == wxTRANSPARENT)
-    SetBkMode(dc, TRANSPARENT);
-  else
-    SetBkMode(dc, OPAQUE);
-
+  SetBkMode(dc, ((current_bk_mode == wxTRANSPARENT) 
+		 ? TRANSPARENT
+		 : OPAQUE));
+  
   SetRop(dc, wxSOLID);
 
   (void)TextOut(dc, XLOG2DEV(xx1), YLOG2DEV(yy1), text, strlen(text));
@@ -921,17 +920,6 @@ void wxDC::SetBackground(wxColour *c)
 void wxDC::SetBackgroundMode(int mode)
 {
   current_bk_mode = mode;
-
-  HDC dc = ThisDC();
-
-  if (!dc) return;
-
-  if (current_bk_mode == wxTRANSPARENT)
-    ::SetBkMode(dc, TRANSPARENT);
-  else
-    ::SetBkMode(dc, OPAQUE);
-
-  DoneDC(dc);
 }
 
 void wxDC::SetRop(HDC dc, int style)

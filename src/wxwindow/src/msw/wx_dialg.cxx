@@ -369,9 +369,8 @@ Bool wxDialogBox::Show(Bool show)
     } else
       wxModelessWindows.DeleteObject(this);
   }
-  if (!window_parent) {
-    wxTopLevelWindows(this)->Show(this, show);
-  } else
+  wxTopLevelWindows(this)->Show(this, show);
+  if (window_parent)
     window_parent->GetChildren()->Show(this, show);
 
   if (modal)

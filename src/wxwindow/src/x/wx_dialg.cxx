@@ -9,10 +9,13 @@
  */
 
 // $Log$
-// Revision 1.11  1998/11/17 21:40:45  mflatt
+// Revision 1.12  1999/02/23 18:27:46  mflatt
 // .
 //
-// Revision 1.11  1998-11-17 21:40:45  mflatt
+// Revision 1.12  1999-02-23 18:27:46  mflatt
+// .
+//
+// Revision 1.11  1998/11/17 21:40:45  mflatt
 // .
 //
 // Revision 1.10  1998/10/16 18:19:41  mflatt
@@ -719,12 +722,9 @@ Bool wxDialogBox::Show(Bool show)
 
   SetShown(show);
 
-#ifdef WXGARBAGE_COLLECTION_ON
-  if (!window_parent)
-    wxTopLevelWindows(this)->Show(this, show);
-  else
+  wxTopLevelWindows(this)->Show(this, show);
+  if (window_parent)
     window_parent->GetChildren()->Show(this, show);
-#endif
 
   if (show) {
     Widget top;

@@ -667,20 +667,12 @@ Bool wxFrame::Show(Bool show)
   SetShown(show);
 
   visibleStatus = show; /* MATTHEW: show-&-hide fix */
-#if WXGARBAGE_COLLECTION_ON
-  if (!window_parent) {
-# if 0
-    if (show) {
-      if (!wxTopLevelWindows(this)->Member(this))
-	wxTopLevelWindows(this)->Append(this);
-    } else 
-      wxTopLevelWindows(this)->DeleteObject(this);
-# else
-    wxTopLevelWindows(this)->Show(this, show);
-# endif
-  } else
+
+
+  wxTopLevelWindows(this)->Show(this, show);
+  if (window_parent)
     window_parent->GetChildren()->Show(this, show);
-#endif
+
   if (show) {
     XtMapWidget(frameShell);
     XRaiseWindow(XtDisplay(frameShell), XtWindow(frameShell));
