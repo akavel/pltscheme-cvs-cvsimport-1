@@ -130,15 +130,20 @@ Bool wxPanel::Create(wxWindow *parent, int x, int y, int width, int height, long
 
   is_retained = ((style & wxRETAINED) == wxRETAINED);
 
-  if (wxSubType(parent->__type, wxTYPE_PANEL))
-  {
+  if (wxSubType(parent->__type, wxTYPE_PANEL)) {
     wxPanel *parentPanel = (wxPanel *)parent;
-    parentPanel->GetValidPosition(&x,&y) ;
-    labelFont = parentPanel->labelFont ;
-    buttonFont = parentPanel->buttonFont ;
-    backColour = parentPanel->backColour ;
-    labelColour = parentPanel->labelColour ;
-    buttonColour = parentPanel->buttonColour ;
+    parentPanel->GetValidPosition(&x,&y);
+    labelFont = parentPanel->labelFont;
+    buttonFont = parentPanel->buttonFont;
+    backColour = parentPanel->backColour;
+    labelColour = parentPanel->labelColour;
+    buttonColour = parentPanel->buttonColour;
+  } else {
+    labelFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
+    buttonFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
+    backColour = NULL;
+    labelColour = NULL;
+    buttonColour = NULL;
   }
 
   cursor_x = PANEL_LEFT_MARGIN;
@@ -159,12 +164,6 @@ Bool wxPanel::Create(wxWindow *parent, int x, int y, int width, int height, long
   has_child = FALSE ;
   last_created = 0 ;
   tempPS = 0;
-
-  labelFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
-  buttonFont = wxTheFontList->FindOrCreateFont(8, wxSYSTEM, wxDEFAULT, wxDEFAULT, FALSE);
-  backColour = NULL ;
-  labelColour = NULL ;
-  buttonColour = NULL ;
 
   window_parent = parent;
 
@@ -426,8 +425,8 @@ void wxPanel::Centre(int direction)
 }
 
 void wxPanel::ChangeToGray(Bool gray)
-{
-  wxWindow::ChangeToGray(gray);
+{
+  wxWindow::ChangeToGray(gray);
   InternalGrayChildren(gray);
 }
 
