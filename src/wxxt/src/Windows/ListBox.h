@@ -76,6 +76,7 @@ public:
     void  SetFirstItem(int n);
     void  SetFirstItem(char *s);
     void  SetSelection(int c, Bool select = TRUE);
+    void  SetOneSelection(int c);
     Bool  SetStringSelection(char *s);
     int   GetFirstItem();
     int   NumberOfVisibleItems();

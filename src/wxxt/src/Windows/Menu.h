@@ -88,7 +88,7 @@ public:
     char  *GetClientData(void) { return client_data; }
     void  SetClientData(char *data) { client_data = data; }
     // search for item by label
-    int   FindItem(char *label);
+    int   FindItem(char *label, int strip = 1);
 private:
     // allow callback and menubar access to private data
     friend class wxMenuBar;

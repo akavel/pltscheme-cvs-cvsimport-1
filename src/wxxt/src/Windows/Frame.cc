@@ -280,6 +280,8 @@ Bool wxFrame::Iconized(void)
 
   XWindowAttributes wa;
 
+  XSync(XtDisplay(X->frame), FALSE);
+
   XGetWindowAttributes(XtDisplay(X->frame), XtWindow(X->frame), &wa);
 
   return (wa.map_state == IsUnmapped);

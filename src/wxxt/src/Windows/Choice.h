@@ -69,6 +69,7 @@ public:
     void Command(wxCommandEvent &event);
 
     void OnEvent(wxMouseEvent&);
+    void OnChar(wxKeyEvent&);
 
 private:
 #   ifdef Have_Xt_Types
