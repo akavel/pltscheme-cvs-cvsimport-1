@@ -383,9 +383,7 @@ Bool wxDialogBox::Show(Bool show)
 
       wxPushModalWindow(this, this);
       
-      wxList *disabled_windows;
       wxChildNode *cnode;
-      wxNode *node;
 
       disabled_windows = new wxList();
       
@@ -399,18 +397,22 @@ Bool wxDialogBox::Show(Bool show)
       
       wxDispatchEventsUntil(CheckDialogShowing, (void *)this);
 
+    } else {
       wxPopModalWindow(this, this);
+
+      wxNode *node;
 
       for (node = disabled_windows->First(); node; node = node->Next()) {
 	wxWindow *w = (wxWindow *)node->Data();
 	w->InternalEnable(TRUE);
       } 
+      disabled_windows = NULL;
 
       ShowWindow(dialog->handle, SW_HIDE);
 
       if (GetParent())
 	wxwmBringWindowToTop(GetParent()->GetHWND());
-    } else {
+
       modal_showing = FALSE;
     }
   } else {
