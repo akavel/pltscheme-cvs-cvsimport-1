@@ -1,3 +1,3 @@
 (module info (lib "infotab.ss" "setup")
-  (define name "3D Checkers")
+  (define name "Checkers")
   (define game "checkers.ss"))
