@@ -252,7 +252,8 @@
 		      (val (pat:pexpand 'val p-env kwd)))
 		(for-each (lambda (var)
 			    (let ((r (resolve var env vocab)))
-			      (unless (top-level-resolution? r)
+			      (when (or (micro-resolution? r)
+				      (macro-resolution? r))
 				(static-error var
 				  "Cannot bind keyword ~s"
 				  (z:symbol-orig-name var)))))
