@@ -33,7 +33,7 @@
                (define old-inspector (current-inspector))
                (current-inspector (make-inspector))
                defns ...
-               (current-inspector old-inspector)))])))
+               (current-inspector (#%top . old-inspector))))])))
 
   (provide with-public-inspector)
 
