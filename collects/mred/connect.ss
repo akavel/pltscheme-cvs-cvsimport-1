@@ -4,7 +4,7 @@
 
   (unit/sig mred:connections^
 
-    (import mred:wx^
+    (import [wx : wx^]
 	    [mred:constants : mred:constants^]
 	    [mzlib:function : mzlib:function^]
             [mred : mred:testable-window^])

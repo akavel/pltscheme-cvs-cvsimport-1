@@ -7,11 +7,10 @@
 
 (unit/sig mred:test:primitives^
   
-  (import 
-    mred:wx^
-    [mred      : mred:testable-window^]
-    [mred      : mred:keymap^]
-    [mred:test : mred:test:run^])
+  (import [wx : wx^]
+	  [mred      : mred:testable-window^]
+	  [mred      : mred:keymap^]
+	  [mred:test : mred:test:run^])
 
   (define arg-error error)  ;; naive error handling (for now).
   (define run-error error)

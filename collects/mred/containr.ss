@@ -35,7 +35,7 @@
 
   (compound-unit/sig
 
-    (import [wx : mred:wx^]
+    (import [wx : wx^]
 	    [constants : mred:constants^]
             [testable  : mred:testable-window^]
             [connections : mred:connections^]

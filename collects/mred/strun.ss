@@ -22,7 +22,7 @@
 
 (unit/sig mred:test:run^
   
-  (import mred:wx^)
+  (import [wx : wx^])
   
   (define initial-run-interval 100)  ;; milliseconds
   

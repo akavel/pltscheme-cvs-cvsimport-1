@@ -12,7 +12,7 @@
 ;;
 
 (unit/sig mred:testable-window^
-  (import mred:wx^)
+  (import [wx : wx^])
 
   (define inactive-frame-value   #f)
   (define unfocused-window-value #f)

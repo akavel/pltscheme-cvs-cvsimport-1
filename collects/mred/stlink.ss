@@ -10,7 +10,7 @@
 (compound-unit/sig
 
   (import 
-    [wx       : mred:wx^]
+    [wx       : wx^]
     [testable : mred:testable-window^]
     [keymap   : mred:keymap^])
 

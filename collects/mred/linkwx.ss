@@ -3,7 +3,7 @@
 ;;
 
 (compound-unit/sig (import [core : mzlib:core^]
-			   [wx : mred:wx^])
+			   [wx : wx^])
   (link [minimal : mred:minimal^ ((reference-library-unit/sig "minimal.ss" "mred")
 				  (core function@)
 				  wx)]
