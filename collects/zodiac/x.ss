@@ -300,6 +300,8 @@
 
   (define make-new-environment make-hash-table)
 
+  (define make-empty-environment make-new-environment)
+
   (define resolve
     (lambda (id env vocab)
       (let ((name (z:read-object id)) (marks (z:symbol-marks id)))
