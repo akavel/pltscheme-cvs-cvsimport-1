@@ -42,6 +42,7 @@
     introduce-identifier introduce-fresh-identifier introduce-bound-id
     create-vocabulary append-vocabulary
     add-on-demand-form find-on-demand-form 
+    set-subexpr-vocab!
     (struct vocabulary-record
       (name this rest symbol-error literal-error list-error ilist-error))))
 
