@@ -2026,9 +2026,7 @@ static Scheme_Object *do_module(Scheme_Object *form, Scheme_Comp_Env *env,
   m->modname = SCHEME_STX_VAL(nm); /* must set before calling new_module_env */
   if (SAME_OBJ(m->modname, kernel_symbol)) {
     /* Too confusing. Give it a different name while compiling. */
-    Scheme_Object *k2;
-    k2 = scheme_make_symbol("#%kernel");
-    m->modname = k2;
+    m->modname = scheme_make_symbol("#%kernel");
     restore_confusing_name = 1;
   }
 
