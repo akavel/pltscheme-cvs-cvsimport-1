@@ -162,7 +162,8 @@ GC's need to be created.
 @proc _expose
 {
     Position x, y;
-    Dimension width, height, a, a2, a3;
+    int  width, height;
+    Dimension a, a2, a3;
 
     assert($direction == XfwfTop || $direction == XfwfLeft
 	   || $direction == XfwfRight || $direction == XfwfBottom);
@@ -174,6 +175,8 @@ GC's need to be created.
 	XSetRegion(XtDisplay($), $arrowdarkgc, region);
     }
     $compute_inside($, &x, &y, &width, &height);
+    width = max(1, width);
+    height = max(1, height);
     a = $arrowShadow;
     switch ($direction) {
     case XfwfTop:

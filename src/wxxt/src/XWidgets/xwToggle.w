@@ -186,7 +186,7 @@ button and then possibly adds a tick mark.
 @proc _expose
 {
     Position x, y;
-    Dimension w, h;
+    int w, h;
 
     if (! XtIsRealized($)) return;
     #_expose($, event, region);

@@ -210,7 +210,7 @@ the label to it.
 
 @proc _expose
 {
-    Dimension w, h;
+    int w, h;
     Position x, y;
 
     if (! XtIsRealized($)) return;

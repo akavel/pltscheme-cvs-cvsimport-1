@@ -63,10 +63,10 @@ call the |compute_inside| method, if available.
 @proc XfwfCallComputeInside($,Position*x, Position*y, int*w, int*h)
 {
     if (XtIsSubclass($, xfwfCommonWidgetClass) && $compute_inside) {
-	Dimension ww, hh;
+	int ww, hh;
         $compute_inside($, x, y, &ww, &hh);
-	*w = (short)ww;
-	*h = (short)hh;
+	*w = max(0, ww);
+	*h = max(0, hh);
     } else 
         XtWarning
             ("XfwfCallComputeInside only applies to subclasses of Common");
@@ -361,7 +361,7 @@ their drawable area, in preference to computing it from |$width| and
 |$height|. Subclasses, such as the Frame widget, redefine the method
 if they add more border material.
 
-@proc compute_inside($, Position *x, Position *y, Dimension *w, Dimension *h)
+@proc compute_inside($, Position *x, Position *y, int *w, int *h)
 {
     *x = $highlightThickness;
     *y = $highlightThickness;
