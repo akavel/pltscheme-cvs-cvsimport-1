@@ -158,11 +158,6 @@
 	  (else
 	    (internal-error expr "Invalid resolution in core: ~s" r))))))
 
-;	  (if (and (language<=? 'structured)
-;		(null? (cdr contents)))
-;	    (static-error expr
-;	      "Invalid procedure application or special form")
-
   (add-list-micro scheme-vocabulary
     (lambda (expr env attributes vocab)
       (let ((contents (expose-list expr)))
@@ -178,6 +173,11 @@
 		      (lambda (e)
 			(expand-expr e env attributes vocab))
 		      contents)))
+	      (when (and (language<=? 'structured)
+		      (null? (cdr bodies))
+		      (not (top-level-varref? (car bodies))))
+		(static-error (car bodies)
+		  "First term after parenthesis is illegal"))
 	      (set-top-level-status attributes top-level?)
 	      (create-app (car bodies) (cdr bodies) expr)))))))
 
