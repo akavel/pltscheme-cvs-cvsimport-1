@@ -7,7 +7,7 @@
 
 (reference-library "sparams.ss" "backward")
 
-(reference "load.ss")
+(reference-relative-library "load.ss")
 
 (define zodiac:default-interface@
   (unit/sig zodiac:interface^
