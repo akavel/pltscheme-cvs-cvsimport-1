@@ -383,6 +383,7 @@ to configure the children.
 	hswidth = (int)selfw - 2 * $spacing;
     XtVaGetValues($vscroll, XtNhighlightThickness, &help, NULL);
     if (help > $spacing) help = 0;
+    help += $frameWidth;
     XtConfigureWidget($vscroll,
 		      selfx + selfw - $spacing - $scrollbarWidth,
 		      selfy + $spacing - help,
@@ -391,6 +392,7 @@ to configure the children.
 		      0);
     XtVaGetValues($hscroll, XtNhighlightThickness, &help, NULL);
     if (help > $spacing) help = 0;
+    help += $frameWidth;
     XtConfigureWidget($hscroll,
 		      $spacing - help,
 		      selfy + selfh - $spacing - $scrollbarWidth,
