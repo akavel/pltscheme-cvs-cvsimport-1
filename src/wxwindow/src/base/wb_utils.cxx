@@ -33,11 +33,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#if !defined(wx_mac) || defined(_powerc)
-#ifndef __WATCOMC__
-#include <errno.h>
-#endif
-#endif
 #include <time.h>
 #ifndef wx_mac
 #include <sys/types.h>
@@ -314,26 +309,6 @@ wxPathOnly (char *path)
     }
 
   return NULL;
-}
-
-// Utility for converting delimiters in DOS filenames to UNIX style
-// and back again - or we get nasty problems with delimiters.
-// Also, convert to lower case, since case is significant in UNIX.
-
-void 
-wxDos2UnixFilename (char *s)
-{
-  if (s)
-    while (*s)
-      {
-	if (*s == '\\')
-	  *s = '/';
-#ifdef wx_msw
-	else
-	  *s = _wxToLower (*s);	// Case INDEPENDENT
-#endif
-	s++;
-      }
 }
 
 // Return the current date/time

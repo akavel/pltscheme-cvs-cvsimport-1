@@ -748,31 +748,3 @@ Bool wxIsBusy(void)
   return (wxGetBusyState() > 0);
 }    
 
-// Hack for MS-DOS
-char *wxGetUserHome (const char *user)
-{
-  char *home;
-  if (user && *user) {
-    char tmp[64];
-    if (wxGetUserId(tmp, sizeof(tmp)/sizeof(char))) {
-      // Guests belong in the temp dir
-      if (stricmp(tmp, "annonymous") == 0) {
-	if ((home = getenv("TMP")) != NULL ||
-	    (home = getenv("TMPDIR")) != NULL ||
-	    (home = getenv("TEMP")) != NULL)
-	  return *home ? home : "\\";
-      }
-      if (stricmp(tmp, user) == 0)
-	user = NULL;
-    }
-  }
-  if (user == NULL || *user == '\0')
-    if ((home = getenv("HOME")) != NULL)
-    {
-      strcpy(wxBuffer, home);
-      Unix2DosFilename(wxBuffer);
-      return wxBuffer;
-    }
-  return NULL; // No home known!
-}
-
