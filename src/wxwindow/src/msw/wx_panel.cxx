@@ -210,9 +210,9 @@ void wxPanel::SetSize(int x, int y, int w, int h, int WXUNUSED(sizeFlags))
   int currentW,currentH;
   GetSize(&currentW, &currentH);
   if (w == -1)
-    w = currentW ;
+    w = currentW;
   if (h == -1)
-    h = currentH ;
+    h = currentH;
 
   wxWnd *wnd = (wxWnd *)handle;
   if (wnd)
