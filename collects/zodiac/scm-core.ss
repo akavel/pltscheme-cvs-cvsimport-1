@@ -131,33 +131,41 @@
 			 'scheme-vocabulary)
       #f))
 
+  (define ensure-not-macro/micro
+    (lambda (expr env vocab)
+      (let ((r (resolve expr env vocab)))
+	(if (or (macro-resolution? r) (micro-resolution? r))
+	  (static-error expr
+	    "Invalid use of keyword ~s" (z:symbol-orig-name expr))
+	  r))))
+
+  (define process-top-level-resolution
+    (lambda (expr env attributes vocab)
+      (let ((id (z:read-object expr)))
+	(let ((top-level-space (get-attribute attributes 'top-levels)))
+	  (if top-level-space
+	    (let ((ref
+		    (create-top-level-varref/bind
+		      id
+		      (hash-table-get top-level-space id
+			(lambda ()
+			  (let ((b (box '())))
+			    (hash-table-put! top-level-space id b)
+			    b)))
+		      expr)))
+	      (let ((b (top-level-varref/bind-slot ref)))
+		(set-box! b (cons ref (unbox b))))
+	      ref)
+	    (create-top-level-varref id expr))))))      
+
   (add-sym-micro scheme-vocabulary
     (lambda (expr env attributes vocab)
-      (let ((r (resolve expr env vocab)))
+      (let ((r (ensure-not-macro/micro expr env vocab)))
 	(cond
-	  ((or (macro-resolution? r) (micro-resolution? r))
-	    (static-error expr
-	      "Invalid use of keyword ~s" (z:symbol-orig-name expr)))
 	  ((lexical-binding? r)
 	    (create-lexical-varref r expr))
 	  ((top-level-resolution? r)
-	    (let ((id (z:read-object expr)))
-	      (let ((top-level-space (get-attribute attributes 'top-levels)))
-		(if top-level-space
-		  (begin
-		    (let ((ref
-			    (create-top-level-varref/bind
-			      id
-			      (hash-table-get top-level-space id
-				(lambda ()
-				  (let ((b (box '())))
-				    (hash-table-put! top-level-space id b)
-				    b)))
-			      expr)))
-		      (let ((b (top-level-varref/bind-slot ref)))
-			(set-box! b (cons ref (unbox b))))
-		      ref))
-		  (create-top-level-varref id expr)))))
+	    (process-top-level-resolution expr env attributes vocab))
 	  (else
 	    (internal-error expr "Invalid resolution in core: ~s" r))))))
 

@@ -9,8 +9,8 @@
   (define identity (lambda (x) x))
 
   (define structurize-syntax
-    (let ((origin (make-origin 'non-source 'never-mind)))
-      (opt-lambda (expr source (marks '()) (table #f))
+    (let ((default-origin (make-origin 'non-source 'never-mind)))
+      (opt-lambda (expr source (marks '()) (table #f) (origin default-origin))
 	(let ((start (zodiac-start source))
 	       (finish (zodiac-finish source)))
 	  (letrec

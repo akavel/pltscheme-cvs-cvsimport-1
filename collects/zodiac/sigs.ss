@@ -94,6 +94,7 @@
     scheme-expand scheme-expand-program
     set-top-level-status get-top-level-status at-top-level?
     mzscheme-libraries-provided
+    process-top-level-resolution ensure-not-macro/micro
     scheme-vocabulary
     (struct parsed (back))
     (struct varref (var))

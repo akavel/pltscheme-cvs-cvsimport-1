@@ -889,8 +889,12 @@
 	  (lambda (expr env attributes vocab p-env vars)
 	    (register-definitions vars attributes)
 	    (let* ((id-exprs (map (lambda (v)
-				    (expand-expr v env attributes
-				      define-values-id-parse-vocab))
+				    (unless (z:symbol? v)
+				      (static-error v
+					"Invalid in identifier position"))
+				    (ensure-not-macro/micro v env vocab)
+				    (process-top-level-resolution
+				      v env attributes vocab))
 			       vars))
 		    (expr-expr (expand-expr
 				 (pat:pexpand 'val p-env kwd)
