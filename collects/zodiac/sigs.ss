@@ -1,7 +1,8 @@
 ; $Id$
 
 (begin-elaboration-time (require-library "macro.ss"))
-(begin-elaboration-time (require-library "mzlibs.ss"))
+(begin-elaboration-time (require-library "prettys.ss"))
+(begin-elaboration-time (require-library "files.ss"))
 (begin-elaboration-time (require-library "refer.ss"))
 (require-library "refer.ss")
 

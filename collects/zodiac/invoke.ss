@@ -1,5 +1,8 @@
 ; $Id$
 
+(begin-elaboration-time
+ (require-library "cores.ss"))
+
 (require-library "coreu.ss")
 
 (require-library "load.ss" "zodiac")
