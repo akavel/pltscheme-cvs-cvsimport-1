@@ -165,6 +165,10 @@
     (create-vocabulary 'scheme-vocabulary
 		       common-vocabulary))
 
+  (define extended-scheme-vocabulary
+    (create-vocabulary 'extended-scheme-vocabulary
+      scheme-vocabulary))
+
   (define (check-for-signature-name expr attributes)
     (let ([sig-space (get-attribute attributes 'sig-space)])
       (when sig-space

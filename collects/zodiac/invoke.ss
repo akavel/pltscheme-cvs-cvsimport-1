@@ -77,13 +77,15 @@
       #f)))
 
 (define zodiac:see
-  (opt-lambda ((print-as-sexp? #t) (vocab zodiac:scheme-vocabulary))
-    ((zodiac:make-see 
-       (lambda (in)
-	 (zodiac:scheme-expand-program
-	   (list in)
-	   (zodiac:make-attributes)
-	   vocab)))
+  (opt-lambda ((print-as-sexp? #t) (vocab zodiac:extended-scheme-vocabulary))
+    (parameterize ([current-namespace (make-namespace)])
+      (zodiac:prepare-current-namespace-for-vocabulary vocab)
+      ((zodiac:make-see 
+	 (lambda (in)
+	   (zodiac:scheme-expand-program
+	     (list in)
+	     (zodiac:make-attributes)
+	     vocab))))
       print-as-sexp?)))
 
 (define zodiac:spidey-see (zodiac:make-see 

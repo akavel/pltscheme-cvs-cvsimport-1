@@ -71,7 +71,7 @@
   ; --------------------------------------------------------------------
 
   (define mrspidey-vocabulary
-    (create-vocabulary 'mrspidey-vocabulary scheme-vocabulary))
+    (create-vocabulary 'mrspidey-vocabulary extended-scheme-vocabulary))
 
   ; --------------------------------------------------------------------
 
