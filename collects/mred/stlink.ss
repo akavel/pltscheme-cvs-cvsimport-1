@@ -15,17 +15,14 @@
     [keymap   : mred:keymap^])
 
   (link
-    [global : mred:test:globals^
-      ((reference-unit/sig "stglobal.ss") wx testable)]
-
     [run : mred:test:run^
       ((reference-unit/sig "strun.ss"))]
     
     [prim : mred:test:primitives^
-      ((reference-unit/sig "stprims.ss") wx testable keymap global run)]
+      ((reference-unit/sig "stprims.ss") wx testable keymap run)]
 
     [drscheme : mred:test:drscheme^
-      ((reference-unit/sig "stdrs.ss") wx global)])
+      ((reference-unit/sig "stdrs.ss") wx testable)])
 
   (export
     (open run)

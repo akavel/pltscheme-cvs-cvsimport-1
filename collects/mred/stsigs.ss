@@ -24,12 +24,7 @@
    testable-frame%
    testable-dialog-box% ))
 
-(define-signature mred:test:globals^
-  (top-frame
-   top-panel
-   frame->menu-bar
-   menu-bar->item-id
-   frame->active-canvas))
+;; run-one is not for export.
 
 (define-signature mred:test:run^
   (run-one
@@ -40,7 +35,8 @@
    keystroke  
    menu-select
    mouse-click
-   new-window))
+   new-window
+   noop))
 
 (define-signature mred:test:drscheme^
   (get-defns-canvas 
