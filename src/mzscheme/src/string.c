@@ -1030,7 +1030,7 @@ do_byte_string_to_char_string_locale(const char *who,
   char *us;
   long olen;
 
-  if (mzLOCALE_IS_UTF_8(scheme_current_locale) || !scheme_locale_on)
+  if (mzLOCALE_IS_UTF_8(current_locale_name) || !scheme_locale_on)
     return do_byte_string_to_char_string(who, bstr, istart, ifinish, perm);
 
   if (istart < ifinish) {
@@ -1151,7 +1151,7 @@ do_char_string_to_byte_string_locale(const char *who,
   char *s;
   long olen;
   
-  if (mzLOCALE_IS_UTF_8(scheme_current_locale) || !scheme_locale_on)
+  if (mzLOCALE_IS_UTF_8(current_locale_name) || !scheme_locale_on)
     return do_char_string_to_byte_string(cstr, istart, ifinish);
 
   if (istart < ifinish) {
@@ -2164,6 +2164,7 @@ static char *string_to_from_locale(int to_bytes,
 	*olen = (clen >> 2);
 	((mzchar *)c)[*olen] = 0;
       }
+      iconv_close(cd);
       return c;
     }
 
