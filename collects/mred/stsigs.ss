@@ -43,7 +43,8 @@
   (button-push   button-push-now   button-push-now*
    keystroke     keystroke-now     keystroke-now*
    menu-select   menu-select-now   menu-select-now*
-   mouse-click   mouse-click-now   mouse-click-now*))
+   mouse-click   mouse-click-now   mouse-click-now*
+   new-window    new-window-now))
 
 (define-signature mred:test:drscheme^
   (get-defns-canvas 
