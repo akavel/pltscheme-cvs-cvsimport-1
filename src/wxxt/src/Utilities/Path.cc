@@ -30,12 +30,17 @@
 char *wxFileNameFromPath(char *path)
 {
     if (path) {
-      char *tcp;
+      int tcp, slen;
       
-      tcp = path+strlen(path);
-      while (--tcp >= path) {
-	if (*tcp == '/' || *tcp == '\\')
-	  return tcp + 1;
+      tcp = slen = strlen(path);
+      while (--tcp >= 0) {
+	if (path[tcp] == '/') {
+	  char *naya;
+	  tcp++;
+	  naya = new char[slen + 1 - tcp];
+	  memcpy(naya, path + tcp, slen + 1 - tcp);
+	  return naya;
+	}
       }
     }
 
@@ -44,20 +49,23 @@ char *wxFileNameFromPath(char *path)
 
 char *wxPathOnly(char *path)
 {
-    if (path) {
-        char *p;
-        char *last_slash = NULL;
+  if (path) {
+    int p, last_slash = 0;
+    char *buf;
 
-        // copy path and keep the last slash or baskslash in mind
-        for (p = wxBuffer; *path; ++path, ++p) {
-            *p = *path;
-            if (*p == '/' || *p == '\\')
-                last_slash = p;
-        }
-        if (last_slash) {
-            *last_slash = '\0';
-            return wxBuffer;
-        }
+    buf = new char[strlen(path) + 1];
+    
+    // copy path and keep the last slash or baskslash in mind
+    for (p = 0; path[p]; p++) {
+      buf[p] = path[p];
+      if (buf[p] == '/')
+	last_slash = p;
     }
-    return NULL;
+    if (last_slash) {
+      buf[last_slash] = 0;
+      return buf;
+    }
+  }
+
+  return NULL;
 }
