@@ -179,7 +179,8 @@ KeySym CharCodeWXToX(int id)
 
 Bool wxIsAlt(KeySym key_sym)
 {
-  if ((key_sym == XK_Alt_L) || (key_sym == XK_Alt_R)) {
+  if ((key_sym == XK_Alt_L) || (key_sym == XK_Alt_R)
+      || (key_sym == XK_Meta_L) || (key_sym == XK_Meta_R)) {
     return TRUE;
   }
   return FALSE;
