@@ -760,12 +760,17 @@ void wxWindow::SetFocus(void)
   if (!X->frame) // forbid, if no widget associated
     return;
 
+  if (misc_flags & FOCUS_FLAG)
+    /* focus is already here */
+    return;
+
   // search for the frame of this widget
   wxWindow *win = this;
   for (/*wxWindow *win = this*/; win; win = win->parent)
     if (wxSubType(win->__type, wxTYPE_FRAME))
       break;
   
+#if 0
   /* MATTHEW: Is the frame currently active? */
   if (win && (win->misc_flags & FOCUS_FLAG)) {
     /* MATTHEW: Avoids trying to set focus when it's already there: */
@@ -777,6 +782,7 @@ void wxWindow::SetFocus(void)
       return;
     }
   }
+#endif
 
   // if found: set focus
   if (win)
