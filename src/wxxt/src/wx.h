@@ -506,10 +506,6 @@
 #	include "Windows/Gauge.h"
 #endif
 
-#if defined(Uses_wxGroupBox)
-#	include "Windows/GroupBox.h"
-#endif
-
 #if defined(Uses_wxListBox)
 #	include "Windows/ListBox.h"
 #endif

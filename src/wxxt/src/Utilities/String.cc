@@ -44,6 +44,23 @@ char *copystring(const char *s)
   return news;
 }
 
+#ifdef MZ_PRECISE_GC
+char *copystring_to_aligned(const char *s)
+{
+  if ((long)s & 0x1) {
+    size_t len;
+    char *news;
+
+    s++;
+    len = strlen(s - 1) + 1;
+    news = new WXGC_ATOMIC char[len];
+    memcpy(news, s - 1, len);
+    return news;
+  } else
+    return (char *)s;
+}
+#endif
+
 void wxGetLabelAndKey(char *label, char **clean_label, char **clean_key)
 {
     char *key, *s;

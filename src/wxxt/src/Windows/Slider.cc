@@ -199,7 +199,7 @@ void wxSlider::Command(wxCommandEvent *event)
 void wxSlider::EventCallback(Widget WXUNUSED(w),
 			     XtPointer dclient, XtPointer dcall)
 {
-    wxSlider       *slider = *(wxSlider**)dclient;
+    wxSlider       *slider = (wxSlider *)GET_SAFEREF(dclient);
     XfwfScrollInfo *info   = (XfwfScrollInfo*)dcall;
     Bool           process = FALSE;
     int            new_value = 0;

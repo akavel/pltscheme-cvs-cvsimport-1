@@ -65,6 +65,9 @@ Bool wxGetUserName(char *buf, int sz);
 
 // String functions
 char *copystring(const char *s);
+#ifdef MZ_PRECISE_GC
+char *copystring_to_aligned(const char *s);
+#endif
 void wxGetLabelAndKey(char *label, char **clean_label, char **clean_key);
 char *wxStripMenuCodes(char *in, char *out);
 

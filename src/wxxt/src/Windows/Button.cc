@@ -235,7 +235,7 @@ void wxButton::Command(wxCommandEvent *event)
 void wxButton::EventCallback(Widget WXUNUSED(w), XtPointer clientData,
 			     XtPointer WXUNUSED(ptr))
 {
-    wxButton       *button = *(wxButton**)clientData;
+    wxButton       *button = (wxButton*)GET_SAFEREF(clientData);
     wxCommandEvent *event;
 
     if (button) {
