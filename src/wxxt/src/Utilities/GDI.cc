@@ -38,7 +38,7 @@ Bool wxColourDisplay(void)
     return (wxDisplayDepth() > 1);
 }
 
-void wxDisplaySize(int *width, int *height)
+void wxDisplaySize(int *width, int *height, int flags)
 {
   if (wxTheApp) {
       *width = DisplayWidth(wxAPP_DISPLAY, DefaultScreen(wxAPP_DISPLAY));
