@@ -561,7 +561,7 @@
 	(static-error expr "Malformed quote"))))
 
   (add-primitivized-micro-form 'quote beginner-vocabulary (make-quote-micro #f))
-  (add-primitivized-micro-form 'quote advanced-vocabulary (make-quote-micro #t))
+  (add-primitivized-micro-form 'quote intermediate-vocabulary (make-quote-micro #t))
   (add-primitivized-micro-form 'quote scheme-vocabulary (make-quote-micro #t))
 
   (define set!-micro
@@ -1915,13 +1915,13 @@
   (define unquote-micro
     (lambda (expr env)
       (static-error expr "Unquote outside quasiquote")))
-  (add-primitivized-macro-form 'unquote advanced-vocabulary unquote-micro)
+  (add-primitivized-macro-form 'unquote intermediate-vocabulary unquote-micro)
   (add-primitivized-macro-form 'unquote scheme-vocabulary unquote-micro)
 
   (define unquote-splicing-micro
     (lambda (expr env)
       (static-error expr "Unquote-splicing outside quasiquote")))
-  (add-primitivized-macro-form 'unquote-splicing advanced-vocabulary unquote-splicing-micro)
+  (add-primitivized-macro-form 'unquote-splicing intermediate-vocabulary unquote-splicing-micro)
   (add-primitivized-macro-form 'unquote-splicing scheme-vocabulary unquote-splicing-micro)
 
   (include "quasi.ss")
