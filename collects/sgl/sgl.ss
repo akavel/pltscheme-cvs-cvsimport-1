@@ -656,7 +656,54 @@
   (define (end-query target)
     (glEndQuery (query-table target 'end-query)))
                       
-  ;; 4.1.8, 4.1.10, 4.2.1 not implemented
+
+  ;; 4.1.8
+  (_provide blend-equation blend-func blend-func-separate 
+            (rename glBlendColor blend-color))
+
+  (make-enum-table blend-equation-table
+                   GL_FUNC_ADD GL_FUNC_SUBTRACT GL_FUNC_REVERSE_SUBTRACT
+                   GL_MIN GL_MAX)
+  (define (blend-equation func)
+    (glBlendEquation (blend-equation-table func 'blend-equation)))
+  
+  (make-enum-table blend-func-table
+		   GL_ZERO GL_ONE
+                   GL_SRC_COLOR GL_ONE_MINUS_SRC_COLOR
+		   GL_DST_COLOR GL_ONE_MINUS_DST_COLOR
+                   GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
+                   GL_DST_ALPHA GL_ONE_MINUS_DST_ALPHA
+                   GL_CONSTANT_COLOR GL_ONE_MINUS_CONSTANT_COLOR
+                   GL_CONSTANT_ALPHA GL_ONE_MINUS_CONSTANT_ALPHA
+                   GL_SRC_ALPHA_SATURATE)
+  (define (blend-func src dest)
+    (glBlendFunc (blend-func-table src 'blend-func)
+		 (blend-func-table dest 'blend-func)))
+
+  (define (blend-func-separate src dest src-alpha dst-alpha)
+    (glBlendFuncSeparate (blend-func-table src 'blend-func)
+                         (blend-func-table dest 'blend-func)
+                         (blend-func-table src-alpha 'blend-func)
+                         (blend-func-table dst-alpha 'blend-func)))
+
+  ;; 4.1.10
+  (provide logic-op)
+  (make-enum-table logic-op-table
+                   GL_CLEAR GL_AND GL_AND_REVERSE GL_COPY GL_AND_INVERTED 
+                   GL_NOOP GL_XOR GL_OR GL_NOR GL_EQUIV GL_INVERT GL_OR_REVERSE
+                   GL_COPY_INVERTED GL_OR_INVERTED GL_NAND GL_SET)
+  (define (logic-op op)
+    (glLogicOp logic-op-table op 'logic-op))
+
+  ;; 4.2.1
+  (provide draw-buffer)
+  (make-enum-table draw-buffer-table
+                   GL_NONE GL_FRONT_LEFT GL_FRONT_RIGHT GL_BACK_LEFT
+                   GL_BACK_RIGHT GL_FRONT GL_BACK GL_LEFT GL_RIGHT
+                   GL_FRONT_AND_BACK
+                   GL_AUX0 GL_AUX1 GL_AUX2 GL_AUX3)
+  (define (draw-buffer buf)
+    (glDrawBuffer (draw-buffer-table buf 'draw-buffer)))
 
   ;; 4.2.2
   (_provide (rename glIndexMask index-mask)
@@ -786,9 +833,32 @@
             )
   
   ;; 6.1.14
-  (_provide ;push-attrib push-client-attrib
-   (rename glPopAttrib pop-attrib)
-   (rename glPopClientAttrib pop-client-attrib))
+  (_provide push-attrib push-client-attrib
+            (rename glPopAttrib pop-attrib)
+            (rename glPopClientAttrib pop-client-attrib))
+  (make-enum-table push-attrib-table
+                   GL_ACCUM_BUFFER_BIT GL_COLOR_BUFFER_BIT GL_CURRENT_BIT
+                   GL_DEPTH_BUFFER_BIT GL_ENABLE_BIT GL_EVAL_BIT GL_FOG_BIT GL_HINT_BIT
+                   GL_LIGHTING_BIT GL_LINE_BIT GL_LIST_BIT GL_MULTISAMPLE_BIT
+                   GL_PIXEL_MODE_BIT GL_POINT_BIT GL_POLYGON_BIT GL_POLYGON_STIPPLE_BIT
+                   GL_SCISSOR_BIT GL_STENCIL_BUFFER_BIT GL_TEXTURE_BIT
+                   GL_TRANSFORM_BIT GL_VIEWPORT_BIT GL_ALL_ATTRIB_BITS)
+  (define push-attrib 
+    (lambda x
+      (glPushAttrib (apply bitwise-ior (map (lambda (x)
+                                              (push-attrib-table x 'clear))
+                                            x)))))
+  (make-enum-table push-client-attrib-table
+                   GL_CLIENT_VERTEX_ARRAY_BIT
+                   GL_CLIENT_PIXEL_STORE_BIT
+                   GL_CLIENT_ALL_ATTRIB_BITS)
+  (define push-client-attrib 
+    (lambda x
+      (glPushClientAttrib (apply bitwise-ior
+                                 (map (lambda (x)
+                                        (push-client-attrib-table x 'clear))
+                                      x)))))
+  
   
   
   ;; 2
@@ -867,38 +937,7 @@
     (check-length 'un-project4 e 16)
     (check-length 'un-project4 f 16)
     (check-length 'un-project4 g 4)
-    (gluUnProject4 a b c d e f g h i))
-
-
-  ;; 4.1.8
-  (_provide blend-equation blend-func blend-func-separate 
-            (rename glBlendColor blend-color))
-
-  (make-enum-table blend-equation-table
-                   GL_FUNC_ADD GL_FUNC_SUBTRACT GL_FUNC_REVERSE_SUBTRACT
-                   GL_MIN GL_MAX)
-  (define (blend-equation func)
-    (glBlendEquation (blend-equation-table func 'blend-equation)))
-  
-  (make-enum-table blend-func-table
-		   GL_ZERO GL_ONE
-                   GL_SRC_COLOR GL_ONE_MINUS_SRC_COLOR
-		   GL_DST_COLOR GL_ONE_MINUS_DST_COLOR
-                   GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
-                   GL_DST_ALPHA GL_ONE_MINUS_DST_ALPHA
-                   GL_CONSTANT_COLOR GL_ONE_MINUS_CONSTANT_COLOR
-                   GL_CONSTANT_ALPHA GL_ONE_MINUS_CONSTANT_ALPHA
-                   GL_SRC_ALPHA_SATURATE)
-  (define (blend-func src dest)
-    (glBlendFunc (blend-func-table src 'blend-func)
-		 (blend-func-table dest 'blend-func)))
-
-  (define (blend-func-separate src dest src-alpha dst-alpha)
-    (glBlendFuncSeparate (blend-func-table src 'blend-func)
-                         (blend-func-table dest 'blend-func)
-                         (blend-func-table src-alpha 'blend-func)
-                         (blend-func-table dst-alpha 'blend-func)))
-                         
+    (gluUnProject4 a b c d e f g h i))                        
   
   ;; 5 not implemented
   
