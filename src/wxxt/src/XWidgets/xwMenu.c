@@ -948,7 +948,7 @@ static void DrawToggleItem(MenuWidget mw, menu_state *ms, menu_item *item,
       GC gc;
       int h, h2, h4, h34;
 
-      x += mw->menu.shadow_width + mw->menu.hmargin + 1;
+      x += mw->menu.shadow_width + mw->menu.hmargin;
       y += (mw->menu.shadow_width + mw->menu.vmargin
 	    + (mw->menu.font->ascent
 	       + mw->menu.font->descent
