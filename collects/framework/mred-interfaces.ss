@@ -451,6 +451,7 @@
                    border
                    get-alignment
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -460,10 +461,10 @@
                    min-height
                    vert-margin
                    spacing
-                   add-child
                    on-move
                    has-focus?
                    get-cursor
+                   add-child
                    horiz-margin
                    get-children
                    change-children
@@ -472,8 +473,7 @@
                    delete-child
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define vertical-pane<%>
                  (interface
                    ()
@@ -523,6 +523,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -536,14 +537,12 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define text<%>
                  (interface
                    ()
                    cut
                    print
-                   delete
                    find-string
                    get-dc
                    load-file
@@ -558,6 +557,7 @@
                    editor-location-to-dc-location
                    dc-location-to-editor-location
                    get-position
+                   scroll-line-location
                    set-max-undo-history
                    get-max-undo-history
                    set-load-overwrites-styles
@@ -617,6 +617,7 @@
                    on-event
                    on-char
                    clear
+                   delete
                    is-modified?
                    get-filename
                    insert-image
@@ -724,7 +725,6 @@
                    write-headers-to-file
                    write-footers-to-file
                    invalidate-bitmap-cache
-                   scroll-line-location
                    get-start-position
                    get-end-position
                    move-position
@@ -800,8 +800,6 @@
                    equal?
                    get-family
                    get-face
-                   get-transparent-text-backing-off
-                   set-transparent-text-backing-on
                    get-transparent-text-backing-on
                    copy
                    set-delta-background
@@ -835,7 +833,9 @@
                    set-size-mult
                    get-size-mult
                    set-delta-face
-                   set-transparent-text-backing-off))
+                   set-transparent-text-backing-off
+                   get-transparent-text-backing-off
+                   set-transparent-text-backing-on))
                (define string-snip<%>
                  (interface
                    ()
@@ -964,6 +964,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -977,10 +978,9 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define separator-menu-item<%>
-                 (interface () delete get-parent restore is-deleted?))
+                 (interface () get-parent delete restore is-deleted?))
                (define scroll-event<%>
                  (interface
                    ()
@@ -1033,6 +1033,7 @@
                    is-enabled?
                    get-top-level-window
                    get-item-plain-label
+                   on-subwindow-char
                    get-item-label
                    get-plain-label
                    accept-drop-files
@@ -1048,8 +1049,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define ps-setup<%>
                  (interface
                    ()
@@ -1194,7 +1194,6 @@
                    cut
                    raise
                    print
-                   delete
                    get-dc
                    load-file
                    save-file
@@ -1207,6 +1206,7 @@
                    set-inactive-caret-threshold
                    editor-location-to-dc-location
                    dc-location-to-editor-location
+                   scroll-line-location
                    set-max-undo-history
                    get-max-undo-history
                    set-load-overwrites-styles
@@ -1266,6 +1266,7 @@
                    on-event
                    on-char
                    clear
+                   delete
                    is-modified?
                    get-filename
                    insert-image
@@ -1338,7 +1339,6 @@
                    write-headers-to-file
                    write-footers-to-file
                    invalidate-bitmap-cache
-                   scroll-line-location
                    set-selected
                    add-selected
                    remove-selected
@@ -1392,6 +1392,7 @@
                    border
                    get-alignment
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -1401,10 +1402,10 @@
                    min-height
                    vert-margin
                    spacing
-                   add-child
                    on-move
                    has-focus?
                    get-cursor
+                   add-child
                    horiz-margin
                    get-children
                    change-children
@@ -1413,8 +1414,7 @@
                    delete-child
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define pane<%>
                  (interface
                    ()
@@ -1492,6 +1492,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -1505,8 +1506,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define menu-bar<%>
                  (interface () enable is-enabled? get-frame get-items))
                (define menu<%> (interface () get-item get-items))
@@ -1516,7 +1516,6 @@
                    set
                    append
                    on-drop-file
-                   delete
                    get-data
                    set-data
                    set-string
@@ -1547,12 +1546,14 @@
                    set-string-selection
                    on-focus
                    clear
+                   delete
                    is-selected?
                    focus
                    select
                    is-enabled?
                    get-top-level-window
                    get-first-visible-item
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -1567,8 +1568,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define keymap<%>
                  (interface
                    ()
@@ -1682,6 +1682,7 @@
                    border
                    get-alignment
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -1691,10 +1692,10 @@
                    min-height
                    vert-margin
                    spacing
-                   add-child
                    on-move
                    has-focus?
                    get-cursor
+                   add-child
                    horiz-margin
                    get-children
                    change-children
@@ -1703,8 +1704,7 @@
                    delete-child
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define horizontal-pane<%>
                  (interface
                    ()
@@ -1754,6 +1754,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -1767,8 +1768,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define frame<%>
                  (interface
                    ()
@@ -1813,7 +1813,7 @@
                    get-top-level-window
                    get-edit-target-window
                    get-edit-target-object
-                   is-iconized?
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -1822,13 +1822,13 @@
                    min-width
                    min-height
                    spacing
-                   add-child
                    on-move
                    has-focus?
                    get-cursor
                    can-close?
                    can-exit?
                    on-exit
+                   add-child
                    get-children
                    change-children
                    container-size
@@ -1840,8 +1840,8 @@
                    get-eventspace
                    get-focus-window
                    get-focus-object
-                   on-subwindow-char
-                   has-status-line?))
+                   has-status-line?
+                   is-iconized?))
                (define font-list<%> (interface () find-or-create-font))
                (define font<%>
                  (interface
@@ -1981,6 +1981,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    min-client-width
                    min-client-height
                    lazy-refresh
@@ -1998,8 +1999,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define editor-admin<%>
                  (interface
                    ()
@@ -2050,6 +2050,7 @@
                    get-top-level-window
                    get-edit-target-window
                    get-edit-target-object
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -2058,13 +2059,13 @@
                    min-width
                    min-height
                    spacing
-                   add-child
                    on-move
                    has-focus?
                    get-cursor
                    can-close?
                    can-exit?
                    on-exit
+                   add-child
                    get-children
                    change-children
                    container-size
@@ -2075,8 +2076,7 @@
                    screen->client
                    get-eventspace
                    get-focus-window
-                   get-focus-object
-                   on-subwindow-char))
+                   get-focus-object))
                (define cursor<%> (interface () ok?))
                (define control-event<%>
                  (interface
@@ -2121,6 +2121,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -2135,19 +2136,18 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define checkable-menu-item<%>
                  (interface
                    ()
                    go
                    get-help-string
-                   delete
                    get-label
                    set-label
                    enable
                    get-parent
                    check
+                   delete
                    set-help-string
                    is-enabled?
                    get-x-shortcut-prefix
@@ -2184,6 +2184,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -2197,8 +2198,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define button<%>
                  (interface
                    ()
@@ -2223,6 +2223,7 @@
                    focus
                    is-enabled?
                    get-top-level-window
+                   on-subwindow-char
                    get-plain-label
                    accept-drop-files
                    stretchable-width
@@ -2236,8 +2237,7 @@
                    horiz-margin
                    on-subwindow-event
                    client->screen
-                   screen->client
-                   on-subwindow-char))
+                   screen->client))
                (define brush-list<%> (interface () find-or-create-brush))
                (define brush<%>
                  (interface
@@ -2255,10 +2255,10 @@
                    get-text-extent
                    get-size
                    draw-rounded-rectangle
-                   set-bitmap
-                   get-bitmap
                    get-pixel
                    set-pixel
+                   set-bitmap
+                   get-bitmap
                    end-drawing
                    draw-line
                    draw-point
@@ -2281,8 +2281,6 @@
                    end-doc
                    end-page
                    clear
-                   begin-set-pixel
-                   end-set-pixel
                    begin-drawing
                    draw-rectangle
                    draw-ellipse
@@ -2750,7 +2748,6 @@
                           queue-callback
                           put-file
                           play-sound
-                          pixel-dc<%>
                           mult-color<%>
                           mred@
                           message-box
@@ -2763,6 +2760,7 @@
                           label->plain-label
                           is-color-display?
                           is-busy?
+                          install-standard-text-bindings
                           graphical-read-eval-print-loop
                           get-top-level-windows
                           get-top-level-focus-window
