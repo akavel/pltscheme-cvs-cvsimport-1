@@ -150,6 +150,14 @@ void wxCanvas::SetSize (int x, int y, int w, int h, int sizeFlags)
     }
 }
 
+wxWindow *wxCanvas::FindFocusWindow()
+{
+  if (!wxSubType(__type, wxTYPE_PANEL))
+    return IsShown() ? this : NULL;
+  else
+    return wxWindow::FindFocusWindow();
+}
+
 /*
  * horizontal/vertical: number of pixels per unit (e.g. pixels per text line)
  * x/y_length:        : no. units per scrollbar

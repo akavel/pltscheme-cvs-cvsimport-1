@@ -718,6 +718,21 @@ void wxWindow::Refresh(void)
   }
 }
 
+wxWindow *wxWindow::FindFocusWindow()
+{
+  if (IsShown()) {
+    wxChildNode *cn;
+    for (cn = GetChildren()->First(); cn; cn = cn->Next()) {
+      wxWindow *w = (wxWindow *)cn->Data();
+      w = w->FindFocusWindow();
+      if (w)
+	return w;
+    }
+  }
+
+  return NULL;
+}
+
 // Hook for new window just as it's being created,
 // when the window isn't yet associated with the handle
 wxWnd *wxWndHook = NULL;
@@ -1830,6 +1845,11 @@ BOOL wxWnd::OnActivate(BOOL state, BOOL WXUNUSED(minimized), HWND WXUNUSED(activ
   if (wx_window)
   {
     if ((state == WA_ACTIVE) || (state == WA_CLICKACTIVE)) {
+      if (!wx_window->focusWindow) {
+	/* Try to find one... */
+	wx_window->focusWindow = wx_window->FindFocusWindow();
+      }
+
       if (wx_window->focusWindow) {
 	wxWindow *win = wx_window->focusWindow;
 	wx_window->focusWindow = NULL;
