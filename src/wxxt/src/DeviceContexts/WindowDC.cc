@@ -867,6 +867,9 @@ void wxWindowDC::SetPen(wxPen *pen)
 
 void wxWindowDC::TryColour(wxColour *src, wxColour *dest)
 {
+  if (!DRAWABLE)
+    return;
+
   XColor xcol;
 
   xcol.pixel = src->GetPixel(current_cmap, IS_COLOR, 1);

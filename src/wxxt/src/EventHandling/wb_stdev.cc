@@ -21,7 +21,11 @@
  *
  */
 
-wxScrollEvent::wxScrollEvent() : wxEvent() {}
+wxScrollEvent::wxScrollEvent() : wxEvent() 
+{
+  direction = wxHORIZONTAL;
+  moveType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
+}
 
 wxPopupEvent::wxPopupEvent() : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT) 
 { 

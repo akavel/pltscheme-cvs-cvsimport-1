@@ -225,7 +225,7 @@ class PSStream : public wxObject {
     int_width = 0;
   }
   ~PSStream(void) {
-    fclose(f);
+    if (f) fclose(f);
   }
 
   int good(void) {

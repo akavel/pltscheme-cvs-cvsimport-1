@@ -355,7 +355,7 @@ void wxFrame::SetIcon(wxIcon *icon)
 void wxFrame::SetMenuBar(wxMenuBar *new_menubar)
 {
   /* MATTHEW: Enforce safety */
-  if (new_menubar->GetParent())
+  if (new_menubar && new_menubar->GetParent())
     return;
 
   if (menubar)
