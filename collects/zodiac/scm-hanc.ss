@@ -1407,7 +1407,9 @@
 		      (list
 			(cons (z:read-object tag)
 			  (cu/s-build-link-names small-sig
-			    (cu/s-build-link-prefix ids)))))
+                            (string-append
+			     (cu/s-build-link-prefix ids)
+			     ":")))))
 		    (else
 		      (internal-error tag-table-entry
 			"Illegal tag-table entry"))))))))
