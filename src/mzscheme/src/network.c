@@ -458,7 +458,8 @@ static int parse_numerical(const char *address, unsigned long *addr)
   }
      
   if (p == 3) {
-    n[p] = v;
+    vs[p] = v;
+    n[p] = (unsigned char)v;
     p++;
   }
      
@@ -490,7 +491,7 @@ typedef struct {
 
 static char ghbn_hostname[256];
 
-#ifdef MZ_PRECISE_GC
+#ifdef MZ_XFORM
 START_XFORM_SKIP;
 #endif
 
@@ -504,7 +505,7 @@ static long gethostbyname_in_thread(void *data)
     return 0;
 }
 
-#ifdef MZ_PRECISE_GC
+#ifdef MZ_XFORM
 END_XFORM_SKIP;
 #endif
 
