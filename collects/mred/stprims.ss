@@ -227,7 +227,7 @@
   
   (define make-key-event
     (lambda (key window modifier-list)
-      (let ([event  (make-object wx:key-event% wx:const-event-type-char)]
+      (let ([event  (make-object wx:key-event%)]
 	    [int    (if (integer? key) key (char->integer key))])
 	(send event set-key-code int)
 	(send event set-event-object window)
