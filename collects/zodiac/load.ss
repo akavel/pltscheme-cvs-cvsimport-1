@@ -1,6 +1,11 @@
 (reference-library "macro.ss")
 (reference-library "prettys.ss")
 
+(reference "zsigs.ss")
+(reference "sigs.ss")
+
+; All this stuff needs to be disappeared.
+
 (begin-elaboration-time
   (define plt-home-directory
     (let ([plt (getenv "PLTHOME")])
@@ -21,6 +26,3 @@
 
 (define zodiac:system@
   (reference-unit/sig "link.ss"))
-
-(reference "zsigs.ss")
-(reference "sigs.ss")
