@@ -59,7 +59,7 @@
        [(table  value)
 	(vector-fill!  table  value)]
        [(table  value  elts)
-	(if  (pair?  elts)
+	(if  (list?  elts)
 	     (loop  table  value  elts)
 	     (loop  table  value  (list elts)))])))
   
