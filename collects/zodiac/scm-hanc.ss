@@ -705,10 +705,9 @@
 				       (if (complete-path? base)
 					 base
 					 (path->complete-path base
-					   (if original-directory 
-					     original-directory 
+					   (or original-directory 
 					     (current-directory))))
-				       (current-directory))])
+				       original-directory)])
 		      (dynamic-wind
 			void
 			(lambda ()
@@ -724,7 +723,8 @@
 						  z:default-initial-location)
 						(z:location-offset
 						  z:default-initial-location)
-						(build-path (current-directory)
+						(build-path
+						  (current-load-relative-directory)
 						  name)))))
 				(let loop ()
 				  (let ((input (reader)))
@@ -1536,6 +1536,7 @@
 	  (lambda (p-env)
 	    (let ((unit-path (pat:pexpand 'unit-path p-env kwd))
 		   (variable (pat:pexpand 'variable p-env kwd)))
+	      (valid-syntactic-id? variable)
 	      (let ((tag+prefix
 		      (expand-expr unit-path env attributes
 			cu/s-unit-path-tag+build-prefix-vocab)))
@@ -1549,6 +1550,8 @@
 	    (let ((unit-path (pat:pexpand 'unit-path p-env kwd))
 		   (variable (pat:pexpand 'variable p-env kwd))
 		   (external (pat:pexpand 'external-variable p-env kwd)))
+	      (valid-syntactic-id? variable)
+	      (valid-syntactic-id? external)
 	      (let ((tag+prefix
 		      (expand-expr unit-path env attributes
 			cu/s-unit-path-tag+build-prefix-vocab)))
