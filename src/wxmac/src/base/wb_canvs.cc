@@ -79,7 +79,7 @@ wxCanvasDC *wxbCanvas::GetDC(void)
 
 // Default input behaviour for a scrolling canvas should be to scroll
 // according to the cursor keys pressed
-void wxbCanvas::OnChar(wxKeyEvent& event)
+void wxbCanvas::OnChar(wxKeyEvent* event)
 {
   int x_page = 0;
   int y_page = 0;
@@ -88,7 +88,7 @@ void wxbCanvas::OnChar(wxKeyEvent& event)
   GetScrollUnitsPerPage(&x_page, &y_page);
   ViewStart(&start_x, &start_y);
 
-  switch (event.keyCode)
+  switch (event->keyCode)
   {
     case WXK_PRIOR:
     {

@@ -252,16 +252,16 @@ void wxbItem::Centre (int direction)
 #endif // wx_mac
 }
 
-void wxbItem::Command (wxCommandEvent & event)
+void wxbItem::Command (wxCommandEvent * event)
 {
   ProcessCommand (event);
 }
 
-void wxbItem::ProcessCommand (wxCommandEvent & event)
+void wxbItem::ProcessCommand (wxCommandEvent * event)
 {
   wxFunction fun = callback;
   if (fun && *fun)
-    (void) (*(fun)) (*this, event);
+    (void) (*(fun)) (this, event);
 }
 
 
