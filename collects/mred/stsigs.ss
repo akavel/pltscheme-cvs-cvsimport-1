@@ -32,18 +32,18 @@
    top-panel
    frame->menu-bar
    menu-bar->item-id
-   frame->active-canvas))    
+   frame->active-canvas))
 
 (define-signature mred:test:run^
-  (run-single
-   run-multiple
+  (run
+   default-run-style
    new-single-thread))
 
 (define-signature mred:test:primitives^
-  (button-push   button-push-now   button-push-now*
-   keystroke     keystroke-now     keystroke-now*
-   menu-select   menu-select-now   menu-select-now*
-   mouse-click   mouse-click-now   mouse-click-now*
+  (button-push   button-push-now 
+   keystroke     keystroke-now   
+   menu-select   menu-select-now 
+   mouse-click   mouse-click-now 
    new-window    new-window-now))
 
 (define-signature mred:test:drscheme^
