@@ -1091,12 +1091,17 @@
 			(extract-sub-unit-signature initial-sig ids))
 		       (small-sig
 			 (expand-expr sig env attributes sig-vocab)))
-		  (verify-signature-match 'compound-unit/sig
-		    #f
-		    (format "signature ~s" (signature-name small-sig))
-		    (sig-list->sig-vector (signature-exploded small-sig))
-		    (format "signature ~s" (signature-name final-sig))
-		    (sig-list->sig-vector (signature-exploded final-sig)))
+		  (with-handlers
+		    ((exn:unit:signature:match:missing?
+		       (lambda (exn)
+			 (static-error expr
+			   (exn-message exn)))))
+		    (verify-signature-match 'compound-unit/sig
+		      #f
+		      (format "signature ~s" (signature-name small-sig))
+		      (sig-list->sig-vector (signature-exploded small-sig))
+		      (format "signature ~s" (signature-name final-sig))
+		      (sig-list->sig-vector (signature-exploded final-sig))))
 		  small-sig)))))
 	((pat:match-against m&e-2 expr env)
 	  =>
@@ -1110,13 +1115,18 @@
 			  (extract-cu/s-tag-table attributes) tag)))
 		     (small-sig
 		       (expand-expr sig env attributes sig-vocab)))
-		(verify-signature-match 'compound-unit/sig
-		  #f
-		  (format "signature ~s" (signature-name small-sig))
-		  (sig-list->sig-vector (signature-exploded small-sig))
-		  (format "signature ~s" (signature-name big-sig))
-		  (sig-list->sig-vector (signature-exploded big-sig)))
-		small-sig))))
+		(with-handlers
+		  ((exn:unit:signature:match:missing?
+		     (lambda (exn)
+		       (static-error expr
+			 (exn-message exn)))))
+		  (verify-signature-match 'compound-unit/sig
+		    #f
+		    (format "signature ~s" (signature-name small-sig))
+		    (sig-list->sig-vector (signature-exploded small-sig))
+		    (format "signature ~s" (signature-name big-sig))
+		    (sig-list->sig-vector (signature-exploded big-sig)))
+		  small-sig)))))
 	((pat:match-against m&e-3 expr env)
 	  =>
 	  (lambda (p-env)
@@ -1179,14 +1189,19 @@
 			(extract-sub-unit-signature initial-sig ids))
 		       (small-sig
 			 (expand-expr sig env attributes sig-vocab)))
-		  (verify-signature-match 'compound-unit/sig
-		    #f
-		    (format "signature ~s" (signature-name small-sig))
-		    (sig-list->sig-vector (signature-exploded small-sig))
-		    (format "signature ~s" (signature-name final-sig))
-		    (sig-list->sig-vector (signature-exploded final-sig)))
-		  (cons (z:read-object tag)
-		    (signature-exploded small-sig)))))))
+		  (with-handlers
+		    ((exn:unit:signature:match:missing?
+		       (lambda (exn)
+			 (static-error expr
+			   (exn-message exn)))))
+		    (verify-signature-match 'compound-unit/sig
+		      #f
+		      (format "signature ~s" (signature-name small-sig))
+		      (sig-list->sig-vector (signature-exploded small-sig))
+		      (format "signature ~s" (signature-name final-sig))
+		      (sig-list->sig-vector (signature-exploded final-sig)))
+		    (cons (z:read-object tag)
+		      (signature-exploded small-sig))))))))
 	((pat:match-against m&e-2 expr env)
 	  =>
 	  (lambda (p-env)
@@ -1200,14 +1215,19 @@
 			  (extract-cu/s-tag-table attributes) tag)))
 		     (small-sig
 		       (expand-expr sig env attributes sig-vocab)))
-		(verify-signature-match 'compound-unit/sig
-		  #f
-		  (format "signature ~s" (signature-name small-sig))
-		  (sig-list->sig-vector (signature-exploded small-sig))
-		  (format "signature ~s" (signature-name big-sig))
-		  (sig-list->sig-vector (signature-exploded big-sig)))
-		(cons (z:read-object tag)
-		  (signature-exploded small-sig))))))
+		(with-handlers
+		  ((exn:unit:signature:match:missing?
+		     (lambda (exn)
+		       (static-error expr
+			 (exn-message exn)))))
+		  (verify-signature-match 'compound-unit/sig
+		    #f
+		    (format "signature ~s" (signature-name small-sig))
+		    (sig-list->sig-vector (signature-exploded small-sig))
+		    (format "signature ~s" (signature-name big-sig))
+		    (sig-list->sig-vector (signature-exploded big-sig)))
+		  (cons (z:read-object tag)
+		    (signature-exploded small-sig)))))))
 	((pat:match-against m&e-3 expr env)
 	  =>
 	  (lambda (p-env)
