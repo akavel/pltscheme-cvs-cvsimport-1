@@ -20,6 +20,7 @@
 #include "wx_win.h"
 #include "wx_gdi.h"
 #include "wx_utils.h"
+#include "wx_dialg.h"
 
 // If not MS C++, don't include wx.h: we'll just include
 // the minimum set of files.

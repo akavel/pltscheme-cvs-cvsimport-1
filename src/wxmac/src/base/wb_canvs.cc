@@ -12,6 +12,8 @@
 
 // #include "wx.h" // Uncomment this line for Borland precomp. headers to work
 
+#pragma implementation
+
 #include "common.h"
 #include "wx_setup.h"
 #include "wx_dc.h"

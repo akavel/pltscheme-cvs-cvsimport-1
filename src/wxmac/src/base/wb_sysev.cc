@@ -10,6 +10,8 @@
 
 /* static const char sccsid[] = "%W% %G%"; */
 
+#pragma implementation "wx_sysev.h"
+
 #include "common.h"
 #include "wx_utils.h"
 #include "wx_list.h"
