@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: global data for an application (UNSHARED)
  *

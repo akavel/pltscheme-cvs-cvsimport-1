@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: wxWindows application and main loop
  *
