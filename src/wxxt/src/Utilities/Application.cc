@@ -33,7 +33,9 @@
 
 void wxExit(void)
 {
-    exit(wxTheApp->OnExit());
+  int v;
+  v = wxTheApp->OnExit();
+  exit(v);
 }
 
 //-----------------------------------------------------------------------------

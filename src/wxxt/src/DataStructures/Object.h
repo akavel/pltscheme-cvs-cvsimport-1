@@ -43,7 +43,7 @@
 #endif
 #define WXGC_NO_CLEANUP FALSE
 
-class wxObject : public gc
+class wxObject : public gc_cleanup
 {
 public:
   wxObject(void);

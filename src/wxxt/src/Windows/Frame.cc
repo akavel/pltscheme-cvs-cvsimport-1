@@ -206,7 +206,7 @@ Bool wxFrame::Create(wxFrame *frame_parent, char *title,
 	XtNhighlightThickness, 0,
 	XtNbackground, bg->GetPixel(cmap),
 	NULL);
-    wgt = X->handle;
+    X->handle = wgt;
     AddEventHandlers();
 
     /* MATTHEW */
