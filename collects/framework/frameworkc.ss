@@ -74,11 +74,11 @@
 		((require-relative-library "scheme.ss")
 		 mred preferences match-cache paren
 		 scheme-paren icon keymap text frame
-		 core:thread)]
+		 core:thread
+		 core:function)]
 	[main : framework:main^ ((require-relative-library "main.ss")
 				 mred
-				 preferences exit group
-				 core:function)])
+				 preferences exit group)])
   (export
    (unit application)
    (unit version)
