@@ -590,7 +590,7 @@
 		(unless (at-top-level? attributes)
 		  (static-error expr
 		    (if (language<=? 'structured)
-		      "Not at top-level"
+		      "Invalid definition: must be at the top level"
 		      "Invalid position for internal definition")))
 		(cond
 		  ((pat:match-against m&e-1 expr env)

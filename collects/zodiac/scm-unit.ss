@@ -821,7 +821,8 @@
 	    (lambda (handler)
 	      (lambda (expr env attributes vocab)
 		(unless (at-top-level? attributes)
-		  (static-error expr "Not at top-level"))
+		  (static-error expr
+		    "Invalid definition: must be at the top level"))
 		(cond
 		  ((pat:match-against m&e-1 expr env)
 		    =>
