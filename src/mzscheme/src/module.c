@@ -1510,6 +1510,19 @@ static void finish_expstart_module(Scheme_Env *menv, Scheme_Env *env, Scheme_Obj
   /* Continue a delayed expstart: */
   menv->lazy_syntax = 0;
 
+  new_cycle_list = scheme_make_pair(menv->module->modname, cycle_list);
+
+  /* make sure exptimes of imports have been forced: */
+  for (l = menv->require_names; !SCHEME_NULLP(l); l = SCHEME_CDR(l)) {
+    midx = SCHEME_CAR(l);
+    expstart_module(module_load(scheme_module_resolve(midx), env, NULL), 
+		    env, 0,
+		    midx,
+		    0,
+		    new_cycle_list);
+  }
+
+
   /* If a for-syntax require fails, start all over: */
   menv->et_running = 0;
 
@@ -1520,8 +1533,6 @@ static void finish_expstart_module(Scheme_Env *menv, Scheme_Env *env, Scheme_Obj
   menv->exp_env = NULL;
 
   exp_env->link_midx = menv->link_midx;
-
-  new_cycle_list = scheme_make_pair(menv->module->modname, cycle_list);
 
   np = scheme_null;
 
@@ -2026,7 +2037,9 @@ static Scheme_Object *do_module(Scheme_Object *form, Scheme_Comp_Env *env,
   m->modname = SCHEME_STX_VAL(nm); /* must set before calling new_module_env */
   if (SAME_OBJ(m->modname, kernel_symbol)) {
     /* Too confusing. Give it a different name while compiling. */
-    m->modname = scheme_make_symbol("#%kernel");
+    Scheme_Object *k2;
+    k2 = scheme_make_symbol("#%kernel");
+    m->modname = k2;
     restore_confusing_name = 1;
   }
 
