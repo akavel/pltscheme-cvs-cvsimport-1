@@ -33,7 +33,7 @@
 #include "wx.h"
 
 #if USE_XPM
-#	include XPM_INCLUDE
+#	include "../../contrib/xpm/lib/xpm.h"
 #endif
 #if USE_IMAGE_LOADING_IN_X
 #define WXI_SKIP_WX_INCLUDES
