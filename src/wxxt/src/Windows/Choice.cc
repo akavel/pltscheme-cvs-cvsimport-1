@@ -204,7 +204,7 @@ char *wxChoice::GetStringSelection(void)
 
 void wxChoice::SetSelection(int n)
 {
-    if (0 <= n && n <= num_choices) {
+    if (0 <= n && n < num_choices) {
 	selection = n;
 	char *label = GetString(selection);
 	XtVaSetValues(X->handle, XtNlabel, label, NULL);
