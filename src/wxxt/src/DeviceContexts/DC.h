@@ -207,6 +207,8 @@ public:
 	{ return ok; }
     void SetBackgroundMode(int mode)
 	{ current_text_bgmode = mode; }
+    int GetBackgroundMode()
+	{ return current_text_bgmode; }
     void SetOptimization(Bool opt)
 	{ optimize = opt; }
     void SetTextAlignment(int new_alignment)
