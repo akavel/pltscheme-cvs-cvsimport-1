@@ -54,7 +54,7 @@
 
 	[group : framework:group^ 
 	       ((require-relative-library "group.ss")
-		mred exit frame
+		mred frame
 		core:function core:file)]
 
 	[canvas : framework:canvas^ ((require-relative-library "canvas.ss")
