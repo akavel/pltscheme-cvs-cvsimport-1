@@ -100,7 +100,7 @@ Bool wxCanvas::Create(wxPanel *panel, int x, int y, int width, int height,
 	 NULL);
     // Initialize CanvasDC
     CreateDC();
-    dc->SetBackground(wxWHITE_BRUSH); // white brush as default for canvas background
+    dc->SetBackground(wxWHITE); // white brush as default for canvas background
     // position in panel
     panel->PositionItem(this, x, y,
 			(width  > -1 ? width  : wxCANVAS_WIDTH),
