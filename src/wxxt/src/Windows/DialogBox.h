@@ -26,7 +26,7 @@
 #ifndef DialogBox_h
 #define DialogBox_h
 
-#ifndef __GNUG__
+#ifdef __GNUG__
 #pragma interface
 #endif
 
