@@ -37,13 +37,11 @@
          (lib "class.ss")
          (lib "math.ss")
          (prefix gl- (lib "sgl.ss" "sgl"))
+	 (lib "gl.ss" "sgl")
          (lib "gl-vectors.ss" "sgl"))
          
          
 (define controls? #t)
-
-(define cfg (new gl-config%))
-(send cfg set-multisample-size 4)
 
 (define gears-canvas%
   (class* canvas% ()
@@ -99,8 +97,6 @@
         ;; TODO: Generalize away some more redundant program text.
 
         (gl-shade-model 'flat)
-
-	(gl-enable 'multisample)
 
         (gl-normal 0.0 0.0 1.0)
 
