@@ -70,7 +70,8 @@
     make-attributes get-attribute put-attribute
     extend-env retract-env
     resolve resolve-in-env
-    macro-resolution? micro-resolution? top-level-resolution?
+    macro-resolution? micro-resolution?
+    (struct top-level-resolution ())
     introduce-identifier introduce-fresh-identifier introduce-bound-id
     create-vocabulary append-vocabulary
     (struct vocabulary-record
@@ -176,6 +177,7 @@
     (struct invoke-unit-form (unit variables))
     (struct invoke-open-unit-form (unit name-specifier variables))
     unit-clauses-vocab-delta update-unresolved-attribute
+    inside-unit? check-export
     ))
 
 (define-signature zodiac:scheme-objects+units^
