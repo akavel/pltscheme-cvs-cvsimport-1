@@ -339,7 +339,7 @@ wxMenuBar *wxFrame::GetMenuBar(void)
     return menubar;
 }
 
-void wxFrame::SetIcon(wxBitmap *icon)
+void wxFrame::SetIcon(wxBitmap *icon, wxBitmap *mask)
 {
   if (icon->Ok()) {
     wxBitmap *bm = new wxBitmap(icon->GetWidth(), icon->GetHeight());
@@ -349,6 +349,10 @@ void wxFrame::SetIcon(wxBitmap *icon)
       mdc->Blit(0, 0, icon->GetWidth(), icon->GetHeight(), icon, 0, 0, wxSTIPPLE, NULL);
       mdc->SelectObject(NULL);
 
+      if (mask && !mask->Ok())
+	mask = NULL;
+
+      XtVaSetValues(X->frame, XtNiconMask, mask ? GETPIXMAP(mask) : NULL, NULL);
       XtVaSetValues(X->frame, XtNiconPixmap, GETPIXMAP(bm), NULL);
       
       frame_icon = bm;
