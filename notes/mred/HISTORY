@@ -2,10 +2,10 @@
 Version 299.16
 Added hide-cursor-until-moved
 Changed text%'s on-char to call hide-cursor-until-moved
-X: improved performance of bitmap scaling when RENDER is 
+Improved performance of bitmap scaling when Xrender is 
  available
 Improved performance of get-argb-pixels, set-argb-pixels,
- and loading of PNG and JPG files on some platforms
+ and loading of PNG and JPG files
 
 Version 299.15
 Added message+check-box and message+check-box/custom
