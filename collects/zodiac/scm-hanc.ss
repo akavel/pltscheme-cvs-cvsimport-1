@@ -1249,7 +1249,9 @@
 			(list
 			  (cons (z:read-object tag)
 			    (cu/s-build-link-names final-sig
-			      (cu/s-build-link-prefix ids)))))
+			      (string-append
+				(cu/s-build-link-prefix ids)
+				":")))))
 		      (else
 			(internal-error tag-table-entry
 			  "Illegal tag-table entry")))))))))
@@ -1657,9 +1659,9 @@
 		      (in:links (pat:pexpand '(links ...) p-env kwd))
 		      (in:exports (pat:pexpand '(exports ...) p-env kwd)))
 		(record-tag-signatures in:imports in:links env attributes)
-					; linkage = given to verify-linkage-signature-match
-					; prim = goes into underlying compound-unit
-					; sign = given to make-unit-with-signature
+		;; linkage = given to verify-linkage-signature-match
+		;; prim = goes into underlying compound-unit
+		;; sign = given to make-unit-with-signature
 		(let* ((linkage:tags (map (lambda (l)
 					    (expand-expr l env attributes
 					      cu/s-link-tags-vocab))
