@@ -444,3 +444,10 @@ char *wxDialogBox::GetTitle(void)
   GetWindowText(wnd->handle, wxBuffer, 1000);
   return wxBuffer;
 }
+
+void wxDialogBox::SystemMenu(void)
+{
+  wxWnd *wnd = (wxWnd *)handle;
+  wnd->DefWindowProc(WM_SYSKEYDOWN, ' ', 1 << 29);
+  wnd->DefWindowProc(WM_SYSCHAR, ' ', 1 << 29);
+}
