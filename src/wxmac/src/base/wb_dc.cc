@@ -31,27 +31,6 @@
 #include "wx_dialg.h"
 #include "wx_main.h"
 
-// If not MS C++, don't include wx.h: we'll just include
-// the minimum set of files.
-// If MS C++, we'll use a precompiled header instead.
-#if !defined(_MSC_VER) && !defined(wx_wxh)
-#define wx_wxh
-#endif
-
-#include "wx.h"
-
-#include "math.h"
-
-#ifndef wx_mac
-#if USE_SPLINES
-# if USE_XFIG_SPLINE_CODE
-#  include "../base/xfspline.cc"
-# else
-#  include "../base/wxspline.cc"
-# endif
-#endif // USE_SPLINES
-#endif
-
 // Default constructor
 wxbDC::wxbDC(void)
 {
