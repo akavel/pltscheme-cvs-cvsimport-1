@@ -41,3 +41,10 @@ double * do_fit(Scheme_Object * function,
 		int n_parameters,
 		double * parameters);
 
+
+double get_rms();
+double get_varience();
+double * get_asym_error();
+double * get_asym_error_percent();
+     
+
