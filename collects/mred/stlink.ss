@@ -23,7 +23,7 @@
       ((reference-unit/sig "strun.ss") struct global)]
     
     [prim : mred:test:primitives^
-      ((reference-unit/sig "stprims.ss") wx testable struct global)]
+      ((reference-unit/sig "stprims.ss") wx testable struct global run)]
 
     [drscheme : mred:test:drscheme^
       ((reference-unit/sig "stdrs.ss") wx struct global)])
