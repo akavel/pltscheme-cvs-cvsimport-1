@@ -57,6 +57,11 @@ void wxXSetNoCursor(wxWindow *win, wxCursor *cursor)
     }
   }
   
+#ifdef MZ_PRECISE_GC
+  if (win->__type == wxTYPE_MENU_BAR)
+    return;
+#endif
+
   cl = win->GetChildren();
   for (node = cl->First(); node; node = node->Next()) {
     wxWindow *child;

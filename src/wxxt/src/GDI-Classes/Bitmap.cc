@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: bitmap classes to implement pixmaps, icons, and cursors
  *
