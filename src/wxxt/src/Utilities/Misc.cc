@@ -32,7 +32,7 @@
 
 void wxBell(void)
 {
-    XBell(wxAPP_DISPLAY, 0);
+    XBell(wxAPP_DISPLAY, 100);
 }
 
 long wxGetFreeMemory(void)

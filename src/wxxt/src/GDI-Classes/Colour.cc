@@ -410,8 +410,8 @@ wxColour *wxColourDatabase::FindColour(const char *colour)
 	APPEND_C ("MEDIUM VIOLET RED", new wxColour (219, 112, 147));
 	APPEND_C ("MIDNIGHT BLUE", new wxColour (47, 47, 79));
 	APPEND_C ("NAVY", new wxColour (35, 35, 142));
-	APPEND_C ("ORANGE", new wxColour (204, 50, 50));
-	APPEND_C ("ORANGE RED", new wxColour (255, 0, 127));
+	APPEND_C ("ORANGE", new wxColour (204, 165, 0));
+	APPEND_C ("ORANGE RED", new wxColour (255, 127, 0));
 	APPEND_C ("ORCHID", new wxColour (219, 112, 219));
 	APPEND_C ("PALE GREEN", new wxColour (143, 188, 143));
 	APPEND_C ("PINK", new wxColour (188, 143, 234));
