@@ -408,10 +408,10 @@ focus, the parent is asked to give it to another widget.
 
 @proc destroy
 {
+#if 0
     Widget parent = XtParent($);
     Time time = CurrentTime;
 
-#if 0
     /* For MrEd: no focus delegation. If the widget is being destroyed,
        it can't still have the efefctive focus. (Either the widget is hidden
        or its parent is hidden.) */
