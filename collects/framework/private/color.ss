@@ -46,7 +46,9 @@
           backward-containing-sexp
           forward-match
           insert-close-paren
-	  classify-position))
+	  classify-position
+          
+          get-colorer-blank-style))
 
       (define text-mixin
         (mixin (text:basic<%>) (-text<%>)
@@ -331,6 +333,8 @@
               (set! pairs null)
               (set! token-sym->style #f)
               (set! get-token #f)))
+          
+          (define/public (get-colorer-blank-style) (send (get-style-list) find-named-style "Standard"))
           
           (define/public (is-frozen?) frozen?)
           
