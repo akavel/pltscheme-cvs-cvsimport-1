@@ -54,7 +54,7 @@
 					   (qq-normalize first old-first)
 					   (qq-normalize rest old-rest)))))))
 		      (cond
-			((and (z:list? x)
+			((and (or (z:list? x) (z:improper-list? x))
 			   (not (zero? (z:sequence-length x))))
 			  (cond
 			    ((pat:match-against qq-m&e-1 x env)
@@ -75,6 +75,7 @@
 			    ((pat:match-against qq-m&e-5 x env)
 			      =>
 			      (lambda (p-env)
+				(printf "Got here~n")
 				(let* ((body (pat:pexpand 'body p-env kwd))
 					(rest (pat:pexpand 'rest p-env kwd))
 					(q-rest (qq rest level)))
