@@ -8,7 +8,7 @@
 (unit/sig mred:test:primitives^
   
   (import 
-    [wx        : mred:wx^]
+    mred:wx^
     [mred      : mred:testable-window^]
     [mred      : mred:keymap^]
     [mred:test : mred:test:run^])
