@@ -370,21 +370,21 @@
   (define resolve-in-vocabulary
     (let ((top-level-resolution (make-top-level-resolution 'dummy #f))) ; name-eq?
       (lambda (name vocab)
-	(let ([id (if (vocabulary-record-namespace-based? vocab)
-		      (with-handlers ([void (lambda (x) #f)])
-			(global-defined-value name))
-		      name)])
-	  (if id
-	      (let loop ((vocab vocab))
-		(hash-table-get 
-		 (vocabulary-record-this vocab)
-		 id
-		 (lambda ()
-		   (let ((v (vocabulary-record-rest vocab)))
-		     (if v
-			 (loop v)
-			 top-level-resolution)))))
-	      top-level-resolution)))))
+	(let ([id (delay (with-handlers ([void (lambda (x) #f)])
+			   (global-defined-value name)))])
+	  (let loop ((vocab vocab))
+	    (if vocab
+		(let ([id (if (vocabulary-record-namespace-based? vocab)
+			      (force id)
+			      name)])
+		  (if id
+		      (hash-table-get 
+		       (vocabulary-record-this vocab)
+		       id
+		       (lambda ()
+			 (loop (vocabulary-record-rest vocab))))
+		      (loop (vocabulary-record-rest vocab))))
+		top-level-resolution))))))
 
   (define (prepare-current-namespace-for-vocabulary vocab)
     ;; For everything in the vocabulary, ensure that the 
