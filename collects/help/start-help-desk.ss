@@ -12,7 +12,7 @@
   (include "startup-url.ss")
 
   (define (start-help-desk new-drscheme)
-    (define frame-mixin (lambda (%) %))
+    (define framne-mixin (lambda (%) %))
     (unless new-help-frame
       (set!-values (new-help-frame
 		    open-url-from-user)
@@ -25,7 +25,11 @@
 		    mred^
 		    framework^
 		    (frame-mixin))))
-    (new-help-frame startup-url)))
+    (new-help-frame startup-url
+		    (lambda (file-menu)
+		      (make-object menu-item% "New DrScheme" file-menu
+				   (lambda (m i)
+				     (new-drscheme)))))))
 
 
       
