@@ -83,8 +83,8 @@ public:
     inline virtual void OnKillFocus(void) {};
     inline virtual void OnLeftClick(int WXUNUSED(x), int WXUNUSED(y),
 				    int WXUNUSED(keys)) {};
-    inline virtual void OnMenuCommand(int WXUNUSED(cmd)) {};
-    inline virtual void OnMenuSelect(int WXUNUSED(cmd)) {};
+    inline virtual void OnMenuCommand(long WXUNUSED(cmd)) {};
+    inline virtual void OnMenuSelect(long WXUNUSED(cmd)) {};
     inline virtual void OnMove(int WXUNUSED(x), int WXUNUSED(y)) {};
     inline virtual void OnPaint(void) {};
     inline virtual void OnRightClick(int WXUNUSED(x), int WXUNUSED(y),

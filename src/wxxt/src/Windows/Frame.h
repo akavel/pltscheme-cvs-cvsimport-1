@@ -75,7 +75,7 @@ public:
     void  LoadAccelerators(char *WXUNUSED(resource)) {}
     Bool  Show(Bool show);
     // virtual event functions
-    virtual void  OnMenuSelect(int id);
+    virtual void  OnMenuSelect(long id);
 
     void SetToolBar(wxToolBar*);
     wxToolBar *GetToolBar(void);

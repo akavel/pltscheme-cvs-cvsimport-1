@@ -451,7 +451,7 @@ Bool wxFrame::Show(Bool show)
 // virtual event functions
 //-----------------------------------------------------------------------------
 
-void wxFrame::OnMenuSelect(int id)
+void wxFrame::OnMenuSelect(long id)
 {
   SetStatusText(menubar->GetHelpString(id));
 }
