@@ -63,13 +63,27 @@
 			    e)))])
       (read-eval-print-loop))))
 
-(define zodiac:see (zodiac:make-see 
-		    (lambda (in)
-		      (zodiac:scheme-expand-program (list in)))))
+(define zodiac:see
+  (zodiac:make-see 
+    (lambda (in)
+      (zodiac:scheme-expand-program (list in)))))
 
-(define zodiac:see-parsed (zodiac:make-see 
-			   (lambda (in)
-			     (zodiac:scheme-expand-program (list in)))))
+(define zodiac:see-parsed
+  (lambda ()
+    ((zodiac:make-see 
+       (lambda (in)
+	 (zodiac:scheme-expand-program (list in))))
+      #f)))
+
+(define zodiac:see
+  (opt-lambda ((print-as-sexp? #t) (vocab zodiac:scheme-vocabulary))
+    ((zodiac:make-see 
+       (lambda (in)
+	 (zodiac:scheme-expand-program
+	   (list in)
+	   (zodiac:make-attributes)
+	   vocab)))
+      print-as-sexp?)))
 
 (define zodiac:spidey-see (zodiac:make-see 
 			   (lambda (in)
