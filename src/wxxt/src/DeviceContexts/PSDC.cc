@@ -1962,11 +1962,11 @@ XPrinterDialog (wxWindow *parent)
 #	define PS_PRINTER_COMMAND	"lpr"
 #	define PS_PRINTER_OPTIONS	""
 #	define PS_AFM_PATH		NULL
-#elif defined(wx_msw) || defined(wx_mac)
-#	define PS_PREVIEW_COMMAND	"ghostview"
+#elif defined(wx_msw)
+#	define PS_PREVIEW_COMMAND	NULL
 #	define PS_PRINTER_COMMAND	"print"
 #	define PS_PRINTER_OPTIONS	""
-#	define PS_AFM_PATH		NULL
+#	define PS_AFM_PATH		"c:\\windows\\system\\"
 #else
 #	define PS_PREVIEW_COMMAND	NULL
 #	define PS_PRINTER_COMMAND	NULL
