@@ -1392,7 +1392,7 @@ void wxWindow::WindowEventHandler(Widget w,
 	KeySym	   keysym;
 	(void)XLookupString(&(xev->xkey), NULL, 0, &keysym, NULL);
 
-	if (wxIsAlt(keysym))
+	if (wxIsAlt(keysym) && !(xev->xkey.state & (ShiftMask | ControlMask)))
 	  win->misc_flags |= LAST_WAS_ALT_DOWN_FLAG;
 	else if (win->misc_flags & LAST_WAS_ALT_DOWN_FLAG)
 	  win->misc_flags -= LAST_WAS_ALT_DOWN_FLAG;
