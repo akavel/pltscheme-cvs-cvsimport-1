@@ -55,7 +55,8 @@ wxPopupEvent::wxPopupEvent(void) : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT)
 
 wxScrollEvent::wxScrollEvent(void)
 {
- 
+  direction = wxHORIZONTAL;
+  moveType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
 }
 
 /*
