@@ -27,6 +27,9 @@
 #include <ctype.h>
 #ifndef DONT_USE_LOCALE
 # include <locale.h>
+# ifdef MZ_NO_ICONV
+#  define USE_ICONV_DLL
+# endif
 # ifndef USE_ICONV_DLL
 #  include <iconv.h>
 #  include <langinfo.h>
