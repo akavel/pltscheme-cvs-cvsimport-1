@@ -503,7 +503,7 @@ wxFindWindowByLabel1 (char *title, wxWindow * parent)
   if (parent)
     {
       char *lab = parent->GetLabel ();
-      if (lab && strcmp(title, lab))
+      if (lab && !strcmp(title, lab))
 	return parent;
     }
 
@@ -562,7 +562,7 @@ wxFindWindowByName1 (char *title, wxWindow * parent)
   if (parent)
     {
       char *lab = parent->GetName ();
-      if (lab && strcmp(title, lab))
+      if (lab && !strcmp(title, lab))
 	return parent;
     }
 
