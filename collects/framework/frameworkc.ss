@@ -67,7 +67,7 @@
 	       ((require-relative-library-unit/sig "frame.ss")
 		mred
 		group preferences icon handler application
-		panel gui-utils exit finder keymap text
+		panel gui-utils exit finder keymap text editor
 		core:function)]
 	[scheme : framework:scheme^ 
 		((require-relative-library-unit/sig "scheme.ss")
