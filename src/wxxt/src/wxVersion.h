@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  */
 
 #ifndef wxVersion_h

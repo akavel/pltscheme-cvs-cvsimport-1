@@ -36,7 +36,6 @@
 static char *RCS_Version = "$XpmVersion: 3.4g $";
 
 /* Internal version number */
-static char *RCS_Id = "$Id$";
 
 #include "xpmP.h"
 #include <ctype.h>

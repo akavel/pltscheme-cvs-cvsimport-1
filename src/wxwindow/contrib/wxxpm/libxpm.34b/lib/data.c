@@ -35,9 +35,6 @@
 /* Official version number */
 static char *RCS_Version = "$XpmVersion: 3.4b $";
 
-/* Internal version number */
-static char *RCS_Id = "$Id$";
-
 #include "xpm34p.h"
 #ifdef VMS
 #include "sys$library:stat.h"

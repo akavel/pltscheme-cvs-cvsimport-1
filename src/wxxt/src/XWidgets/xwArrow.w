@@ -1,14 +1,8 @@
-# Arrow.w -- Arrow widget, usually part of a scrollbar
-#
-# Bert Bos <bert@let.rug.nl>
-# Version 1.2
-#
-# $Id$
+
 
 @CLASS XfwfArrow (XfwfBoard)  @file = xwArrow
 
-@ The Arrow widget is usually part of a composite scrollbar widget. It
-draws a triangle pointing up, down, left or right, depending on the
+@ The Arrow widget is usually part of a composite sceft or right, depending on the
 |direction| resource. It has a single callback, that is repeatedly
 called as long as a mouse button -- button 1 by default -- is pressed.
 

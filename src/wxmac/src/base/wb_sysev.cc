@@ -4,11 +4,9 @@
  * Author:	Julian Smart
  * Created:	1993
  * Updated:	August 1994
- * RCS_ID:      $Id$
+ * Copyright:	(c) 2004 PLT Scheme, Inc.
  * Copyright:	(c) 1993, AIAI, University of Edinburgh
  */
-
-/* static const char sccsid[] = "%W% %G%"; */
 
 #ifdef __GNUG__
 #pragma implementation "wx_sysev.h"

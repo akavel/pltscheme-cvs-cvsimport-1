@@ -4,6 +4,7 @@
 // Author:	Bill Hale
 // Created:	1994
 // Updated:	
+// Copyright:  (c) 2004 PLT Scheme, Inc.
 // Copyright:  (c) 1993-94, AIAI, University of Edinburgh. All Rights Reserved.
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -15,7 +16,7 @@
    atomic. It has no pointers, after all. */
 #ifdef MZ_PRECISE_GC
 START_XFORM_SKIP;
-#endf
+#endif
 
 class wxWhatScrollData // 95-02-19
 {
@@ -62,7 +63,7 @@ class wxWhatScrollData // 95-02-19
 
 #ifdef MZ_PRECISE_GC
 END_XFORM_SKIP;
-#endf
+#endif
 
 class wxScrollData
 {

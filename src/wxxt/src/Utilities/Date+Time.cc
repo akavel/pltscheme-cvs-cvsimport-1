@@ -1,10 +1,10 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: time and date related functions
  *
  * Authors: Markus Holzem and Julian Smart
  *
+ * Copyright: (C) 2004 PLT Scheme, Inc.
  * Copyright: (C) 1995, AIAI, University of Edinburgh (Julian)
  * Copyright: (C) 1995, GNU (Markus)
  *
