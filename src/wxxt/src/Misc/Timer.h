@@ -48,7 +48,7 @@ public:
     Bool          one_shot;
 
     /* MrEd stuff: */
-    unsigned long expiration;
+    double expiration;
     wxTimer *next, *prev;
     void *context;
 
