@@ -1740,21 +1740,15 @@ wxWnd::~wxWnd(void)
     ::DeleteObject(background_brush) ;
 #endif
 
-
-
-  wxWindow *p = wx_window->GetParent();
-
-  while (p && !(wxSubType(p->__type, wxTYPE_FRAME)
-
-			  || wxSubType(p->__type, wxTYPE_FRAME)))
-
+  if (wx_window) {
+    wxWindow *p = wx_window->GetParent();
+    while (p && !(wxSubType(p->__type, wxTYPE_FRAME)
+	          || wxSubType(p->__type, wxTYPE_FRAME)))
 	p = p->GetParent();
-
-  if (p)
-
-	if (p->focusWindow == wx_window)
-
-	  p->focusWindow = NULL;
+    if (p)
+      if (p->focusWindow == wx_window)
+	p->focusWindow = NULL;
+  }
 }
 
 HDC wxWnd::GetHDC(void)
