@@ -432,15 +432,23 @@ char *wxFrame::GetTitle(void)
   return wxBuffer;
 }
 
-void wxFrame::SetIcon(wxIcon *wx_icon)
+void wxFrame::SetIcon(wxBitmap *wx_icon)
 {
   icon = wx_icon;
     
   wxFrameWnd *wnd = (wxFrameWnd *)handle;
+
+  if (wnd->icon)
+    DestroyIcon(wnd->icon);
+
   if (!wx_icon)
     wnd->icon = 0;
-  else
-    wnd->icon = wx_icon->ms_icon;
+  else {
+    ICONINFO info;
+    info.fIcon = TRUE;
+    info.hbmMask = info.hbmColor = icon->ms_bitmap;
+    wnd->icon = CreateIconIndirect(&info);
+  }
 }
 
 void wxFrame::CreateStatusLine(int number, char *WXUNUSED(name))
