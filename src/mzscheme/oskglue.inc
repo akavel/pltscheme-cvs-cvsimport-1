@@ -1,4 +1,4 @@
-#if defined(OSKIT) && !defined(OSKIT_TEST)
+#if defined(OSKIT) && !defined(OSKIT_TEST) && !KNIT
 
 #  include <oskit/clientos.h>
 #  include <oskit/dev/osenv.h>
@@ -216,7 +216,7 @@ oskit_error_t oskit_get_call_context(const struct oskit_guid *iid, void **out_if
 
 #ifndef OSKIT_TEST
 
-static void oskit_prepare(int _*argc, char ***_argv)
+static void oskit_prepare(int *_argc, char ***_argv)
 {
   int argc = *_argc;
   char **argv = *_argv;
