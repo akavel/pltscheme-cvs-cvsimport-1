@@ -27,7 +27,8 @@
     (lambda (%)
       (class-asi %
 	(rename [super-on-set-focus   on-set-focus]
-		[super-on-kill-focus  on-kill-focus])
+		[super-on-kill-focus  on-kill-focus]
+		[super-set-cursor set-cursor])
 	(public
 	  [on-set-focus
 	    (lambda ()
