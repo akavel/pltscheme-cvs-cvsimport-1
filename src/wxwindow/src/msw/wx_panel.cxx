@@ -172,7 +172,7 @@ Bool wxPanel::Create(wxWindow *parent, int x, int y, int width, int height, long
   DWORD msflags = 0, exflags = 0;
   if (style & wxBORDER)
     exflags |= WS_EX_STATICEDGE;
-  msflags |= WS_CHILD | WS_VISIBLE;
+  msflags |= WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS;
 
   wxPanelWnd *wnd = new wxPanelWnd(cparent, wxCanvasClassName, this, x, y, width, height, 
 				   msflags, exflags);
@@ -424,8 +424,8 @@ void wxPanel::Centre(int direction)
 }
 
 void wxPanel::ChangeToGray(Bool gray)
-{
-  wxWindow::ChangeToGray(gray);
+{
+  wxWindow::ChangeToGray(gray);
   InternalGrayChildren(gray);
 }
 
