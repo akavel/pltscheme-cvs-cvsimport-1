@@ -1,9 +1,6 @@
 (reference-library "macro.ss")
 (reference-library "prettys.ss")
 
-(reference "zsigs.ss")
-(reference "sigs.ss")
-
 (begin-elaboration-time
   (define plt-home-directory
     (let ([plt (getenv "PLTHOME")])
@@ -22,5 +19,5 @@
 		     "lib" "require.ss")))
 (plt:require-library "sparams.ss")
 
-(define zodiac:system@
-  (reference-unit/sig "link.ss"))
+(reference "zsigs.ss")
+(reference "sigs.ss")
