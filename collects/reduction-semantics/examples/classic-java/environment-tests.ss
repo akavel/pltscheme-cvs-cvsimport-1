@@ -11,9 +11,10 @@
 (module environment-tests mzscheme
 
   (require (lib "test.ss" "test"))
+  (provide environment-tests)
   (require/expose "environment.ss" ())
 
-  (schemeunit-test
+  (define environment-tests
    (make-test-suite
     "Tests for basic environments"
 
@@ -33,14 +34,14 @@
                                      '(a b c) '(1 2 3)) 'x (lambda () 0))))
 
     (make-test-case "env->alist"
-                    (assert-equal? (env->alist 
+                    (assert-equal? (env->alist
                                     (extend-env (extend-env (make-empty-env)
                                                             '(x y)
                                                             '(1 2))
                                                 '(a b x)
                                                 '(4 5 6)))
                                    '((a 4) (b 5) (x 6) (x 1) (y 2))))
-    
+
     (make-test-case "extend: mismatch"
       (assert-exn
        (lambda (exn)

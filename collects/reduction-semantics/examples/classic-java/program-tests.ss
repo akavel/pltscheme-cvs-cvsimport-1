@@ -11,6 +11,7 @@
   (require (lib "test.ss" "test")
            "parser.ss"
            "ast.ss")
+  (provide program-tests)
 
   (require/expose "program.ss" ())
 
@@ -29,7 +30,7 @@
        (class G C ([B b]))
        (+ 3 4))))
 
-  (schemeunit-test
+  (define program-tests
    (make-test-suite
        "ClassicJava Program module"
 
