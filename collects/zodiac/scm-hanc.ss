@@ -1405,7 +1405,7 @@
     (let ((raw-var (z:read-object variable)))
       (let loop ((elements (signature-elements sig)))
 	(if (null? elements)
-	  (static-error variable "No such variable in signature")
+	  (static-error variable "No such identifier in signature")
 	  (or (and (name-element? (car elements))
 		(eq? raw-var (name-element-name (car elements))))
 	    (loop (cdr elements))))))))
