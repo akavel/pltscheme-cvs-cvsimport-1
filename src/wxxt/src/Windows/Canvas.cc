@@ -141,6 +141,11 @@ void wxCanvas::GetVirtualSize(int *x, int *y)
     *x = ww; *y = hh;
 }
 
+void wxCanvas::GetRefreshSize(int *w, int *h)
+{
+  GetVirtualSize(w, h);
+}
+
 void wxCanvas::Scroll(int x_pos, int y_pos)
 {
   if (misc_flags & 8) {

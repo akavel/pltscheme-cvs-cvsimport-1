@@ -59,6 +59,8 @@ public:
 		int x=-1, int y=-1, int width=-1, int height=-1,
 		int style=0, char *name="canvas");
 
+    virtual void GetRefreshSize(int *w, int *h);
+
     void GetScrollUnitsPerPage(int *x, int *y)
 	{ *x = h_units; *y = v_units; };
     void GetVirtualSize(int *x, int *y);
