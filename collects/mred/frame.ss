@@ -121,8 +121,8 @@
 	    (send* horiz-panel (border 0) (spacing 0))
 	    (send* super-panel (border 0) (spacing 0))
 	    (send* canvas (set-media time-edit) (user-min-height 35) (user-min-width 65)
-		          (stretchable-in-x? #f))
-	    (send status-line-panel stretchable-in-y? #f)
+		          (stretchable-in-x #f))
+	    (send status-line-panel stretchable-in-y #f)
 	    (unless (mred:preferences:get-preference 'mred:status-line)
 	      (send super-panel change-children (lambda (l) (list panel))))))))
 
@@ -366,7 +366,9 @@
     (define make-simple-frame%
       (lambda (super%)
 	(class super% ([name frame-name])
-	  (inherit panel get-client-size get-title set-title set-icon status-line-panel)
+	  (inherit panel get-client-size get-title set-title set-icon
+		   ;status-line-panel
+		   )
 	  (rename [super-on-close on-close])
 	  (public
 	    [WIDTH frame-width]
