@@ -13,7 +13,7 @@
   (link [application : framework:application^ ((require-relative-library "app.ss"))]
 	[version : framework:version^ ((require-relative-library "version.ss") core:string core:function)]
 	[exn : framework:exn^ ((require-relative-library "exn.ss"))]
-	[exit : framework:exit^ ((require-relative-library "exit.ss") preferences gui-utils)]
+	[exit : framework:exit^ ((require-relative-library "exit.ss") mred preferences gui-utils)]
 	[preferences : framework:preferences^
 		     ((require-relative-library "prefs.ss")
 		      mred
