@@ -129,6 +129,13 @@ void wxbDC::DrawSpline(float x1, float y1, float x2, float y2, float x3, float y
 }
 #endif
 
+wxColor *wxbDC::GetBackground(void);
+{ 
+  wxColour *c = new wxColour;
+  c.CopyFrom(&current_background_color);
+  return c;
+}
+
 void wxbDC::SetLogicalOrigin(float x, float y)
 {
   logical_origin_x = x;

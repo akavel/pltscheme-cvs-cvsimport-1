@@ -82,7 +82,7 @@ void wxCommonInit(void)
 //  wxTheColourList = new wxGDIList ;
   wxTheColourDatabase = new wxColourDatabase(wxKEY_STRING);
   wxTheColourDatabase->Initialize();
-  wxTheFontNameDirectory.Initialize();
+  wxInitializeFontNameDirectory();
   wxInitializeStockObjects();
   wxInitStandardTypes();
   wxThePrintPaperDatabase = new wxPrintPaperDatabase;
@@ -96,9 +96,8 @@ void wxCommonCleanUp(void)
   delete wxThePenList;
   delete wxTheFontList;
   delete wxTheBitmapList;
-#ifdef wx_mac
   delete wxTheCursorList;
-#endif
+
   delete wxThePrintPaperDatabase;
 
   delete wxTheColourDatabase;

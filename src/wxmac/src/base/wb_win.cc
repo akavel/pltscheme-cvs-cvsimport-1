@@ -36,17 +36,11 @@ wxbWindow::wxbWindow(void)
   __type = wxTYPE_WINDOW;
   windowStyle = 0;
   wx_client_data = NULL;
-#ifndef wx_mac
-  window_parent = NULL;
-#endif
   font = NULL;
   handle = NULL;
   windowName = NULL;
   callback = 0;
-  wx_cursor = NULL /* wxSTANDARD_CURSOR */;
-#ifndef wx_mac
-  children = new wxChildList;
-#endif
+  wx_cursor = NULL;
   paintingEnabled = TRUE;
   doubleClickAllowed = 0 ;
   winCaptured = FALSE;
