@@ -77,6 +77,7 @@ Create (wxWindow * parent, int x, int y, int width, int height, long style,
     msflags |= WS_HSCROLL;
   if (style & wxVSCROLL)
     msflags |= WS_VSCROLL;
+  msflags |= WS_CLIPSIBLINGS;
 
   wxCanvasWnd *wnd = new wxCanvasWnd (cparent, this, x, y, width, height, msflags);
   wnd->SetBackgroundBrush((HBRUSH)GetStockObject(WHITE_BRUSH), FALSE);
