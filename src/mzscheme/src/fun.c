@@ -2308,16 +2308,16 @@ static Scheme_Object *seconds_to_date(int argc, Scheme_Object **argv)
 
       tzoffset = 0;
 # ifdef USE_TIMEZONE_VAR
-      tzoffset = MSC_IZE(timezone);
+      tzoffset = -MSC_IZE(timezone);
 # endif
 # ifdef USE_TIMEZONE_VAR_W_DLS
-      tzoffset = timezone + (dst ? 3600 : 0);
+      tzoffset = -(timezone + (dst ? 3600 : 0));
 # endif
 # ifdef USE_TIMEZONE_AND_ALTZONE_VAR
       if (dst)
-	tzoffset = altzone;
+	tzoffset = -altzone;
       else
-	tzoffset = timezone;
+	tzoffset = -timezone;
 # endif
 # ifdef USE_TM_GMTOFF_FIELD
       tzoffset = localTime->tm_gmtoff;
@@ -2334,7 +2334,7 @@ static Scheme_Object *seconds_to_date(int argc, Scheme_Object **argv)
       p[6] = scheme_make_integer(wday);
       p[7] = scheme_make_integer(yday);
       p[8] = dst ? scheme_true : scheme_false;
-      p[9] = scheme_make_integer(timezone);
+      p[9] = scheme_make_integer(tzoffset);
       
       return scheme_make_struct_instance(scheme_date, 10, p);
     }
