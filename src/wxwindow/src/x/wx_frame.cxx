@@ -544,6 +544,33 @@ void wxFrame::SetSize(int x, int y, int width, int height, int sizeFlags)
   GetSize(&lastWidth, &lastHeight);
 }
 
+static void ForceFocus(Widget frame)
+{
+  static int force_focus = 0;
+
+  if (!force_focus) {
+    wxGetResource(wxTheApp->wx_class, "forceFocus", &force_focus);
+    force_focus = !force_focus ? -1 : 1;
+  }
+
+  if (force_focus > 0) {
+    Window current;
+    int old_revert;
+    XGetInputFocus(XtDisplay(frame), &current, &old_revert);
+    if (current != PointerRoot) {
+      XFlush(XtDisplay(frame));
+      XGrabServer(XtDisplay(frame));
+      
+      XWindowAttributes attrib;
+      XGetWindowAttributes(XtDisplay(frame), XtWindow(frame), &attrib);
+      if (attrib.map_state == IsViewable)
+	XSetInputFocus(XtDisplay(frame), XtWindow(frame),
+		       RevertToNone, CurrentTime);
+    }
+    XUngrabServer(XtDisplay(frame));
+  }
+}
+
 Bool wxFrame::Show(Bool show)
 {
   SetShown(show);
@@ -566,6 +593,7 @@ Bool wxFrame::Show(Bool show)
   if (show) {
     XtMapWidget(frameShell);
     XRaiseWindow(XtDisplay(frameShell), XtWindow(frameShell));
+    ForceFocus(frameShell);
   } else {
     XtUnmapWidget(frameShell);
 //    XmUpdateDisplay(wxTheApp->topLevel); // Experimental: may be responsible for crashes
