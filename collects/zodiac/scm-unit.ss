@@ -458,7 +458,6 @@
   ;; lexical bindings that are shadowed by unit definitions.
 
   (define (fixup expr binding-map)
-    (print-struct #f)
     (let fix ([expr expr])
       (if (bound-varref? expr)
 	  (let ([fixed (assoc (bound-varref-binding expr) binding-map)])
