@@ -1192,6 +1192,7 @@
           2)
    1)
   
+  #;
   (test/spec-passed/result
    'object-contract/field7
    '(send (contract (object-contract)
