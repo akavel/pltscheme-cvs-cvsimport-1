@@ -75,7 +75,8 @@
 ;;
 
 (define-signature  zodiac:scanner-parameters^
-  (scan:paren-relation
+  (read-exact-numbers
+   scan:paren-relation
    scan:self-delim-symbols
    scan:newline-list
    scan:tab-list

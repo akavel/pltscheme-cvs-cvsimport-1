@@ -14,6 +14,8 @@
 (unit/sig  zodiac:scanner-parameters^
   (import  zodiac:structures^)
 
+  (define read-exact-numbers (make-parameter #f))
+
    ;; Only #\space and #\newline are always builtin,
    ;; so we specify the rest with ascii codes.
 
