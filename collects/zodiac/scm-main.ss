@@ -979,7 +979,7 @@
 	    (begin
 	      (unless (z:symbol? type-spec)
 		(static-error
-		  "super-structure definition" 'term:super-struct-not-id
+		  "structure definition" 'term:struct-not-id
 		  type-spec "not an identifier"))
 	      (values type-spec #f))))))
 
