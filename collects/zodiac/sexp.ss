@@ -41,6 +41,10 @@
 			     (add1 length)
 			     (make-period start)
 			     '())))))
+		   ((vector? expr)
+		    (z:make-vector origin start finish
+				   (map structurize (vector->list expr))
+				   (vector-length expr)))
 		   ((symbol? expr)
 		     (z:make-symbol
 		       origin start finish expr expr marks))
