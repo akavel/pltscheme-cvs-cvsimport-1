@@ -1500,7 +1500,9 @@ void wxWindow::WindowEventHandler(Widget w,
 	  if (subWin)
 	    *continue_to_dispatch_return = TRUE;
 	  else {
-	    if (Press && !wxSubType(win->__type, wxTYPE_MENU_BAR))
+	    if (Press 
+		&& !wxSubType(win->__type, wxTYPE_MENU_BAR)
+		&& !wxSubType(win->__type, wxTYPE_PANEL))
 	      win->SetFocus();
 	    win->GetEventHandler()->OnEvent(wxevent);
 	  }

@@ -90,7 +90,8 @@ Bool wxButton::Create(wxPanel *panel, wxFunction function, char *label,
 	 XtNforeground,  fg->GetPixel(cmap),
 	 XtNfont,        font->GetInternalFont(),
 	 XtNshrinkToFit, (width < 0 || height < 0),
-	 XtNhighlightThickness, 0, XtNtraversalOn, FALSE,
+	 XtNhighlightThickness, 0,
+	 XtNtraversalOn, FALSE,
 	 NULL);
     // propagate key events from frame to button widget
     XtVaSetValues(X->frame, XtNpropagateTarget, X->handle, NULL);
