@@ -93,6 +93,7 @@
   ;; contract that recognizes unary predicates
   (define predicate? (any? . -> . boolean?))
 
+  ;; mv-map :: (a -> b c) (Listof a) -> (Listof b) (Listof c)
   ;; map, but for functions that return 2 values.
   (define mv-map
     (lambda (f l)
