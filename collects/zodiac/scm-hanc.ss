@@ -48,7 +48,7 @@
 	    (loop (cdr in:all) (cdr sign:all)
 	      in:names sign:names
 	      (cons in in:rest)
-	      (cons sign sign:names))))))))
+	      (cons sign sign:rest))))))))
 
 ; This is based on code lifted from Matthew's implementation (note the
 ; use of brackets (-:).
