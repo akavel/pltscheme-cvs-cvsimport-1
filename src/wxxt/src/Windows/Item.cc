@@ -86,10 +86,12 @@ void wxItem::ChangeColours(void)
     }
 }
 
+#if 0
 void wxItem::SetLabelColour(wxColour *col)
 {
     label_fg = col; ChangeColours();
 }
+#endif
 
 //-----------------------------------------------------------------------------
 // functions to execute item

@@ -45,7 +45,6 @@ public:
 		long style = wxHORIZONTAL, char *name = "gauge");
 
     void  SetBezelFace(int WXUNUSED(w)) {}
-    void  SetButtonColour(wxColour *col);
     void  SetRange(int r);
     void  SetShadowWidth(int WXUNUSED(w)) {}
     void  SetValue(int pos);

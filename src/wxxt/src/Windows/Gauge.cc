@@ -133,13 +133,6 @@ Bool wxGauge::Create(wxPanel *panel, char *label, int _range,
 // methods to access internal data
 //-----------------------------------------------------------------------------
 
-void wxGauge::SetButtonColour(wxColour *col)
-{
-    if (col && X->handle)
-	XtVaSetValues(X->handle, XtNthumbColor, col->GetPixel(cmap), NULL);
-    wxItem::SetButtonColour(col);
-}
-
 void wxGauge::SetRange(int new_range)
 {
     if (0 <= new_range) {

@@ -143,13 +143,6 @@ void wxSlider::OnSize(int width, int height)
 // methods to access internal data
 //-----------------------------------------------------------------------------
 
-void wxSlider::SetButtonColour(wxColour *col)
-{
-    if (col && X->handle)
-	XtVaSetValues(X->handle, XtNthumbColor, col->GetPixel(cmap), NULL);
-    wxItem::SetButtonColour(col);
-}
-
 void wxSlider::SetValue(int new_value)
 {
     if (minimum <= new_value && new_value <= maximum) {

@@ -1357,6 +1357,9 @@ Bool wxPostScriptDC::StartDoc (char *message)
   return TRUE;
 }
 
+#ifdef wx_x
+extern void wxsExecute(char **);
+#endif
 
 void wxPostScriptDC::EndDoc (void)
 {
@@ -1418,7 +1421,7 @@ void wxPostScriptDC::EndDoc (void)
 	  argv[0] = preview_cmd;
           argv[1] = filename;
           argv[2] = NULL;
-	  wxExecute (argv);
+	  wxsExecute (argv);
 	}
 	break;
 
@@ -1434,7 +1437,7 @@ void wxPostScriptDC::EndDoc (void)
 	    argv[i++] = opts;
 	  argv[i++] = filename;
 	  argv[i] = NULL;
-	  wxExecute(argv);
+	  wxsExecute(argv);
 	}
 	break;
 
@@ -1962,11 +1965,11 @@ XPrinterDialog (wxWindow *parent)
 #	define PS_PRINTER_COMMAND	"lpr"
 #	define PS_PRINTER_OPTIONS	""
 #	define PS_AFM_PATH		NULL
-#elif defined(wx_msw)
-#	define PS_PREVIEW_COMMAND	NULL
+#elif defined(wx_msw) || defined(wx_mac)
+#	define PS_PREVIEW_COMMAND	"ghostview"
 #	define PS_PRINTER_COMMAND	"print"
 #	define PS_PRINTER_OPTIONS	""
-#	define PS_AFM_PATH		"c:\\windows\\system\\"
+#	define PS_AFM_PATH		NULL
 #else
 #	define PS_PREVIEW_COMMAND	NULL
 #	define PS_PRINTER_COMMAND	NULL

@@ -463,7 +463,7 @@ void wxRadioBox::ChangeColours(void)
 //-----------------------------------------------------------------------------
 
 void wxRadioBox::EventCallback(Widget WXUNUSED(w),
-			       XtPointer dclient, XtPointer dcall)
+			       XtPointer dclient, XtPointer WXUNUSED(dcall))
 {
     wxRadioBox     *radioBox = (wxRadioBox*)dclient;
     wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_RADIOBOX_COMMAND);

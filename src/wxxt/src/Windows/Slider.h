@@ -45,7 +45,6 @@ public:
 		int x = -1, int y = -1, long style = wxHORIZONTAL, char *name = "slider");
 
     int   GetValue(void) { return value; }
-    void  SetButtonColour(wxColour *col);
     void  SetValue(int value);
     void Command(wxCommandEvent &event);
 
