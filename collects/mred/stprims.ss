@@ -17,7 +17,6 @@
   (define run-error error)
   
   (define time-stamp current-milliseconds)
-    
   
   ;;
   ;; Return list of window's ancestors from root down to window
@@ -324,14 +323,5 @@
 		  (send-mouse-event new-window enter))
 		(send new-window set-focus)
 		(void))))]))))
-  
-  ;;
-  ;; Provide no op as a way to catch pending errors.
-  ;; void runs in the handler thread.
-  ;;
-  
-  (define noop
-    (lambda ()
-      (mred:test:run-one void)))
   
   )
