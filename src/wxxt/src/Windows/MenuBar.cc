@@ -231,6 +231,9 @@ int wxMenuBar::Number()
   for (i = (menu_item *)top; i; i = i->next)
     counter++;
 
+  if (counter && topdummy)
+    --counter;
+
   return counter;
 }
 

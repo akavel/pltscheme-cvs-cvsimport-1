@@ -83,7 +83,7 @@ void wxBeginBusyCursor(wxCursor * cursor)
   if (wxCursorBusy == 1)
     for(wxChildNode *node = wxTopLevelFrames(NULL)->First(); node; node = node->Next()) {
       wxWindow *win = (wxWindow *)node->Data();
-      if (win && node->IsShown())
+      if (win)
 	wxXSetBusyCursor(win, cursor);
     }
 
@@ -103,7 +103,7 @@ wxEndBusyCursor (void)
   if (wxCursorBusy == 0)
     for(wxChildNode *node = wxTopLevelFrames(NULL)->First(); node; node = node->Next()) {
       wxWindow *win = (wxWindow *)node->Data();
-      if (win && node->IsShown())
+      if (win)
 	wxXSetBusyCursor(win, NULL);
     }
 
