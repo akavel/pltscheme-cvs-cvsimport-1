@@ -133,10 +133,6 @@ wxBrush::wxBrush(void)
     stipple = NULL;
     style   = wxSOLID;
     locked = 0;
-
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheBrushList->AddBrush(this);
-#endif
 }
 
 wxBrush::wxBrush(wxColour &col, int Style)
@@ -147,10 +143,6 @@ wxBrush::wxBrush(wxColour &col, int Style)
     style   = Style;
     stipple = NULL;
     locked = 0;
-
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheBrushList->AddBrush(this);
-#endif
 }
 
 wxBrush::wxBrush(const char *col, int Style)
@@ -161,19 +153,12 @@ wxBrush::wxBrush(const char *col, int Style)
     style   = Style;
     stipple = NULL;
     locked = 0;
-
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheBrushList->AddBrush(this);
-#endif
 }
 
 wxBrush::~wxBrush(void)
 {
   if (stipple)
     --stipple->selectedIntoDC;
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheBrushList->RemoveBrush(this);
-#endif
 }
 
 void wxBrush::SetStipple(wxBitmap *s)
