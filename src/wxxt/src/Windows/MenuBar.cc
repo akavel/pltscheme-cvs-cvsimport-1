@@ -109,7 +109,7 @@ Bool wxMenuBar::Create(wxPanel *panel)
 
     // Panel width needed
     int ph, pw;
-    panel->GetSize(&ph, &pw);
+    panel->GetSize(&pw, &ph);
 
     // position menubar
     Dimension hh, ww;

@@ -358,15 +358,15 @@ void wxFrame::SetMenuBar(wxMenuBar *new_menubar)
   if (new_menubar->GetParent())
     return;
 
-    if (menubar)
-	menubar->Destroy();	// destroy X internal representation
-    if ((menubar = new_menubar)) {
-	int ww, hh;
-
-	menubar->Create(this);
-	menubar->GetSize(&ww, &hh);
-	yoff = hh; // offset off client area inside frame
-    }
+  if (menubar)
+    menubar->Destroy();	// destroy X internal representation
+  if ((menubar = new_menubar)) {
+    int ww, hh;
+    
+    menubar->Create(this);
+    menubar->GetSize(&ww, &hh);
+    yoff = hh; // offset off client area inside frame
+  }
 }
 
 //-----------------------------------------------------------------------------
