@@ -93,7 +93,7 @@ static char *GetIniFile(char *dest, const char *filename)
 static XrmDatabase wxXrmGetFileDatabase(const char *s)
 {
   /* because directory names crash XrmGetFileDatabase */
-  if (!wxDirExists(s))
+  if (!wxDirExists((char *)s))
     return XrmGetFileDatabase(s);
   else
     return NULL;
