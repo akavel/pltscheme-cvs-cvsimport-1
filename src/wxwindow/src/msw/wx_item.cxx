@@ -24,11 +24,7 @@
 // The MakeProcInstance version of the function
 FARPROC wxGenericControlSubClassProc = 0;
 
-#if !WXGARBAGE_COLLECTION_ON /* MATTHEW: GC */
-wxList *wxControlHandleList = NULL;
-#else
 wxNonlockingHashTable *wxControlHandleList = NULL;
-#endif
 
 extern HCURSOR wxMSWSetCursor(HCURSOR c);
 

@@ -64,11 +64,8 @@ wxWindow *wxDefaultParent = NULL;
 
 HINSTANCE wxhInstance = 0;
 
-#if !WXGARBAGE_COLLECTION_ON /* MATTHEW: GC */
-extern wxList *wxWinHandleList;
-#else
 extern wxNonlockingHashTable *wxWinHandleList;
-#endif
+extern wxNonlockingHashTable *wxSliderList;
 extern FARPROC wxGenericControlSubClassProc;
 
 #ifdef _____USE_KEYBOARD_HOOK
@@ -393,11 +390,8 @@ void wxInitialize(HINSTANCE hInstance)
 #endif
 #endif
 
-#if !WXGARBAGE_COLLECTION_ON /* MATTHEW: GC */
-  wxWinHandleList = new wxList(wxKEY_INTEGER);
-#else
   wxWinHandleList = new wxNonlockingHashTable();
-#endif
+  wxSliderList = new wxNonlockingHashTable();
 
 #ifdef ____USE_KEYBOARD_HOOK
   wxSetKeyboardHook(TRUE);
