@@ -10,7 +10,7 @@
 
 #ifdef wx_mac
 typedef struct {
-  CGCOntext cg;
+  CGContextRef cg;
   CGMutablePathRef path;
 } PathTarget;
 # define CGPATH ((PathTarget *)target)->path
@@ -859,7 +859,6 @@ void wxRegion::Install(long target, Bool align)
     CGContextRef cg = (CGContextRef)target;
     PathTarget *t;
     CGMutablePathRef path;
-    int i;
     
     path = CGPathCreateMutable();
   
@@ -1667,13 +1666,21 @@ Bool wxIntersectPathRgn::Install(long target, Bool reverse, Bool align)
   else
     CGContextClip(CGCG);
   CGPathRelease(CGPATH);
-  CGPATH = CGPathCreateMutable();
+  {
+    CGMutablePathRef *p;
+    p = CGPathCreateMutable();
+    CGPATH = p;
+  }
 #endif
 #if defined(wx_msw)
   wxGSetClip(GP_G, GP, GP_DID_ONE ? CombineModeIntersect : CombineModeReplace);
   GP_DID_ONE = 1;
   wxGPathRelease(GP);
-  GP = wxGPathNew(FillModeAlternate);
+  {
+    GraphicsPath *p;
+    p = wxGPathNew(FillModeAlternate);
+    GP = p;
+  }
 #endif
   return b->Install(target, reverse, align);
 }
