@@ -48,3 +48,8 @@ void wxDisplaySize(int *width, int *height, int flags)
       *height = 768;
   }
 }
+
+void wxDisplayOrigin(int *x, int *y)
+{
+  *x = *y = 0;
+}
