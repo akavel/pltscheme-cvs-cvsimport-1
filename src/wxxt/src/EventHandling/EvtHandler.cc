@@ -150,7 +150,7 @@ int CharCodeXToWX(KeySym key_sym)
 
   // try displayable keysyms
   if (key_sym <= 255)
-    return int(key_sym);
+    return (int)key_sym;
 
   // keysym not handled by wx
   return 0;

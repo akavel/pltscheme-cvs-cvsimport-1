@@ -79,9 +79,12 @@ static void wxCommonInit(void);
 
 void wxInitNewToplevel(void)
 {
-  wxPutAppToplevel(XtAppCreateShell(wxAPP_NAME, wxAPP_CLASS,
-				    applicationShellWidgetClass,
-				    wxAPP_DISPLAY, NULL, 0));
+  Widget tl;
+
+  tl = XtAppCreateShell(wxAPP_NAME, wxAPP_CLASS,
+		       applicationShellWidgetClass,
+			wxAPP_DISPLAY, NULL, 0);
+  wxPutAppToplevel(tl);
 }
 
 typedef struct {
