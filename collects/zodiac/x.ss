@@ -24,10 +24,7 @@
       (global-defined-value s)))
   
   (define (syntax-symbol->id s)
-    (with-handlers ([void (lambda (x)
-			    (let ([mzb (make-mz-binding s)])
-			      (global-defined-value s mzb)
-			      mzb))])
+    (with-handlers ([void (lambda (x) (make-mz-binding s))])
       (parameterize ([current-namespace reference-namespace])
 	(global-defined-value s))))
 
