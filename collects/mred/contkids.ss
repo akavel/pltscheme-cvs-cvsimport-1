@@ -690,7 +690,7 @@
 	(class canvas% (panel
 			message 
 			[x -1] [y -1]
-			[style wx:const-retained]
+			[style 0]
 			[name "canvasmessage"])
 	  (private
 	    [mdc 'canvas-message:not-yet-the-mdc]
