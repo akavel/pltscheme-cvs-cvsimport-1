@@ -256,17 +256,16 @@ Bool wxFrame::Create(wxFrame *Parent, char *title, int x, int y,
                     NULL);
 
   XtVaSetValues(frameWidget,
-    XmNworkWindow, workArea,
-    NULL);
+		XmNworkWindow, workArea,
+		NULL);
 
 
   XtManageChild(clientArea);
 //  XtManageChild(statusLineWidget);
   XtManageChild(workArea);
 
-  if (wxWidgetHashTable->Get((long)workArea)) {
+  if (wxWidgetHashTable->Get((long)workArea))
     wxError("Widget table clash in wx_frame.cc");
-  }
   wxWidgetHashTable->Put((long)workArea, this);
 
   XtTranslations ptr ;
