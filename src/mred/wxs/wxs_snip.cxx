@@ -354,7 +354,7 @@ void os_wxSnip::DoEdit(int x0, Bool x1, long x2)
   int sj;
   static void *mcache = 0;
 
-  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxSnip_class, "do-edit", &mcache);
+  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxSnip_class, "do-edit-operation", &mcache);
   if (method && !OBJSCHEME_PRIM_METHOD(method)) {
     COPY_JMPBUF(savebuf, scheme_error_buf);
     sj = scheme_setjmp(scheme_error_buf);
@@ -984,13 +984,13 @@ static Scheme_Object *os_wxSnipDoEdit(Scheme_Object *obj, int n,  Scheme_Object 
   long x2;
 
   
-  x0 = objscheme_unbundle_integer(p[0], "do-edit in snip%");
+  x0 = objscheme_unbundle_integer(p[0], "do-edit-operation in snip%");
   if (n > 1) {
-    x1 = objscheme_unbundle_bool(p[1], "do-edit in snip%");
+    x1 = objscheme_unbundle_bool(p[1], "do-edit-operation in snip%");
   } else
     x1 = TRUE;
   if (n > 2) {
-    x2 = objscheme_unbundle_integer(p[2], "do-edit in snip%");
+    x2 = objscheme_unbundle_integer(p[2], "do-edit-operation in snip%");
   } else
     x2 = 0;
 
@@ -1047,7 +1047,7 @@ static Scheme_Object *os_wxSnipAdjustCursor(Scheme_Object *obj, int n,  Scheme_O
   x4 = objscheme_unbundle_float(p[4], "adjust-cursor in snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "adjust-cursor in snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::adjust-cursor");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","adjust-cursor"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxSnip *)((Scheme_Class_Object *)obj)->primdata)->wxSnip::AdjustCursor(x0, x1, x2, x3, x4, *x5);
   else
@@ -1078,7 +1078,7 @@ static Scheme_Object *os_wxSnipOnChar(Scheme_Object *obj, int n,  Scheme_Object 
   x4 = objscheme_unbundle_float(p[4], "on-char in snip%");
   x5 = objscheme_unbundle_wxKeyEvent(p[5], "on-char in snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-char");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-char"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxSnip *)((Scheme_Class_Object *)obj)->primdata)->wxSnip::OnChar(x0, x1, x2, x3, x4, *x5);
   else
@@ -1109,7 +1109,7 @@ static Scheme_Object *os_wxSnipOnEvent(Scheme_Object *obj, int n,  Scheme_Object
   x4 = objscheme_unbundle_float(p[4], "on-event in snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "on-event in snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-event");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-event"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxSnip *)((Scheme_Class_Object *)obj)->primdata)->wxSnip::OnEvent(x0, x1, x2, x3, x4, *x5);
   else
@@ -1277,7 +1277,7 @@ static Scheme_Object *os_wxSnipDraw(Scheme_Object *obj, int n,  Scheme_Object *p
   x8 = objscheme_unbundle_float(p[8], "draw in snip%");
   x9 = objscheme_unbundle_integer(p[9], "draw in snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::draw");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","draw"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxSnip *)((Scheme_Class_Object *)obj)->primdata)->wxSnip::Draw(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9);
   else
@@ -1305,7 +1305,7 @@ static Scheme_Object *os_wxSnipPartialOffset(Scheme_Object *obj, int n,  Scheme_
   x2 = objscheme_unbundle_float(p[2], "partial-offset in snip%");
   x3 = objscheme_unbundle_integer(p[3], "partial-offset in snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::partial-offset");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","partial-offset"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxSnip *)((Scheme_Class_Object *)obj)->primdata)->wxSnip::PartialOffset(x0, x1, x2, x3);
   else
@@ -1384,7 +1384,7 @@ static Scheme_Object *os_wxSnipGetExtent(Scheme_Object *obj, int n,  Scheme_Obje
   } else
     x8 = NULL;
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::get-extent");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","get-extent"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxSnip *)((Scheme_Class_Object *)obj)->primdata)->wxSnip::GetExtent(x0, x1, x2, x3, x4, x5, x6, x7, x8);
   else
@@ -1623,7 +1623,7 @@ if (os_wxSnip_class) {
  scheme_add_method_w_arity(os_wxSnip_class, "write", os_wxSnipWrite, 1, 1);
  scheme_add_method_w_arity(os_wxSnip_class, "match?", os_wxSnipMatch, 1, 1);
  scheme_add_method_w_arity(os_wxSnip_class, "do-font", os_wxSnipDoFont, 1, 2);
- scheme_add_method_w_arity(os_wxSnip_class, "do-edit", os_wxSnipDoEdit, 1, 3);
+ scheme_add_method_w_arity(os_wxSnip_class, "do-edit-operation", os_wxSnipDoEdit, 1, 3);
  scheme_add_method_w_arity(os_wxSnip_class, "own-caret", os_wxSnipOwnCaret, 1, 1);
  scheme_add_method_w_arity(os_wxSnip_class, "adjust-cursor", os_wxSnipAdjustCursor, 6, 6);
  scheme_add_method_w_arity(os_wxSnip_class, "on-char", os_wxSnipOnChar, 6, 6);
@@ -1938,7 +1938,7 @@ void os_wxTextSnip::DoEdit(int x0, Bool x1, long x2)
   int sj;
   static void *mcache = 0;
 
-  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxTextSnip_class, "do-edit", &mcache);
+  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxTextSnip_class, "do-edit-operation", &mcache);
   if (method && !OBJSCHEME_PRIM_METHOD(method)) {
     COPY_JMPBUF(savebuf, scheme_error_buf);
     sj = scheme_setjmp(scheme_error_buf);
@@ -2579,13 +2579,13 @@ static Scheme_Object *os_wxTextSnipDoEdit(Scheme_Object *obj, int n,  Scheme_Obj
   long x2;
 
   
-  x0 = objscheme_unbundle_integer(p[0], "do-edit in text-snip%");
+  x0 = objscheme_unbundle_integer(p[0], "do-edit-operation in text-snip%");
   if (n > 1) {
-    x1 = objscheme_unbundle_bool(p[1], "do-edit in text-snip%");
+    x1 = objscheme_unbundle_bool(p[1], "do-edit-operation in text-snip%");
   } else
     x1 = TRUE;
   if (n > 2) {
-    x2 = objscheme_unbundle_integer(p[2], "do-edit in text-snip%");
+    x2 = objscheme_unbundle_integer(p[2], "do-edit-operation in text-snip%");
   } else
     x2 = 0;
 
@@ -2642,7 +2642,7 @@ static Scheme_Object *os_wxTextSnipAdjustCursor(Scheme_Object *obj, int n,  Sche
   x4 = objscheme_unbundle_float(p[4], "adjust-cursor in text-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "adjust-cursor in text-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::adjust-cursor");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","adjust-cursor"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxTextSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTextSnip::AdjustCursor(x0, x1, x2, x3, x4, *x5);
   else
@@ -2673,7 +2673,7 @@ static Scheme_Object *os_wxTextSnipOnChar(Scheme_Object *obj, int n,  Scheme_Obj
   x4 = objscheme_unbundle_float(p[4], "on-char in text-snip%");
   x5 = objscheme_unbundle_wxKeyEvent(p[5], "on-char in text-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-char");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-char"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTextSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTextSnip::OnChar(x0, x1, x2, x3, x4, *x5);
   else
@@ -2704,7 +2704,7 @@ static Scheme_Object *os_wxTextSnipOnEvent(Scheme_Object *obj, int n,  Scheme_Ob
   x4 = objscheme_unbundle_float(p[4], "on-event in text-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "on-event in text-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-event");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-event"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTextSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTextSnip::OnEvent(x0, x1, x2, x3, x4, *x5);
   else
@@ -2872,7 +2872,7 @@ static Scheme_Object *os_wxTextSnipDraw(Scheme_Object *obj, int n,  Scheme_Objec
   x8 = objscheme_unbundle_float(p[8], "draw in text-snip%");
   x9 = objscheme_unbundle_integer(p[9], "draw in text-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::draw");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","draw"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTextSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTextSnip::Draw(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9);
   else
@@ -2900,7 +2900,7 @@ static Scheme_Object *os_wxTextSnipPartialOffset(Scheme_Object *obj, int n,  Sch
   x2 = objscheme_unbundle_float(p[2], "partial-offset in text-snip%");
   x3 = objscheme_unbundle_integer(p[3], "partial-offset in text-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::partial-offset");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","partial-offset"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxTextSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTextSnip::PartialOffset(x0, x1, x2, x3);
   else
@@ -2979,7 +2979,7 @@ static Scheme_Object *os_wxTextSnipGetExtent(Scheme_Object *obj, int n,  Scheme_
   } else
     x8 = NULL;
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::get-extent");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","get-extent"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTextSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTextSnip::GetExtent(x0, x1, x2, x3, x4, x5, x6, x7, x8);
   else
@@ -3040,7 +3040,7 @@ if (os_wxTextSnip_class) {
  scheme_add_method_w_arity(os_wxTextSnip_class, "write", os_wxTextSnipWrite, 1, 1);
  scheme_add_method_w_arity(os_wxTextSnip_class, "match?", os_wxTextSnipMatch, 1, 1);
  scheme_add_method_w_arity(os_wxTextSnip_class, "do-font", os_wxTextSnipDoFont, 1, 2);
- scheme_add_method_w_arity(os_wxTextSnip_class, "do-edit", os_wxTextSnipDoEdit, 1, 3);
+ scheme_add_method_w_arity(os_wxTextSnip_class, "do-edit-operation", os_wxTextSnipDoEdit, 1, 3);
  scheme_add_method_w_arity(os_wxTextSnip_class, "own-caret", os_wxTextSnipOwnCaret, 1, 1);
  scheme_add_method_w_arity(os_wxTextSnip_class, "adjust-cursor", os_wxTextSnipAdjustCursor, 6, 6);
  scheme_add_method_w_arity(os_wxTextSnip_class, "on-char", os_wxTextSnipOnChar, 6, 6);
@@ -3343,7 +3343,7 @@ void os_wxTabSnip::DoEdit(int x0, Bool x1, long x2)
   int sj;
   static void *mcache = 0;
 
-  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxTabSnip_class, "do-edit", &mcache);
+  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxTabSnip_class, "do-edit-operation", &mcache);
   if (method && !OBJSCHEME_PRIM_METHOD(method)) {
     COPY_JMPBUF(savebuf, scheme_error_buf);
     sj = scheme_setjmp(scheme_error_buf);
@@ -3939,13 +3939,13 @@ static Scheme_Object *os_wxTabSnipDoEdit(Scheme_Object *obj, int n,  Scheme_Obje
   long x2;
 
   
-  x0 = objscheme_unbundle_integer(p[0], "do-edit in tab-snip%");
+  x0 = objscheme_unbundle_integer(p[0], "do-edit-operation in tab-snip%");
   if (n > 1) {
-    x1 = objscheme_unbundle_bool(p[1], "do-edit in tab-snip%");
+    x1 = objscheme_unbundle_bool(p[1], "do-edit-operation in tab-snip%");
   } else
     x1 = TRUE;
   if (n > 2) {
-    x2 = objscheme_unbundle_integer(p[2], "do-edit in tab-snip%");
+    x2 = objscheme_unbundle_integer(p[2], "do-edit-operation in tab-snip%");
   } else
     x2 = 0;
 
@@ -4002,7 +4002,7 @@ static Scheme_Object *os_wxTabSnipAdjustCursor(Scheme_Object *obj, int n,  Schem
   x4 = objscheme_unbundle_float(p[4], "adjust-cursor in tab-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "adjust-cursor in tab-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::adjust-cursor");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","adjust-cursor"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxTabSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTabSnip::AdjustCursor(x0, x1, x2, x3, x4, *x5);
   else
@@ -4033,7 +4033,7 @@ static Scheme_Object *os_wxTabSnipOnChar(Scheme_Object *obj, int n,  Scheme_Obje
   x4 = objscheme_unbundle_float(p[4], "on-char in tab-snip%");
   x5 = objscheme_unbundle_wxKeyEvent(p[5], "on-char in tab-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-char");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-char"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTabSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTabSnip::OnChar(x0, x1, x2, x3, x4, *x5);
   else
@@ -4064,7 +4064,7 @@ static Scheme_Object *os_wxTabSnipOnEvent(Scheme_Object *obj, int n,  Scheme_Obj
   x4 = objscheme_unbundle_float(p[4], "on-event in tab-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "on-event in tab-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-event");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-event"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTabSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTabSnip::OnEvent(x0, x1, x2, x3, x4, *x5);
   else
@@ -4232,7 +4232,7 @@ static Scheme_Object *os_wxTabSnipDraw(Scheme_Object *obj, int n,  Scheme_Object
   x8 = objscheme_unbundle_float(p[8], "draw in tab-snip%");
   x9 = objscheme_unbundle_integer(p[9], "draw in tab-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::draw");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","draw"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTabSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTabSnip::Draw(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9);
   else
@@ -4260,7 +4260,7 @@ static Scheme_Object *os_wxTabSnipPartialOffset(Scheme_Object *obj, int n,  Sche
   x2 = objscheme_unbundle_float(p[2], "partial-offset in tab-snip%");
   x3 = objscheme_unbundle_integer(p[3], "partial-offset in tab-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::partial-offset");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","partial-offset"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxTabSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTabSnip::PartialOffset(x0, x1, x2, x3);
   else
@@ -4339,7 +4339,7 @@ static Scheme_Object *os_wxTabSnipGetExtent(Scheme_Object *obj, int n,  Scheme_O
   } else
     x8 = NULL;
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::get-extent");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","get-extent"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxTabSnip *)((Scheme_Class_Object *)obj)->primdata)->wxTabSnip::GetExtent(x0, x1, x2, x3, x4, x5, x6, x7, x8);
   else
@@ -4393,7 +4393,7 @@ if (os_wxTabSnip_class) {
  scheme_add_method_w_arity(os_wxTabSnip_class, "write", os_wxTabSnipWrite, 1, 1);
  scheme_add_method_w_arity(os_wxTabSnip_class, "match?", os_wxTabSnipMatch, 1, 1);
  scheme_add_method_w_arity(os_wxTabSnip_class, "do-font", os_wxTabSnipDoFont, 1, 2);
- scheme_add_method_w_arity(os_wxTabSnip_class, "do-edit", os_wxTabSnipDoEdit, 1, 3);
+ scheme_add_method_w_arity(os_wxTabSnip_class, "do-edit-operation", os_wxTabSnipDoEdit, 1, 3);
  scheme_add_method_w_arity(os_wxTabSnip_class, "own-caret", os_wxTabSnipOwnCaret, 1, 1);
  scheme_add_method_w_arity(os_wxTabSnip_class, "adjust-cursor", os_wxTabSnipAdjustCursor, 6, 6);
  scheme_add_method_w_arity(os_wxTabSnip_class, "on-char", os_wxTabSnipOnChar, 6, 6);
@@ -4768,7 +4768,7 @@ void os_wxImageSnip::DoEdit(int x0, Bool x1, long x2)
   int sj;
   static void *mcache = 0;
 
-  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxImageSnip_class, "do-edit", &mcache);
+  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxImageSnip_class, "do-edit-operation", &mcache);
   if (method && !OBJSCHEME_PRIM_METHOD(method)) {
     COPY_JMPBUF(savebuf, scheme_error_buf);
     sj = scheme_setjmp(scheme_error_buf);
@@ -5474,13 +5474,13 @@ static Scheme_Object *os_wxImageSnipDoEdit(Scheme_Object *obj, int n,  Scheme_Ob
   long x2;
 
   
-  x0 = objscheme_unbundle_integer(p[0], "do-edit in image-snip%");
+  x0 = objscheme_unbundle_integer(p[0], "do-edit-operation in image-snip%");
   if (n > 1) {
-    x1 = objscheme_unbundle_bool(p[1], "do-edit in image-snip%");
+    x1 = objscheme_unbundle_bool(p[1], "do-edit-operation in image-snip%");
   } else
     x1 = TRUE;
   if (n > 2) {
-    x2 = objscheme_unbundle_integer(p[2], "do-edit in image-snip%");
+    x2 = objscheme_unbundle_integer(p[2], "do-edit-operation in image-snip%");
   } else
     x2 = 0;
 
@@ -5537,7 +5537,7 @@ static Scheme_Object *os_wxImageSnipAdjustCursor(Scheme_Object *obj, int n,  Sch
   x4 = objscheme_unbundle_float(p[4], "adjust-cursor in image-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "adjust-cursor in image-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::adjust-cursor");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","adjust-cursor"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxImageSnip *)((Scheme_Class_Object *)obj)->primdata)->wxImageSnip::AdjustCursor(x0, x1, x2, x3, x4, *x5);
   else
@@ -5568,7 +5568,7 @@ static Scheme_Object *os_wxImageSnipOnChar(Scheme_Object *obj, int n,  Scheme_Ob
   x4 = objscheme_unbundle_float(p[4], "on-char in image-snip%");
   x5 = objscheme_unbundle_wxKeyEvent(p[5], "on-char in image-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-char");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-char"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxImageSnip *)((Scheme_Class_Object *)obj)->primdata)->wxImageSnip::OnChar(x0, x1, x2, x3, x4, *x5);
   else
@@ -5599,7 +5599,7 @@ static Scheme_Object *os_wxImageSnipOnEvent(Scheme_Object *obj, int n,  Scheme_O
   x4 = objscheme_unbundle_float(p[4], "on-event in image-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "on-event in image-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-event");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-event"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxImageSnip *)((Scheme_Class_Object *)obj)->primdata)->wxImageSnip::OnEvent(x0, x1, x2, x3, x4, *x5);
   else
@@ -5767,7 +5767,7 @@ static Scheme_Object *os_wxImageSnipDraw(Scheme_Object *obj, int n,  Scheme_Obje
   x8 = objscheme_unbundle_float(p[8], "draw in image-snip%");
   x9 = objscheme_unbundle_integer(p[9], "draw in image-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::draw");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","draw"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxImageSnip *)((Scheme_Class_Object *)obj)->primdata)->wxImageSnip::Draw(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9);
   else
@@ -5795,7 +5795,7 @@ static Scheme_Object *os_wxImageSnipPartialOffset(Scheme_Object *obj, int n,  Sc
   x2 = objscheme_unbundle_float(p[2], "partial-offset in image-snip%");
   x3 = objscheme_unbundle_integer(p[3], "partial-offset in image-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::partial-offset");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","partial-offset"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxImageSnip *)((Scheme_Class_Object *)obj)->primdata)->wxImageSnip::PartialOffset(x0, x1, x2, x3);
   else
@@ -5874,7 +5874,7 @@ static Scheme_Object *os_wxImageSnipGetExtent(Scheme_Object *obj, int n,  Scheme
   } else
     x8 = NULL;
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::get-extent");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","get-extent"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxImageSnip *)((Scheme_Class_Object *)obj)->primdata)->wxImageSnip::GetExtent(x0, x1, x2, x3, x4, x5, x6, x7, x8);
   else
@@ -5953,7 +5953,7 @@ if (os_wxImageSnip_class) {
  scheme_add_method_w_arity(os_wxImageSnip_class, "write", os_wxImageSnipWrite, 1, 1);
  scheme_add_method_w_arity(os_wxImageSnip_class, "match?", os_wxImageSnipMatch, 1, 1);
  scheme_add_method_w_arity(os_wxImageSnip_class, "do-font", os_wxImageSnipDoFont, 1, 2);
- scheme_add_method_w_arity(os_wxImageSnip_class, "do-edit", os_wxImageSnipDoEdit, 1, 3);
+ scheme_add_method_w_arity(os_wxImageSnip_class, "do-edit-operation", os_wxImageSnipDoEdit, 1, 3);
  scheme_add_method_w_arity(os_wxImageSnip_class, "own-caret", os_wxImageSnipOwnCaret, 1, 1);
  scheme_add_method_w_arity(os_wxImageSnip_class, "adjust-cursor", os_wxImageSnipAdjustCursor, 6, 6);
  scheme_add_method_w_arity(os_wxImageSnip_class, "on-char", os_wxImageSnipOnChar, 6, 6);
@@ -6261,7 +6261,7 @@ void os_wxMediaSnip::DoEdit(int x0, Bool x1, long x2)
   int sj;
   static void *mcache = 0;
 
-  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxMediaSnip_class, "do-edit", &mcache);
+  method = objscheme_find_method((Scheme_Object *)__gc_external, os_wxMediaSnip_class, "do-edit-operation", &mcache);
   if (method && !OBJSCHEME_PRIM_METHOD(method)) {
     COPY_JMPBUF(savebuf, scheme_error_buf);
     sj = scheme_setjmp(scheme_error_buf);
@@ -7176,13 +7176,13 @@ static Scheme_Object *os_wxMediaSnipDoEdit(Scheme_Object *obj, int n,  Scheme_Ob
   long x2;
 
   
-  x0 = objscheme_unbundle_integer(p[0], "do-edit in editor-snip%");
+  x0 = objscheme_unbundle_integer(p[0], "do-edit-operation in editor-snip%");
   if (n > 1) {
-    x1 = objscheme_unbundle_bool(p[1], "do-edit in editor-snip%");
+    x1 = objscheme_unbundle_bool(p[1], "do-edit-operation in editor-snip%");
   } else
     x1 = TRUE;
   if (n > 2) {
-    x2 = objscheme_unbundle_integer(p[2], "do-edit in editor-snip%");
+    x2 = objscheme_unbundle_integer(p[2], "do-edit-operation in editor-snip%");
   } else
     x2 = 0;
 
@@ -7239,7 +7239,7 @@ static Scheme_Object *os_wxMediaSnipAdjustCursor(Scheme_Object *obj, int n,  Sch
   x4 = objscheme_unbundle_float(p[4], "adjust-cursor in editor-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "adjust-cursor in editor-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::adjust-cursor");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","adjust-cursor"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxMediaSnip *)((Scheme_Class_Object *)obj)->primdata)->wxMediaSnip::AdjustCursor(x0, x1, x2, x3, x4, *x5);
   else
@@ -7270,7 +7270,7 @@ static Scheme_Object *os_wxMediaSnipOnChar(Scheme_Object *obj, int n,  Scheme_Ob
   x4 = objscheme_unbundle_float(p[4], "on-char in editor-snip%");
   x5 = objscheme_unbundle_wxKeyEvent(p[5], "on-char in editor-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-char");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-char"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxMediaSnip *)((Scheme_Class_Object *)obj)->primdata)->wxMediaSnip::OnChar(x0, x1, x2, x3, x4, *x5);
   else
@@ -7301,7 +7301,7 @@ static Scheme_Object *os_wxMediaSnipOnEvent(Scheme_Object *obj, int n,  Scheme_O
   x4 = objscheme_unbundle_float(p[4], "on-event in editor-snip%");
   x5 = objscheme_unbundle_wxMouseEvent(p[5], "on-event in editor-snip%", 0);
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::on-event");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","on-event"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxMediaSnip *)((Scheme_Class_Object *)obj)->primdata)->wxMediaSnip::OnEvent(x0, x1, x2, x3, x4, *x5);
   else
@@ -7469,7 +7469,7 @@ static Scheme_Object *os_wxMediaSnipDraw(Scheme_Object *obj, int n,  Scheme_Obje
   x8 = objscheme_unbundle_float(p[8], "draw in editor-snip%");
   x9 = objscheme_unbundle_integer(p[9], "draw in editor-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::draw");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","draw"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxMediaSnip *)((Scheme_Class_Object *)obj)->primdata)->wxMediaSnip::Draw(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9);
   else
@@ -7497,7 +7497,7 @@ static Scheme_Object *os_wxMediaSnipPartialOffset(Scheme_Object *obj, int n,  Sc
   x2 = objscheme_unbundle_float(p[2], "partial-offset in editor-snip%");
   x3 = objscheme_unbundle_integer(p[3], "partial-offset in editor-snip%");
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::partial-offset");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","partial-offset"));
   if (((Scheme_Class_Object *)obj)->primflag)
     r = ((os_wxMediaSnip *)((Scheme_Class_Object *)obj)->primdata)->wxMediaSnip::PartialOffset(x0, x1, x2, x3);
   else
@@ -7576,7 +7576,7 @@ static Scheme_Object *os_wxMediaSnipGetExtent(Scheme_Object *obj, int n,  Scheme
   } else
     x8 = NULL;
 
-  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", "snip%::get-extent");
+  if (x0 && !x0->Ok()) scheme_signal_error("%s: bad bitmap", METHODNAME("snip%","get-extent"));
   if (((Scheme_Class_Object *)obj)->primflag)
     ((os_wxMediaSnip *)((Scheme_Class_Object *)obj)->primdata)->wxMediaSnip::GetExtent(x0, x1, x2, x3, x4, x5, x6, x7, x8);
   else
@@ -7749,7 +7749,7 @@ if (os_wxMediaSnip_class) {
  scheme_add_method_w_arity(os_wxMediaSnip_class, "write", os_wxMediaSnipWrite, 1, 1);
  scheme_add_method_w_arity(os_wxMediaSnip_class, "match?", os_wxMediaSnipMatch, 1, 1);
  scheme_add_method_w_arity(os_wxMediaSnip_class, "do-font", os_wxMediaSnipDoFont, 1, 2);
- scheme_add_method_w_arity(os_wxMediaSnip_class, "do-edit", os_wxMediaSnipDoEdit, 1, 3);
+ scheme_add_method_w_arity(os_wxMediaSnip_class, "do-edit-operation", os_wxMediaSnipDoEdit, 1, 3);
  scheme_add_method_w_arity(os_wxMediaSnip_class, "own-caret", os_wxMediaSnipOwnCaret, 1, 1);
  scheme_add_method_w_arity(os_wxMediaSnip_class, "adjust-cursor", os_wxMediaSnipAdjustCursor, 6, 6);
  scheme_add_method_w_arity(os_wxMediaSnip_class, "on-char", os_wxMediaSnipOnChar, 6, 6);
