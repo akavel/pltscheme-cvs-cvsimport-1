@@ -13,11 +13,10 @@
    type; use flat-contract-predicate rather than
    flat-named-contract.
 
-   |==============================================|
-   |                                              |
-   |               announced above                |
-   |                                              |
-   |==============================================|
+ - the teaching languages are now implicitly in a
+   module. This should enable even better syntax error
+   reporting in future versions (altho right now it is
+   slightly worse than it was)
 
  - struct printing in the DrScheme REPL does not use a more
    powerful inspector that just `write' (same for
