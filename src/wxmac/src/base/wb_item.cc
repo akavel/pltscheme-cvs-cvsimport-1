@@ -699,7 +699,7 @@ Bool wxbListBox::SetStringSelection (char *s)
   int sel = FindString (s);
   if (sel > -1)
     {
-      SetSelection (sel);
+      SetOneSelection(sel);
       return TRUE;
     }
   else
