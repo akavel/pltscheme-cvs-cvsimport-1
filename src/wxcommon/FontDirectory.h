@@ -38,7 +38,6 @@ class wxFontNameDirectory : public wxObject
  public:
   wxFontNameDirectory(void);
   ~wxFontNameDirectory();
-  void Initialize(void);
   char *GetScreenName(int fontid, int weight, int style);
   char *GetPostScriptName(int fontid, int weight, int style);
   char *GetAFMName(int fontid, int weight, int style);
@@ -56,6 +55,8 @@ class wxFontNameDirectory : public wxObject
   int GetFamily(int fontid);
 };
 
-extern wxFontNameDirectory wxTheFontNameDirectory;
+extern wxFontNameDirectory *wxTheFontNameDirectory;
+
+void wxInitializeFontNameDirectory(void);
 
 #endif /* FontDirectory_h */

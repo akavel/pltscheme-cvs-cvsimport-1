@@ -78,14 +78,6 @@ wxWindow *wxGetModalWindow(wxObject*);
 void wxPushModalWindow(wxObject*,wxWindow *);
 void wxPopModalWindow(wxObject*,wxWindow *);
 
-//-- Events --------------------------------------------------------------------
-
-extern wxList wxEventClassList;
-extern wxList wxEventNameList;
-extern wxList wxPrimaryEventHandlerList;
-extern wxList wxPreEventHandlerList;
-extern wxList wxPostEventHandlerList;
-
 //-- Frame --------------------------------------------------------------------
 
 extern wxChildList *wxGetTopLevelWindowsList(wxObject*);
@@ -115,7 +107,7 @@ extern wxPrintPaperDatabase* wxThePrintPaperDatabase;
 #if defined (Uses_XtIntrinsic) || defined (Uses_XtIntrinsicP) || defined (Uses_XLib)
 extern XrmDatabase wxResourceDatabase;
 #endif
-extern wxList wxResourceCache;
+extern wxList *wxResourceCache;
 
 //-- simple language support---------------------------------------------------
 
@@ -167,6 +159,6 @@ extern wxCursor* wxIBEAM_CURSOR;
 
 //-- Types --------------------------------------------------------------------
 
-extern wxTypeTree wxAllTypes;
+extern wxTypeTree *wxAllTypes;
 
 #endif // GlobalData_h

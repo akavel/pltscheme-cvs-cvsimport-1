@@ -94,6 +94,7 @@ void wxLayoutConstraints::UnDone(void)
 //-----------------------------------------------------------------------------
 
 wxIndividualLayoutConstraint::wxIndividualLayoutConstraint(void)
+  : wxObject(FALSE)
 {
     otherWin	 = NULL;
     otherEdge	 = wxTop;

@@ -31,6 +31,7 @@
 #define  Uses_wxApp
 #define  Uses_wxGDI
 #define  Uses_wxPrintSetup
+#define  Uses_wxTypeTree
 #include "wx.h"
 #include "widgets.h" // for X11/StringDefs.h
 
@@ -190,7 +191,11 @@ void wxCommonInit(void)
 
     wxBuffer = new char[BUFSIZ+512];
 
-    wxTheFontNameDirectory.Initialize(); /* MATTHEW */
+    wxResourceCache = new wxList(wxKEY_STRING);
+
+    wxAllTypes = new wxTypeTree;
+
+    wxInitializeFontNameDirectory();
 
     wxInitializePrintSetupData();
     wxThePrintPaperDatabase = DEBUG_NEW wxPrintPaperDatabase;

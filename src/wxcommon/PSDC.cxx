@@ -837,7 +837,7 @@ void wxPostScriptDC::SetFont (wxFont * the_font)
   int Style = current_font->GetStyle();
   int Weight = current_font->GetWeight();
 
-  name = wxTheFontNameDirectory.GetPostScriptName(Family, Weight, Style);
+  name = wxTheFontNameDirectory->GetPostScriptName(Family, Weight, Style);
   if (!name)
     name = "Times-Roman";
 
@@ -1601,7 +1601,7 @@ void wxPostScriptDC::GetTextExtent (const char *string, float *x, float *y,
     char *name;
     char *afmName;
 
-    name = wxTheFontNameDirectory.GetAFMName(Family, Weight, Style);
+    name = wxTheFontNameDirectory->GetAFMName(Family, Weight, Style);
     if (name && afm_path) {
       int len = strlen(afm_path);
       // get the directory of the AFM files

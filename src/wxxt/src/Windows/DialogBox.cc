@@ -94,14 +94,17 @@ Bool wxDialogBox::Show(Bool show)
 	
 	wxPushModalWindow(this, this);
 	
-	wxList disabled_windows;
+	wxList *disabled_windows;
 	wxNode *node;
 	wxChildNode *cnode;
+
+	disabled_windows = new wxList;
 	
 	for (cnode = wxTopLevelFrames(this)->First(); cnode; cnode = cnode->Next()) {
-	  wxWindow *w = (wxWindow *)cnode->Data();
+	  wxWindow *w;
+	  w = (wxWindow *)cnode->Data();
 	  if (w && w != this && cnode->IsShown()) {
-	    disabled_windows.Append(w);
+	    disabled_windows->Append(w);
 	    w->InternalEnable(FALSE);
 	  }
 	}
@@ -110,8 +113,9 @@ Bool wxDialogBox::Show(Bool show)
 	
 	wxPopModalWindow(this, this);
 	
-	for (node = disabled_windows.First(); node; node = node->Next()) {
-	  wxWindow *w = (wxWindow *)node->Data();
+	for (node = disabled_windows->First(); node; node = node->Next()) {
+	  wxWindow *w;
+	  w = (wxWindow *)node->Data();
 	  w->InternalEnable(TRUE);
 	}
       } else
