@@ -89,8 +89,11 @@ void wxMemoryDC::SelectObject(wxBitmap *bitmap)
 	Initialize(&init);
 	// If another colourmap is associated with the bitmap,
 	//  use it instead of the current colourmap.
-	if (bitmap->GetColourMap() != current_cmap)
-	    SetColourMap(bitmap->GetColourMap());
+	if (bitmap->GetColourMap() != current_cmap) {
+	  wxColourMap *cm;
+	  cm = bitmap->GetColourMap();
+	  SetColourMap(cm);
+	}
 	selected = bitmap;
 	if (!read_only) {
 	  bitmap->selectedIntoDC = -1;
@@ -111,8 +114,11 @@ wxBitmap *wxMemoryDC::GetObject()
 void wxMemoryDC::GetSize(float *w, float *h)
 {
   if (selected) {
-    *w = selected->GetWidth();
-    *h = selected->GetHeight();
+    float v;
+    v = selected->GetWidth();
+    *w = v;
+    v = selected->GetHeight();
+    *h = v;
   } else {
     *w = 0;
     *h = 0;

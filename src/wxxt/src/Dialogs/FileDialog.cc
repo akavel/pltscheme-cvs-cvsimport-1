@@ -43,8 +43,8 @@ char *wxFileSelector(char *message, char *default_path,
 char *wxLoadFileSelector(char *WXUNUSED(what), char *extension, char *default_name,
 			 wxWindow *parent)
 {
-    if (*extension == '.')  ++extension;
     char wild[60];
+    if (*extension == '.')  ++extension;
     sprintf(wild, "*.%s", extension);
     return wxFileSelector("Load file", NULL, default_name,
 			  (char*)extension, wild, 0, parent, 0, 0);
@@ -53,8 +53,8 @@ char *wxLoadFileSelector(char *WXUNUSED(what), char *extension, char *default_na
 char *wxSaveFileSelector(char *WXUNUSED(what), char *extension, char *default_name,
 			 wxWindow *parent)
 {
-    if (*extension == '.')  ++extension;
     char wild[60];
+    if (*extension == '.')  ++extension;
     sprintf(wild, "*.%s", extension);
     return wxFileSelector("Save file", NULL, default_name,
 			  (char*)extension, wild, wxSAVE, parent, 0, 0);

@@ -33,8 +33,10 @@
 
 char *wxNow(void)
 {
-    time_t now = time(NULL);
-    char *date = ctime(&now); 
+    time_t now;
+    char *date;
+    now = time(NULL);
+    date = ctime(&now); 
     date[24] = '\0';
     return date;
 }

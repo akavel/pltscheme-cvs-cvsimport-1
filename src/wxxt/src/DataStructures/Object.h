@@ -38,10 +38,11 @@
 
 #ifdef MZ_PRECISE_GC
 # define WXGC_IGNORE(ptr) GC_finalization_weak_ptr((void **)&(ptr))
+# define WXGC_ATOMIC /* empty */
 #else
 # define WXGC_IGNORE(ptr) GC_general_register_disappearing_link((void **)&(ptr), NULL)
+# define WXGC_ATOMIC (AtomicGC)
 #endif
-#define WXGC_ATOMIC (AtomicGC)
 #define WXGC_NO_CLEANUP FALSE
 
 class wxObject : public gc

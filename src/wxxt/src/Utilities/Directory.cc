@@ -39,10 +39,10 @@ Bool wxFileExists(char *filename)
 {
     struct stat stbuf;
 
-    return (filename && stat((char *)filename, &stbuf) == 0);
+    return (filename && !stat((char *)filename, &stbuf));
 }
 
 Bool wxRemoveFile(char *file)
 {
-    return Bool((unlink(file) == 0));
+    return !unlink(file);
 }
