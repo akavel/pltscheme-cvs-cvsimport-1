@@ -63,7 +63,7 @@
       (let ([table (make-hash-table)])
         (hash-table-put! table 'Object
                          (make-temp-class 'Object #f null null))
-        (let loop ([src src])
+        (recur loop ([src src])
           (cond
            [(null? (cdr src)) (values table (parse-expr (car src)))]
            [else
