@@ -174,7 +174,7 @@ position and size of a scrollbar. The two arguments must be between
     if (! XtIsSubclass($, xfwfScrollbarWidgetClass))
 	XtError("XfwfSetScrollbar called with incorrect widget type");
     if (pos < 0.0 || pos > 1.0 || size < 0.0 || size > 1.0)
-	XtError("XfwfSetScrollbar called with incorrect arguments");
+	XtError("XfwfSetScrollbar called with incorrect arguments: %lf %lf", pos, size);
     if ($vertical) {
 	XfwfResizeThumb($slider, 1.0, size);
 	XfwfMoveThumb($slider, 0.0, pos);
