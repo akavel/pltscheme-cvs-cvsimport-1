@@ -279,6 +279,7 @@ clean::
 	rm -f Utilities/$(OBJDIR)/*.o
 	rm -f Windows/$(OBJDIR)/*.o
 	rm -f XWidgets/$(OBJDIR)/*.o
+	rm -f $(WXLIBDIR)/lib$(LIBNAME).a
 
 #------------------------------------------------------------------------------
 # dependencies
