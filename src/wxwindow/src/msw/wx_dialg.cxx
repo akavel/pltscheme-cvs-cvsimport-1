@@ -400,13 +400,16 @@ Bool wxDialogBox::Show(Bool show)
       wxDispatchEventsUntil(CheckDialogShowing, (void *)this);
 
       wxPopModalWindow(this, this);
-      
+
       for (node = disabled_windows->First(); node; node = node->Next()) {
 	wxWindow *w = (wxWindow *)node->Data();
 	w->InternalEnable(TRUE);
       } 
 
       ShowWindow(dialog->handle, SW_HIDE);
+
+      if (GetParent())
+	wxwmBringWindowToTop(GetParent()->GetHWND());
     } else {
       modal_showing = FALSE;
     }
