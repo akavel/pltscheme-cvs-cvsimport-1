@@ -52,10 +52,6 @@ typedef int (*Hash_Compare_Proc)(void*, void*);
 
 typedef long hash_v_t;
 
-/*========================================================================*/
-/*                         hashing functions                              */
-/*========================================================================*/
-
 static void string_hash_indices(void *_key, long *_h, long *_h2)
 {
   const char *key = (char *)_key;
@@ -99,10 +95,6 @@ static int not_stx_bound_eq(char *a, char *b)
 {
   return !scheme_stx_bound_eq((Scheme_Object *)a, (Scheme_Object *)b, 0);
 }
-
-/*========================================================================*/
-/*                         normal hash table                              */
-/*========================================================================*/
 
 static Scheme_Object GONE[1];
 
@@ -285,9 +277,7 @@ Scheme_Object *scheme_hash_get(Scheme_Hash_Table *table, Scheme_Object *key)
   return val;
 }
 
-/*========================================================================*/
-/*                  old-style hash table, with buckets                    */
-/*========================================================================*/
+/************************************************************************/
 
 Scheme_Bucket_Table *
 scheme_make_bucket_table (int size, int type)
@@ -561,9 +551,7 @@ scheme_change_in_table (Scheme_Bucket_Table *table, const char *key, void *naya)
     bucket->val = naya;
 }
 
-/*========================================================================*/
-/*                         precise GC hashing                             */
-/*========================================================================*/
+/***********************************************************************/
 
 #ifdef MZ_PRECISE_GC
 
