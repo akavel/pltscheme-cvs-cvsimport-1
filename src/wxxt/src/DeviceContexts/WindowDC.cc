@@ -183,7 +183,7 @@ Bool wxWindowDC::Blit(float xdest, float ydest, float w, float h, wxBitmap *src,
 	// Check if we're copying from a mono bitmap
         retval = TRUE;
 	if (src->GetDepth() == 1) {
-	  if (rop == wxSOLID) {
+	  if ((rop == wxSOLID) || (rop == wxXOR)) {
 	    /* Seems like the easiest way to implement transparent backgrounds is to
 	       use a stipple. */
 	    XGCValues values;
