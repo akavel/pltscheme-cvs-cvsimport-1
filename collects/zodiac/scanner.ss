@@ -671,24 +671,6 @@
 			  (z:number  num  start-loc  (prev-loc))
 			  (z:error "`~a' is not a valid number" text))))))]
 	     
-	     [scan-type-sym
-	      (lambda ()
-		(get-char)
-		(let-values ([(text foo)
-			      (scan-to-delim type-sym-delim? null #f)])
-		  (cond
-		    [(rangle?)
-		     (get-char)
-		     (z:type-sym
-		      (string->type-symbol (text->string text))
-		      start-loc
-		      (prev-loc))]
-		    [(eof?)
-		     (z:eof-error  "type symbol")]
-		    [else
-		     (get-char)
-		     (z:error "must escape delimiter inside type symbol")])))]
-	     
 	     [scan-eof
 	      (lambda () (z:eof (this-loc)))]
 	     
@@ -744,7 +726,6 @@
 	  (fill  hash-table  scan-hash-digit  digit-list)
 	  (fill  hash-table  scan-hash-stick  stick-char)
 	  (fill  hash-table  scan-primitive   prim-char)
-	  (fill  hash-table  scan-type-sym    langle-int)
 	  (fill  hash-table  scan-hash-eof  eof-int)
 	  (fill  hash-table  scan-hash-script  bang-char)
 	  
