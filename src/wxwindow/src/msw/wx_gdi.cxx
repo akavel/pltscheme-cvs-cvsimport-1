@@ -266,7 +266,7 @@ wxPen::wxPen(void)
 
   stipple = NULL;
   style = wxSOLID;
-  width = 1;
+  width = 0;
   join = wxJOIN_ROUND;
   cap = wxCAP_ROUND;
   nb_dash = 0;
@@ -1066,10 +1066,15 @@ Bool wxBitmap::Create(int w, int h, int d)
   return ok;
 }
 
+extern int wxsGetImageType(char *fn);
+
 Bool wxBitmap::LoadFile(char *bitmap_file, long flags)  
 {
   if (selectedIntoDC)
     return FALSE;
+
+  if (!flags)
+    flags = wxsGetImageType(bitmap_file);
 
   /* Nevermind the palette */
   flags |= wxBITMAP_DISCARD_COLOURMAP;
