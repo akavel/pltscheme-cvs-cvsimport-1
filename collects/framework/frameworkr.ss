@@ -4,8 +4,7 @@
 
 (compound-unit/sig (import [core : mzlib:core^]
 			   [mred : mred-interfaces^])
-  (link [date : mzlib:date^ ((require-library-unit/sig "dater.ss")
-			     (core function))]
+  (link [test : framework:test^ ((require-relative-library-unit/sig "testr.ss") mred keymap)]
 	[application : framework:application^ ((require-relative-library-unit/sig "app.ss"))]
 	[version : framework:version^ ((require-relative-library-unit/sig "version.ss") (core string) (core function))]
 	[exn : framework:exn^ ((require-relative-library-unit/sig "exn.ss"))]
@@ -74,6 +73,7 @@
 				 preferences exit group
 				 (core function))])
   (export
+   (unit test)
    (unit application)
    (unit version)
    (unit exn)
