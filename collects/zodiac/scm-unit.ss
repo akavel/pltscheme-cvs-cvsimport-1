@@ -321,7 +321,10 @@
 					    "Can't find box in get-unresolved-vars"))))])
 			(set-top-level-varref/bind-slot!
 			 (unresolved-varref u)
-			 box)))
+			 box)
+			(set-top-level-varref/bind/unit-unit?!
+			 (unresolved-varref u)
+			 #t)))
 		    (loop (cdr remaining) unr))
 		  ((import-id? entry)
 		    (loop (cdr remaining) unr))
