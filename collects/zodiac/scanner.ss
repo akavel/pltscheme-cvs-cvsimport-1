@@ -663,12 +663,12 @@
 		(let-values ([(text  foo) (scan-to-delim  delim?  text  #f)])
 		  (with-handlers
 		      ([(lambda (x) #t)
-			(lambda (x) (z:error "`~a' is not a valid number" text))])
+			(lambda (x) (z:error "`~a' starts out like a number, but isn't one" text))])
 		    (let* ([str  (text->string text)]
 			   [num  (read (open-input-string str))])
 		      (if (number? num)
 			  (z:number  num  start-loc  (prev-loc))
-			  (z:error "`~a' is not a valid number" text))))))]
+			  (z:error "`~a' starts out like a number, but isn't one" text))))))]
 	     
 	     [scan-eof
 	      (lambda () (z:eof (this-loc)))]
