@@ -166,6 +166,10 @@ void wxbFrame::OnMenuSelect(long id)
   }
 }
 
+void wxbFrame::OnMenuClick(void)
+{
+}
+
 wxMenuBar *wxbFrame::GetMenuBar(void)
 {
   return wx_menu_bar;

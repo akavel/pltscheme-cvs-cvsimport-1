@@ -966,6 +966,11 @@ LRESULT APIENTRY _EXPORT wxWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARA
               retval = wnd->DefWindowProc(message, wParam, lParam );
             break;
 	 }
+        case WM_INITMENU:
+	  {
+	    wnd->OnMenuClick();
+	    break;
+	  }
         case WM_MENUSELECT:
         {
 #ifdef WIN32
@@ -1829,6 +1834,10 @@ BOOL wxWnd::OnCommand(WORD WXUNUSED(id), WORD WXUNUSED(cmd), HWND WXUNUSED(contr
 }
 
 void wxWnd::OnMenuSelect(WORD WXUNUSED(item), WORD WXUNUSED(flags), HMENU WXUNUSED(sysmenu))
+{
+}
+
+void wxWnd::OnMenuClick()
 {
 }
 

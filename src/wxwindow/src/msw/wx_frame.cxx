@@ -1012,6 +1012,12 @@ BOOL wxFrameWnd::OnCommand(WORD menuId, WORD cmd, HWND WXUNUSED(control))
   return FALSE;
 }
 
+void wxFrameWnd::OnMenuClick()
+{
+  wxFrame *frame = (wxFrame *)wx_window;
+  frame->OnMenuClick();
+}
+
 void wxFrameWnd::OnMenuSelect(WORD nItem, WORD nFlags, HMENU hSysMenu)
 {
   wxFrame *frame = (wxFrame *)wx_window;
