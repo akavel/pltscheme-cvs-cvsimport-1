@@ -163,7 +163,7 @@ public:
 	{ return YDEV2LOGREL(y); }
     void  DrawSpline(int n, wxPoint pts[]);
     void  DrawSpline(wxList *pts);
-    void  DrawSpline(float x1,float y1, float x2,float y2, float x3,float y3);
+    virtual void DrawSpline(float x1,float y1, float x2,float y2, float x3,float y3);
     void  EndDrawing(void)
 	{}
     wxColour *GetBackground(void);
