@@ -93,12 +93,6 @@
   ;; contract that recognizes unary predicates
   (define predicate? (any? . -> . boolean?))
 
-  (define-syntax eta
-    (syntax-rules ()
-      [(_ pred) (lambda (x) (pred x))]))
-
   (provide/contract (sexp? contract?)
                     (predicate? contract?)
-                    (nelistof (-> (union contract? predicate?) contract?)))
-
-  (provide eta))
+                    (nelistof (-> (union contract? predicate?) contract?))))
