@@ -970,7 +970,7 @@ wxIntPoint::~wxIntPoint (void)
 }
 #endif
 
-static far char *font_defaults[] = {
+static WX_FAR char *font_defaults[] = {
   /* MATTHEW: [4] Family map */
   "FamilyDefault", "Default",
   "FamilyRoman", "Roman",
