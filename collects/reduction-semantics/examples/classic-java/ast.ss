@@ -3,7 +3,7 @@
 ;; ast.ss
 ;; $Id$
 ;;
-;; Defines the AST types used for the Acquired Java system.
+;; Defines the AST types used for the ClassicJava system.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
