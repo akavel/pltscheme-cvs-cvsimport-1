@@ -85,7 +85,8 @@ extern wxList wxModalShowingStack;
 extern wxList wxModalFrames;
 #else
 wxWindow *wxGetModalWindow(wxObject*);
-void wxPutModalWindow(wxObject*,wxWindow *);
+void wxPushModalWindow(wxObject*,wxWindow *);
+void wxPopModalWindow(wxObject*,wxWindow *);
 #endif
 
 //-- Events --------------------------------------------------------------------
