@@ -472,7 +472,9 @@
 		  (expand-expr
 		    (structurize-syntax
 		      (pat:pexpand out-pattern new-p-env kwd)
-		      expr '(-1))
+		      expr '(-1)
+		      #f
+		      (z:make-origin 'micro expr))
 		    env attributes vocab))))
 	    (else
 	      (static-error expr "Malformed class"))))))
@@ -505,7 +507,9 @@
 		  (expand-expr
 		    (structurize-syntax
 		      (pat:pexpand out-pattern new-p-env kwd)
-		      expr '(-1))
+		      expr '(-1)
+		      #f
+		      (z:make-origin 'micro expr))
 		    env attributes vocab))))
 	    (else
 	      (static-error expr "Malformed class*"))))))
@@ -691,7 +695,9 @@
 		     (expand-expr
 		      (structurize-syntax
 		       `(#%ivar/proc ,object (quote ,name))
-		       expr '(-1))
+		       expr '(-1)
+		       #f
+		       (z:make-origin 'micro expr))
 		      env attributes vocab))))))
 	    (else
 	      (static-error expr "Malformed ivar"))))))

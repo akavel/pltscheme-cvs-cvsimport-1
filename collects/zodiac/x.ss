@@ -275,7 +275,7 @@
 
   (define introduce-fresh-identifier
     (lambda (new-name source)
-      (z:make-symbol (make-origin 'micro 'never-mind)
+      (z:make-symbol (make-origin 'non-source 'never-mind)
 	(zodiac-start source) (zodiac-finish source)
 	new-name new-name '())))
   
