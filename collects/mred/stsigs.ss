@@ -46,19 +46,10 @@
    mouse-click
    new-window))
 
-(define-signature mred:test:drscheme^
-  (get-defns-canvas 
-   get-repl-canvas
-   get-save-button
-   get-check-syntax-button
-   get-execute-button))
-
 (define-signature mred:self-test^
   ((open mred:test:run^)
-   (open mred:test:primitives^)
-   (unit drs : mred:test:drscheme^)))
+   (open mred:test:primitives^)))
 
 (define-signature mred:self-test-export^
   ((open mred:test:run-export^)
-   (open mred:test:primitives^)
-   (unit drs : mred:test:drscheme^)))
+   (open mred:test:primitives^)))

@@ -19,12 +19,8 @@
       ((require-unit/sig "strun.ss") wx)]
     
     [prim : mred:test:primitives^
-      ((require-unit/sig "stprims.ss") wx testable keymap run)]
-
-    [drscheme : mred:test:drscheme^
-      ((require-unit/sig "stdrs.ss") wx testable)])
+      ((require-unit/sig "stprims.ss") wx testable keymap run)])
 
   (export
     (open run)
-    (open prim)
-    (unit drscheme drs)))
+    (open prim)))
