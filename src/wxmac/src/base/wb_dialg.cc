@@ -43,7 +43,7 @@
 #endif
 
 #include "wx.h"
-#include <iostream.h>
+// #include <iostream.h>
 #include <stdio.h>
 
 #define wxDIALOG_DEFAULT_X 300

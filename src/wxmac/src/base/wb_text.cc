@@ -33,8 +33,6 @@
 #include "wx.h"
 
 #ifdef wx_mac
-#include <iostream.h>
-#include <fstream.h>
 #include <stdio.h>
 #endif
 

@@ -47,38 +47,6 @@ wxCommandEvent::wxCommandEvent(WXTYPE commandType)
   labelString = NULL;
 }
 
-Bool wxCommandEvent::ReadEvent(istream& in)
-{
-  switch (eventType) {
-    case wxEVENT_TYPE_BUTTON_COMMAND:
-      return TRUE;
-    case wxEVENT_TYPE_TEXT_COMMAND:
-      // @@@@@ Hugh?
-      if (!wxReadString(in, &commandString))
-        return FALSE;
-    default:
-      return FALSE;
-  }
-  // NOTREADED
-}
-
-Bool wxCommandEvent::WriteEvent(ostream& out)
-{
-  switch (eventType) {
-
-    case wxEVENT_TYPE_BUTTON_COMMAND:
-      return TRUE;
-
-    case wxEVENT_TYPE_TEXT_COMMAND:
-      wxWriteString(out, commandString);
-      return TRUE;
-
-    default:
-      return FALSE;
-  }
-  // NOTREACHED
-}
-
 static wxEvent *wxCommandEventConstructor(WXTYPE eventClass, WXTYPE eventType)
 {
   return new wxCommandEvent(eventType);
@@ -118,15 +86,6 @@ wxMouseEvent& wxMouseEvent::operator =(wxMouseEvent& src)
   return *this;
 }
 
-Bool wxMouseEvent::ReadEvent(istream& in)
-{
-  return FALSE;
-}
-
-Bool wxMouseEvent::WriteEvent(ostream& out)
-{
-  return FALSE;
-}
 
 static wxEvent *wxMouseEventConstructor(WXTYPE eventClass, WXTYPE eventType)
 {
@@ -340,16 +299,6 @@ wxKeyEvent::wxKeyEvent(WXTYPE type)
   controlDown = FALSE;
   altDown = FALSE;
   keyCode = 0;
-}
-
-Bool wxKeyEvent::ReadEvent(istream& in)
-{
-  return FALSE;
-}
-
-Bool wxKeyEvent::WriteEvent(ostream& out)
-{
-  return FALSE;
 }
 
 static wxEvent *wxKeyEventConstructor(WXTYPE eventClass, WXTYPE eventType)

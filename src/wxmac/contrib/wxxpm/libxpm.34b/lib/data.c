@@ -43,7 +43,6 @@ static char *RCS_Id = "$Id$";
 #include "sys$library:stat.h"
 #include "sys$library:ctype.h"
 #elif defined(FOR_MAC) && !defined(GUSI)
-#include <stat.h>
 #include <ctype.h>
 #else
 #include <sys/types.h>

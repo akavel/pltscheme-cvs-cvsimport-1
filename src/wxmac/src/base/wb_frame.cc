@@ -39,7 +39,7 @@
  
 #include "wx_stdev.h"
 
-#include <iostream.h>
+// #include <iostream.h>
 
 #ifndef wx_mac
 wxbFrame::wxbFrame(void)
