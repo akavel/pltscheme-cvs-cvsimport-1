@@ -554,7 +554,7 @@
 				      (null? (cddr v)))
 				 (loop (cadr v) (string-append "'" prefix))]
 				[else (values v prefix)]))])
-		(static-error expr "'~a~s is not a symbol" prefix v)))
+		(static-error expr "misuse of quote: '~a~s is not a symbol" prefix v)))
 	    (static-error expr "Malformed quote")))
 	(static-error expr "Malformed quote"))))
 
