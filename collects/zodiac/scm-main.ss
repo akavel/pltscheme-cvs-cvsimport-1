@@ -1424,7 +1424,7 @@
 	      (in-pattern-2 '(_ ((param value) rest ...) body ...))
 	      (out-pattern-2 '(let* ((pz (#%in-parameterization
 					   (#%current-parameterization)
-					   param #t))
+					   param))
 				      (orig (pz)))
 				(dynamic-wind
 				  (lambda () (pz value))
