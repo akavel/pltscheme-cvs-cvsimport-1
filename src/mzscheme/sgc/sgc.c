@@ -848,6 +848,9 @@ static void *platform_plain_sector(int count)
 #if GET_MEM_VIA_MMAP
 static void *platform_plain_sector(int count)
 {
+#ifdef MAP_ANON
+  return mmap(NULL, count << LOG_SECTOR_SEGMENT_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
+#else
   static int fd;
 
   if (!fd) {
@@ -855,6 +858,7 @@ static void *platform_plain_sector(int count)
   }
   
   return mmap(0, count << LOG_SECTOR_SEGMENT_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
+#endif
 }
 
 static void free_plain_sector(void *p, int count)
@@ -4365,7 +4369,7 @@ static void do_GC_gcollect(void *stack_now)
   }
 
   if (GC_initial_trace_root) {
-#ifdef CHECK_SKIP_MARK_AT_FIRST
+#if CHECK_SKIP_MARK_AT_FIRST
     collect_start_disable_mark_skip = collect_stack_count;
     skip_mark_at_first = GC_inital_root_skip;
 #endif
