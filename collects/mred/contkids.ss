@@ -495,7 +495,7 @@
 					 delta-w)
 				      ; client-height is the default
 				      ; dimension in the minor direction.
-				      (+ client-height delta-w)))
+				      (+ client-width delta-w)))
 		   (set-min-height (if horizontal
 				       (+ client-height delta-h)
 				       (+ (* range pixels-per-value)
