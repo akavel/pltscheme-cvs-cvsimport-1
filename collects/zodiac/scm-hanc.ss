@@ -18,7 +18,7 @@
 		(sign:names null)
 		(in:rest null)
 		(sign:rest null))
-      (if (null? in:all)
+      (if (null? sign:all)
 	(begin
 	  (let loop ((in in:rest)
 		      (signs (map car sign:rest)))
