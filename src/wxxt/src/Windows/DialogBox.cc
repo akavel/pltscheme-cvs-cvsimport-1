@@ -46,25 +46,25 @@ wxDialogBox::wxDialogBox(wxFrame *parent, char *title, Bool _modal, int x,
 			 int y, int width, int height, long style, char *name)
     : wxFrame()
 {
-  __type = wxTYPE_DIALOG_BOX;
-  
-  modal = modal_showing = FALSE;
-  
-  style |= wxTRANSIENT;
-  
-  Create(parent, title, _modal, x, y, width, height, style, name);
+    __type = wxTYPE_DIALOG_BOX;
+
+    style |= wxTRANSIENT;
+
+    modal = modal_showing = FALSE;
+
+    Create(parent, title, _modal, x, y, width, height, style, name);
 }
 
 Bool wxDialogBox::Create(wxFrame *parent, char *title, Bool _modal, int x,
 			 int y, int width, int height, long style, char *name)
 {
-  style |= wxTRANSIENT;
+    style |= wxTRANSIENT;
 
-  (void)wxFrame::Create(parent, title, x, y, width, height, style, name);
-  
-  modal = _modal; /* MATTHEW */
-  
-  return TRUE;
+    (void)wxFrame::Create(parent, title, x, y, width, height, style, name);
+
+    modal = _modal;
+    
+    return TRUE;
 }
 
 extern void wxDispatchEventsUntil(int (*)(void *), void *);

@@ -111,6 +111,11 @@ void wxbDC::SetBackgroundMode(int mode)
   current_bk_mode = mode;
 }
 
+int wxbDC::GetBackgroundMode(void)
+{
+  return current_bk_mode;
+}
+
 void wxbDC::GetSize(float *width, float *height)
 {
   if (!(min_x == 1000.0 && min_y == 1000.0 && max_x == -1000.0 && max_y == -1000.0))
