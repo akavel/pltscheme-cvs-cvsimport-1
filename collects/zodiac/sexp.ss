@@ -116,11 +116,11 @@
 		(sanitized-sexp->raw (z:read-object expr)))
 	      (z:read-object expr)))
 	  ((z:vector? expr)
-	    '(vector ...))
+	    '#(...))
 	  ((z:list? expr)
-	    '(list ...))
+	    '(...))
 	  ((z:improper-list? expr)
-	    '(cons ...))
+	    '(... . ...))
 	  (else
 	    expr)))))
 
