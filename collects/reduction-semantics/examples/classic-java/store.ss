@@ -88,4 +88,4 @@
    [empty-store     store?]
    [store?          (-> any? boolean?)])
 
-  (provide [rename build-store store)))
+  (provide [rename build-store store]))
