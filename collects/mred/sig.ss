@@ -298,12 +298,17 @@
 
 (define-signature mred:icon^
   (get-icon
+
    get-paren-highlight-bitmap
    get-autowrap-bitmap
    get-reset-console-bitmap
+
    get-lock-bitmap
+   get-lock-mdc
    get-unlock-bitmap
+   get-unlock-mdc
    get-anchor-bitmap
+   get-anchor-mdc
    
    get-gc-on-dc
    get-gc-off-dc
