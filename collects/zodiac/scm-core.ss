@@ -710,7 +710,7 @@
       (let ((contents (expose-list expr)))
 	(when (and (language<=? 'structured)
 		(null? contents))
-	  (static-error expr "Procedure does not take any arguments"))
+	  (static-error expr "All procedures must take at least one argument"))
 	(make-list-arglist
 	  (map create-lexical-binding+marks
 	    contents)))))
