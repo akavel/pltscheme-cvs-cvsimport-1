@@ -1636,7 +1636,7 @@ void wxPostScriptDC::GetTextExtent (const char *string, float *x, float *y,
   static int lastStyle= INT_MIN;
   static int lastWeight= INT_MIN;
   static int lastDescender = INT_MIN;
-  static int lastWidths[256]; // widths of the characters
+  static far int lastWidths[256]; // widths of the characters
 
   // get actual parameters
   const int Family = fontToUse->GetFamily();

@@ -40,7 +40,7 @@ wxList wxTopLevelWindows;
 char **wx_msg_str = (char**)NULL;
 
 // Some global printer parameters
-char wx_printer_file[_MAXPATHLEN];
+/* char wx_printer_file[_MAXPATHLEN]; */
 float wx_printer_scale_x = 1.0;
 float wx_printer_scale_y = 1.0;
 float wx_printer_translate_x = 0.0;
