@@ -663,7 +663,7 @@ print_to_string(Scheme_Object *obj,
       params.print_unreadable = SCHEME_TRUEP(v);
     }
   } else
-    params.print_unreadable = 0;
+    params.print_unreadable = 1;
   v = scheme_get_param(config, MZCONFIG_CAN_READ_PIPE_QUOTE);
   params.can_read_pipe_quote = SCHEME_TRUEP(v);
   v = scheme_get_param(config, MZCONFIG_CASE_SENS);
@@ -1473,8 +1473,10 @@ print(Scheme_Object *obj, int notdisplay, int compact, Scheme_Hash_Table *ht,
     {
       if (compact || !pp->print_unreadable) {
 	cannot_print(pp, notdisplay, obj, ht, compact);
+      } else if (SCHEME_CPTR_TYPE(obj) == NULL) {
+	print_this_string(pp, "#<cpointer>", 0, 12);
       } else {
-	print_this_string(pp, "#<c-pointer:", 0, 12);
+	print_this_string(pp, "#<cpointer:", 0, 12);
 	print_this_string(pp, SCHEME_CPTR_TYPE(obj), 0, -1);
 	print_this_string(pp, ">", 0, 1);
       }
