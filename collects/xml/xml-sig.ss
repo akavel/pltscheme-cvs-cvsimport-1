@@ -1,5 +1,5 @@
 
-(module xml-sig mzscheme
+(module sig mzscheme
   (import (lib "unitsig.ss"))
   
   (import "private/sig.ss")
