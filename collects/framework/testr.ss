@@ -10,13 +10,13 @@
 (compound-unit/sig
 
   (import [mred : mred-interfaces^]
-	  [keymap : framework:keymap^])
+	  [keys : framework:keys^])
 
   (link
     [run : framework:test:run^
       ((require-unit/sig "test-run.ss") mred)]
     [prim : framework:test:primitives^
-      ((require-unit/sig "test-prims.ss") mred keymap run)])
+      ((require-unit/sig "test-prims.ss") mred keys run)])
 
   (export
     (open run)

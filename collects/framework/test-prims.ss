@@ -11,7 +11,7 @@
 (unit/sig framework:test:primitives^
   
   (import [mred : mred-interfaces^]
-	  [keymap : framework:keymap^]
+	  [keys : framework:keys^]
 	  [test : framework:test:run^])
   
   (define current-eventspaces
@@ -271,7 +271,7 @@
 	   [all #f])
       (lambda (key)
 	(unless all
-	  (set! all (append letters (map (lambda (s) (string-ref s 0)) (keymap:get-shifted-key-list)))))
+	  (set! all (append letters (map (lambda (s) (string-ref s 0)) (keys:get-shifted-key-list)))))
 	(memq key all))))
     
   ;;
