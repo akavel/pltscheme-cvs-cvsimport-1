@@ -8,7 +8,5 @@
 
 ; All this stuff needs to be disappeared.
 
-(require-library "sparams.ss" "backward")
-
 (define zodiac:system@
   (require-library-unit/sig "link.ss" "zodiac"))
