@@ -121,7 +121,7 @@
     (lambda (attributes id varref)
       (let ((new-value (make-unresolved id varref))
 	    (current (get-attribute attributes 'unresolved-unit-vars
-		       (lambda () '(()))))) ; List of lists to accomodate
+		       (lambda () '())))) ; List of lists to accomodate
 					; nested units
 	(unless (null? current)
 	  (put-attribute attributes 'unresolved-unit-vars
