@@ -193,7 +193,6 @@
 					       (exn-message exn)))))
 			  (let* ((rewriter (macro-resolution-rewriter r))
 				  (m (new-mark))
-				  (marker (mark-expression m))
 				  (rewritten (rewriter expr env))
 				  (structurized (structurize-syntax
 						  rewritten expr (list m)))
