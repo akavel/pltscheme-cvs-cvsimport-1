@@ -50,6 +50,7 @@ static wxEvent *wxCommandEventConstructor(WXTYPE eventClass, WXTYPE eventType)
 
 wxPopupEvent::wxPopupEvent(void) : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT)
 {
+  __type = wxTYPE_POPUP_EVENT;
 }
 
 wxScrollEvent::wxScrollEvent(void)
