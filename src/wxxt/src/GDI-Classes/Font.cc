@@ -1,5 +1,4 @@
  /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: wxWindows font handling
  *
