@@ -130,7 +130,6 @@ extern int   wxCursorBusy;
 //-- Printing -----------------------------------------------------------------
 
 extern wxPrintPaperDatabase* wxThePrintPaperDatabase;
-extern wxPrintSetupData*     wxThePrintSetupData;
 
 //-- Prolog IO ----------------------------------------------------------------
 

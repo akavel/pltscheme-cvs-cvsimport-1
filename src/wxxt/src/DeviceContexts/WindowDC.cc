@@ -728,7 +728,8 @@ void wxWindowDC::SetBrush(wxBrush *brush)
 			values.fill_style = FillTiled;
 		    } // else wrong depth
 		}
-		if (stipple || tile) values.foreground = BlackPixel(DPY, DefaultScreen(DPY));
+		if (stipple || tile) 
+		  values.foreground = IS_COLOR ? BlackPixel(DPY, DefaultScreen(DPY)) : 1;
 	    } else {
 		stipple = hatch_bitmaps[style-wxFIRST_HATCH];
 		values.fill_style = FillStippled;
