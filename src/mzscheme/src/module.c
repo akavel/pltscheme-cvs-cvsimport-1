@@ -636,7 +636,7 @@ static Scheme_Object *_dynamic_require(int argc, Scheme_Object *argv[],
     /* Before starting, check whether the name is provided */
     count = srcm->num_provides;
     if (position >= 0) {
-      if (position < count) {
+      if (position < srcm->num_var_provides) {
 	i = position;
 	if ((SCHEME_SYM_LEN(name) == SCHEME_SYM_LEN(srcm->provides[i]))
 	    && !memcmp(SCHEME_SYM_VAL(name), SCHEME_SYM_VAL(srcm->provides[i]), SCHEME_SYM_LEN(name))) {
@@ -2026,7 +2026,9 @@ static Scheme_Object *do_module(Scheme_Object *form, Scheme_Comp_Env *env,
   m->modname = SCHEME_STX_VAL(nm); /* must set before calling new_module_env */
   if (SAME_OBJ(m->modname, kernel_symbol)) {
     /* Too confusing. Give it a different name while compiling. */
-    m->modname = scheme_make_symbol("#%kernel");
+    Scheme_Object *k2;
+    k2 = scheme_make_symbol("#%kernel");
+    m->modname = k2;
     restore_confusing_name = 1;
   }
 
