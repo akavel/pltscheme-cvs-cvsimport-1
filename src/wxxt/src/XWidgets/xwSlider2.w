@@ -300,7 +300,7 @@ and clears the old rectangle to the background color.
     int h, ah;
 
     XCopyArea(XtDisplay($), XtWindow($), XtWindow($),
-	      DefaultGCOfScreen(XtScreen($)),
+	      $gc,
 	      oldx, oldy, wd, ht, newx, newy);
     /* First check if the old and new areas do not overlap */
     if (newx + wd <= oldx || oldx + wd <= newx
