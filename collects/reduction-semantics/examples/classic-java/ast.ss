@@ -150,6 +150,10 @@
    ;;        | (make-any-type)
    )
 
+  ;; type=? :: Type Type -> Boolean
+  ;; compares two types for (nominal) equality
+  (define type=? equal?)
+
   ;; src-expr? :: x -> Boolean
   ;; recognizes source (i.e., unelaborated) expressions
   (define src-expr?
@@ -236,6 +240,8 @@
                     [struct if-expr ([test expr?]
                                      [then expr?]
                                      [else expr?])]
+
+                    [type=? (-> type? type? boolean?)]
 
                     [src-expr? predicate?]
                     [tagged-expr? predicate?]
