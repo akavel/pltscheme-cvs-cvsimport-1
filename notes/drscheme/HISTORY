@@ -2,6 +2,13 @@
         Version 300
 ------------------------------
 
+ - modes are now based on the language settings, rather than
+   the filename
+
+ - show menu => view menu, added show/hide for the toolbar
+
+;;; unannounced aboe
+
  - contracts internal interface changed; much faster now (3x
    speedup for checking the contract (any? . -> . any?) for
    example).
@@ -12,12 +19,6 @@
    addition, flat-contracts (without names) are a separate
    type; use flat-contract-predicate rather than
    flat-named-contract.
-
-   |==============================================|
-   |                                              |
-   |               announced above                |
-   |                                              |
-   |==============================================|
 
  - the teaching languages are now implicitly in a
    module. This should enable even better syntax error
