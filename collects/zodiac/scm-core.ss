@@ -126,7 +126,10 @@
     '("refer.ss" "refer" "spidey.ss" "spidey" "macrox.ss" "macrox"))
 
   (define scheme-vocabulary
-    (create-vocabulary 'scheme-vocabulary #f))
+    (create-vocabulary (symbol-append param:check-syntax-level
+			 "-"
+			 'scheme-vocabulary)
+      #f))
 
   (add-sym-micro scheme-vocabulary
     (lambda (expr env attributes vocab)
