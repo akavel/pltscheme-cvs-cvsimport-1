@@ -20,9 +20,7 @@
     (define internal-error
       (default-error-handler 'internal-error))
     (define static-error
-      (default-error-handler 'syntax-error))
-    (define dynamic-error
-      (default-error-handler 'run-time-error))))
+      (default-error-handler 'syntax-error))))
 
 (define plt:mzscheme-parameters@
   (require-library-unit/sig "sparamr.ss" "backward"))

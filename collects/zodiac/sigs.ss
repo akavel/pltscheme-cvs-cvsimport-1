@@ -65,7 +65,7 @@
     match-and-rewrite))
 
 (define-signature zodiac:interface^
-  (static-error dynamic-error internal-error))
+  (static-error internal-error))
 
 (define-signature zodiac:expander^
   (expand expand-program expand-expr
