@@ -585,9 +585,15 @@
 						   (expand-expr e env
 								attributes c/imports-vocab))
 						 in:imports))
+			      (_ (for-each (lambda (in)
+					     (ensure-shadowable in env vocab #t))
+					   in:imports))
 			      (_ (extend-env proc:imports env))
 			      (_ (put-attribute attributes 'exports-expand-vocab
 						unit-clauses-vocab))
+			      (_ (for-each (lambda (ex)
+					     (ensure-shadowable/s ex env vocab #t))
+					   in:exports))
 			      (_ (for-each (lambda (e)
 					     (expand-expr e env attributes
 							  unit-register-exports-vocab))
@@ -951,7 +957,7 @@
   ; ----------------------------------------------------------------------
 
   (define unit-clauses-vocab-delta
-    (create-vocabulary 'unit-clauses-vocab-delta #f #f))
+    (create-vocabulary 'unit-clauses-vocab-delta #f #t))
 
   (let* ((kwd '())
 	  (in-pattern-1 `(_ (var ...) val))

@@ -408,6 +408,9 @@
 	(when v
 	  (loop v)))))
     
+  (define (update-current-namespace name)
+    (let ([id (syntax-symbol->id name)])
+      (global-defined-value name id)))    
 
   (define print-env
     (lambda (env)

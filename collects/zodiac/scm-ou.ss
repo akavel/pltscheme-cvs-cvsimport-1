@@ -18,6 +18,7 @@
 		    (create-lexical-varref r expr))
 		  ((top-level-resolution? r)
 		   (check-for-signature-name expr attributes)
+		   (ensure-not-mzscheme-syntax-keyword expr)
 		   (process-unit-top-level-resolution expr attributes))
 		  ((public-binding? r)
 		    (create-public-varref r expr))
