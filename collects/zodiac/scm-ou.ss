@@ -16,8 +16,6 @@
 		    (create-lexical-varref r expr))
 		  ((top-level-resolution? r)
 		    (let ((id (z:read-object expr)))
-		      (unless (built-in-name id)
-			(update-unresolved-attribute attributes expr))
 		      (let ((top-level-space (get-attribute attributes
 					       'top-levels)))
 			(if top-level-space
@@ -33,6 +31,8 @@
 				      expr)))
 			      (let ((b (top-level-varref/bind-slot ref)))
 				(set-box! b (cons ref (unbox b))))
+			      (unless (built-in-name id)
+				(update-unresolved-attribute attributes expr ref))
 			      ref))
 			  (create-top-level-varref id expr)))))
 		  ((public-binding? r)
