@@ -662,22 +662,6 @@
 (define u/s-expand-includes-vocab
   (create-vocabulary 'u/s-expand-includes-vocab))
 
-(add-list-micro u/s-expand-includes-vocab
-  (lambda (expr env attributes vocab)
-    (list expr)))
-
-(add-ilist-micro u/s-expand-includes-vocab
-  (lambda (expr env attributes vocab)
-    (list expr)))
-
-(add-sym-micro u/s-expand-includes-vocab
-  (lambda (expr env attributes vocab)
-    (list expr)))
-
-(add-lit-micro u/s-expand-includes-vocab
-  (lambda (expr env attributes vocab)
-    (list expr)))
-
 (add-primitivized-micro-form 'include u/s-expand-includes-vocab
   (let* ((kwd '())
           (in-pattern '(_ filename))
@@ -777,12 +761,7 @@
 					      in:imports)))
 			(prim-unit:exports (create-prim-exports in:signature
 					     in:renames expr env attributes))
-			(prim-unit:clauses
-			  (apply append
-			    (map (lambda (clause)
-				   (expand-expr clause env attributes
-				     u/s-expand-includes-vocab))
-			      in:clauses)))
+			(prim-unit:clauses in:clauses)
 			(sign-unit:imports (map (lambda (import)
 						  (expand-expr import env
 						    attributes
@@ -809,7 +788,9 @@
 			 (quote ,(map named-sig-list->named-sig-vector sign-unit:imports))
 			 (quote ,(sig-list->sig-vector sign-unit:exports)))
 		      expr)
-		    env attributes vocab)))))
+		    env attributes (append-vocabulary vocab
+						      u/s-expand-includes-vocab
+						      'include-within-unit))))))
 	  ((pat:match-against m&e-2 expr env)
 	    =>
 	    (lambda (p-env)

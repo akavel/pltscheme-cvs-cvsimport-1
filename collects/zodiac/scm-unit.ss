@@ -119,10 +119,11 @@
 
   (define remove/update-unresolved-attribute
     (lambda (attributes unresolveds)
-      (let ((left-unresolveds (cdr (get-attribute attributes
-				     'unresolved-unit-vars))))
+      (let ((left-unresolveds
+	     (cdr (get-attribute attributes
+				 'unresolved-unit-vars))))
 	(if (null? left-unresolveds)
-	  (begin
+	    (begin
 	    (put-attribute attributes 'unresolved-unit-vars null)
 	    (unless (null? unresolveds)
 	      (static-error (unresolved-id (car unresolveds))
