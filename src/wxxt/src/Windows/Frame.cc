@@ -339,8 +339,11 @@ wxMenuBar *wxFrame::GetMenuBar(void)
     return menubar;
 }
 
-void wxFrame::SetIcon(wxBitmap *icon, wxBitmap *mask)
+void wxFrame::SetIcon(wxBitmap *icon, wxBitmap *mask, int kind)
 {
+  if (kind == 2) /* large */
+    return;
+
   if (icon->Ok()) {
     wxBitmap *bm = new wxBitmap(icon->GetWidth(), icon->GetHeight());
     if (bm->Ok()) {
