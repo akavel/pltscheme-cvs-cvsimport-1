@@ -40,6 +40,9 @@
 #define LIST_CHUNK_SIZE	20
 #define MULTILIST	((XfwfMultiListWidget)(X->handle))
 
+#define wxLIST_BOX_WIDTH	70
+#define wxLIST_BOX_HEIGHT	50
+
 //-----------------------------------------------------------------------------
 // create and destroy wxListBox
 //-----------------------------------------------------------------------------

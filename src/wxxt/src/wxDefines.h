@@ -463,8 +463,6 @@ enum {
 #define wxGAUGE_HEIGHT		 40
 #define wxGROUP_BOX_WIDTH	150
 #define wxGROUP_BOX_HEIGHT	100
-#define wxLIST_BOX_WIDTH	150
-#define wxLIST_BOX_HEIGHT	100
 #define wxMULTI_TEXT_WIDTH	150
 #define wxMULTI_TEXT_HEIGHT	100
 #define wxTEXT_WIDTH		150
