@@ -22,7 +22,7 @@
 		     ((reference-unit/sig "prefs.ss") wx 
 		      (minimal constants)
 		      exn (minimal container) exit gui-utils
-		      edit (core pretty-print@)
+		      canvas edit (core pretty-print@)
 		      (core function@))]
 	[autoload : mred:autoload^
 		  ((reference-unit/sig "autoload.ss") wx 
@@ -115,7 +115,7 @@
 	[console : mred:console^ 
 		 ((reference-unit/sig "console.ss") wx 
 		  (minimal constants) (minimal container)
-		  preferences edit frame canvas find-string
+		  preferences edit frame group canvas find-string
 		  exit finder handler gui-utils scheme-mode
 		  scheme-paren icon hyper-frame version application
 		  (core function@) (core string@) (core pretty-print@))]
