@@ -365,22 +365,18 @@ Bool wxFrame::Create(wxFrame *Parent, char *title, int x, int y,
   // This patch comes from Torsten Liermann lier@lier1.muc.de
   if (XmIsMotifWMRunning(wxTheApp->topLevel)) {
     int decor = 0 ;
-    if (style & wxRESIZE_BORDER)
-      decor |= MWM_DECOR_RESIZEH ;
-    if (style & wxSYSTEM_MENU)
-      decor |= MWM_DECOR_MENU;
-    if ((style & wxCAPTION) ||
-        (style && wxTINY_CAPTION_HORIZ) ||
-        (style && wxTINY_CAPTION_VERT))
-      decor |= MWM_DECOR_TITLE;
-    if (style & wxTHICK_FRAME)
-      decor |= MWM_DECOR_BORDER;
-    if (style & wxTHICK_FRAME)
-      decor |= MWM_DECOR_BORDER;
-    if (style & wxMINIMIZE_BOX)
+    if (!(style & wxNO_RESIZE_BORDER)) {
+      decor |= MWM_DECOR_RESIZEH;
       decor |= MWM_DECOR_MINIMIZE;
-    if (style & wxMAXIMIZE_BOX)
       decor |= MWM_DECOR_MAXIMIZE;
+    }
+    if (!(style & wxNO_SYSTEM_MENU))
+      decor |= MWM_DECOR_MENU;
+    if (!(style & wxNO_CAPTION))
+      decor |= MWM_DECOR_TITLE;
+    if (!(style & wxNO_THICK_FRAME))
+      decor |= MWM_DECOR_BORDER;
+
     XtVaSetValues(frameShell,XmNmwmDecorations,decor,NULL) ;
   }
 

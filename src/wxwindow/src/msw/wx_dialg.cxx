@@ -214,7 +214,7 @@ Bool wxDialogBox::Create(wxWindow *Parent, char *Title, Bool Modal,
 
   // Allows creation of dialogs with & without captions under MSWindows
   wxDialogWnd *wnd;
-  if(style & wxCAPTION){
+  if (!(style & wxNO_CAPTION)) {
     wnd = new wxDialogWnd(cparent, this, x, y, width, height,
                           "wxCaptionDialog");
   }

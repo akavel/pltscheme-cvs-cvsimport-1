@@ -139,7 +139,6 @@ void wxCommonInit(void)
   wxTheColourDatabase->Initialize();
   wxInitializeStockObjects();
   wxInitStandardTypes();
-  wxInitStandardEvents();
 
   // For PostScript printing
 #if USE_POSTSCRIPT
@@ -164,8 +163,6 @@ void wxCommonCleanUp(void)
   delete wxThePrintPaperDatabase;
   wxThePrintPaperDatabase = NULL;
 #endif
-
-  wxDeleteEventLists() ;
 
   delete[] wxBuffer;
 }

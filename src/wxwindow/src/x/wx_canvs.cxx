@@ -689,55 +689,55 @@ wxScrollCallback (Widget scrollbar, int orientation, XmScrollBarCallbackStruct *
   wxCanvas *canvas = (wxCanvas *) wxWidgetHashTable->Get ((long) scrolledWindow);
   if (canvas)
   {
-    wxCommandEvent *_event = new wxCommandEvent;
-    wxCommandEvent &event = *_event;
+    wxScrollEvent *_event = new wxScrollEvent;
+    wxScrollEvent &event = *_event;
 
-    WXSCROLLPOS(event) = cbs->value;
+    event.pos = cbs->value;
     if (orientation == XmHORIZONTAL)
-      WXSCROLLORIENT(event) = wxHORIZONTAL;
+      event.direction = wxHORIZONTAL;
     else
-      WXSCROLLORIENT(event) = wxVERTICAL;
+      event.direction = wxVERTICAL;
 
     switch (cbs->reason)
     {
       case XmCR_INCREMENT:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_LINEDOWN;
+        event.moveType = wxEVENT_TYPE_SCROLL_LINEDOWN;
         break;
       }
       case XmCR_DECREMENT:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_LINEUP;
+        event.moveType = wxEVENT_TYPE_SCROLL_LINEUP;
         break;
       }
       case XmCR_PAGE_INCREMENT:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_PAGEDOWN;
+        event.moveType = wxEVENT_TYPE_SCROLL_PAGEDOWN;
         break;
       }
       case XmCR_PAGE_DECREMENT:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_PAGEUP;
+        event.moveType = wxEVENT_TYPE_SCROLL_PAGEUP;
         break;
       }
       case XmCR_TO_TOP:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_TOP;
+        event.moveType = wxEVENT_TYPE_SCROLL_TOP;
         break;
       }
       case XmCR_TO_BOTTOM:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_BOTTOM;
+        event.moveType = wxEVENT_TYPE_SCROLL_BOTTOM;
         break;
       }
       case XmCR_DRAG:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
+        event.moveType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
         break;
       }
       case XmCR_VALUE_CHANGED:
       {
-        event.eventType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
+        event.moveType = wxEVENT_TYPE_SCROLL_THUMBTRACK;
         break;
       }
       default:
