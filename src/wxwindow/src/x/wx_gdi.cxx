@@ -1716,6 +1716,13 @@ void wxBitmap::FreeBitmapImage()
     }
 }
 
+static int errorFlagged;
+static int FlagError(Display*, XErrorEvent*)
+{
+  errorFlagged = 1;
+  return 0;
+}
+
 Bool wxBitmap::Create(int w, int h, int d)
 {
   Display *dpy = wxGetDisplay();
@@ -1760,8 +1767,20 @@ Bool wxBitmap::Create(int w, int h, int d)
 
   display = dpy; /* MATTHEW: [4] Remember the display */
 
+  int (*old_handler)(Display*, XErrorEvent*);
+  old_handler = XSetErrorHandler(FlagError);
+  errorFlagged = 0;
+
   x_pixmap = XCreatePixmap (dpy, RootWindow (dpy, DefaultScreen (dpy)),
 			    width, height, depth);
+
+  XSync(dpy, FALSE);
+
+  if (errorFlagged)
+    x_pixmap = 0;
+  
+  XSetErrorHandler(old_handler);
+
   if (x_pixmap)
     ok = TRUE;
   else
