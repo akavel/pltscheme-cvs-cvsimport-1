@@ -34,6 +34,7 @@
 # define  Uses_wxDialogBox
 # define  Uses_wxButton
 # define  Uses_wxRadioBox
+# define  Uses_wxText
 # define  Uses_wxChoice
 # define  Uses_wxCheckBox
 # include "wx.h"
@@ -1961,11 +1962,11 @@ XPrinterDialog (wxWindow *parent)
 #	define PS_PRINTER_COMMAND	"lpr"
 #	define PS_PRINTER_OPTIONS	""
 #	define PS_AFM_PATH		NULL
-#elif defined(wx_msw)
-#	define PS_PREVIEW_COMMAND	NULL
+#elif defined(wx_msw) || defined(wx_mac)
+#	define PS_PREVIEW_COMMAND	"ghostview"
 #	define PS_PRINTER_COMMAND	"print"
 #	define PS_PRINTER_OPTIONS	""
-#	define PS_AFM_PATH		"c:\\windows\\system\\"
+#	define PS_AFM_PATH		NULL
 #else
 #	define PS_PREVIEW_COMMAND	NULL
 #	define PS_PRINTER_COMMAND	NULL
@@ -1977,9 +1978,9 @@ IMPLEMENT_DYNAMIC_CLASS(wxPrintSetupData, wxObject)
 
 wxPrintSetupData::wxPrintSetupData(void)
 {
-    printer_command = NULL;
-    preview_command = NULL;
-    printer_flags = NULL;
+    printer_command = PS_PRINTER_COMMAND;
+    preview_command = PS_PREVIEW_COMMAND;
+    printer_flags = PS_PRINTER_OPTIONS;
     printer_orient = PS_PORTRAIT;
     printer_scale_x = 1.0;
     printer_scale_y = 1.0;
