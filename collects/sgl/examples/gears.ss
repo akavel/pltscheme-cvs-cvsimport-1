@@ -22,8 +22,8 @@
 ;;     This is a port of the infamous "gears" demo to straight GLX (i.e. no
 ;;     GLUT).  Port by Brian Paul 23 March 2001.
 ;;
-;; To run, evaluate this file in DrScheme, or execute "mred -r gears.ss"
-;; from your OS shell.
+;; To run, evaluate this file in DrScheme in the "module" language level,
+;; or execute "mred -qu gears.ss" from your OS shell.
 ;;
 ;; Scheme port by Neil W. Van Dyke <neil@neilvandyke.org>, 23 November 2002.
 ;; Originally called glxgears.ss.  Minor modifications since.
