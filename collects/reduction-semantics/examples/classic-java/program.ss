@@ -18,6 +18,7 @@
                                      (union method? false?))]
                     [find-field (-> class? field-name?
                                     (union field? false?))]
+                    [find-all-fields (-> class? (listof field?))]
                     [find-class (-> program? class-type? class?)]
                     [type-exists? (-> program? (-> type? boolean?))]
                     [type<=? (-> program? type? type? boolean?)]
@@ -52,6 +53,14 @@
   ;; find-field :: Class Field-Name -> (Union Field #f)
   ;; finds the named field in the specified class; #f if doesn't exist
   (define find-field (find-slot class-fields field-name))
+
+  ;; find-all-fields :: Class -> (Listof Field)
+  ;; returns all field definitions present in class, even shadowed
+  (define find-all-fields
+    (lambda (c)
+      (if (class-superclass c)
+          (append (class-fields c) (find-all-fields (class-superclass c)))
+          (class-fields c))))
 
   ;; find-class :: Program Class-Name -> Class
   ;; Looks up the specified class in the program.

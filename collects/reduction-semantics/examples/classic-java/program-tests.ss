@@ -109,6 +109,49 @@
        (assert-false (find-field (find-class test-program (make-class-type 'd))
                                  'bad-field)))
 
+     (make-test-case "find-all-fields: object"
+       (assert-equal? (find-all-fields (find-class test-program
+                                                   (make-class-type 'object)))
+                      null))
+
+     (make-test-case "find-all-fields: A"
+       (assert-equal? (find-all-fields (find-class test-program
+                                                   (make-class-type 'a)))
+                      (list (make-field (make-ground-type 'int)
+                                        (make-class-type 'a)
+                                        'i)
+                            (make-field (make-ground-type 'bool)
+                                        (make-class-type 'a)
+                                        'b)
+                            (make-field (make-class-type 'object)
+                                        (make-class-type 'a)
+                                        'o)
+                            (make-field (make-class-type 'b)
+                                        (make-class-type 'a)
+                                        'a-b))))
+
+     (make-test-case "find-all-fields: C"
+       (assert-equal? (find-all-fields (find-class test-program
+                                                   (make-class-type 'c)))
+                      (list (make-field (make-class-type 'b)
+                                        (make-class-type 'c)
+                                        'second-b)
+                            (make-field (make-class-type 'd)
+                                        (make-class-type 'c)
+                                        'i)
+                            (make-field (make-ground-type 'int)
+                                        (make-class-type 'a)
+                                        'i)
+                            (make-field (make-ground-type 'bool)
+                                        (make-class-type 'a)
+                                        'b)
+                            (make-field (make-class-type 'object)
+                                        (make-class-type 'a)
+                                        'o)
+                            (make-field (make-class-type 'b)
+                                        (make-class-type 'a)
+                                        'a-b))))
+
      (make-test-case "find-class: straightforward"
        (let* ([object (make-class (make-class-type 'object) #f null null)]
               [b (make-class (make-class-type 'b) object
