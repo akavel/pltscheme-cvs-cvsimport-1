@@ -1600,7 +1600,8 @@ Blit (float xdest, float ydest, float fwidth, float fheight,
 
   if (rop >= 0) {
     CalcBoundingBox(XSCALEBND(xdest), YSCALEBND(ydest));
-    CalcBoundingBox(XSCALEBND(xdest + fwidth), YSCALEBND(ydest + fheight));
+    /* Bitmap isn't scaled: */
+    CalcBoundingBox(XSCALEBND(xdest) + fwidth, YSCALEBND(ydest) + fheight);
   }
 
   return TRUE;
