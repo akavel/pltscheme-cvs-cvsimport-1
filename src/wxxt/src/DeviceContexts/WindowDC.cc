@@ -978,6 +978,8 @@ void wxWindowDC::Initialize(wxWindowDC_Xinit* init)
 
     X->owner = init->owner;
 
+    WXGC_IGNORE(X->owner);
+
     XGCValues values; unsigned long mask;
     values.foreground = BlackPixelOfScreen(SCN);
     values.background = WhitePixelOfScreen(SCN);
