@@ -34,6 +34,8 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include <scheme.h>
+
 
 #ifdef EXT
 #undef EXT
