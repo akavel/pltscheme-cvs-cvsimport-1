@@ -16,17 +16,15 @@
 
   (link
     [run : mred:test:run^
-      ((reference-unit/sig "strun.ss") wx)]
+      ((require-unit/sig "strun.ss") wx)]
     
     [prim : mred:test:primitives^
-      ((reference-unit/sig "stprims.ss") wx testable keymap run)]
+      ((require-unit/sig "stprims.ss") wx testable keymap run)]
 
     [drscheme : mred:test:drscheme^
-      ((reference-unit/sig "stdrs.ss") wx testable)])
+      ((require-unit/sig "stdrs.ss") wx testable)])
 
   (export
     (open run)
     (open prim)
-    (unit drscheme drs))
-
-  )
+    (unit drscheme drs)))

@@ -42,15 +42,15 @@
 	    [function : mzlib:function^])
 
     (link [container-frames : mred:container-frames^
-	    ((reference-relative-library-unit/sig "contfram.ss") wx
+	    ((require-relative-library-unit/sig "contfram.ss") wx
 	     constants connections container-children container-panels)]
 
 	  [container-children : mred:container-children^
-	    ((reference-relative-library-unit/sig "contkids.ss") wx
+	    ((require-relative-library-unit/sig "contkids.ss") wx
 	     constants testable connections container-frames container-panels)]
 
 	  [container-panels : mred:container-panels^
-	    ((reference-relative-library-unit/sig "contpanl.ss") wx
+	    ((require-relative-library-unit/sig "contpanl.ss") wx
 	     constants connections function container-children)])
 
     (export

@@ -8,7 +8,7 @@
 (require-library "match.ss")
 (require-library "minsig.ss" "mred")
 
-(reference-library "dates.ss")
+(require-library "dates.ss")
 
 (define-signature mred:control^
   (media-text%
