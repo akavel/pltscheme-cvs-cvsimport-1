@@ -346,7 +346,7 @@ void wxFrame::SetIcon(wxBitmap *icon)
     if (bm->Ok()) {
       wxMemoryDC *mdc = new wxMemoryDC();
       mdc->SelectObject(bm);
-      mdc->Blit(0, 0, icon->GetWidth(), icon->GetHeight(), icon, 0, 0);
+      mdc->Blit(0, 0, icon->GetWidth(), icon->GetHeight(), icon, 0, 0, wxSTIPPLE, NULL);
       mdc->SelectObject(NULL);
 
       XtVaSetValues(X->frame, XtNiconPixmap, GETPIXMAP(bm), NULL);
