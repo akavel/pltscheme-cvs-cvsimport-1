@@ -293,7 +293,7 @@ void wxDialogOkButton(wxButton& but, wxEvent& event)
 
   dialog->buttonPressed = wxOK;
   dialog->Show(FALSE);
-  delete dialog;
+  // delete dialog;
 }
 
 void wxDialogCancelButton(wxButton& but, wxEvent& event)
@@ -305,7 +305,7 @@ void wxDialogCancelButton(wxButton& but, wxEvent& event)
     dialog = (wxDialogBox*) ((wxPanel*)dialog)->GetParent() ;
 
   dialog->Show(FALSE);
-  delete dialog;
+  // delete dialog;
 }
 
 void wxDialogYesButton(wxButton& but, wxEvent& event)
@@ -319,7 +319,7 @@ void wxDialogYesButton(wxButton& but, wxEvent& event)
   wxMessageBoxDialog *dialog = (wxMessageBoxDialog *)panel;
   dialog->buttonPressed = wxYES;
   dialog->Show(FALSE);
-  delete dialog;
+  // delete dialog;
 }
 
 void wxDialogNoButton(wxButton& but, wxEvent& event)
@@ -333,7 +333,7 @@ void wxDialogNoButton(wxButton& but, wxEvent& event)
   wxMessageBoxDialog *dialog = (wxMessageBoxDialog *)panel;
   dialog->buttonPressed = wxNO;
   dialog->Show(FALSE);
-  delete dialog;
+  // delete dialog;
 }
 
 
