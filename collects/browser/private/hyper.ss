@@ -74,8 +74,6 @@ A test case:
       
       (define-struct hypertag (name position))
 
-      (define-struct faux-url (get-port/headers allows-eval?))
-      
       (define (same-page-url? a b)
         (or (eq? a b)
             (and (url? a) (url? b)
@@ -109,7 +107,6 @@ A test case:
           
           (define url-allows-evaling?
             (cond
-              [(faux-url? url) (faux-url-allows-eval? url)]
               [(and (url? url)
                     (equal? "file" (url-scheme url)))
                (with-handlers ([exn:fail:filesystem? (lambda (x) #f)])
@@ -269,39 +266,33 @@ A test case:
                                    (string->url loc)]))))))))))
           
           (define/private (get-headers/read-from-port progress)
-            (cond
-              [(faux-url? url) 
-               (let-values ([(port headers) ((faux-url-get-port/headers url))])
-                 (read-from-port port headers progress)
-                 headers)]
-              [else
-               (let* ([busy? #t]
-                      [stop-busy (lambda ()
-                                   (when busy?
-                                     (set! busy? #f)
-                                     (end-busy-cursor)))])
-                 (with-handlers ([(lambda (x) (and (exn:fail? x) busy?))
-                                  (lambda (x) 
-                                    (printf "exn.4 ~s\n" (and (exn? x)
-                                                              (exn-message x)))
-                                    (call/input-url 
-                                     url
-                                     (if post-data 
-                                         (lambda (u s) (post-pure-port u post-data s))
-                                         get-pure-port)
-                                     (lambda (p)
-                                       (stop-busy)
-                                       (read-from-port p empty-header progress))))])
-                   (call/input-url 
-                    url 
-                    (if post-data 
-                        (lambda (u s) (post-impure-port u post-data s))
-                        get-impure-port)
-                    (lambda (p)
-                      (let ([headers (purify-port p)])
-                        (stop-busy)
-                        (read-from-port p headers progress)
-                        headers)))))]))
+            (let* ([busy? #t]
+                   [stop-busy (lambda ()
+                                (when busy?
+                                  (set! busy? #f)
+                                  (end-busy-cursor)))])
+              (with-handlers ([(lambda (x) (and (exn:fail? x) busy?))
+                               (lambda (x) 
+                                 (printf "exn.4 ~s\n" (and (exn? x)
+                                                           (exn-message x)))
+                                 (call/input-url 
+                                  url
+                                  (if post-data 
+                                      (lambda (u s) (post-pure-port u post-data s))
+                                      get-pure-port)
+                                  (lambda (p)
+                                    (stop-busy)
+                                    (read-from-port p empty-header progress))))])
+                (call/input-url 
+                 url 
+                 (if post-data 
+                     (lambda (u s) (post-impure-port u post-data s))
+                     get-impure-port)
+                 (lambda (p)
+                   (let ([headers (purify-port p)])
+                     (stop-busy)
+                     (read-from-port p headers progress)
+                     headers))))))
           
           (define/private (read-from-port p mime-headers progress)
             (let ([wrapping-on? #t])
@@ -534,7 +525,7 @@ A test case:
           
           ;; load url, but the user might break:
           (with-handlers ([exn:break? void])
-            (printf "url: ~a\n" (if (url? url) (url->string url) url)) ;; handy for debugging help desk
+            ;(printf "url: ~a\n" (if (url? url) (url->string url) url)) ;; handy for debugging help desk
             (reload progress))))
 
       (define hyper-text% (hyper-text-mixin text:keymap%))
@@ -676,7 +667,7 @@ A test case:
                                         url)))
                       (when tag-pos (send e set-position tag-pos))))))))
           
-          ;; remap-url : url? -> (union #f url? faux-url?)
+          ;; remap-url : url? -> (union #f url?)
           ;; this method is intended to be overridden so that derived classes can change
           ;; the behavior of the browser.
           (define/public (remap-url url)
@@ -692,7 +683,6 @@ A test case:
               (let ([url (if (url? unmapped-url)
                              (let ([rurl (remap-url unmapped-url)])
                                (unless (or (url? rurl)
-                                           (faux-url? rurl)
                                            (not rurl))
                                  (error 'remap-url
                                         "expected a url struct, a string, an input-port, or #f, got ~e"
