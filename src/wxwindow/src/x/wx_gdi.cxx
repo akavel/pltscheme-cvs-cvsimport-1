@@ -136,7 +136,9 @@ wxFont::~wxFont ()
   /* MATTHEW: [4] moved work to display-specific */
   xfonts.DeleteContents(TRUE);
 #endif
+#if !WXGARBAGE_COLLECTION_ON
   wxTheFontList->DeleteObject (this);
+#endif
 }
 
 /* MATTHEW: [4] Display argument, new implementation */

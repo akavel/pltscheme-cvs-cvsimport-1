@@ -263,15 +263,16 @@ char *wxItem::GetLabel (void)
     }
 }
 
-void wxItem::SetFocus (void)
+void wxItem::SetFocus(void)
 {
   wxWindow::SetFocus ();
 }
 
-Bool wxItem::Show (Bool show)
+Bool wxItem::Show(Bool show)
 {
   if (show == IsShown())
-    return;
+    return TRUE;
+
   SetShown(show);
 
   window_parent->GetChildren()->Show(this, show);

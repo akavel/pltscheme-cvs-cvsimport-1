@@ -173,7 +173,7 @@ void wxbPanel::SetButtonColour(wxColour *col)
  */
 
 // An event outside any items: may be a drag event.
-void wxbPanel::OnEvent(wxMouseEvent& event)
+void wxbPanel::OnEvent(wxMouseEvent& /* event */)
 {
 }
 
@@ -189,7 +189,7 @@ void wxbPanel::OnItemEvent(wxItem *item, wxMouseEvent& event)
   ProcessItemEvent(item, event, dragType);
 }
 
-void wxbPanel::ProcessItemEvent(wxItem *item, wxMouseEvent& event, int selectionHandle)
+void wxbPanel::ProcessItemEvent(wxItem * /* item */, wxMouseEvent& /* event */, int /* selectionHandle */)
 {
 }
 
