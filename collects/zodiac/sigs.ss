@@ -155,6 +155,7 @@
     (struct invoke-open-unit-form (unit name-specifier variables))
     unit-clauses-vocab-delta update-unresolved-attribute
     inside-unit? check-export
+    process-unit-top-level-resolution
     ))
 
 (define-signature zodiac:scheme-objects+units^
