@@ -690,10 +690,15 @@ wxWindow *wxWindow::FindFocusWindow()
 }
 
 // Main window proc
-LRESULT APIENTRY wxWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+int WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, int dialog)
 {
-  int retval = 0;
+  int retval;
   wxWnd *wnd = (wxWnd *)GetWindowLong(hWnd, 0);
+
+  if (dialog)
+    retval = 1; /* handled */
+  else
+    retval = 0; /* most common expected result */
 
   if (!wnd) {
     if (wxWndHook) {
@@ -1038,10 +1043,16 @@ LRESULT APIENTRY wxWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam
   return retval;
 }
 
+// Main window proc
+LRESULT APIENTRY wxWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+  return WindowProc(hWnd, message, wParam, lParam, 0);
+}
+
 // Dialog window proc
 LONG APIENTRY wxDlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  return wxWndProc(hWnd, message, wParam, lParam);
+  return WindowProc(hWnd, message, wParam, lParam, 1);
 }
 
 wxNonlockingHashTable *wxWinHandleList = NULL;
