@@ -50,8 +50,8 @@
 	    (zodiac:mzscheme-parameters@ ACTUAL-PARAMETERS))
 	  (SYSTEM : zodiac:system^
 	    (zodiac:system@ INTERFACE LOCAL-PARAMETERS
-	      (MZLIB-CORE pretty-print@)
-	      (MZLIB-CORE file@)))
+	      (MZLIB-CORE pretty-print)
+	      (MZLIB-CORE file)))
 	  (MZLIB-CORE : mzlib:core^
 	    (mzlib:core@)))
 	(export (open SYSTEM) (open INTERFACE)))
