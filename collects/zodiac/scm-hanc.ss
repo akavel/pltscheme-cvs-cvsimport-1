@@ -37,7 +37,8 @@
 		      (signs sign:names))
 	    (unless (null? in)
 	      (if (memq (car signs) (cdr signs))
-		(static-error 'term:unit-double-export (car in)
+		(static-error
+		  "unit" 'term:unit-double-export (car in)
 		  "name \"~s\" is exported twice" (car signs))
 		(loop (cdr in) (cdr signs))))))
 	(let ((in (car in:all)) (sign (car sign:all)))
