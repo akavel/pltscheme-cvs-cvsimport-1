@@ -47,6 +47,9 @@
 #include "xwScrollWin.h"
 #include "xwscroll.h"
 #endif
+#ifdef Uses_Scrollbar
+#include "xwScrollbar.h"
+#endif
 #ifdef Uses_SimpleWidget
 #include <X11/Xaw/Simple.h>
 #endif
