@@ -2,6 +2,7 @@
 ;; $Id$
 ;;
 
+(require-library "refer.ss")
 (require-library "cores.ss")
 (require-library "macro.ss")
 (require-library "match.ss")
@@ -396,3 +397,4 @@
    (open mred:graph^)
    (open mred:application^)
    (open mred:control^)))
+
