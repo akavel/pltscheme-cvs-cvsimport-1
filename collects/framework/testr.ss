@@ -504,7 +504,9 @@
     (list 'alt 'control 'meta 'shift 'noalt 'nocontrol 'nometa 'noshift))
   
   (define mouse-click
-    (lambda (button x y . modifier-list)
+    (case-lambda
+     [(button x y) (mouse-click button x y null)]
+     [(button x y modifier-list)
       (cond 
 	[(verify-item button legal-mouse-buttons)
 	 => (lambda (button)
@@ -536,7 +538,7 @@
 		   (send-mouse-event window motion)
 		   (send-mouse-event window down)
 		   (send-mouse-event window up)
-		   (void))]))))])))
+		   (void))]))))])]))
 	 
     
   ;; NEED TO MOVE THE CHECK FOR 'ON-EVENT TO HERE.
