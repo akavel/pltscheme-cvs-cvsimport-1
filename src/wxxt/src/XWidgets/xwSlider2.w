@@ -658,6 +658,7 @@ parts of the thumb's frame.
 	values.stipple = $topShadowStipple;
 	values.foreground = WhitePixelOfScreen(XtScreen($));
 	break;
+    case XfwfBlack:
     case XfwfAuto:
 	if (DefaultDepthOfScreen(XtScreen($)) > 4
 	    && $lighter_color($, $thumbColor, &values.foreground)) {
@@ -699,6 +700,7 @@ thumb's frame.
 	values.foreground = BlackPixelOfScreen(XtScreen($));
 	values.background = $thumbColor;
 	break;
+    case XfwfBlack:
     case XfwfAuto:
 	if (DefaultDepthOfScreen(XtScreen($)) > 4
 	    && $darker_color($, $thumbColor, &values.foreground)) {
