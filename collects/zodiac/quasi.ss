@@ -6,7 +6,7 @@
   (lambda (new old)
     (if (eq? new old)
       (if (and (z:list? new) (zero? (z:sequence-length new)))
-	new
+	'null
 	(list '#%quote new))
       new)))
 
