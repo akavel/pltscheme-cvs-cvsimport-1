@@ -101,7 +101,7 @@
 		  constants
 		  preferences edit container canvas icon
 		  menu group finder find-string hyper-frame
-		  handler exit autosave
+		  handler keymap exit autosave
 		  panel gui-utils application
 		  (core function@) (core file@)
 		  date)]
