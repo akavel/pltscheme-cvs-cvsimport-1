@@ -265,7 +265,7 @@ void wxbItem::DrawSelectionHandles(wxPanelDC *dc, Bool WXUNUSED(erase))
 
 void wxbItem::DrawBoundingBox(wxPanelDC *dc, int x, int y, int w, int h)
 {
-  dc->DrawRectangle(x, y, w, h);
+  dc->DrawRectangle((float)x, (float)y, (float)w, (float)h);
 }
 
 // If selectionHandle is zero, not dragging the selection handle.

@@ -55,25 +55,6 @@ copystring (const char *s)
   return news;
 }
 
-// Id generation
-static long wxCurrentId = 100;
-
-long 
-wxNewId (void)
-{
-  return wxCurrentId++;
-}
-
-long
-wxGetCurrentId(void) { return wxCurrentId; }
-
-void 
-wxRegisterId (long id)
-{
-  if (id >= wxCurrentId)
-    wxCurrentId = id + 1;
-}
-
 void 
 StringToFloat (char *s, float *number)
 {

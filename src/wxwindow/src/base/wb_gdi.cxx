@@ -33,6 +33,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <math.h>
 
 #ifdef wx_xview
 extern Xv_Server xview_server;
