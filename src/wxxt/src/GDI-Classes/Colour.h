@@ -26,8 +26,10 @@
 #ifndef Colour_h
 #define Colour_h
 
-#ifdef __GNUG__
-#pragma interface
+#ifndef MZ_PRECISE_GC
+# ifdef __GNUG__
+# pragma interface
+# endif
 #endif
 
 #ifdef Have_X_Types

@@ -165,7 +165,7 @@ Bool wxChoice::Create(wxPanel *panel, wxFunction function, char *label,
 wxChoice::~wxChoice (void)
 {
     if (choice_menu)
-	delete choice_menu;
+	DELETE_OBJ choice_menu;
     choice_menu = NULL;
     num_choices = 0;
 }
@@ -247,7 +247,7 @@ void wxChoice::Clear(void)
 {
   wxMenu *naya;
   
-  delete choice_menu;
+  DELETE_OBJ choice_menu;
   naya = DEBUG_NEW wxMenu(NULL, (wxFunction)&(wxChoice::MenuEventCallback));
   choice_menu = naya;
   num_choices = 0;

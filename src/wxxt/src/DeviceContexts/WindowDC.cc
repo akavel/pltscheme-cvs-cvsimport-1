@@ -929,7 +929,6 @@ void wxWindowDC::SetPen(wxPen *pen)
 	    scaleddef[i] = dscale * dashdef[i];
 	  }
 	  XSetDashes(DPY, PEN_GC, 0, (char*)scaleddef, num_dash);
-	  delete[] scaleddef;
 	} else { // not enough memory to scale
 	  XSetDashes(DPY, PEN_GC, 0, (char*)dashdef, num_dash);
 	}

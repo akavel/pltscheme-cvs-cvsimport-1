@@ -167,7 +167,7 @@ void wxDC::DrawSpline(int n, wxPoint pts[])
       list->Append((wxObject*)&pts[i]);
     }
     DrawSpline(list);
-    delete list;
+    DELETE_OBJ list;
 }
 
 void wxDC::DrawSpline(wxList *pts)
@@ -197,7 +197,7 @@ void wxDC::DrawSpline(float x1, float y1, float x2, float y2,
 
     DrawSpline(list);
 
-    delete list;
+    DELETE_OBJ list;
 }
 
 //-----------------------------------------------------------------------------
@@ -377,7 +377,7 @@ static void wx_spline_draw_point_array(wxDC *dc)
     while (node) {
 	wxPoint *point;
 	point = (wxPoint *)node->Data();
-	delete point;
+	DELETE_OBJ point;
 	wx_spline_point_list->DeleteNode(node);
 	node = wx_spline_point_list->First();
     }

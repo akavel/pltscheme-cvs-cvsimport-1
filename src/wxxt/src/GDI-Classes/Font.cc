@@ -120,7 +120,7 @@ wxFont::~wxFont(void)
 	XFreeFont(wxAPP_DISPLAY, xfont);
 	node = next;
     }
-    delete scaled_xfonts;
+    DELETE_OBJ scaled_xfonts;
 }
 
 char *wxFont::GetFaceString(void)

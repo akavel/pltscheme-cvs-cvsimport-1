@@ -178,7 +178,7 @@ void wxFlushResources(void)
     XrmPutFileDatabase(database, nameBuffer);
     XrmDestroyDatabase(database);
     next = node->Next();
-    delete node;
+    DELETE_OBJ node;
     node = next;
   }
 }

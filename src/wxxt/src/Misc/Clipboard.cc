@@ -81,8 +81,6 @@ wxClipboard::wxClipboard()
 
 wxClipboard::~wxClipboard()
 {
-  if (cbString)
-    delete[] cbString;
 }
 
 static Boolean wxConvertClipboard(Widget WXUNUSED(w), Atom *WXUNUSED(selection), Atom *target,
@@ -166,12 +164,8 @@ static void wxSelectionDone(Widget WXUNUSED(w), Atom *WXUNUSED(selection), Atom 
   wxClipboard *cb;
 
   cb = wxTheClipboard;
-  if (cb->sentString) {
-    delete[] cb->sentString;
-    cb->sentString = NULL;
-  }
-  if (cb->receivedTargets)
-    delete[]  cb->receivedTargets;
+  cb->sentString = NULL;
+  cb->receivedTargets = NULL;
 }
 
 static void wxStringSelectionDone(Widget WXUNUSED(w), Atom *WXUNUSED(selection), Atom *WXUNUSED(target))
@@ -189,10 +183,7 @@ static void wxLoseClipboard(Widget WXUNUSED(w), Atom *WXUNUSED(selection))
     cb->clipOwner->BeingReplaced();
     cb->clipOwner = NULL;
   }
-  if (cb->cbString) {
-    delete[] cb->cbString;
-    cb->cbString = NULL;
-  }
+  cb->cbString = NULL;
 }
 
 void wxClipboard::SetClipboardClient(wxClipboardClient *client, long time)
@@ -202,10 +193,7 @@ void wxClipboard::SetClipboardClient(wxClipboardClient *client, long time)
   if (clipOwner)
     clipOwner->BeingReplaced();
   clipOwner = client;
-  if (cbString) {
-    delete[] cbString;
-    cbString = NULL;
-  }
+  cbString = NULL;
 
   got_selection = XtOwnSelection(clipWindow, XA_PRIMARY, time,
 				 wxConvertClipboard, wxLoseClipboard, 
@@ -230,8 +218,6 @@ void wxClipboard::SetClipboardString(char *str, long time)
     clipOwner->BeingReplaced();
     clipOwner = NULL;
   }
-  if (cbString)
-    delete[] cbString;
 
   cbString = str;
 
@@ -240,7 +226,6 @@ void wxClipboard::SetClipboardString(char *str, long time)
 				 wxStringSelectionDone);
   
   if (!got_selection) {
-    delete[] cbString;
     cbString = NULL;
   }
 }
@@ -327,7 +312,7 @@ char *wxClipboard::GetClipboardData(char *format, long *length, long time)
     }
 
     if (receivedLength)
-      delete[] receivedTargets;
+      receivedTargets = NULL;
 
     if (i >= receivedLength)
       return NULL;

@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: radio box panel item
  *
@@ -341,11 +340,6 @@ wxRadioBox::~wxRadioBox(void)
 	XtVaSetValues(((Widget*)toggles)[i], XtNpixmap, NULL, NULL);
       }
     }
-  }
-
-  if (num_toggles) {
-    // delete toggles;
-    num_toggles = 0;
   }
 }
 
