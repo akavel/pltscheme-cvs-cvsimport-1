@@ -230,7 +230,8 @@
 	  (expression: expr)
 	  (attributes: attr)
 	  (vocabulary: (or vocab scheme-vocabulary))
-	  (elaboration-evaluator: elaboration-eval)))))
+	  (elaboration-evaluator: elaboration-eval)
+	  (user-macro-body-evaluator: macro-body-eval)))))
   
   (define scheme-expand-program
     (lambda/nal zodiac:scheme-expand-program/nal
@@ -243,7 +244,8 @@
 	  (expressions: exprs)
 	  (attributes: attr)
 	  (vocabulary: (or vocab scheme-vocabulary))
-	  (elaboration-evaluator: elaboration-eval)))))
+	  (elaboration-evaluator: elaboration-eval)
+	  (user-macro-body-evaluator: macro-body-eval)))))
 
   ; ----------------------------------------------------------------------
 

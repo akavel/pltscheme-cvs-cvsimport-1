@@ -1524,9 +1524,12 @@
 		  (add-user-macro-form real-name vocab
 		    (lambda (m-expr m-env)
 		      (structurize-syntax
-			(apply real-handler
-			  (let ((in (cdr (sexp->raw m-expr cache-table))))
-			    in))
+			(m3-macro-body-evaluator
+			  (cons real-handler
+			    (map (lambda (x)
+				   `(,'quote ,x))
+			      (cdr
+				(sexp->raw m-expr cache-table)))))
 			m-expr '() cache-table)))
 		  (expand-expr (structurize-syntax '(#%void) expr)
 		    env attributes vocab)))))

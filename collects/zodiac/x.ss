@@ -223,15 +223,18 @@
 	    "Invalid body: ~s" expr)))))
 
   (define m3-elaboration-evaluator #f)
+  (define m3-macro-body-evaluator #f)
 
   (define expand
     (lambda/nal zodiac:expand/nal
-      (fluid-let ((m3-elaboration-evaluator elaboration-eval))
+      (fluid-let ((m3-elaboration-evaluator elaboration-eval)
+		   (m3-macro-body-evaluator macro-body-eval))
 	(expand-expr expr (make-new-environment) attr vocab))))
 
   (define expand-program
     (lambda/nal zodiac:expand-program/nal
-      (fluid-let ((m3-elaboration-evaluator elaboration-eval))
+      (fluid-let ((m3-elaboration-evaluator elaboration-eval)
+		   (m3-macro-body-evaluator macro-body-eval))
 	(put-attribute attr 'top-levels (make-hash-table))
 	(map (lambda (expr)
 	       (expand-expr expr (make-new-environment) attr vocab))
