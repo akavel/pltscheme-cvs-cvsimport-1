@@ -125,6 +125,7 @@
 	  ((lexical-binding? r)
 	    (create-lexical-varref r expr))
 	  ((top-level-resolution? r)
+	   (check-for-signature-name expr attributes)
 	   (process-top-level-resolution expr attributes))
 	  ((public-binding? r)
 	    (create-public-varref r expr))

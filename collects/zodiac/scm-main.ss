@@ -940,6 +940,8 @@
        (z:symbol-marks s)))
     
   (define (make-let-macro begin? named?)
+      ;; >> Broken by current embedded define hacks! <<
+      ;; e.g., (let ([a 7]) (let-macro a void (a))
       (let* ((kwd '())
 	     
 	     (in-pattern-1 `(_ fun ((v e) ...) ,@(get-expr-pattern begin?)))
