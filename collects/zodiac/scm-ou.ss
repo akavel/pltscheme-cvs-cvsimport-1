@@ -39,6 +39,8 @@
 			      varref))))
 		  ((public-binding? r)
 		    (create-public-varref r expr))
+		  ((override-binding? r)
+		    (create-override-varref r expr))
 		  ((private-binding? r)
 		    (create-private-varref r expr))
 		  ((inherit-binding? r)
