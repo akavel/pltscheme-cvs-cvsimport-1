@@ -35,7 +35,7 @@
 #define SYSV
 #endif
 
-wxbTimer::wxbTimer(void)
+wxbTimer::wxbTimer(void) : wxObject(WXGC_NO_CLEANUP)
 {
  #if 0
   __type = wxTYPE_TIMER;
