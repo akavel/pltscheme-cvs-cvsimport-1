@@ -1497,9 +1497,11 @@
 				     attributes))
 			(_ (set-top-level-status attributes))
 			(real-name (sexp->raw macro-name))
+			(expanded-handler (expand-expr macro-handler
+					    env attributes vocab))
 			(real-handler (m3-elaboration-evaluator
-					macro-handler
-					sexp->raw
+					expanded-handler
+					parsed->raw
 					'define-macro))
 			(cache-table (make-hash-table)))
 		  (set-top-level-status attributes top-level?)
@@ -1534,9 +1536,11 @@
 				     attributes))
 			(_ (set-top-level-status attributes))
 			(real-name (sexp->raw macro-name))
+			(expanded-handler (expand-expr macro-handler
+					    env attributes vocab))
 			(real-handler (m3-elaboration-evaluator
-					macro-handler
-					sexp->raw
+					expanded-handler
+					parsed->raw
 					'let-macro))
 			(cache-table (make-hash-table)))
 		  (set-top-level-status attributes top-level?)
@@ -1580,8 +1584,10 @@
 					   phase-string
 					   (exn-message exn)))))
 				(m3-elaboration-evaluator
-				  (structurize-syntax exprs expr)
-				  sexp->raw
+				  (expand-expr
+				    (structurize-syntax exprs expr)
+				    env attributes vocab)
+				  parsed->raw
 				  kwd-symbol))
 			      expr)
 			    env attributes vocab))))
