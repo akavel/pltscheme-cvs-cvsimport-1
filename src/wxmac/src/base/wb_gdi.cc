@@ -1486,7 +1486,7 @@ char *wxFontNameDirectory::GetFontName(int fontid)
   if (item->isfamily)
     return NULL;
 
-  return item->name;
+  return item->name + 1;
 }
 
 int wxFontNameDirectory::GetFontId(const char *name)
