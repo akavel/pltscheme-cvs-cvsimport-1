@@ -430,8 +430,8 @@
 		  vars)
 		(make-internal-definition vars val))))
 	  (else
-	    (static-error expr
-	      "internal definition" 'kwd:define
+	    (static-error
+	      "internal definition" 'kwd:define expr
 	      "malformed definition"))))))
 
   (add-primitivized-micro-form 'begin internal-define-vocab-delta
