@@ -43,7 +43,7 @@ wxbWindow::wxbWindow(void)
   handle = NULL;
   windowName = NULL;
   callback = 0;
-  wx_cursor = wxSTANDARD_CURSOR;
+  wx_cursor = NULL /* wxSTANDARD_CURSOR */;
 #ifndef wx_mac
   children = new wxChildList;
 #endif
@@ -61,7 +61,7 @@ void wxbWindow::InitDefaults(void)
 	paintingEnabled = TRUE;
 	wx_client_data = NULL;
 	handle = NULL;
-	wx_cursor = wxSTANDARD_CURSOR;
+	wx_cursor = NULL /* wxSTANDARD_CURSOR */;
 	callback = NULL;
 	font = NULL;
 }

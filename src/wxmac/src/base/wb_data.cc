@@ -97,6 +97,7 @@ wxColour *wxLIGHT_GREY;
 wxCursor *wxSTANDARD_CURSOR = NULL;
 wxCursor *wxHOURGLASS_CURSOR = NULL;
 wxCursor *wxCROSS_CURSOR = NULL;
+wxCursor *wxIBEAM_CURSOR = NULL;
 
 /*
  * Edward, haven't added in your wx_version and wx_version_string constants:

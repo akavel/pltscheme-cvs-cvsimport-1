@@ -556,6 +556,7 @@ wxInitializeStockObjects (void)
   wxSTANDARD_CURSOR = new wxCursor (wxCURSOR_ARROW);
   wxHOURGLASS_CURSOR = new wxCursor (wxCURSOR_WAIT);
   wxCROSS_CURSOR = new wxCursor (wxCURSOR_CROSS);
+  wxIBEAM_CURSOR = new wxCursor (wxCURSOR_IBEAM);
 }
 
 void 
