@@ -55,7 +55,7 @@
 	[group : framework:group^ 
 	       ((require-relative-library "group.ss")
 		mred
-		application frame
+		application frame preferences
 		core:function core:file)]
 
 	[canvas : framework:canvas^ ((require-relative-library "canvas.ss")
