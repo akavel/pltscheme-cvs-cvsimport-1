@@ -128,7 +128,7 @@
                             (insert-into col y graph-pb new-snips)
                             (send graph-pb end-edit-sequence)
                             (send status-message set-label
-                                  (format "found ~a reduction steps..." (count-snips))))))])
+                                  (format "found ~a terms..." (count-snips))))))])
                  (loop (cdr snips)
                        (append new-frontier new-snips)
                        new-y))]))))
@@ -160,10 +160,10 @@
               (cond
                 [(null? frontier)
                  (send status-message set-label 
-                    (format "found ~a reduction steps" (count-snips)))]
+                    (format "found ~a terms" (count-snips)))]
                 [else
                  (send status-message set-label 
-                    (format "found ~a reduction steps (possibly more to find)" (count-snips)))
+                    (format "found ~a terms (possibly more to find)" (count-snips)))
                  (send reduce-button enable #t)]))))))
       
       ;; do-some-reductions : -> void
@@ -356,15 +356,13 @@
         (add-links parent-snip snip))
       (and new? snip)))
   
-  (define red-text% (scheme:text-mixin (editor:keymap-mixin text:basic%)))
-  
   ;; make-snip : (union #f (is-a?/c graph-snip<%>)) 
   ;;             sexp 
   ;;             (any port number -> void)
   ;;          -> (is-a?/c graph-editor-snip%)
   ;; unconditionally creates a new graph-editor-snip
   (define (make-snip parent-snip expr pp)
-    (let* ([text (make-object red-text%)]
+    (let* ([text (make-object scheme:text%)]
            [es (instantiate graph-editor-snip% ()
                  (char-width (initial-char-width))
                  (editor text)
