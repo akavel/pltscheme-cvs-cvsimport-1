@@ -439,7 +439,7 @@ void wxFrame::SetMenuBar(wxMenuBar *new_menubar)
 
 void wxFrame::Command(int id)
 {
-    GetEventHandler()->OnMenuCommand(id);
+  OnMenuCommand(id);
 }
 
 static void ForceFocus(Widget frame)

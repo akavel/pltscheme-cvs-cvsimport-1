@@ -201,8 +201,10 @@ void wxPanel::Fit(void)
 void wxPanel::ChangeToGray(Bool gray)
 {
   wxChildNode *cn;
+  wxChildList *cl;
   wxWindow::ChangeToGray(gray);
-  for (cn = GetChildren()->First(); cn; cn = cn->Next()) {
+  cl = GetChildren();
+  for (cn = cl->First(); cn; cn = cn->Next()) {
     wxWindow *w;
     w = (wxWindow *)cn->Data();
     w->InternalEnable(!gray, TRUE);

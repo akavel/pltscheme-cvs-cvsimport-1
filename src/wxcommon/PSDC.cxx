@@ -984,9 +984,13 @@ void wxPostScriptDC::SetPen (wxPen * pen)
   }
 
   // Line colour
-  red = pen->GetColour()->Red();
-  blue = pen->GetColour()->Blue();
-  green = pen->GetColour()->Green();
+  {
+    wxColour *pc;
+    pc = pen->GetColour();
+    red = pc->Red();
+    blue = pc->Blue();
+    green = pc->Green();
+  }
 
   if (!Colour)
     {
@@ -1053,9 +1057,13 @@ void wxPostScriptDC::SetBrush(wxBrush * brush)
   }
 
   // Brush colour
-  red = brush->GetColour()->Red();
-  blue = brush->GetColour()->Blue();
-  green = brush->GetColour()->Green();
+  {
+    wxColour *bc;
+    bc = brush->GetColour(); 
+    red = bc->Red();
+    blue = bc->Blue();
+    green = bc->Green();
+  }
 
   if (!Colour) {
     // Anything not black is white
@@ -1531,7 +1539,11 @@ Blit (float xdest, float ydest, float fwidth, float fheight,
   }
 
   /* Output data as hex digits: */
-  mono = (src->GetObject()->GetDepth() == 1);
+  {
+    wxBitmap *sbm;
+    sbm = src->GetObject();
+    mono = (sbm->GetDepth() == 1);
+  }
 
   if (mono && dcolor) {
     pr = dcolor->Red();

@@ -146,10 +146,6 @@ public:
     virtual void  SetUserEditMode(Bool edit) { user_edit_mode = edit; }
     virtual Bool  Show(Bool show);
     // event handling
-    virtual wxEvtHandler *GetEventHandler(void)
-	{ return event_handler; }
-    virtual void SetEventHandler(wxEvtHandler *handler)
-	{ event_handler = handler; }
     virtual void OnChar(wxKeyEvent* event);
     virtual void OnCommand(wxWindow* win, wxCommandEvent* event);
     virtual void OnEvent(wxMouseEvent* event);
@@ -206,8 +202,6 @@ protected:
     wxColourMap *cmap;
     wxCursor    *cursor;
     wxFont      *font;
-    // event handler (usually this)
-    wxEvtHandler  *event_handler;
     // layout information
     wxLayoutConstraints  *constraints;
     int                  xoff, yoff;

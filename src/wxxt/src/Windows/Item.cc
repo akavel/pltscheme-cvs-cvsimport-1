@@ -109,7 +109,7 @@ void wxItem::ProcessCommand(wxCommandEvent *event)
     callback(this, event);
   } else {
     if (parent)
-      parent->GetEventHandler()->OnCommand(this, event);
+      parent->OnCommand(this, event);
   }
 }
 
