@@ -1574,15 +1574,15 @@ wxPrinterDC::wxPrinterDC(char *driver_name, char *device_name, char *file, Bool 
 
   if (file)
     filename = copystring(file);
-  else filename = NULL;
+  else
+    filename = NULL;
 
   screen_font = FALSE;
 
-#if USE_COMMON_DIALOGS
   if (interactive) {
     PRINTDLG *pd = new PRINTDLG;
     
-    pd->lStructSize = sizeof( PRINTDLG );
+    pd->lStructSize = sizeof(PRINTDLG);
     pd->hwndOwner=NULL;
     pd->hDevMode=(HANDLE)NULL;
     pd->hDevNames=(HANDLE)NULL;
@@ -1594,7 +1594,7 @@ wxPrinterDC::wxPrinterDC(char *driver_name, char *device_name, char *file, Bool 
     pd->nCopies=1;
     pd->hInstance=(HINSTANCE)NULL;
     
-    if ( wxPrimitiveDialog((wxPDF)DoPrintDlg, pd, 0) != 0 ) {
+    if (wxPrimitiveDialog((wxPDF)DoPrintDlg, pd, 0)) {
       cdc = pd->hDC;
       ok = TRUE;
     } else {
@@ -1603,9 +1603,7 @@ wxPrinterDC::wxPrinterDC(char *driver_name, char *device_name, char *file, Bool 
     }
     
     dont_delete = TRUE; // ??? WHY???
-  } else
-#endif
-  if (driver_name && device_name && file) {
+  } else if (driver_name && device_name && file) {
     cdc = CreateDC(driver_name, device_name, file, NULL);
     ok = cdc ? TRUE : FALSE;
   } else {
