@@ -296,6 +296,8 @@ void wxBitmap::Destroy(void)
     Xbitmap = NULL;
 }
 
+extern int wxsGetImageType(char *);
+
 // load bitmaps
 Bool wxBitmap::LoadFile(char *fname, long flags)
 {
@@ -303,6 +305,9 @@ Bool wxBitmap::LoadFile(char *fname, long flags)
       return FALSE;
 
     Destroy(); // destroy old pixmap if any
+
+    if (!flags)
+      flags = wxsGetImageType(fname);
 
     /* MATTHEW: move "Xbitmap = new wxBitmap_Xintern" into
        two appropriate cases. */

@@ -106,7 +106,7 @@ static key_equiv key_translation[] = {
     { XK_KP_Equal,	'=' },
     { XK_KP_Space,	' ' },
     { XK_KP_Tab,	WXK_TAB },
-    { XK_KP_Enter,	WXK_RETURN },
+    { XK_KP_Enter,	3 },
     { XK_KP_0,		WXK_NUMPAD0 },
     { XK_KP_1,		WXK_NUMPAD1 },
     { XK_KP_2,		WXK_NUMPAD2 },

@@ -130,7 +130,20 @@ wxFont::~wxFont(void)
 
 char *wxFont::GetFaceString(void)
 {
-  return wxTheFontNameDirectory.GetFontName(font_id); 
+  /* If it's one of the portable facelss fonts, return NULL. */
+  switch (font_id) {
+  case wxDEFAULT:
+  case wxDECORATIVE:
+  case wxMODERN:
+  case wxROMAN:
+  case wxSCRIPT:
+  case wxSWISS:
+  case wxTELETYPE:
+  case wxSYSTEM:
+    return NULL;
+  default:
+    return wxTheFontNameDirectory.GetFontName(font_id); 
+  }
 }
 
 //-----------------------------------------------------------------------------

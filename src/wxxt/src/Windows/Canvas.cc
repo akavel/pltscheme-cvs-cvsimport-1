@@ -256,7 +256,7 @@ void wxCanvas::ViewStart(int *x, int *y)
     Position xx, yy;
 
     XtVaGetValues(X->handle, XtNx, &xx, XtNy, &yy, NULL);
-    *x = -xx/h_units; *y = -yy/v_units;
+    *x = -xx; *y = -yy;
 }
 
 void wxCanvas::WarpPointer(int x, int y)
