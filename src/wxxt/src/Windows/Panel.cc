@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: base class for all panels
  *

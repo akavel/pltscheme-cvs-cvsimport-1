@@ -1,5 +1,4 @@
 /*								-*- C++ -*-
- * $Id$
  *
  * Purpose: dialog box
  *
