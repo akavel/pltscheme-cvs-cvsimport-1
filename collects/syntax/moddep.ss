@@ -106,7 +106,6 @@
 					re:suffix file
 					(case (system-type)
 					  [(windows) ".dll"]
-					  [(macosx) ".dylib"]
 					  [else ".so"])))
 			   #f))]
 	     [ok-kind? (lambda (file) (eq? mode 'all))]
