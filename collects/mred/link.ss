@@ -153,7 +153,7 @@
 			frame canvas group find-string
 			preferences handler)]
           [self-test : mred:self-test^
-             ((reference-unit/sig  "stlink.ss")  wx  testable)]
+             ((reference-unit/sig  "stlink.ss")  wx  testable  keymap)]
 	  [html : mred:html^ ((reference-unit/sig "html.ss") wx 
 			      constants
 			      url (core file@)
