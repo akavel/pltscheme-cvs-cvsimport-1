@@ -22,7 +22,7 @@
 			       (if top-level-space
 				   (begin
 				     (let ((ref
-					    (create-top-level-varref/bind
+					    (create-top-level-varref/bind/unit
 					     id
 					     (hash-table-get top-level-space id
 					       (lambda ()

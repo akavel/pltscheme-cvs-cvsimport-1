@@ -935,7 +935,7 @@
 		  (if top-level-space
 		    (begin
 		      (let ((ref
-			      (create-top-level-varref/bind
+			      (create-top-level-varref/bind/unit
 				id
 				(hash-table-get top-level-space id
 				  (lambda ()
@@ -943,7 +943,10 @@
 				      (hash-table-put! top-level-space id b)
 				      b)))
 				expr)))
+			;; Define a unit-bound variable => mark this and pre-existing as unit
+			(set-top-level-varref/bind/unit-unit?! ref #t)
 			(let ((b (top-level-varref/bind-slot ref)))
+			  (map (lambda (r) (set-top-level-varref/bind/unit-unit?! r #t)) (unbox b))
 			  (set-box! b (cons ref (unbox b))))
 			ref))
 		    (create-top-level-varref id expr)))))
@@ -991,7 +994,7 @@
 			 (if top-level-space
 			     (begin
 			       (let ((ref
-				      (create-top-level-varref/bind
+				      (create-top-level-varref/bind/unit
 				       id
 				       (hash-table-get top-level-space id
 					 (lambda ()
