@@ -143,7 +143,17 @@ void wxCanvas::GetVirtualSize(int *x, int *y)
 
 void wxCanvas::Scroll(int x_pos, int y_pos)
 {
-    wxItem::Scroll(x_pos*h_units, y_pos*v_units);
+  if (misc_flags & 8) {
+    /* Not managing */
+    wxItem::Scroll(x_pos, y_pos);
+  } else {
+    /* Managing */
+    /* Get the actual scroll step, which is the client size, rather
+       than h_units/v_unit */
+    int cw, ch;
+    GetClientSize(&cw, &ch);
+    wxItem::Scroll(x_pos * cw, y_pos * ch);
+  }
 }
 
 void wxCanvas::SetScrollbars(int h_pixels, int v_pixels, int x_len, int y_len,

@@ -583,8 +583,8 @@ void wxWindow::Scroll(int x_pos, int y_pos)
       // size of scrollable window
       XtVaGetValues(X->handle, XtNheight, &ght, XtNwidth, &gwd, NULL);
       // get missing position if any (x_pos <0 || y_pos < 0)
-      if (x_pos < 0) { XtVaGetValues(X->handle, XtNx, &dummy, NULL); x_pos = dummy; }
-      if (y_pos < 0) { XtVaGetValues(X->handle, XtNy, &dummy, NULL); y_pos = dummy; }
+      if (x_pos < 0) { XtVaGetValues(X->handle, XtNx, &dummy, NULL); x_pos = -dummy; }
+      if (y_pos < 0) { XtVaGetValues(X->handle, XtNy, &dummy, NULL); y_pos = -dummy; }
       // compute correct (x,y)-position - 0<=x<=gwd-wd, 0<=y<=ght-ht
       x_pos = min(x_pos, gwd-wd); x_pos = max(0, x_pos);
       y_pos = min(y_pos, ght-ht); y_pos = max(0, y_pos); 
