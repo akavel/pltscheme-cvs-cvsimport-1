@@ -264,7 +264,7 @@ wxBrush *wxBrushList::FindOrCreateBrush(char *colour, int style)
 }
 
 #define UseXtRegions
-#include "Region.h"
+#include "../../../wxcommon/Region.h"
 #include "wx_types.h"
 
-#include "Region.cc"
+#include "../../../wxcommon/Region.cxx"
