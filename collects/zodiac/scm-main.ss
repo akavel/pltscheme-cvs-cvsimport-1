@@ -467,7 +467,7 @@
 	 (else
 	  (static-error expr "Malformed begin"))))))
 
-  (add-primitivized-micro-form 'begin full-vocabulary begin-micro)
+  (add-primitivized-micro-form 'begin advanced-vocabulary begin-micro)
   (add-primitivized-micro-form 'begin scheme-vocabulary begin-micro)
 
   (define begin0-micro
@@ -499,7 +499,7 @@
 	    (else
 	     (static-error expr "Malformed begin0"))))))
 
-  (add-primitivized-micro-form 'begin0 full-vocabulary begin0-micro)
+  (add-primitivized-micro-form 'begin0 advanced-vocabulary begin0-micro)
   (add-primitivized-micro-form 'begin0 scheme-vocabulary begin0-micro)
 
   (define (make-if-micro one-arm-ok?)
