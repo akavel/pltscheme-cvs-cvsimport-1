@@ -932,8 +932,8 @@ pltr1(PLFLT x, PLFLT y, PLFLT *tx, PLFLT *ty, PLPointer pltr_data)
 
     if (x < 0 || x > nx - 1 || y < 0 || y > ny - 1) {
 
-      fprintf(stderr, "nx : %d, ny : %d",nx,ny);
-	plexit("pltr1: Invalid coordinates");
+      /* fprintf(stderr, "nx : %d, ny : %d",nx,ny); */
+      plexit("pltr1: Invalid coordinates");
     }
 
 /* Look up coordinates in row-dominant array.
