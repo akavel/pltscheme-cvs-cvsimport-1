@@ -460,7 +460,7 @@ void wxDC::DrawLine(float x1, float y1, float x2, float y2)
     (void)LineTo(dc, XLOG2DEV(xx2), YLOG2DEV(yy2));
     if (current_pen  && !current_pen->GetWidth()) {
       /* Convention across platforms: line includes pixel on endpoint */
-      ::SetPixel(dc, XLOG2DEV(xx2), YLOG2DEV(yy2), current_pen->GetColour().pixel);
+      ::SetPixelV(dc, XLOG2DEV(xx2), YLOG2DEV(yy2), current_pen->GetColour().pixel);
     }
 
     DonePen(dc);
@@ -576,7 +576,7 @@ void wxDC::SetPixel(float x, float y, wxColour *c)
 
   ShiftXY(x, y, xx1, yy1);
   
-  ::SetPixel(dc, XLOG2DEV(xx1), YLOG2DEV(yy1), c->pixel);
+  ::SetPixelV(dc, XLOG2DEV(xx1), YLOG2DEV(yy1), c->pixel);
 
   DoneDC(dc);
 

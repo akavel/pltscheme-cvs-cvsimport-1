@@ -1148,7 +1148,7 @@ Bool wxBitmap::LoadFile(char *bitmap_file, long flags)
 				
 	    for (i = 0, p = c; i < h; i++)
 	      for (j = 0; j < w; j++, p++)
-		::SetPixel(dc, j, i, *p ? black : white);
+		::SetPixelV(dc, j, i, *p ? black : white);
 
 	    ::SelectObject(dc, orig);
 	    DeleteDC(dc);
