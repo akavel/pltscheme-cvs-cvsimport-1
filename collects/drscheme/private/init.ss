@@ -2,11 +2,13 @@
 (module init mzscheme
   (require (lib "unitsig.ss")
            "drsig.ss"
-           "mred-wrap.ss")
+	   (lib "mred.ss" "mred"))
+
   (provide init@)
   
   (define init@
-    (unit/sig drscheme:unit^
+    (unit/sig drscheme:init^
+      (import)
       
       (define original-output-port (current-output-port))
       (define original-error-port (current-error-port))
@@ -18,7 +20,7 @@
       (break-enabled #f)
       
       (define system-custodian (current-custodian))
-      (define system-eventspace (mred:current-eventspace))
+      (define system-eventspace (current-eventspace))
       (define system-thread (current-thread))
       (define first-dir (current-directory))
       
@@ -26,10 +28,10 @@
        (lambda (msg)
          (display msg)
          (newline)
-         (if (eq? (mred:current-eventspace) system-eventspace)
-             (mred:message-box "DrScheme Internal Error" msg)
-             (parameterize ([mred:current-eventspace system-eventspace]
+         (if (eq? (current-eventspace) system-eventspace)
+             (message-box "DrScheme Internal Error" msg)
+             (parameterize ([current-eventspace system-eventspace]
                             [current-custodian system-custodian])
-               (mred:queue-callback
+               (queue-callback
                 (lambda ()
-                  (mred:message-box "DrScheme Internal Error" msg))))))))))
+                  (message-box "DrScheme Internal Error" msg))))))))))

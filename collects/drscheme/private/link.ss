@@ -1,9 +1,9 @@
 
 (module link mzscheme
   (require (lib "unitsig.ss")
-            "drsig.ss"
-          "init.ss"
-           "edit.ss"
+	   "drsig.ss"
+	   "init.ss"
+           "text.ss"
            "export.ss"
            "main-before.ss"
            "app.ss"
@@ -15,7 +15,7 @@
     (compound-unit/sig
       (import)
       (link [init : drscheme:init^ (init@ mred)]
-            [text : drscheme:text^ (edit@ framework)]
+            [text : drscheme:text^ (text@ framework)]
             [export* : drscheme:export^ (export@ app text init cogen)]
             [main-before : drscheme:main-before^
                          (main-before@
