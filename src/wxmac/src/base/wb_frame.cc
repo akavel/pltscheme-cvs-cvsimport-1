@@ -68,10 +68,9 @@ Bool wxbFrame::Create(wxFrame *Parent, char *title, int x, int y,
   /* WXGC_IGNORE(context); - NO, context itself is not finalized */
   context = wxGetContextForFrame();
 
-  if (!Parent) {
-    wxTopLevelWindows(ContextWindow())->Append(this);
-    wxTopLevelWindows(ContextWindow())->Show(this, FALSE);
-  }
+  wxTopLevelWindows(ContextWindow())->Append(this);
+  wxTopLevelWindows(ContextWindow())->Show(this, FALSE);
+
   return TRUE;
 }
 #endif // wx_mac
