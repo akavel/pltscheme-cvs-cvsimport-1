@@ -1,7 +1,6 @@
 #
 # 1.0 (Feb 1995)
 #
-# $Id$
 
 @class XfwfEnforcer (XfwfBoard) @file=xwEnforcer
 
