@@ -261,6 +261,8 @@ void wxFindMaxSize(HWND wnd, RECT *rect)
 
 }
 
+static int skip_next_return;
+
 int wxDoItemPres(wxItem *item, HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam,
 		 long *result)
 {
@@ -374,8 +376,10 @@ int wxDoItemPres(wxItem *item, HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	/* Don't call pre-on-char for a ENTER press when
 	   a choice menu is dropped-down */
 	if (wx_choice_dropped)
-	  if (wParam == VK_RETURN)
+	  if (wParam == VK_RETURN) {
+	    skip_next_return = 1;
 	    return 1;
+	  }
 	
 	/* Otherwise, already covered by WM_CHAR */
 	return 0;
@@ -395,6 +399,10 @@ int wxDoItemPres(wxItem *item, HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	  if ((id > 0) && (id < 27)) {
 	    switch (id) {
 	    case 13:
+	      if (skip_next_return) {
+		skip_next_return = 0;
+		return 0; /* Return already consumes to close popup */
+	      }
 	      id = WXK_RETURN;
 	      break;
 	    case 8:
