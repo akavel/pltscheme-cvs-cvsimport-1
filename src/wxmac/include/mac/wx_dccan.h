@@ -27,16 +27,18 @@ class wxCanvasDC: public wxbCanvasDC
   // Every time a callback happens, these are set to point to the right values
   // for drawing calls to work
 
+  int dc_set_depth;
+
   int pixmapWidth;
   int pixmapHeight;
 
   RgnHandle current_reg, onpaint_reg;
 
-  int current_pen_join ;
-  int current_pen_cap ;
-  int current_pen_nb_dash ;
-  char* current_pen_dash ;
-  wxBitmap* current_stipple ;
+  int current_pen_join;
+  int current_pen_cap;
+  int current_pen_nb_dash;
+  char* current_pen_dash;
+  wxBitmap* current_stipple;
 
   wxBitmap* selected_pixmap;
 
@@ -132,6 +134,8 @@ class wxCanvasDC: public wxbCanvasDC
   wxRegion *BrushStipple();
   void PaintStipple(wxRegion *);
 };
+
+void DrawLatin1Text(const char *text, int d, int len = -1, int bit16 = FALSE);
 
 extern Pattern wx_white_pat, wx_black_pat, wx_light_gray_pat, wx_dark_gray_pat;
 #define GetWhitePattern() &wx_white_pat
