@@ -1416,7 +1416,9 @@
 		 (static-error expr
 		   (string-append "Malformed " kwd-text))))))))
       (add-primitivized-macro-form 'let/cc scheme-vocabulary
-	(rewriter 'let/cc "let/cc"))))
+	(rewriter 'let/cc "let/cc"))
+      (add-primitivized-macro-form 'letcc scheme-vocabulary
+	(rewriter 'letcc "letcc"))))
 
   (when (language>=? 'side-effecting)
     (let
