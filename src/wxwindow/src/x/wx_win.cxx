@@ -172,6 +172,11 @@ Window wxWindow::GetXWindow(void)
   return XtWindow(w);
 }
 
+Window wxWindow::GetXCursorWindow(void)
+{
+  return GetXWindow();
+}
+
 Display *wxWindow::GetXDisplay(void)
 {
   Widget w = (Widget)handle;
@@ -276,7 +281,7 @@ wxCursor *wxWindow::SetCursor(wxCursor *cursor)
     Display *dpy = GetXDisplay();
     Cursor x_cursor = cursor ? cursor->GetXCursor(dpy) : None;
 
-    Window win = GetXWindow();
+    Window win = GetXCursorWindow();
     if (win)
       XDefineCursor(dpy, win, x_cursor);
   }

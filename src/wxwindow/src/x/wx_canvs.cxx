@@ -498,6 +498,11 @@ Window wxCanvas::GetXWindow(void)
   return (Window)XtWindow((Widget)(borderWidget ? borderWidget : scrolledWindow));
 }
 
+Window wxCanvas::GetXCursorWindow(void)
+{
+  return (Window)XtWindow((Widget)handle);
+}
+
 void wxCanvas:: GetPosition (int *x, int *y)
 {
   Dimension xx, yy;

@@ -9,10 +9,13 @@
  */
 
 // $Log$
-// Revision 1.4  1998/07/13 19:08:23  mflatt
+// Revision 1.5  1998/07/15 16:48:55  mflatt
 // .
 //
-// Revision 1.4  1998-07-13 19:08:23  mflatt
+// Revision 1.5  1998-07-15 16:48:55  mflatt
+// .
+//
+// Revision 1.4  1998/07/13 19:08:23  mflatt
 // .
 //
 // Revision 1.3  1998/04/23 20:40:07  mflatt
@@ -915,7 +918,7 @@ wxXSetNoCursor (wxWindow * win, wxCursor * cursor)
 {
   XSetWindowAttributes attrs;
   Display *display = win->GetXDisplay();
-  Window xwin = win->GetXWindow();
+  Window xwin = win->GetXCursorWindow();
   
   if (cursor) {
     attrs.cursor = cursor->GetXCursor(display); /* MATTHEW: [4] Use display-specific */
