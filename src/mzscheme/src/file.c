@@ -3064,11 +3064,10 @@ static Scheme_Object *file_modify_seconds(int argc, Scheme_Object **argv)
 
 #if defined(UNIX_FILE_SYSTEM) && !defined(NO_UNIX_USERS)
 # define GROUP_CACHE_SIZE 10
-typedef struct {
+static struct {
   gid_t gid;
   char set, in;
-} Group_Mem_Cache;
-static Group_Mem_Cache group_mem_cache[GROUP_CACHE_SIZE];
+} group_mem_cache[GROUP_CACHE_SIZE];
 static int user_in_group(gid_t gid)
 {
   struct group *g;
