@@ -1673,7 +1673,7 @@
 		'((#%call/ec
 		    (lambda (k)
 		      (let ((handlers (#%list
-					(cons pred handler)
+					(#%cons pred handler)
 					...)))
 			(parameterize
 			  ((#%current-exception-handler
