@@ -294,7 +294,7 @@ wxPostScriptDC::wxPostScriptDC (Bool interactive)
 Bool wxPostScriptDC::Create(Bool interactive)
 {
   if (!pie)
-    pie = 2 * asin(1);
+    pie = 2 * asin((double)1.0);
 
   __type = wxTYPE_DC_POSTSCRIPT;
 #ifndef wx_xt
