@@ -612,33 +612,6 @@ char **wxStringList::ListToArray (Bool new_copies)
   return string_array;
 }
 
-static int 
-wx_comparestrings (const void *arg1, const void *arg2)
-{
-  char **s1 = (char **) arg1;
-  char **s2 = (char **) arg2;
-
-  return strcmp (*s1, *s2);
-}
-
-// Sort a list of strings - deallocates old nodes, allocates new
-void wxStringList::Sort (void)
-{
-  size_t N = n;
-  char **array = new char *[N];
-
-  size_t i = 0;
-  for (wxNode * node = First (); node; node = node->Next ())
-    array[i++] = (char *) node->Data ();
-
-  qsort (array, N, sizeof (char *), wx_comparestrings);
-  Clear ();
-
-  for (i = 0; i < N; i++)
-    Append ((wxObject *) (array[i]));
-
-  delete[]array;
-}
 
 // Checks whether s is a member of the list
 Bool wxStringList::Member (const char *s)

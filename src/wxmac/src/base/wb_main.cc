@@ -85,7 +85,6 @@ void wxCommonInit(void)
   wxTheFontNameDirectory.Initialize();
   wxInitializeStockObjects();
   wxInitStandardTypes();
-  wxInitStandardEvents();
   wxThePrintPaperDatabase = new wxPrintPaperDatabase;
 }
 
@@ -104,8 +103,6 @@ void wxCommonCleanUp(void)
   delete wxThePrintPaperDatabase;
 
   delete wxTheColourDatabase;
-//  delete wxTheColourList; // After ALL Gdi objects, remove remaining colors.
-  wxDeleteEventLists() ;
 
   delete[] wxBuffer;
 }

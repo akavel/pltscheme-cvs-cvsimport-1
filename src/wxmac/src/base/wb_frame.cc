@@ -233,14 +233,9 @@ void wxbFrame::Command(int id)
 
 void wxbFrame::ProcessCommand(int id)
 {
-  wxCommandEvent *_commandEvent = new wxCommandEvent(wxEVENT_TYPE_MENU_COMMAND);
+  wxCommandEvent *_commandEvent = new wxCommandEvent(wxEVENT_TYPE_MENU_SELECT);
   wxCommandEvent &commandEvent = *_commandEvent;
   
-  commandEvent.commandInt = id;
-
-  if (wxNotifyEvent(commandEvent, TRUE))
-    return;
-
   wxMenuBar *bar = GetMenuBar() ;
   if (!bar)
     return;
@@ -263,7 +258,5 @@ void wxbFrame::ProcessCommand(int id)
 
 #endif
   OnMenuCommand(id);
-
-  wxNotifyEvent(commandEvent, FALSE);
 }
 

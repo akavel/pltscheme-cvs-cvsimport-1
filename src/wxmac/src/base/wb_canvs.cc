@@ -12,17 +12,6 @@
 
 // #include "wx.h" // Uncomment this line for Borland precomp. headers to work
 
-#ifdef __GNUG__
-#pragma implementation
-#endif
-
-// If not MS C++, don't include wx.h: we'll just include
-// the minimum set of files.
-// If MS C++, we'll use a precompiled header instead.
-#if !defined(_MSC_VER) && !defined(wx_wxh)
-#define wx_wxh
-#endif
-
 #include "common.h"
 #include "wx_setup.h"
 #include "wx_dc.h"
