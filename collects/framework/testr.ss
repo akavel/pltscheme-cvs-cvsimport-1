@@ -680,4 +680,9 @@
 		(when (ivar-in-class? 'on-event (object-class new-window))
 		  (send-mouse-event new-window enter))
 		(send new-window focus)
-		(void))))])))))
+		(void))))]))))
+  
+  (define (close-frame frame)
+    (when (send frame can-close?)
+      (send frame on-close)
+      (send frame show #f))))

@@ -66,8 +66,8 @@
 	[frame : framework:frame^ 
 	       ((require-relative-library "frame.ss")
 		mred
-		group preferences icon handler application
-		panel gui-utils exit finder keymap text editor
+		group preferences icon handler application panel
+		gui-utils exit finder keymap text pasteboard editor
 		core:function)]
 	[scheme : framework:scheme^ 
 		((require-relative-library "scheme.ss")
