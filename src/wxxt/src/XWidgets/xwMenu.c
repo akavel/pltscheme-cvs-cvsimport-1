@@ -68,7 +68,7 @@ static XtResource MenuResources[] =
 
     /* Data to compute the top and bottom shadow GCs */
     {XtNbeNiceToColormap, XtCBeNiceToColormap, XtRBoolean, sizeof(Boolean),
-	offset(menu.be_nice_to_cmap), XtRImmediate, (XtPointer) True},
+	offset(menu.be_nice_to_cmap), XtRImmediate, (XtPointer) False},
     {XtNtopShadowPixel, XtCTopShadowPixel, XtRPixel, sizeof(Pixel),
 	offset(menu.top_shadow_pixel), XtRImmediate, (XtPointer)-1},
     {XtNtopShadowPixmap, XtCTopShadowPixmap, XtRPixmap, sizeof(Pixmap),
