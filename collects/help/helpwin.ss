@@ -63,7 +63,7 @@
       (send d show #t)))
 
   (define go-unit
-    (unit (import startup-url extend-file-menu)
+    (unit (import startup-url)
 	  (export)
 
 	  (define collecting-thread #f)
@@ -120,7 +120,7 @@
 				    
 				    (override
 				      [file-menu:new-string (lambda () "Help Desk")]
-				      [file-menu:new (lambda (i e) (new-help-frame startup-url extend-file-menu))]
+				      [file-menu:new (lambda (i e) (new-help-frame startup-url))]
 
 				      [file-menu:open-string (lambda () "URL")]
 				      [file-menu:open
@@ -169,6 +169,13 @@
 							   #\G))
 					 (make-object separator-menu-item% menu))]
 
+				      [help-menu:about-string (lambda () "Help Desk")]
+				      [help-menu:about (lambda (i e)
+							 (message-box "About Help Desk"
+								      (format "Help Desk is a complete source of ~
+                                                                       information about PLT software, including DrScheme, ~
+                                                                       MzScheme, and MrEd.~n~n~
+                                                                       Copyright (c) 1995-99 PLT")))]
 				      [help-menu:after-about
 				       (lambda (menu)
 					 (make-object menu-item% "Help" menu
@@ -533,7 +540,7 @@
 	  ; Return the frame as the result
 	  f))
 
-  (define (new-help-frame startup-url extend-file-menu)
-    (invoke-unit go-unit startup-url extend-file-menu))
+  (define (new-help-frame startup-url)
+    (invoke-unit go-unit startup-url))
 
   (values new-help-frame open-url-from-user))
