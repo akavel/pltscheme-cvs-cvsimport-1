@@ -175,7 +175,7 @@
 		      contents)))
 	      (when (and (language<=? 'structured)
 		      (not (top-level-varref? (car bodies))))
-		(static-error (car bodies)
+		(static-error expr
 		  "First term after parenthesis is illegal in an application"))
 	      (set-top-level-status attributes top-level?)
 	      (create-app (car bodies) (cdr bodies) expr)))))))
