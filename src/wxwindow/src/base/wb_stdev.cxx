@@ -43,6 +43,7 @@ wxCommandEvent::wxCommandEvent(WXTYPE commandType)
 wxPopupEvent::wxPopupEvent()
   : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT)
 {
+  __type = wxTYPE_POPUP_EVENT;
 }
 
 wxScrollEvent::wxScrollEvent()

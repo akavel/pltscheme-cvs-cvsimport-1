@@ -1936,13 +1936,10 @@ void wxWnd::OnDropFiles(WPARAM wParam)
     files[wIndex] = copystring(wxBuffer);
   }
   DragFinish (hFilesInfo);
-  if (wx_window)
-    wx_window->GetEventHandler()->OnDropFiles(gwFilesDropped, files, dropPoint.x, dropPoint.y);
 
-  int i;
-  for (i = 0; i < (int)gwFilesDropped; i++)
-    delete[] files[i];
-  delete[] files;
+  if (wx_window)
+    for (wIndex=0; wIndex < (int)gwFilesDropped; wIndex++) 
+      wx_window->GetEventHandler()->OnDropFile(files[wIndex]);
 }
 
 BOOL wxWnd::OnDrawItem(int id, DRAWITEMSTRUCT *itemStruct)
