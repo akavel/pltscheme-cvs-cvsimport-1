@@ -152,8 +152,13 @@ void wxDC::CalcBoundingBox(float x, float y)
 }
 
 //-----------------------------------------------------------------------------
-// spline code, uses protected virtual method DrawOpenSpline
+// spline code, uses protected virtual method DrawOpenSpline, from XFIG
 //-----------------------------------------------------------------------------
+
+/*
+ * FIG : Facility for Interactive Generation of figures
+ * Copyright (c) 1985 by Supoj Sutanthavibul
+ */
 
 #if USE_SPLINES
 
