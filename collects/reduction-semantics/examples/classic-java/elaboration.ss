@@ -14,9 +14,9 @@
   (require (lib "contract.ss")
            (lib "match.ss")
            (lib "helper.ss" "reduction-semantics")
+           (planet "environment.ss" ("cobbe" "environment.plt" 1))
 
            "utils.ss"
-           "environment.ss"
            "program.ss"
            "ast.ss")
 

@@ -10,8 +10,10 @@
 (module elaboration-tests mzscheme
 
   (require (lib "etc.ss")
+           (planet "environment.ss" ("cobbe" "environment.plt" 1))
+           (planet "test.ss" ("schematics" "schemeunit.plt" 1))
+           (planet "util.ss" ("schematics" "schemeunit.plt" 1))
            "test.ss"
-           "environment.ss"
            "ast.ss"
            "program.ss")
   (provide elaboration-tests)

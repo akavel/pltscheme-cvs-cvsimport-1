@@ -9,7 +9,8 @@
 (module reduction-tests mzscheme
 
   (require (lib "list.ss")
-           "test.ss"
+           (planet "test.ss" ("schematics" "schemeunit.plt" 1))
+           (planet "util.ss" ("schematics" "schemeunit.plt" 1))
            "utils.ss"
            "ast.ss"
            "elaboration.ss"
