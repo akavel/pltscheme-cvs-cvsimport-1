@@ -4,7 +4,6 @@
  * Author:      Julian Smart
  * Created:     1993
  * Updated:	August 1994
- * RCS_ID:      $Id$
  * Copyright:   (c) 1993, AIAI, University of Edinburgh
  */
 
@@ -1290,7 +1289,9 @@ Bool wxPostScriptDC::StartDoc (char *message)
   char userID[256];
 
   if (device == wxDEVICE_EPS) {
-    pstream = new PSStream(filename);
+    PSStream *pss;
+    pss = new PSStream(filename);
+    pstream = pss;
 
     if (!pstream || !pstream->good()) {
       ok = FALSE;

@@ -30,10 +30,11 @@
 #pragma interface
 #endif
 
+class wxHashTable;
 
 class wxFontNameDirectory : public wxObject
 {
-  class wxHashTable *table;
+  wxHashTable *table;
   int nextFontId;
  public:
   wxFontNameDirectory(void);
