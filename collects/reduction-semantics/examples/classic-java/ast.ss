@@ -95,9 +95,9 @@
    (define-struct (var-ref expr) (var))
    (define-struct (nil expr) ())
    (define-struct (ref expr) (object field))
-   (define-struct (tagged-ref expr) (object type field))
+   (define-struct (tagged-ref expr) (object class field))
    (define-struct (set expr) (object field rhs))
-   (define-struct (tagged-set expr) (object type field rhs))
+   (define-struct (tagged-set expr) (object class field rhs))
    (define-struct (send expr) (object method args))
    (define-struct (super expr) (method args))
    (define-struct (tagged-super expr) (type method args))
@@ -204,13 +204,13 @@
                     [struct ref ([object expr?]
                                  [field field-name?])]
                     [struct tagged-ref ([object expr?]
-                                        [type class-type?]
+                                        [class class-type?]
                                         [field field-name?])]
                     [struct set ([object expr?]
                                  [field field-name?]
                                  [rhs expr?])]
                     [struct tagged-set ([object expr?]
-                                        [type class-type?]
+                                        [class class-type?]
                                         [field field-name?]
                                         [rhs expr?])]
                     [struct send ([object expr?]
