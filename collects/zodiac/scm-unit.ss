@@ -165,7 +165,8 @@
 
   (define inside-unit?
     (lambda (attributes)
-      (not (null? (get-attribute attributes 'unit-vars)))))
+      (not (null? (get-attribute attributes 'unit-vars
+		    (lambda () null))))))
 
   (define check-export
     (lambda (id attributes)
