@@ -507,9 +507,9 @@
                     [struct instance ([class class-type?]
                                       [fields (listof ivar?)])]
 
-                    [cj-id? predicate?]
-                    [cj-value? predicate?]
-                    [cj-expr? predicate?]
+                    [cj-id? predicate/c]
+                    [cj-value? predicate/c]
+                    [cj-expr? predicate/c]
                     [subst-args (-> tagged-expr? (listof cj-value?)
                                     (listof cj-id?) cj-expr?)]
                     [cj-subst (-> cj-id? cj-expr? cj-expr? cj-expr?)]

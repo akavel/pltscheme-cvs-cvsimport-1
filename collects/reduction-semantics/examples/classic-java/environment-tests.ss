@@ -10,7 +10,7 @@
 
 (module environment-tests mzscheme
 
-  (require (lib "test.ss" "test"))
+  (require "test.ss")
   (provide environment-tests)
   (require/expose "environment.ss" ())
 
@@ -45,7 +45,7 @@
     (make-test-case "extend: mismatch"
       (assert-exn
        (lambda (exn)
-         (and (exn:application:mismatch? exn)
+         (and (exn:fail:contract? exn)
               (string=? (exn-message exn)
                         "extend-env: IDs and bindings must have same length")))
        (lambda () (extend-env (make-empty-env) '(a b c) '(3 4)))))

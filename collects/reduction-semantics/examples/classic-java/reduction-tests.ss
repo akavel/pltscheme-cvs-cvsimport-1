@@ -9,7 +9,7 @@
 (module reduction-tests mzscheme
 
   (require (lib "list.ss")
-           (lib "test.ss" "test")
+           "test.ss"
            "utils.ss"
            "ast.ss"
            "elaboration.ss"
@@ -20,14 +20,14 @@
   (require/expose "reduction.ss" ())
 
   (define test-program-src
-    '((class numerics object ([int i] [bool b])
+    '((class numerics Object ([int i] [bool b])
         (int factorial ([int n])
              (if (zero? n) 1 (* n (send this factorial (- n 1))))))
-      (class base object ([int base-field] [int shadowed-field])
+      (class base Object ([int base-field] [int shadowed-field])
         (int f () 3))
       (class derived base ([bool shadowed-field] [bool derived-field])
         (int f () (+ (super f) 1)))
-      (class blist object ()
+      (class blist Object ()
         (int length () -1)
         (bool andmap () false))
       (class bempty blist ()
@@ -39,7 +39,7 @@
         (bool andmap () (if (ref this value)
                             (send (ref this next) andmap)
                             false)))
-      (class dag-node object
+      (class dag-node Object
         ([dag-node left] [dag-node right]))
       null))
 

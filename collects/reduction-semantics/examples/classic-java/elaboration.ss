@@ -21,10 +21,13 @@
            "ast.ss")
 
   (provide/contract (elab-program (-> program? program?))
-                    (struct exn:cj:elab ()))
+                    (struct (exn:cj:elab exn:fail:contract)
+                            ([message string?]
+                             [continuation-marks continuation-mark-set?]
+                             [obj any/c])))
 
   (with-public-inspector
-   (define-struct (exn:cj:elab exn:application) ()))
+   (define-struct (exn:cj:elab exn:fail:contract) (obj)))
 
   ;; elab-program :: Program -> Program
   ;; ClassesOnce, CompleteClasses, WellFoundedClasses ensured during parsing.

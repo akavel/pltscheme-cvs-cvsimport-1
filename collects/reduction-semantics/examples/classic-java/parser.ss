@@ -17,13 +17,16 @@
            "utils.ss"
            "ast.ss")
 
-  (provide/contract (parse-program (-> sexp? program?))
-                    (struct exn:cj:parse ()))
+  (provide/contract (parse-program (-> sexp/c program?))
+                    (struct (exn:cj:parse exn:fail:contract) 
+                            ([message string?]
+                             [continuation-marks continuation-mark-set?]
+                             [src any/c])))
 
   (provide expand-parse-exn)
 
   (with-public-inspector
-   (define-struct (exn:cj:parse exn:application) ())
+   (define-struct (exn:cj:parse exn:fail:contract) (src))
    (define-struct temp-class (name superclass fields methods)))
 
   #;
