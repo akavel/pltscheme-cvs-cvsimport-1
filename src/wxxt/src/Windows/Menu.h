@@ -59,14 +59,16 @@ public:
     Bool  PopupMenu(Widget in_w, int root_x, int root_y);
 #   endif
 
+    int Number(void);
+
     // add items to menu
     void  Append(int id, char *label, char *help=NULL, Bool checkable=FALSE);
     void  Append(int id, char *label, wxMenu *submenu, char *help=NULL);
     void  AppendSeparator(void);
     /* MATTHEW: */
-    void  DeleteItem(int id, int pos);
-    void  Delete(int id);
-    void  DeleteByPosition(int pos);
+    Bool  DeleteItem(int id, int pos);
+    Bool  Delete(int id);
+    Bool  DeleteByPosition(int pos);
     // modify items
     void  Break(void) {}; // not supported
     void  Check(int id, Bool flag);

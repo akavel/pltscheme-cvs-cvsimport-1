@@ -71,6 +71,8 @@ SOFTWARE.
 #define XtCHorizontal           "Horizontal"
 #define XtNmenu                 "menu"
 #define XtCMenu                 "Menu"
+#define XtNrefresh              "refresh"
+#define XtCRefresh              "Refresh"
 #define XtNonNewItem            "onNewItem"
 #define XtNonSelect             "onSelect"
 #define XtNonNoSelect           "onNoSelect"

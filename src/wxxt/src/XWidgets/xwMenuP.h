@@ -70,6 +70,7 @@ typedef struct _MenuPart {
     XtCallbackList  on_new_item;    /* callback procedures */
     XtCallbackList  on_select;
     XtCallbackList  on_no_select;
+    Boolean         refresh;
     /* private data */
     Cursor          cursor;
     GC              normal_GC;
