@@ -1489,10 +1489,20 @@
 			(_ (set-top-level-status attributes))
 			(real-name (sexp->raw macro-name))
 			(raw-handler (sexp->raw macro-handler))
-			(real-handler (with-parameterization
-					zodiac-user-parameterization
-					(lambda ()
-					  (eval raw-handler))))
+			(user-exn-handler
+			  (in-parameterization zodiac-user-parameterization
+			    current-exception-handler))
+			(user-exn-value
+			  (user-exn-handler))
+			(real-handler (begin
+					(user-exn-handler
+					  (current-exception-handler))
+					(begin0
+					  (with-parameterization
+					    zodiac-user-parameterization
+					    (lambda ()
+					      (eval raw-handler)))
+					  (user-exn-handler user-exn-value))))
 			(cache-table (make-hash-table)))
 		  (set-top-level-status attributes top-level?)
 		  (unless (procedure? real-handler)
