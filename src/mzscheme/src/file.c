@@ -154,14 +154,14 @@ static Scheme_Object *temp_dir_symbol, *home_dir_symbol, *pref_dir_symbol;
 static Scheme_Object *init_dir_symbol, *init_file_symbol, *sys_dir_symbol;
 static Scheme_Object *exec_file_symbol;
 
-static Scheme_Object *fail_err_symbol, *path_err_symbol, *exists_err_symbol;
-
 static Scheme_Object *exec_cmd;
 
 # ifdef MACINTOSH_EVENTS
 static Scheme_Object *record_symbol, *file_symbol;
 # endif
 #endif
+
+static Scheme_Object *fail_err_symbol, *path_err_symbol, *exists_err_symbol;
 
 #ifdef MACINTOSH_EVENTS
 void (*scheme_handle_aewait_event)(EventRecord *e);
@@ -3064,10 +3064,11 @@ static Scheme_Object *file_modify_seconds(int argc, Scheme_Object **argv)
 
 #if defined(UNIX_FILE_SYSTEM) && !defined(NO_UNIX_USERS)
 # define GROUP_CACHE_SIZE 10
-static struct {
+typedef struct {
   gid_t gid;
   char set, in;
-} group_mem_cache[GROUP_CACHE_SIZE];
+} Group_Mem_Cache;
+static Group_Mem_Cache group_mem_cache[GROUP_CACHE_SIZE];
 static int user_in_group(gid_t gid)
 {
   struct group *g;
@@ -3611,6 +3612,7 @@ find_system_path(int argc, Scheme_Object **argv)
 
 Scheme_Object *scheme_set_exec_cmd(char *s)
 {
+#ifndef NO_FILE_SYSTEM_UTILS
   if (!exec_cmd) {
     REGISTER_SO(exec_cmd);
     exec_cmd = scheme_make_string(s);
@@ -3618,6 +3620,7 @@ Scheme_Object *scheme_set_exec_cmd(char *s)
   }
 
   return exec_cmd;
+#endif
 }
 
 /********************************************************************************/
