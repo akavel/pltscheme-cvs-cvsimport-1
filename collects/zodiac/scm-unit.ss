@@ -704,6 +704,15 @@
 			      (vars (pat:pexpand '(var ...)
 				      p-env kwd))
 			      (_ (map valid-syntactic-id? vars))
+			      (_ (for-each
+				   (lambda (var)
+				     (let ((r (resolve var env vocab)))
+				       (when (or (micro-resolution? r)
+					       (macro-resolution? r))
+					 (static-error var
+					   "Cannot bind keyword ~s"
+					   (z:symbol-orig-name var)))))
+				   vars))
 			      (out (handler expr env attributes
 				     vocab p-env vars)))
 			(set-top-level-status attributes
