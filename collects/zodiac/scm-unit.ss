@@ -1043,7 +1043,7 @@
 				       ((debug-info-handler))
 				       result)))
 				 result)
-			      expr)
+			      expr '(-1))
 			    env attributes vocab)
 			  (static-error filename
 			    "Does not yield a filename"))))))
@@ -1115,7 +1115,7 @@
 				       ((#%debug-info-handler))
 				       result)))
 				 result)
-			      expr)
+			      expr '(-1))
 			    env attributes vocab))))))
 		(else
 		  (static-error expr

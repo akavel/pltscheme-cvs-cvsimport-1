@@ -258,7 +258,7 @@
 				    (expand-expr
 				      (structurize-syntax
 					`(begin ,@code)
-					expr)
+					expr '(-1))
 				      env attributes vocab)))))
 			    (lambda ()
 			      (current-load-relative-directory original-directory)
@@ -308,7 +308,7 @@
 				 (and (null? (cdr raw-cs))
 				   (string=? "mzlib" (car raw-cs))))
 			    (member raw-f mzscheme-libraries-provided))
-			(expand-expr (structurize-syntax '(#%void) expr)
+			(expand-expr (structurize-syntax '(#%void) expr '(-1))
 			  env attributes vocab)
 			(let-values (((base name dir?)
 				       (split-path raw-filename)))
@@ -357,7 +357,7 @@
 				      (expand-expr
 					(structurize-syntax
 					  `(begin ,@code)
-					  expr)
+					  expr '(-1))
 					env attributes vocab)))))
 			      (lambda ()
 				(current-load-relative-directory

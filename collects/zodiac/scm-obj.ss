@@ -645,7 +645,7 @@
 		  (expand-expr
 		    (structurize-syntax
 		      `(#%uq-ivar ,object (quote ,name))
-		      expr)
+		      expr '(-1))
 		    env attributes vocab))))
 	    (else
 	      (static-error expr "Malformed ivar")))))))
