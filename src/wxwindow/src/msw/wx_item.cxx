@@ -27,6 +27,8 @@ FARPROC wxGenericControlSubClassProc = 0;
 wxNonlockingHashTable *wxControlHandleList = NULL;
 wxNonlockingHashTable *wxItemIdList = NULL;
 
+extern void wxEntered(wxWindow *w, int x, int y, int flags);
+
 extern HCURSOR wxMSWSetCursor(HCURSOR c);
 
 extern long last_msg_time; /* MATTHEW: timeStamp implementation */
@@ -343,6 +345,8 @@ int wxDoItemPres(wxItem *item, HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	event.middleDown = (flags & MK_MBUTTON);
 	event.rightDown = (flags & MK_RBUTTON);
 	event.SetTimestamp(last_msg_time); /* MATTHEW: timeStamp */
+
+	wxEntered(item, x, y, wParam);
 
 	if (item->CallPreOnEvent(item, &event))
 	  return 0;
