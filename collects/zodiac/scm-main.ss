@@ -1234,7 +1234,7 @@
 				   ,(if had-no-clauses?
 				      "cond must contain at least one clause"
 				      "no matching else clause")
-				   ((debug-info-handler)))))
+				   (#%apply (#%debug-info-handler) (#%list)))))
 			    (let ((first (car exps))
 				   (rest (cdr exps)))
 			      (cond
