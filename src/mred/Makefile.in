@@ -137,10 +137,6 @@ mredx.o : $(srcdir)/mredx.cxx $(srcdir)/../mzscheme/include/scheme.h $(srcdir)/m
           $(srcdir)/../mzscheme/src/stypes.h
 	$(CXX) $(CPPFLAGS) $(LOCALFLAGS) -c $(srcdir)/mredx.cxx -o mredx.o
 
-wxGC.o : $(srcdir)/../wxcommon/wxGC.cxx $(srcdir)/../wxcommon/wxGC.h \
-         $(srcdir)/../mzscheme/src/stypes.h
-	$(CXX) $(CPPFLAGS) $(LOCALFLAGS) -c $(srcdir)/../wxcommon/wxGC.cxx -o wxGC.o
-
 mredmac.o : $(srcdir)/mredmac.cxx $(srcdir)/../mzscheme/include/scheme.h $(srcdir)/mred.h \
           $(srcdir)/../wxcommon/wxGC.h $(srcdir)/../wxcommon/wx_list.h \
           $(srcdir)/../mzscheme/src/stypes.h
@@ -168,8 +164,11 @@ $(WXDIR)/libwx_xt.a:
 ../wxcommon/jpeg/libjpeg.a:
 	cd ../wxcommon/jpeg; $(MAKE) libjpeg.a
 
+CLEANDIR_wx_xt = ../wxxt/src/x
+CLEANDIR_wx_mac = ../wxmac/src
+
 clean:
-	cd ../wxxt/src/x; $(MAKE) clean
+	cd $(CLEANDIR_@WXVARIANT@); $(MAKE) clean
 	rm -f *.o core
 	rm -f gc2/*.o gc2/xsrc/*.c gc2/xsrc/*.cc
 	cd wxme; $(MAKE) clean

@@ -27,6 +27,7 @@
 #include "wx_utils.h"
 #include "wx_gdi.h"
 #include "wx_dc.h"
+#include "wx_dccan.h"
 #include "wx_dialg.h"
 #include "wx_types.h"
 #include "wx_dcps.h"
@@ -85,6 +86,7 @@ void wxRegisterLastInstalledBar();
 
 void wxCommonInit(void)
 {
+  wx_init_patterns();
   wxREGGLOB(wxBuffer);
   wxBuffer = new char[1500];
   wxREGGLOB(wxTheColourDatabase);
