@@ -75,7 +75,6 @@
 			    ((pat:match-against qq-m&e-5 x env)
 			      =>
 			      (lambda (p-env)
-				(printf "Got here~n")
 				(let* ((body (pat:pexpand 'body p-env kwd))
 					(rest (pat:pexpand 'rest p-env kwd))
 					(q-rest (qq rest level)))
