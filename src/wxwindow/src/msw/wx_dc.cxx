@@ -834,38 +834,6 @@ void wxDC::DrawPolygon(int n, wxPoint points[], double xoffset, double yoffset,i
   DoneDC(dc);
 }
 
-void wxDC::DrawLines(int n, wxIntPoint points[], int xoffset, int yoffset)
-{
-  HDC dc;
-
-  dc = ThisDC();
-
-  if (!dc) return;
-
-  if (StartPen(dc)) {
-    int xoffset1;
-    int yoffset1;
-    POINT *cpoints;
-    int i;
-
-    ShiftXY(xoffset, yoffset, &xoffset1, &yoffset1);
-    
-    cpoints = new POINT[n];
-    for (i = 0; i < n; i++) {
-      cpoints[i].x = (int)(XLOG2DEV(points[i].x + xoffset1));
-      cpoints[i].y = (int)(YLOG2DEV(points[i].y + yoffset1));
-      CalcBoundingBox((double)points[i].x + xoffset, (double)points[i].y + yoffset);
-    }
-    
-    (void)Polyline(dc, cpoints, n);
-
-    DonePen(dc);
-  }
-
-  DoneDC(dc);
-
-}
-
 void wxDC::DrawLines(int n, wxPoint points[], double xoffset, double yoffset)
 {
   HDC dc;
@@ -1118,10 +1086,10 @@ wchar_t *convert_to_drawable_format(const char *text, int d, int ucs4, long *_ul
     for (i = 0, extra = 0; i < theStrlen; i++) {
       v = ((unsigned int *)text)[d+i];
       if (v > 0xFFFF) {
-	v - = 0x10000;
-	unicode[i+extra] = 0xD8000000 | ((v >> 10) & 0x3FF);
+	v -= 0x10000;
+	unicode[i+extra] = 0xD800 | ((v >> 10) & 0x3FF);
 	extra++;
-	unicode[i+extra] = 0xDC000000 | (v & 0x3FF);
+	unicode[i+extra] = 0xDC00 | (v & 0x3FF);
       } else
 	unicode[i+extra] = v;
     }
