@@ -13,9 +13,6 @@ strings are types/comments.
      -
      (user [] "raised by calling \\scmfirst{error}")
      
-     (syntax [expr "S-expression" "illegal expression (or \\scm{\\#f} if unknown)"]
-	     "all syntax errors except \\scmfirst{read} errors")
-     
      (variable [id "identifier" "the unbound variable's global identifier"]
 	       "unbound global variable at run-time"
 	       (*keyword [] "attempt to change the binding of a global keyword"))
@@ -33,11 +30,14 @@ strings are types/comments.
 
      (*struct [] "the supertype expression in a \\scmfirst{struct} form returned a value that was not a structure type value")
 
-     (*object [] "all object-, class-, and interface-specific errors")
+     (*object [] "object-, class-, or interface-specific error")
      
-     (*unit [] "all unit- and unit/sig-specific errors")
+     (*unit [] "unit- or unit/sig-specific error")
 
-     (read [port "port" "port being read"] "all reader errors"
+     (syntax [expr "S-expression" "illegal expression (or \\scm{\\#f} if unknown)"]
+	     "syntax error, but not a \\scmfirst{read} error")
+     
+     (read [port "port" "port being read"] "\\scm{read} parsing error"
 	   (eof [] "unexpected end-of-file"))
      
      (i/o [] -
@@ -49,7 +49,7 @@ strings are types/comments.
 	  (filesystem [pathname "string" "pathname"] "illegal pathname or error manipulating a filesystem object")
 	  (*tcp [] "TCP errors"))
 
-     (misc [] "low-level and MzScheme-specific errors"
+     (misc [] "low-level or MzScheme-specific error"
 	   (unsupported [] "unsupported feature")
 	   (user-break [] "asynchronous thread break")
 	   (out-of-memory [] "out of memory")))

@@ -410,7 +410,7 @@ void wxMenu::EventCallback(Widget WXUNUSED(w), XtPointer dclient, XtPointer dcal
     poppedup_menus.DeleteObject(menu);
 
     /* MATTHEW: check item */
-    if (item) {
+    if (item && (item->ID != -1)) {
       if (item->type == MENU_TOGGLE)
 	item->set = (!item->set);
       

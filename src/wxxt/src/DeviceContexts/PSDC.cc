@@ -1995,7 +1995,7 @@ wxPrintSetupData::wxPrintSetupData(void)
     printer_mode = PS_FILE;
 #endif
     afm_path = NULL;
-    paper_name = NULL;
+    paper_name = DEFAULT_PAPER;
     print_colour = TRUE;
     printer_file = NULL;
 }
