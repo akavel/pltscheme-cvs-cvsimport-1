@@ -257,7 +257,7 @@ wxWindow::~wxWindow(void)
     case wxTYPE_HWND:
     {
       if (ms_handle)
-		  wxwmDestroyWindow((HWND)ms_handle);
+	wxwmDestroyWindow((HWND)ms_handle);
       handle = NULL;
       
       if (wxControlHandleList)
