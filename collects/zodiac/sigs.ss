@@ -6,6 +6,8 @@
 (begin-elaboration-time (require-library "refer.ss"))
 (require-library "refer.ss")
 
+(require-library "zsigs.ss" "zodiac")
+
 (define-signature zodiac:misc^
   (pretty-print debug-level symbol-append flush-printf print-and-return 
    attributes-resetters))
