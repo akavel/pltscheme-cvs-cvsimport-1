@@ -63,7 +63,7 @@
 		   ((reference-unit/sig "guiutils.ss") wx 
 		    (minimal constants) frame (minimal container) canvas edit
 		    (core function@))]
-	[graph : mred:graph^ ((reference-unit/sig "graph.ss")
+	[graph : mred:graph^ ((reference-unit/sig "graph.ss") wx
 			      (minimal constants) edit gui-utils
 			      (core string@)
 			      (core function@))]
