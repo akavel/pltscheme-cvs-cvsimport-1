@@ -54,7 +54,7 @@
       i)))
 
 (define (show-instructions file)
-  (letrec ([f (make-object frame% file #f 400 400)]
+  (letrec ([f (make-object frame% (path->string file) #f 400 400)]
 	   [print (make-object button% "Print" f
 			       (lambda (b ev)
 				 (send e print)))]
@@ -523,7 +523,7 @@
 					    (let-values ([(w h d a) (send dc get-text-extent s cfnt kern?)])
 					      (send dc draw-rectangle x y w h)
 					      (send dc draw-line x (+ y (- h d)) (+ x w) (+ y (- h d)))
-					      ;; Alien-in-a-box character (beyond UCS-2)
+					      ;; Mathematical "A" (beyond UCS-2)
 					      (let ([s "\U1D670"]
 						    [x (+ x (* 1.5 w))])
 						(send dc set-font fnt)
