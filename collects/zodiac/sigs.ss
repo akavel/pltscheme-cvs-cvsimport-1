@@ -152,11 +152,9 @@
   (create-unit-form
     create-compound-unit-form
     create-invoke-unit-form
-    create-invoke-open-unit-form
     (struct unit-form (imports exports clauses))
     (struct compound-unit-form (imports links exports))
     (struct invoke-unit-form (unit variables))
-    (struct invoke-open-unit-form (unit name-specifier variables))
     unit-clauses-vocab-delta update-unresolved-attribute
     inside-unit? check-export
     process-unit-top-level-resolution
