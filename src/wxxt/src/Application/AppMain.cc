@@ -235,7 +235,7 @@ int wxEntry(int argc, char *argv[])
     }
 
     for (int i = ate + 1; i < argc; i++)
-      argv[i] = argv[i + ate];
+      argv[i - ate] = argv[i];
     argc -= ate;
 
     XtGetApplicationResources(wxAPP_TOPLEVEL, 
