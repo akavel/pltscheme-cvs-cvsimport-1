@@ -1,8 +1,6 @@
 # Toggle widget
 # Bert Bos <bert@let.rug.nl>
 # Version 2.1 for FWF V4.0
-# 
-# $Id$
 
 @class XfwfToggle(XfwfButton)  @file=xwToggle
 
@@ -127,8 +125,13 @@ increased to make room for the indicators.
 {
     $saveLeftMargin = $leftMargin;
 
-    if (!$indicatorSize || $indicatorSize > $font->ascent + 2)
+    if ($xfont) {
+      if (!$indicatorSize || $indicatorSize > ((wxExtFont)$xfont)->ascent)
+	$indicatorSize = ((wxExtFont)$xfont)->ascent;
+    } else {
+      if (!$indicatorSize || $indicatorSize > $font->ascent)
 	$indicatorSize = $font->ascent + 2;
+    }
 
     $indicator_gc = NULL;
 
@@ -262,3 +265,4 @@ button and then possibly adds a tick mark.
 @imports
 
 @incl <xwTools3d.h>
+@incl <xwTabString.h>
