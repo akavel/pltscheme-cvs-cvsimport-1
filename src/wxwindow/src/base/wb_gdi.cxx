@@ -854,7 +854,7 @@ void wxBrushList::AddBrush(wxBrush *Brush)
 wxBrush *wxBrushList::FindOrCreateBrush (wxColour * colour, int style)
 {
   wxBrush *brush; /* MATTTHEW: [8] */
-  int i;
+  int i = 0;
   wxChildNode *node;
 
   if (!colour)
