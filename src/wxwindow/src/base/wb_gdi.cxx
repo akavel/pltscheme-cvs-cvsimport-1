@@ -30,6 +30,7 @@
 #endif
 
 #include <stdio.h>
+#include <ctype.h>
 
 #ifdef wx_xview
 extern Xv_Server xview_server;
@@ -803,7 +804,7 @@ wxPen *wxPenList::FindOrCreatePen (wxColour * colour, int width, int style)
   if (!colour)
     return NULL;
 
-  while (node = list->NextNode(i)) {
+  while ((node = list->NextNode(i))) {
     wxPen *each_pen = (wxPen *) node->Data ();
     if (each_pen &&
 	each_pen->GetWidth () == width &&
@@ -860,7 +861,7 @@ wxBrush *wxBrushList::FindOrCreateBrush (wxColour * colour, int style)
   if (!colour)
     return NULL;
 
-  while (node = list->NextNode(i)) {
+  while ((node = list->NextNode(i))) {
     wxBrush *each_brush = (wxBrush *) node->Data ();
     if (each_brush &&
 	each_brush->GetStyle () == style &&
@@ -915,7 +916,7 @@ FindOrCreateFont (int PointSize, int FamilyOrFontId, int Style, int Weight, Bool
   int i = 0;
   wxChildNode *node;
 
-  while (node = list->NextNode(i)) {
+  while ((node = list->NextNode(i))) {
     wxFont *each_font = (wxFont *) node->Data ();
     if (each_font &&
 	each_font->GetPointSize () == PointSize &&
@@ -1399,7 +1400,7 @@ void wxSuffixMap::Initialize(const char *resname, const char *devresname,
 	     -([^-]*)-(.*) => -\1-\2-<weight>-<style>-normal-*-*-%d-*-*-*-*-*-*
 	     ([^-].*[^-]) => \1
 	     */
-	  src = (v ? v : resname);
+	  src = (v ? v : (char *)resname);
 	  len = strlen(src);
 	  if (src[0] == '-') {
 	    int c = 0;
