@@ -1449,7 +1449,7 @@ void wxWindowDC::BeginSetPixel()
   }
 
   {
-    XImage img;
+    XImage *img;
     img = XGetImage(DPY, DRAWABLE, 0, 0, w, h, AllPlanes, ZPixmap);
     X->get_pixel_image_cache = img;
   }
