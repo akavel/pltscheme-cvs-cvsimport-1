@@ -232,6 +232,12 @@ public:
     void  SetLogicalScale(float xs, float ys);
     void  SetMapMode(int mode);
     void  SetUserScale(float xs, float ys);
+
+    void GetUserScale(float *xs, float *ys)
+      { *xs = user_scale_x; *ys = user_scale_y; }
+    void GetDeviceOrigin(float *x, float *y) 
+      { *x = device_origin_x; *y = device_origin_y; }
+  
     // public data members
     Bool  Colour;
     int   device;
