@@ -542,19 +542,24 @@ wxbPen::~wxbPen ()
     --stipple->selectedIntoDC;
 }
 
-wxbPen::wxbPen (wxColour *col, int Width, int Style)
+wxbPen::wxbPen (wxColour *col, float Width, int Style)
 {
   locked = 0;
   __type = wxTYPE_PEN;
 }
 
-wxbPen::wxbPen (const char *col, int Width, int Style)
+wxbPen::wxbPen (const char *col, float Width, int Style)
 {
   locked = 0;
   __type = wxTYPE_PEN;
 }
 
 int wxbPen::GetWidth (void)
+{
+  return (int)width;
+}
+
+float wxbPen::GetWidthF (void)
 {
   return width;
 }
@@ -605,7 +610,7 @@ void wxbPen::SetColour (char red, char green, char blue)
  colour.Set(red, green, blue);
 }
 
-void wxbPen::SetWidth (int Width)
+void wxbPen::SetWidth (float Width)
 {
   width = Width;
 }
@@ -753,7 +758,7 @@ void wxPenList::AddPen (wxPen * pen)
   pen->Lock(1);
 }
 
-wxPen *wxPenList::FindOrCreatePen (wxColour * colour, int width, int style)
+wxPen *wxPenList::FindOrCreatePen (wxColour * colour, float width, int style)
 {
   wxPen *pen;
   wxChildNode *node;
@@ -766,7 +771,7 @@ wxPen *wxPenList::FindOrCreatePen (wxColour * colour, int width, int style)
     {
       wxPen *each_pen = (wxPen *) node->Data ();
       if (each_pen &&
-	  each_pen->GetWidth() == width &&
+	  each_pen->GetWidthF() == width &&
 	  each_pen->GetStyle() == style &&
 	  each_pen->GetColour()->Red () == colour->Red () &&
 	  each_pen->GetColour()->Green () == colour->Green () &&
@@ -780,7 +785,7 @@ wxPen *wxPenList::FindOrCreatePen (wxColour * colour, int width, int style)
   return pen;
 }
 
-wxPen *wxPenList::FindOrCreatePen (char *colour, int width, int style)
+wxPen *wxPenList::FindOrCreatePen (char *colour, float width, int style)
 {
   wxColour *the_colour = wxTheColourDatabase->FindColour(colour);
   if (the_colour)

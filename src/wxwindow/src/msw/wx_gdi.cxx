@@ -305,7 +305,7 @@ wxPen::~wxPen()
   cpen = NULL;
 }
 
-wxPen::wxPen(wxColour *col, int Width, int Style)
+wxPen::wxPen(wxColour *col, float Width, int Style)
 {
   COUNT_P(pen_count);
 
@@ -331,7 +331,7 @@ wxPen::wxPen(wxColour *col, int Width, int Style)
   ChangePen();
 }
 
-wxPen::wxPen(const char *col, int Width, int Style)
+wxPen::wxPen(const char *col, float Width, int Style)
 {
   COUNT_P(pen_count);
 
