@@ -198,7 +198,7 @@
   (define tab-mult   8)
   
   (define text->string
-    (lambda (text) (list->string (reverse text))))
+    (lambda (text) (string->immutable-string (list->string (reverse text)))))
   
   (define text->number
     (lambda (text) (string->number (text->string text))))

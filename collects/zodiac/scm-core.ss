@@ -170,7 +170,7 @@
     (lambda (expr env vocab attributes)
       (let ((r (resolve expr env vocab)))
 	(if (or (macro-resolution? r) (micro-resolution? r))
-	    (static-error 
+            (static-error 
 	     expr
 	     "Invalid use of keyword ~s" (z:symbol-orig-name expr))
 	    r))))
