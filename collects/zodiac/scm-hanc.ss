@@ -541,6 +541,28 @@
 ; --------------------------------------------------------------------
 
 (when (language>=? 'advanced)
+  (add-primitivized-micro-form 'signature->symbols scheme-vocabulary
+    (let* ((kwd '())
+	    (in-pattern '(_ name))
+	    (m&e (pat:make-match&env in-pattern kwd)))
+      (lambda (expr env attributes vocab)
+	(cond
+	  ((pat:match-against m&e expr env)
+	    =>
+	    (lambda (p-env)
+	      (let ((name (pat:pexpand 'name p-env kwd)))
+		(valid-syntactic-id? name)
+		(let ((elements
+			(sig-list->sig-vector
+			  (signature-exploded
+			    (lookup-signature name attributes)))))
+		  (expand-expr
+		    (structurize-syntax `(,'quote ,elements) expr)
+		    env attributes vocab)))))
+	  (else
+	    (static-error expr "Malformed signature->symbols")))))))
+
+(when (language>=? 'advanced)
   (add-primitivized-micro-form 'define-signature scheme-vocabulary
     (let* ((kwd '())
 	    (in-pattern '(_ name sig))
