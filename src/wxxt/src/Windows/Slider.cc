@@ -146,6 +146,12 @@ void wxSlider::SetValue(int new_value)
     }
 }
 
+void wxSlider::Command(wxCommandEvent &event)
+{
+  SetValue(event.commandInt);
+  ProcessCommand(event);
+}
+
 //-----------------------------------------------------------------------------
 // callbacks for xfwfGroupWidgetClass
 //-----------------------------------------------------------------------------

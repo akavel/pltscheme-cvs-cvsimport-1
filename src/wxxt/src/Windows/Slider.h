@@ -47,6 +47,7 @@ public:
     int   GetValue(void) { return value; }
     void  SetButtonColour(wxColour *col);
     void  SetValue(int value);
+    void Command(wxCommandEvent &event);
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget, XtPointer, XtPointer);

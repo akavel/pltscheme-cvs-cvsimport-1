@@ -58,6 +58,7 @@ public:
     void SetEditable(Bool on);
 
     virtual void ChangeToGray(Bool gray);
+    void Command(wxCommandEvent &event);
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget, XtPointer, XtPointer);

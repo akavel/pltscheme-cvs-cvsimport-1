@@ -65,6 +65,9 @@ public:
     // can't handle them
     int   GetColumns(void) { return 1; }
     void  SetColoumns(int WXUNUSED(n=1)) {};
+
+    void Command(wxCommandEvent &event);
+
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget, XtPointer, XtPointer);

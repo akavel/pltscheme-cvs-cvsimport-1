@@ -148,6 +148,7 @@ char *wxText::GetValue(void)
 
 void wxText::SetValue(char *value)
 {
+  if (value)
     XtVaSetValues(X->handle, XtNstring, value, NULL);
 }
 
@@ -171,6 +172,12 @@ void wxText::OnChar(wxKeyEvent &event)
     }
     if (editable)
       wxItem::OnChar(event); // chain to parent method
+}
+
+void wxText::Command(wxCommandEvent &event)
+{
+  SetValue(event.commandString);
+  ProcessCommand(event);
 }
 
 //-----------------------------------------------------------------------------

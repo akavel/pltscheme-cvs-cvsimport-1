@@ -408,6 +408,12 @@ Bool wxRadioBox::Show(int item, Bool show)
   return FALSE;
 }
 
+void wxRadioBox::Command(wxCommandEvent &event)
+{
+  SetSelection(event.commandInt);
+  ProcessCommand(event);
+}
+
 //-----------------------------------------------------------------------------
 // override parent methods
 //-----------------------------------------------------------------------------

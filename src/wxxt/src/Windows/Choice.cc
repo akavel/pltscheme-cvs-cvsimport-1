@@ -204,6 +204,13 @@ void wxChoice::SetStringSelection(char *s)
     SetSelection(FindString(s));
 }
 
+void wxChoice::Command(wxCommandEvent &event)
+{
+  SetSelection(event.commandInt);
+  ProcessCommand(event);
+}
+
+
 //-----------------------------------------------------------------------------
 // callback for commandWidgetClass
 //-----------------------------------------------------------------------------

@@ -209,6 +209,12 @@ void wxCheckBox::SetValue(Bool state)
     XtVaSetValues(X->handle, XtNon, Boolean(state), NULL);
 }
 
+void wxCheckBox::Command(wxCommandEvent &event)
+{
+  SetValue (event.commandInt);
+  ProcessCommand (event);
+}
+
 //-----------------------------------------------------------------------------
 // callbacks for xfwfToggleWidgetClass
 //-----------------------------------------------------------------------------
@@ -236,3 +242,4 @@ void wxCheckBox::OffEventCallback(Widget WXUNUSED(w),
 
     checkbox->ProcessCommand(*event);
 }
+

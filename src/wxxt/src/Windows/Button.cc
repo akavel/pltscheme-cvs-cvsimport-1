@@ -208,13 +208,9 @@ char *wxButton::GetLabel(void)
 // do the same as if button was clicked
 //-----------------------------------------------------------------------------
 
-void wxButton::Command(wxCommandEvent &WXUNUSED(event))
+void wxButton::Command(wxCommandEvent &event)
 {
-    wxCommandEvent *ev = new wxCommandEvent(wxEVENT_TYPE_BUTTON_COMMAND);
-
-    ev->eventObject = this;
-
-    ProcessCommand(*ev);
+    ProcessCommand(event);
 }
 
 //-----------------------------------------------------------------------------
