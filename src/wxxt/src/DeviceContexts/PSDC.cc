@@ -1486,8 +1486,6 @@ static void printhex(PSStream *pstream, int v)
 }
 
 
-/* MATTHEW: Implement Blit: */
-/* MATTHEW: [4] Re-wrote to use colormap */
 Bool wxPostScriptDC::
 Blit (float xdest, float ydest, float fwidth, float fheight,
       wxMemoryDC *src, float xsrc, float ysrc, int rop, wxColour *dcolor)

@@ -68,6 +68,8 @@ public:
 
     void Command(wxCommandEvent &event);
 
+    void OnEvent(wxMouseEvent&);
+
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget, XtPointer, XtPointer);
