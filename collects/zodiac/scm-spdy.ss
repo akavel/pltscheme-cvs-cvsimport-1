@@ -190,7 +190,7 @@
 	  (else
 	    (static-error expr "Malformed define-constructor"))))))
 
-  (add-primitivized-micro-form 'reference mrspidey-vocabulary
+  (add-primitivized-micro-form 'require mrspidey-vocabulary
     (let* ((kwd '())
 	    (in-pattern `(_ file))
 	    (m&e (pat:make-match&env in-pattern kwd)))
@@ -265,7 +265,7 @@
 			      (close-input-port p))))))
 		    (static-error file "Does not yield a filename"))))))
 	  (else
-	    (static-error expr "Malformed reference"))))))
+	    (static-error expr "Malformed require"))))))
 
   (define reference-library/relative-maker
     (lambda (form-name make-raw-filename)
