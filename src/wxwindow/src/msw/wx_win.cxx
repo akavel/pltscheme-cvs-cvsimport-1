@@ -82,7 +82,7 @@ typedef signed short int SHORT ;
 Bool wxShiftDown = FALSE;
 Bool wxControlDown = FALSE;
 
-wxMenu *wxCurrentPopupMenu = NULL;
+wxMenu **wxCurrentPopupMenu = NULL;
 static wxWindow *current_mouse_wnd = NULL;
 static void *current_mouse_context = NULL;
 
@@ -2206,7 +2206,8 @@ BOOL wxSubWnd::OnCommand(WORD id, WORD cmd, HWND WXUNUSED(control))
 #endif
   if (wxCurrentPopupMenu)
   {
-    wxMenu *popupMenu = wxCurrentPopupMenu;
+    wxMenu *popupMenu = *wxCurrentPopupMenu;
+    *wxCurrentPopupMenu = NULL;
     wxCurrentPopupMenu = NULL;
     BOOL succ = popupMenu->MSWCommand(cmd, id);
     return succ;
