@@ -150,6 +150,7 @@ HFONT wxFont::BuildInternalFont(HDC dc, Bool screenFont)
     break;
   case wxTELETYPE:
   case wxMODERN:
+  case wxSYMBOL:
     ff_family = FF_MODERN;
     break;
   case wxSWISS: 
