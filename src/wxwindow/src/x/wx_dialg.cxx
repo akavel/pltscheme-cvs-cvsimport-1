@@ -9,10 +9,13 @@
  */
 
 // $Log$
-// Revision 1.5  1998/04/08 00:09:12  mflatt
-// beginning of fixing pre-on-char
+// Revision 1.6  1998/07/13 19:08:21  mflatt
+// .
 //
-// Revision 1.5  1998-04-08 00:09:12  mflatt
+// Revision 1.6  1998-07-13 19:08:21  mflatt
+// .
+//
+// Revision 1.5  1998/04/08 00:09:12  mflatt
 // beginning of fixing pre-on-char
 //
 // Revision 1.4  1998/03/07 14:23:45  mflatt
@@ -204,7 +207,6 @@ Bool wxDialogBox::Create(wxWindow *Parent, char *Title, Bool Modal,
   if (height == -1)
     height = 600;
 
-//  invisibleResize = (style & wxMOTIF_RESIZE)!=0 ;
   invisibleResize = TRUE;
 
   borderWidget = 0;

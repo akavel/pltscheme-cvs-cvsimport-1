@@ -507,44 +507,6 @@ long wxGetFreeMemory(void)
   return (long)GetFreeSpace(0);
 }
 
-/* MATTHEW: [5] switch */
-#if !WX_USE_GLOBAL_SLEEP
-// Sleep for nSecs seconds. Attempt a Windows implementation using timers.
-static Bool inTimer = FALSE;
-class wxSleepTimer: public wxTimer
-{
- public:
-  inline void Notify(void)
-  {
-    inTimer = FALSE;
-    Stop();
-  }
-};
-static wxTimer *wxTheSleepTimer = NULL;
-#endif
-
-void wxSleep(int nSecs)
-{
-/* MATTHEW: [5] switch */
-#if !WX_USE_GLOBAL_SLEEP
-  if (inTimer)
-    return;
-
-  wxTheSleepTimer = new wxSleepTimer;
-  inTimer = TRUE;
-  wxTheSleepTimer->Start(nSecs*1000);
-  while (inTimer)
-  {
-    if (wxTheApp->Pending())
-      wxTheApp->Dispatch();
-}
-  delete wxTheSleepTimer;
-  wxTheSleepTimer = NULL;
-#else
-  _sleep(nSecs);
-#endif
-}
-
 // Consume all events until no more left
 void wxFlushEvents(void)
 {
