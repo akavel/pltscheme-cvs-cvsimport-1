@@ -30,13 +30,8 @@
 (define zodiac:mzscheme-parameters@
   (unit/sig plt:parameters^
     (import (plt : plt:parameters^))
-
-    (define case-sensitive? plt:case-sensitive?)
-    (define unmatched-cond/case-is-error? plt:unmatched-cond/case-is-error?)
-    (define allow-set!-on-undefined? plt:allow-set!-on-undefined?)
-    (define allow-improper-lists? plt:allow-improper-lists?)
-    (define check-syntax-level 'core)))
-; plt:check-syntax-level)))
+    (define check-syntax-level 'advanced)))
+; plt:check-syntax-level
 
 ; (define language-levels '(core structured side-effecting advanced))
 
