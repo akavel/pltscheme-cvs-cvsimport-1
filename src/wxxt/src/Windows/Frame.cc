@@ -85,8 +85,6 @@ Pixmap plt_icon, plt_mask;
 // create and destroy frame
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxFrame, wxPanel)
-
 wxFrame::wxFrame(void) : wxPanel()
 {
     __type = wxTYPE_FRAME;

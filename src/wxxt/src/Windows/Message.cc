@@ -38,8 +38,6 @@
 // create and destroy message
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxMessage, wxItem)
-
 wxMessage::wxMessage(void) : wxItem()
 {
     __type = wxTYPE_MESSAGE;

@@ -42,8 +42,6 @@ char *wxchoice_unprotect_amp(char *s);
 // create and destroy button
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxChoice, wxItem)
-
 wxChoice::wxChoice(void) : wxItem()
 {
     __type = wxTYPE_CHOICE;

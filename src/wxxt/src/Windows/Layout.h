@@ -34,7 +34,6 @@ class wxWindow;
 class wxLayoutConstraints;
 
 class wxIndividualLayoutConstraint : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxIndividualLayoutConstraint)
 public:
     wxIndividualLayoutConstraint(void);
 
@@ -86,7 +85,6 @@ private:
 };
 
 class wxLayoutConstraints : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxLayoutConstraints)
 public:
     wxLayoutConstraints(void);
 

@@ -33,7 +33,6 @@
 class wxPanel;
 
 class wxGauge: public wxItem {
-DECLARE_DYNAMIC_CLASS(wxGauge)
 public:
     wxGauge(void);
     wxGauge(wxPanel *panel, char *label, int range,

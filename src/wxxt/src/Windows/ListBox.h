@@ -34,7 +34,6 @@ class wxPanel;
 class wxStringList;
 
 class wxListBox : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxListBox)
 public:
     wxListBox(void);
     wxListBox(wxPanel *panel, wxFunction func, char *title,
@@ -72,7 +71,6 @@ public:
     void  Set(int n, char *choices[]);
     void  Set(wxStringList *slist);
     void  SetClientData(int n, char *client_data);
-    void  SetClientData(char *data) { wxItem::SetClientData(data); }
     void  SetFirstItem(int n);
     void  SetFirstItem(char *s);
     void  SetSelection(int c, Bool select = TRUE);

@@ -36,9 +36,9 @@ class wxCursor;
 class wxKeyEvent;
 class wxMouseEvent;
 class wxPanel;
+class wxFrame;
 
 class wxCanvas : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxCanvas)
 public:
     wxCanvas(void); 
     wxCanvas(wxPanel *parent,

@@ -33,7 +33,6 @@
 class wxPanel;
 
 class wxSlider : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxSlider)
 public:
     wxSlider(void);
     wxSlider(wxPanel *panel, wxFunction func, char *label,

@@ -52,8 +52,6 @@ static XFontStruct *wxLoadQueryNearestFont(int point_size, int fontid,
 					   int style, int weight, 
 					   Bool underlined);
 
-IMPLEMENT_DYNAMIC_CLASS(wxFont, wxObject)
-IMPLEMENT_DYNAMIC_CLASS(wxFontList, wxList)
 
 //-----------------------------------------------------------------------------
 // wxFont create and destroy
@@ -71,10 +69,6 @@ wxFont::wxFont(void)
     underlined    = FALSE;
 
     scaled_xfonts = new wxList(wxKEY_INTEGER);
-
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheFontList->Append(this);
-#endif
 }
 
 wxFont::wxFont(int PointSize, int FontIdOrFamily, int Style, int Weight,
@@ -89,10 +83,6 @@ wxFont::wxFont(int PointSize, int FontIdOrFamily, int Style, int Weight,
     point_size    = PointSize;
     underlined    = Underlined;
     scaled_xfonts = new wxList(wxKEY_INTEGER);
-
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheFontList->Append(this);
-#endif
 }
 
 wxFont::wxFont(int PointSize, const char *Face, int Family, int Style, 
@@ -107,10 +97,6 @@ wxFont::wxFont(int PointSize, const char *Face, int Family, int Style,
     point_size    = PointSize;
     underlined    = Underlined;
     scaled_xfonts = new wxList(wxKEY_INTEGER);
-
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheFontList->Append(this);
-#endif
 }
 
 wxFont::~wxFont(void)
@@ -123,9 +109,6 @@ wxFont::~wxFont(void)
 	node = next;
     }
     delete scaled_xfonts;
-#if !WXGARBAGE_COLLECTION_ON
-    wxTheFontList->DeleteObject(this);
-#endif
 }
 
 char *wxFont::GetFaceString(void)

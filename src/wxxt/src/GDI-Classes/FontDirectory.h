@@ -33,7 +33,6 @@
 
 class wxFontNameDirectory : public wxObject
 {
-  DECLARE_DYNAMIC_CLASS(wxFontNameDirectory)
   class wxHashTable *table;
   int nextFontId;
  public:

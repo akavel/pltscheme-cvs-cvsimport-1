@@ -33,7 +33,6 @@
 class wxBitmap;
 
 class wxMemoryDC : public wxCanvasDC {
-DECLARE_DYNAMIC_CLASS(wxMemoryDC)
 public:
     wxMemoryDC(Bool read_only = 0);
     ~wxMemoryDC(void);

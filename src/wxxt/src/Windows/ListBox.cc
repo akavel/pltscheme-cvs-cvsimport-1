@@ -49,8 +49,6 @@ char *wxchoice_unprotect_amp(char *s);
 // create and destroy wxListBox
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxListBox, wxItem)
-
 wxListBox::wxListBox(void) : wxItem()
 {
     __type = wxTYPE_LIST_BOX;

@@ -35,7 +35,6 @@ class wxPanel;
 
 // Choice item
 class wxChoice : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxChoice)
 public:
     wxChoice(void);
     wxChoice(wxPanel *panel, wxFunction func, char *label,

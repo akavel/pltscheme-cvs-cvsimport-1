@@ -49,7 +49,6 @@ typedef void (*wxFunction)(wxObject&, wxCommandEvent&);
 typedef void *wxMenuItem;
 
 class wxMenu : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxMenu)
 public:
     wxMenu(char *title=NULL, wxFunction func=NULL);
     ~wxMenu(void);

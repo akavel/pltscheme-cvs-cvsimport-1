@@ -36,7 +36,6 @@ Bool  wxSubType(WXTYPE type1, WXTYPE type2);
 char  *wxGetTypeName(WXTYPE type);
 
 class wxTypeDef : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxTypeDef)
 public:
     inline wxTypeDef(void) : wxObject(FALSE)  { name = NULL; __type = wxTYPE_TYPEDEF; }
     inline ~wxTypeDef(void)  { if (name) delete name; }
@@ -54,7 +53,6 @@ private:
 };
 
 class wxTypeTree : public wxHashTable {
-DECLARE_DYNAMIC_CLASS(wxTypeTree)
 public:
     wxTypeTree(void);
     ~wxTypeTree(void);

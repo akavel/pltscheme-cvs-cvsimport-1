@@ -33,10 +33,9 @@
 class wxFrame;
 
 class wxApp : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxApp)
 public:
     // functions
-    wxApp(wxlanguage_t language = wxLANGUAGE_DEFAULT);
+    wxApp();
 
     virtual void    Dispatch(void);
             Bool    Initialized(void) { return initialized; };

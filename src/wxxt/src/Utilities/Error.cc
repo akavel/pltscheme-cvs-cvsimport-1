@@ -27,7 +27,7 @@
 
 #include <stdarg.h>
 
-void wxDebugMsg(const char *fmt, ...)
+void wxDebugMsg(const char *WXUNUSED(fmt), ...)
 {
 #if 0
     if (!wxAPP_DEBUGOUTPUT)

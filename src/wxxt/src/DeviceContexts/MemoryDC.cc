@@ -32,8 +32,6 @@
 #define  Uses_wxMemoryDC
 #include "wx.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxMemoryDC, wxCanvasDC)
-
 wxMemoryDC::wxMemoryDC(Bool ro) : wxCanvasDC()
 {
     __type = wxTYPE_DC_MEMORY;

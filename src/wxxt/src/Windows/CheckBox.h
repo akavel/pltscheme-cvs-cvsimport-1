@@ -34,7 +34,6 @@ class wxBitmap;
 class wxPanel;
 
 class wxCheckBox: public wxItem {
-DECLARE_DYNAMIC_CLASS(wxCheckBox)
 public:
     wxCheckBox(void);
     ~wxCheckBox(void);

@@ -34,7 +34,6 @@ class wxBitmap;
 class wxPanel;
 
 class wxRadioBox : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxRadioBox)
 public:
     wxRadioBox(void);
     wxRadioBox(wxPanel *panel, wxFunction func, char *label,

@@ -60,7 +60,6 @@ class wxMouseEvent;
 class wxPanel;
 
 class wxWindow : public wxEvtHandler {
-DECLARE_DYNAMIC_CLASS(wxWindow)
 public:
     wxWindow(void);
     ~wxWindow(void);

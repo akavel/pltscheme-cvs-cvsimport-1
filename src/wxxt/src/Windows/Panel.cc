@@ -43,8 +43,6 @@
 // wxPanel create and destroy
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxPanel, wxWindow)
-
 wxPanel::wxPanel(void) : wxWindow()
 {
     __type = wxTYPE_PANEL;

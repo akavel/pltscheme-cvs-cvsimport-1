@@ -31,7 +31,6 @@
 #endif
 
 class wxDialogBox : public wxFrame {
-DECLARE_DYNAMIC_CLASS(wxDialogBox)
 public:
     wxDialogBox(void);
     wxDialogBox(wxFrame *parent, char *title, Bool modal=FALSE,

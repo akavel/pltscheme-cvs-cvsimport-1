@@ -33,8 +33,6 @@
 #   include "wx.h"
 #endif // #ifndef wx_xt
 
-IMPLEMENT_ABSTRACT_CLASS(wxEvent, wxObject)
-
 wxEvent::wxEvent(void) : wxObject(WXGC_NO_CLEANUP)
 {
   eventType = 0;

@@ -38,8 +38,6 @@
 // create and destroy button
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxCheckBox, wxItem)
-
 wxCheckBox::wxCheckBox(void) : wxItem()
 {
     __type = wxTYPE_CHECK_BOX;

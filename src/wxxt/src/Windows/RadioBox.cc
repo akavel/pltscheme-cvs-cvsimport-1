@@ -42,8 +42,6 @@
 // create and destroy button
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxRadioBox, wxItem)
-
 wxRadioBox::wxRadioBox(void) : wxItem()
 {
     __type = wxTYPE_RADIO_BOX;

@@ -33,8 +33,6 @@
 #define  Uses_wxTypeTree
 #include "wx.h"
 
-IMPLEMENT_DYNAMIC_CLASS(wxDialogBox, wxFrame)
-
 wxDialogBox::wxDialogBox(void) : wxFrame()
 {
   __type = wxTYPE_DIALOG_BOX;

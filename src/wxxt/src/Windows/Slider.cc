@@ -38,8 +38,6 @@
 // create and destroy button
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxSlider, wxItem)
-
 wxSlider::wxSlider(void) : wxItem()
 {
     __type = wxTYPE_SLIDER;

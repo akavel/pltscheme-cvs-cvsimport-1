@@ -36,7 +36,6 @@ class wxMessage;
 class wxToolBar;
 
 class wxFrame : public wxPanel {
-DECLARE_DYNAMIC_CLASS(wxFrame)
 public:
     wxFrame(void);
     wxFrame(wxFrame *parent, char *title, int x=-1, int y=-1,

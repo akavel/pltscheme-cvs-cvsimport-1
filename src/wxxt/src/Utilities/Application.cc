@@ -42,14 +42,6 @@ void wxExit(void)
 
 void wxFlushEvents(void)
 {
-#if 0
-    XSync(wxAPP_DISPLAY, FALSE);
-    XEvent event;
-    while (wxTheApp->Pending()) {
-      XFlush(wxAPP_DISPLAY);
-      wxTheApp->Dispatch();
-    }
-#endif
 }
 
 //-----------------------------------------------------------------------------

@@ -38,8 +38,6 @@
 // wxLayoutConstraint
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxLayoutConstraints, wxObject)
-
 wxLayoutConstraints::wxLayoutConstraints(void)
 : wxObject(FALSE)
 {
@@ -94,8 +92,6 @@ void wxLayoutConstraints::UnDone(void)
 //-----------------------------------------------------------------------------
 // wxIndividualLayoutConstraint
 //-----------------------------------------------------------------------------
-
-IMPLEMENT_DYNAMIC_CLASS(wxIndividualLayoutConstraint, wxObject)
 
 wxIndividualLayoutConstraint::wxIndividualLayoutConstraint(void)
 {

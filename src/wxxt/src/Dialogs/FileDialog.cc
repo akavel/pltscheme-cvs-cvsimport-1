@@ -23,12 +23,6 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <limits.h> // for PATH_MAX
-#include <sys/types.h>
-#include <dirent.h> // for opendir, readdir, etc.
-#include <unistd.h> // for getcwd
-#include <string.h>
-
 #include "wx.h"
 
 extern char *wxsFileDialog(char *message, char *default_path, 

@@ -40,17 +40,11 @@ public:
     void  Stop(void);
     // called on timeout
     virtual void Notify(void) {}
-#if 0
-private:
-#endif
 #   ifdef Have_Xt_Types
     static void EventCallback(wxTimer *, XtIntervalId *);
 #   endif
 
     int           interval;
-#if 0
-    unsigned long id;
-#endif
     Bool          one_shot;
 
     /* MrEd stuff: */

@@ -32,8 +32,6 @@ wxPopupEvent::wxPopupEvent() : wxCommandEvent(wxEVENT_TYPE_MENU_SELECT)
   __type = wxTYPE_POPUP_EVENT;
 }
 
-IMPLEMENT_DYNAMIC_CLASS(wxCommandEvent, wxEvent)
-
 wxCommandEvent::wxCommandEvent(WXTYPE commandType)
 {
   eventType = commandType;
@@ -43,8 +41,6 @@ wxCommandEvent::wxCommandEvent(WXTYPE commandType)
  * Mouse events
  *
  */
-
-IMPLEMENT_DYNAMIC_CLASS(wxMouseEvent, wxEvent)
 
 wxMouseEvent::wxMouseEvent(WXTYPE commandType)
 {
@@ -263,9 +259,7 @@ void wxMouseEvent::Position(float *xpos, float *ypos)
  * Keyboard events
  *
  */
-
-IMPLEMENT_DYNAMIC_CLASS(wxKeyEvent, wxEvent)
-
+ 
 wxKeyEvent::wxKeyEvent(WXTYPE type)
 {
   eventType = type;

@@ -36,7 +36,6 @@ class wxPanel;
 class wxMenu;
 
 class wxMenuBar : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxMenuBar)
 public:
     wxMenuBar(void);
     wxMenuBar(int n, wxMenu *menus[], char *titles[]);

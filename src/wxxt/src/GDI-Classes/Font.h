@@ -33,7 +33,6 @@
 extern char *wx_font_spec[];
 
 class wxFont : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxFont)
 public:
     wxFont(void);
     /* MATTHEW */
@@ -68,7 +67,6 @@ private:
 };
 
 class wxFontList : public wxObject {
-DECLARE_DYNAMIC_CLASS(wxFontList)
    wxChildList *list;
 public:
     wxFontList(void);

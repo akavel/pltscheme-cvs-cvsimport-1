@@ -34,7 +34,6 @@ class wxBitmap;
 class wxPanel;
 
 class wxButton : public wxItem {
-DECLARE_DYNAMIC_CLASS(wxButton)
 public:
     wxButton(void);
     ~wxButton(void);

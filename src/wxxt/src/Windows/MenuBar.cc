@@ -39,8 +39,6 @@
 // constructor and destructor
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxMenuBar, wxItem)
-
 wxMenuBar::wxMenuBar(void) : wxItem()
 {
     __type = wxTYPE_MENU_BAR;

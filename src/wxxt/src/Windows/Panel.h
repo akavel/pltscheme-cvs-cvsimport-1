@@ -37,7 +37,6 @@ class wxFont;
 class wxItem;
 
 class wxPanel : public wxWindow {
-DECLARE_DYNAMIC_CLASS(wxPanel)
 public:
     wxPanel(void); 
     wxPanel(wxPanel *parent, int x=-1, int y=-1, int width=-1, int height=-1,

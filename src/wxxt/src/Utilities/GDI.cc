@@ -46,8 +46,3 @@ void wxDisplaySize(int *width, int *height)
       *height = 768;
   }
 }
-
-void wxSetCursor(wxCursor* WXUNUSED(cursor))
-{
-}
-

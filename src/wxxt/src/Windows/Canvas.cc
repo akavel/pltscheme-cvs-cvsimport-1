@@ -40,8 +40,6 @@
 // create and destroy canvas
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxCanvas, wxItem)
-
 wxCanvas::wxCanvas(void) : wxItem()
 {
     __type = wxTYPE_CANVAS;

@@ -39,8 +39,6 @@
 // constructor and destructor
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxMenu, wxObject)
-
 wxMenu::wxMenu(char *_title, wxFunction _func)
 {
     __type = wxTYPE_MENU;

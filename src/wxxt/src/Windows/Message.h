@@ -34,7 +34,6 @@ class wxBitmap;
 class wxPanel;
 
 class wxMessage: public wxItem {
-DECLARE_DYNAMIC_CLASS(wxMessage)
 public:
     wxMessage(void);
     ~wxMessage(void);

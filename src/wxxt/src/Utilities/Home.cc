@@ -30,13 +30,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-char *wxGetHomeDir(char *dest)
-{
-    char *ptr = wxGetUserHome(NULL);
-    strcpy(dest, ptr && *ptr ? ptr : "/");
-    return dest;
-}
-
 char *wxGetUserHome(const char *user)
 {
     struct passwd *who = NULL;

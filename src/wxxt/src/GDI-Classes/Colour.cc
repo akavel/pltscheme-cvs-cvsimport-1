@@ -34,10 +34,6 @@
 
 #include <ctype.h>
 
-IMPLEMENT_DYNAMIC_CLASS(wxColour, wxObject)
-IMPLEMENT_DYNAMIC_CLASS(wxColourDatabase, wxList)
-IMPLEMENT_DYNAMIC_CLASS(wxColourMap, wxObject)
-
 // shift between wxWindows RGB- and XColor RGB-values
 // (necessary because the values specify an intensity)
 #define SHIFT (8*(sizeof(short int)-sizeof(char)))

@@ -84,8 +84,6 @@ Pixmap* hatch_bitmaps = NULL;
 // create and destroy wxWindowDC
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxWindowDC, wxDC)
-
 wxWindowDC::wxWindowDC(void) : wxDC()
 {
     __type = wxTYPE_DC_CANVAS;

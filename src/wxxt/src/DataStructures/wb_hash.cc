@@ -34,8 +34,6 @@
 #include <string.h>
 #include <stdarg.h>
 
-IMPLEMENT_DYNAMIC_CLASS(wxHashTable, wxObject)
-
 wxHashTable::wxHashTable (int the_key_type, int size)
 {
   __type = wxTYPE_HASH_TABLE;
@@ -357,11 +355,8 @@ void wxHashTable::Clear (void)
 
 
 
-#if WXGARBAGE_COLLECTION_ON
-
 /* This is a hash table implementation which does not lock the objects
    from garbage collection.
-   By Matthew Flatt.
  */
 
 typedef struct Bucket {
@@ -375,8 +370,8 @@ typedef struct Bucket {
 #define FILL_FACTOR 2 /* inverted max fraction of hash table implying reash */
 
 #ifdef USE_SENORA_GC
-#define GC_MALLOC_ATOMIC GC_malloc_atomic
-#define GC_FREE(x) /* empty */
+# define GC_MALLOC_ATOMIC GC_malloc_atomic
+# define GC_FREE(x) /* empty */
 #endif
 
 wxNonlockingHashTable::wxNonlockingHashTable()
@@ -463,6 +458,4 @@ void wxNonlockingHashTable::DeleteObject(wxObject *o)
     if (buckets[i].widget && buckets[i].object == o)
       Delete(buckets[i].widget);
 }
-
-#endif
 

@@ -104,16 +104,8 @@ void wxInitStandardTypes(void)
 }
 
 //-----------------------------------------------------------------------------
-// wxTypeDef implementation
-//-----------------------------------------------------------------------------
-
-IMPLEMENT_DYNAMIC_CLASS(wxTypeDef, wxObject)
-
-//-----------------------------------------------------------------------------
 // wxTypeTree implementation
 //-----------------------------------------------------------------------------
-
-IMPLEMENT_DYNAMIC_CLASS(wxTypeTree, wxHashTable)
 
 wxTypeTree::wxTypeTree(void) : wxHashTable(wxKEY_INTEGER)
 {

@@ -38,8 +38,6 @@
 // create and destroy gauge
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxGauge, wxItem)
-
 wxGauge::wxGauge(void) : wxItem()
 {
     __type = wxTYPE_GAUGE;

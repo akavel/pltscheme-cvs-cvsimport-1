@@ -37,8 +37,6 @@
 // wxItem constructor
 //-----------------------------------------------------------------------------
 
-IMPLEMENT_DYNAMIC_CLASS(wxItem, wxWindow)
-
 wxItem::wxItem(void) : wxWindow()
 { 
     __type = wxTYPE_ITEM;

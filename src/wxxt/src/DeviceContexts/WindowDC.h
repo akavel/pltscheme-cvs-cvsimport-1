@@ -93,7 +93,6 @@ class wxWindowDC_Xintern;
 #endif
 
 class wxWindowDC : public wxDC {
-DECLARE_DYNAMIC_CLASS(wxWindowDC)
 public:
     wxWindowDC(void);
     ~wxWindowDC(void);
