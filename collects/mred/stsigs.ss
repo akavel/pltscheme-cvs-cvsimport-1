@@ -37,7 +37,12 @@
    (open mred:test:run-internal^)))
 
 (define-signature mred:test:primitives^
-  (button-push
+  (find-object
+   find-button
+   find-check-box
+   button-push
+   check-box-true
+   check-box-false
    keystroke  
    menu-select
    mouse-click
