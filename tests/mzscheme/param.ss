@@ -51,7 +51,6 @@
       x)))
 
 (define main-cust (current-custodian))
-(define main-executor (current-will-executor))
 
 (define zero-arg-proc (lambda () #t))
 (define one-arg-proc (lambda (x) #t))
@@ -201,14 +200,6 @@
 		      exn:user?
 		      (list "bad setting" zero-arg-proc one-arg-proc three-arg-proc))
 
-		(list debug-info-handler
-		      (list (debug-info-handler)
-			    (lambda () 'boo!))
-		      `(with-handlers ([(lambda (x) (not (eq? (exn-debug-info x) 'boo!))) void])
-			   (/ 0))
-		      exn:application:divide-by-zero?
-		      (list "bad setting" one-arg-proc two-arg-proc))
-
 		(list break-enabled
 		      (list #t #f)
 		      '(let ([cont? #f])
@@ -222,7 +213,6 @@
 			   (error 'break-enabled)))
 		      exn:user?
 		      #f)
-		; exception-break-enabled: still needs test!
 
 		(list current-print
 		      (list (current-print)
@@ -305,13 +295,6 @@
 		      exn:misc?
 		      (list "bad setting"))
 
-		(list current-will-executor
-		      (list main-executor (make-will-executor))
-		      '(unless (eq? main-executor (current-will-executor))
-			       (error 'will-exec))
-		      exn:user?
-		      (list "bad setting"))
-
 		(list exit-handler
 		      (list void (lambda (x) (error 'exit-handler)))
 		      '(exit)
@@ -346,8 +329,29 @@
 
 (define test-param3 (make-parameter 'hi))
 (test 'hi test-param3)
+(test 'hi 'thread-param
+      (let ([v #f])
+	(thread-wait (thread
+		      (lambda ()
+			(set! v (test-param3)))))
+	v))
 (test (void) test-param3 'bye)
 (test 'bye test-param3)
+(test 'bye 'thread-param
+      (let* ([v #f]
+	     [r (make-semaphore)]
+	     [s (make-semaphore)]
+	     [t (thread
+		 (lambda ()
+		   (semaphore-post r)
+		   (semaphore-wait s)
+		   (set! v (test-param3))))])
+	(semaphore-wait r)
+	(test-param3 'bye-again)
+	(semaphore-post s)
+	(thread-wait t)
+	v))
+(test 'bye-again test-param3)
 
 (test #f parameter? add1)
 
@@ -376,6 +380,7 @@
 (error-test '(parameter-procedure=? read-accept-compiled 5))
 (error-test '(parameter-procedure=? 5 read-accept-compiled))
 (arity-test parameter-procedure=? 2 2)
+(arity-test parameter? 1 1)
 
 ; Test current-library-collection-paths?
 ; Test require-library-use-compiled?
