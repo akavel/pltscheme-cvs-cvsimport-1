@@ -1,6 +1,6 @@
 
-(module slide-code "slideshow.ss"
-  (require "code.ss"
+(module code "slideshow.ss"
+  (require (lib "code.ss" "texpict")
 	   (lib "unitsig.ss"))
 
   (define-values/invoke-unit/sig code^
