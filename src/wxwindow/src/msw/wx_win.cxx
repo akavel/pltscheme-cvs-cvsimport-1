@@ -1694,6 +1694,8 @@ void wxWnd::DestroyWindow(void)
   wxwmDestroyWindow(oldHandle);
 }
 
+extern HICON wxSTD_FRAME_ICON;
+
 void wxWnd::Create(wxWnd *parent, char *wclass, wxWindow *wx_win, char *title,
 		   int x, int y, int width, int height,
 		   DWORD style, char *dialog_template, DWORD extendedStyle)
@@ -1763,7 +1765,14 @@ void wxWnd::Create(wxWnd *parent, char *wclass, wxWindow *wx_win, char *title,
 	 if (handle == 0)
 	   MessageBox(NULL, "Can't find dummy dialog template!\nCheck resource include path for finding wx.rc.",
 		      "wxWindows Error", MB_ICONEXCLAMATION | MB_OK);
-	 else MoveWindow(handle, x1, y1, w2, h2, FALSE);
+	 else
+	   MoveWindow(handle, x1, y1, w2, h2, FALSE);
+
+	 if (!parent) {
+	   /* Install PLT icon: */
+	   if (wxTheApp->wx_frame)
+	     SendMessage(handle, WM_SETICON, (WORD)TRUE, (DWORD)wxSTD_FRAME_ICON);
+	 }
   } else {
     handle = wxwmCreateWindowEx(extendedStyle, wclass,
 				title,
