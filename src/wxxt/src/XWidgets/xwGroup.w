@@ -2,7 +2,6 @@
 # Author: Bert Bos <bert@let.rug.nl>
 # Version: 1.0 for FWF 3.53
 #
-# $Id$
 
 @CLASS XfwfGroup (XfwfRowCol)  @file=xwGroup
 
