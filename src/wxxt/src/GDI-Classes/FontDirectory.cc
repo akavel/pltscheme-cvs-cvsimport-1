@@ -552,7 +552,7 @@ void wxFontNameDirectory::SetScreenName(int fontid, int weight, int style, char 
   wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
   
   if (!item)
-    return NULL;
+    return;
 
   int wt = WCoordinate(weight), st = SCoordinate(style);
 
@@ -598,7 +598,7 @@ void wxFontNameDirectory::SetPostScriptName(int fontid, int weight, int style, c
   wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
 
   if (!item)
-    return NULL;
+    return;
 
   int wt = WCoordinate(weight), st = SCoordinate(style);
 
@@ -626,7 +626,7 @@ void wxFontNameDirectory::SetAFMName(int fontid, int weight, int style, char *s)
   wxFontNameItem *item = (wxFontNameItem *)table->Get(fontid);
 
   if (!item)
-    return NULL;
+    return;
 
   int wt = WCoordinate(weight), st = SCoordinate(style);
 
