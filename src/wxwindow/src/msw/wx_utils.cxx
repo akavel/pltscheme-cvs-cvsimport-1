@@ -651,29 +651,28 @@ Bool wxGetResource(const char *section, const char *entry, char **value, const c
   if (!file)
     file = wxUserResourceFile;
 
-
-
-
-
   wxBuffer[0] = 0;
 
-  if (file)
-  {
+  if (file) {
     int n = GetPrivateProfileString((LPCSTR)section, (LPCSTR)entry, (LPCSTR)defunkt,
                                     (LPSTR)wxBuffer, 1000, (LPCSTR)file);
     if (n == 0 || strcmp(wxBuffer, defunkt) == 0)
-     return FALSE;
+      return FALSE;
   }
-  
+
+  /* No longer using WIN.INI: */
+#if 0  
   if (!no_file) {
     int n = GetProfileString((LPCSTR)section, (LPCSTR)entry, (LPCSTR)defunkt,
-                                    (LPSTR)wxBuffer, 1000);
+			     (LPSTR)wxBuffer, 1000);
     if (n == 0 || strcmp(wxBuffer, defunkt) == 0)
       return FALSE;
   }
+#endif
+
   if (*value) delete[] (*value);
-      *value = copystring(wxBuffer);
-      return TRUE;
+  *value = copystring(wxBuffer);
+  return TRUE;
 }
 
 Bool wxGetResource(const char *section, const char *entry, float *value, const char *file)
