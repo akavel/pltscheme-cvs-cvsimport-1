@@ -101,7 +101,8 @@ checks the |direction| resource.
 @proc destroy
 {
    if ($timer) {
-      wxRemoveTimeOut($timer);
+      if ($timer != 0x1)
+        wxRemoveTimeOut($timer);
       $timer = 0;
    }
    if ($arrowgc) XtReleaseGC($, $arrowgc); $arrowgc = NULL;
