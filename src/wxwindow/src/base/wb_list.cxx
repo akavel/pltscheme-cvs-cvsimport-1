@@ -806,7 +806,7 @@ void wxChildList::Show(wxObject *object, int show)
     if (nodes[i] && (nodes[i]->Data() == object)) {
       wxChildNode *node = nodes[i];
 
-      if (show) {
+      if (show > 0) {
 	if (node->strong)
 	  return;
 	node->strong = object;
@@ -816,6 +816,8 @@ void wxChildList::Show(wxObject *object, int show)
 	  return;
 	node->weak = new WXGC_ATOMIC wxObject*;
 	*node->weak = object;
+	if (show < 0)
+	  GC_general_register_disappearing_link((void **)node->weak, object);
 	node->strong = NULL;
       }
       return;

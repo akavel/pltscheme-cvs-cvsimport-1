@@ -791,7 +791,7 @@ wxPenList::~wxPenList(void)
 void wxPenList::AddPen (wxPen * pen)
 {
   list->Append(pen); 
-  list->Show(pen, FALSE); /* so it can be collected */
+  list->Show(pen, -1); /* so it can be collected */
 }
 
 wxPen *wxPenList::FindOrCreatePen (wxColour * colour, int width, int style)
@@ -847,7 +847,7 @@ wxBrushList::~wxBrushList(void)
 void wxBrushList::AddBrush(wxBrush *Brush) 
 { 
   list->Append(Brush); 
-  list->Show(Brush, FALSE); /* so it can be collected */
+  list->Show(Brush, -1); /* so it can be collected */
 } 
 
 
@@ -905,7 +905,7 @@ wxFontList::~wxFontList (void)
 void wxFontList::AddFont (wxFont * font)
 {
   list->Append(font);
-  list->Show(font, FALSE); /* so it can be collected */
+  list->Show(font, -1); /* so it can be collected */
 }
 
 wxFont *wxFontList::
