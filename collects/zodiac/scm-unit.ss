@@ -1081,19 +1081,19 @@
       (lambda (expr env attributes vocab)
 	(let loop ((r (resolve expr env vocab)))
 	  (cond
-	    ((or (macro-resolution? r) (micro-resolution? r))
-	      (if (check-export expr attributes)
+	   ((or (macro-resolution? r) (micro-resolution? r))
+	    (if (check-export expr attributes)
 		(loop top-level-resolution)
 		(static-error expr
-		  "Invalid use of keyword ~a" (z:symbol-orig-name expr))))
-	    ((lexical-binding? r)
-	      (create-lexical-varref r expr))
-	    ((top-level-resolution? r)
-	     (process-unit-top-level-resolution expr attributes))
-	    (else
-	      (internal-error expr "Invalid resolution in unit delta: ~s"
-		r)))))))
-
+			      "Invalid use of keyword ~a" (z:symbol-orig-name expr))))
+	   ((lexical-binding? r)
+	    (create-lexical-varref r expr))
+	   ((top-level-resolution? r)
+	    (process-unit-top-level-resolution expr attributes))
+	   (else
+	    (internal-error expr "Invalid resolution in unit delta: ~s"
+			    r)))))))
+  
   ; --------------------------------------------------------------------
 
   (include "scm-hanc.ss")
