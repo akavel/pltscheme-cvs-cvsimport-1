@@ -318,16 +318,18 @@
 					 (lambda ()
 					   (internal-error
 					    entry
-					    "Can't find box in check-unresolved-vars"))))])
+					    "Can't find box in get-unresolved-vars"))))])
 			(set-top-level-varref/bind-slot!
 			 (unresolved-varref u)
 			 box)))
+		    (loop (cdr remaining) unr))
+		  ((import-id? entry)
 		    (loop (cdr remaining) unr))
 		  ((not entry)
 		    (loop (cdr remaining) (cons u unr)))
 		  (else
 		    (internal-error entry
-		      "Invalid in check-unresolved-vars"))))))))))
+		      "Invalid in get-unresolved-vars"))))))))))
 
   ; ----------------------------------------------------------------------
 
@@ -784,7 +786,6 @@
 				   (expand-expr v env
 				     attributes vocab))
 			      vars)))
-		    (pretty-print vars)
 		    (set-top-level-status attributes top-level?)
 		    (create-invoke-open-unit-form
 		      expr-expr

@@ -1706,7 +1706,7 @@
 				    env attributes vocab)
 				  parsed->raw
 				  kwd-symbol))
-			      expr '(-1))
+			      expr)
 			    env attributes vocab))))
 		    (else
 		      (static-error expr
