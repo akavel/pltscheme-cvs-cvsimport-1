@@ -77,7 +77,8 @@
    multi-text%
    canvas%
    media-canvas%
-   text-window%))
+   text-window%
+   canvas-message%))
 
 (define-signature mred:hyper-loader^
   (open-hyper-make
@@ -140,7 +141,8 @@
    multi-text%
    canvas%
    media-canvas%
-   text-window%))
+   text-window%
+   canvas-message%))
 
 (define-signature mred:container-panels^
   (debug-borders
