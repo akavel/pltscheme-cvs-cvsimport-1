@@ -172,6 +172,7 @@
         [($ var-ref var)
          (values e
                  (lookup tenv var
+                         eq?
                          (lambda ()
                            (raise (make-exn:cj:elab
                                    "unbound identifier"
@@ -291,7 +292,13 @@
   ;; elab-super :: Program (Env Type) Method-Name (Listof Expr) -> Expr Type
   (define elab-super
     (lambda (p tenv md args)
-      (let* ([static-type (lookup tenv 'this (lambda () (error 'elab-super)))]
+      (let* ([static-type (lookup tenv 'this eq?
+                                  (lambda ()
+                                    (raise
+                                     (make-exn:cj:elab
+                                      "internal error: this unbound"
+                                      (current-continuation-marks)
+                                      (make-super md args)))))]
              [static-class (find-class p static-type)]
              [superclass (class-superclass static-class)]
              ;; superclass can only be null if static-type is Object, which
