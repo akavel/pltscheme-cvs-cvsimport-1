@@ -49,6 +49,11 @@ wxMemoryDC::wxMemoryDC(Bool ro) : wxCanvasDC()
 
 wxMemoryDC::~wxMemoryDC(void)
 {
+  if (selected) {
+    selected->selectedIntoDC = 0;
+    selected->selectedTo = NULL;
+    selected = NULL;
+  }
 }
 
 #define FreeGetPixelCache() if (X->get_pixel_image_cache) DoFreeGetPixelCache()
@@ -58,6 +63,7 @@ void wxMemoryDC::SelectObject(wxBitmap *bitmap)
   if (bitmap == selected)
     return;
 
+  EndSetPixel();
   FreeGetPixelCache();
 
   if (!read_only) {
@@ -65,8 +71,10 @@ void wxMemoryDC::SelectObject(wxBitmap *bitmap)
     if (bitmap && bitmap->selectedIntoDC)
       bitmap = NULL;
 
-    if (selected)
+    if (selected) {
       selected->selectedIntoDC = 0;
+      selected->selectedTo = NULL;
+    }
   }
 
     // free all associated GCs
@@ -86,8 +94,10 @@ void wxMemoryDC::SelectObject(wxBitmap *bitmap)
 	if (bitmap->GetColourMap() != current_cmap)
 	    SetColourMap(bitmap->GetColourMap());
 	selected = bitmap;
-	if (!read_only)
+	if (!read_only) {
 	  bitmap->selectedIntoDC = -1;
+	  selected->selectedTo = this;
+	}
     } else {
 	DRAWABLE = 0;
 	WIDTH = HEIGHT = 0;

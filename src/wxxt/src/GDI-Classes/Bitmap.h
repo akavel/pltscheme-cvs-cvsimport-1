@@ -40,6 +40,7 @@ class wxBitmap_Xintern;
 class wxCursor_Xintern;
 
 class wxItem;
+class wxMemoryDC;
 
 class wxBitmap : public wxObject { // bitmap representation
 DECLARE_DYNAMIC_CLASS(wxBitmap)
@@ -76,8 +77,8 @@ protected:
     wxColourMap      *cmap;
 
 public:
-    /* MATTHEW: [4] */
-    int selectedIntoDC; /* safety */
+    int selectedIntoDC;
+    wxMemoryDC *selectedTo;
 };
 
 class wxCursor : public wxBitmap { // cursor representation
