@@ -182,11 +182,11 @@ wxbItem::wxbItem // Constructor (given objectType; i.e., menu or menuBar)
 		char*		windowName
 	) :
 		wxWindow ( windowName),
-		backColour (NULL),
-		buttonColour (NULL),
 		buttonFont (NULL),
-		labelColour (NULL),
 		labelFont (NULL),
+		backColour (NULL),
+		labelColour (NULL),
+		buttonColour (NULL),
 		labelPosition (wxHORIZONTAL)
 {
 }
@@ -449,8 +449,6 @@ void wxbMenuBar::Append (wxMenu * menu, char *title)
 
 Bool wxbMenuBar::Delete(wxMenu * menu, int i)
 {
-  int j;
-
   if (menu) {
     for (i = 0; i < n; i++) {
       if (menus[i] == menu)
@@ -998,9 +996,9 @@ wxbMenu::wxbMenu // Constructor (given Title)
 	) :
 		wxItem( windowName),
 		no_items (0),
-		menu_bar (NULL),
+		title (macCopyString(Title)),
 		top_level_menu (NULL), // Kludge: will be set in wxMenu constructor
-		title (macCopyString(Title))
+		menu_bar (NULL)
 {
 	__type == wxTYPE_MENU;
 }

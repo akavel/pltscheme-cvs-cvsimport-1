@@ -82,12 +82,12 @@ wxbFrame::wxbFrame (char* windowName, wxScreen* parentScreen,
 		int x, int y, int width, int height, long style)
 	:
 		wxWindow ( windowName, parentScreen, x, y, width, height, style),
-		frame_type (style & (wxSDI | wxMDI_PARENT | wxMDI_CHILD)),
-		icon (NULL),
 		modal_showing (FALSE),
-		nb_status (0),
+		wx_menu_bar (NULL),
+		icon (NULL),
 		status_line_exists (FALSE),
-		wx_menu_bar (NULL)
+		frame_type (style & (wxSDI | wxMDI_PARENT | wxMDI_CHILD)),
+		nb_status (0)
 {
   __type = wxTYPE_FRAME;
   
