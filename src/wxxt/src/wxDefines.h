@@ -357,8 +357,8 @@ enum {
     wxEVENT_TYPE_LEAVE_WINDOW         = 0x3005,
 };
 
-#define WXSCROLLPOS(event)	event.commandInt
-#define WXSCROLLORIENT(event)	event.extraLong
+#define WXSCROLLPOS(event)	event.moveType
+#define WXSCROLLORIENT(event)	event.direction
 
 // defines for wxFont
 //--- default for all others

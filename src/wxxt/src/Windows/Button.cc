@@ -79,6 +79,8 @@ Bool wxButton::Create(wxPanel *panel, wxFunction function, char *label,
 	 XtNforeground,  label_fg->GetPixel(cmap),
 	 XtNfont,        label_font->GetInternalFont(),
 	 XtNshrinkToFit, (width < 0 || height < 0),
+	 XtNframeWidth,  style ? 2 : 0,
+	 XtNframeType,   XfwfSunken,
 	 NULL);
     // create widget
     X->handle = XtVaCreateManagedWidget
@@ -222,8 +224,6 @@ void wxButton::EventCallback(Widget WXUNUSED(w), XtPointer clientData,
 {
     wxButton       *button = (wxButton*)clientData;
     wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_BUTTON_COMMAND);
-
-    event->eventObject = button;
 
     button->ProcessCommand(*event);
 }

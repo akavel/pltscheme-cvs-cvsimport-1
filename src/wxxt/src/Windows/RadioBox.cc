@@ -438,7 +438,6 @@ Bool wxRadioBox::Show(int item, Bool show)
 
 void wxRadioBox::Command(wxCommandEvent &event)
 {
-  SetSelection(event.commandInt);
   ProcessCommand(event);
 }
 
@@ -468,9 +467,6 @@ void wxRadioBox::EventCallback(Widget WXUNUSED(w),
 {
     wxRadioBox     *radioBox = (wxRadioBox*)dclient;
     wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_RADIOBOX_COMMAND);
-
-    event->eventObject = radioBox;
-    event->commandInt  = long(dcall); // dcall == selection
 
     radioBox->ProcessCommand(*event);
 }

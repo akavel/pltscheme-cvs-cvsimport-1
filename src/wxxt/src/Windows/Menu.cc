@@ -414,10 +414,9 @@ void wxMenu::EventCallback(Widget WXUNUSED(w), XtPointer dclient, XtPointer dcal
       if (item->type == MENU_TOGGLE)
 	item->set = (!item->set);
       
-      wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_MENU_COMMAND);
+      wxPopupEvent *event = new wxPopupEvent();
       
-      event->eventObject = menu;
-      event->commandInt = item->ID;
+      event->menuId = item->ID;
 
       // call callback function
       if (menu->callback)

@@ -173,6 +173,7 @@ void wxMessage::SetAlignment(long alignment)
 
 void wxMessage::SetLabel(char *message)
 {
+  message = wxGetCtlLabel(message);
   if (!bm_label)
     XtVaSetValues(X->handle, XtNlabel, message, XtNbitmap, None, NULL);
 }

@@ -148,7 +148,6 @@ void wxSlider::SetValue(int new_value)
 
 void wxSlider::Command(wxCommandEvent &event)
 {
-  SetValue(event.commandInt);
   ProcessCommand(event);
 }
 
@@ -187,8 +186,6 @@ void wxSlider::EventCallback(Widget WXUNUSED(w),
 	XtVaSetValues(slider->X->handle, XtNlabel, tempstring, NULL);
 	// process event
 	wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_SLIDER_COMMAND);
-	event->eventObject = slider;
-	event->commandInt = new_value;
 	slider->ProcessCommand(*event);
     }
 }

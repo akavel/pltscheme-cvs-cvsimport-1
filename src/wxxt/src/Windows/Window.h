@@ -159,7 +159,7 @@ public:
     virtual void OnCommand(wxWindow& win, wxCommandEvent& event);
     virtual void OnEvent(wxMouseEvent& event);
     virtual void OnPaint(void);
-    virtual void OnScroll(wxCommandEvent& event);
+    virtual void OnScroll(wxScrollEvent& event);
     virtual Bool PreOnChar(wxWindow *, wxKeyEvent *);
     virtual Bool PreOnEvent(wxWindow *, wxMouseEvent *);
     // get the associated device context

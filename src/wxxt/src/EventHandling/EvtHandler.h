@@ -90,7 +90,7 @@ public:
     inline virtual void OnPaint(void) {};
     inline virtual void OnRightClick(int WXUNUSED(x), int WXUNUSED(y),
 				     int WXUNUSED(keys)) {};
-    inline virtual void OnScroll(wxCommandEvent& WXUNUSED(event)) {};
+    inline virtual void OnScroll(wxScrollEvent& WXUNUSED(event)) {};
     inline virtual void OnSelect(Bool WXUNUSED(select)) {};
     inline virtual void OnSetFocus(void) {};
     inline virtual void OnSize(int WXUNUSED(width), int WXUNUSED(height)) {};

@@ -66,7 +66,6 @@ public:
 private:
 #   ifdef Have_Xt_Types
     static void OnEventCallback(Widget, XtPointer, XtPointer);
-    static void OffEventCallback(Widget, XtPointer, XtPointer);
 #   endif
     wxBitmap *bm_label;
 };
