@@ -23,9 +23,9 @@
 	   (lib "etc.ss")
 	   "test-sig.ss")
 
-  (provide test@)
+  (provide framework:test@)
 
-  (define test@
+  (define framework:test@
 (unit/sig framework:test^
   (import [mred : mred^])
 
