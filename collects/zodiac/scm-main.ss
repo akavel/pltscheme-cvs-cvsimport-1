@@ -1334,17 +1334,6 @@
       (add-primitivized-macro-form 'let/ec scheme-vocabulary
 	(rewriter 'let/ec "let/ec"))))
 
-  (add-macro-form
-    'define-schema
-    scheme-vocabulary
-    (let* ((kwd '(define-schema))
-	    (in-pattern '(define-schema var exp))
-	    (out-pattern '(#%void))
-	    (m&e (pat:make-match&env in-pattern kwd)))
-      (lambda (expr env)
-	(or (pat:match-and-rewrite expr m&e out-pattern kwd env)
-	  (static-error expr "Malformed define-schema")))))
-
   (when (language>=? 'side-effecting)
     (add-primitivized-macro-form 'do scheme-vocabulary
       (let* ((in-kwd '())
