@@ -304,12 +304,6 @@
 				(static-error f
 				  "Library path ~s must be a relative path"
 				  raw-f))))
-		      (if (and (or (null? raw-cs)
-				 (and (null? (cdr raw-cs))
-				   (string=? "mzlib" (car raw-cs))))
-			    (member raw-f mzscheme-libraries-provided))
-			(expand-expr (structurize-syntax '(#%void) expr '(-1))
-			  env attributes vocab)
 			(let-values (((base name dir?)
 				       (split-path raw-filename)))
 			  (when dir?
@@ -364,7 +358,7 @@
 				  original-directory)
 				(current-require-relative-collection
 				  original-collections)
-				(close-input-port p)))))))))))
+				(close-input-port p))))))))))
 	    (else
 	      (static-error expr (string-append "Malformed "
 				   (symbol->string form-name)))))))))
