@@ -1,5 +1,8 @@
 
-(reference-library "sig.ss" "guibuilder")
+(require-library "sig.ss" "guibuilder")
+(require-library "functio.ss")
+(require-library "pretty.ss")
+(require-library "file.ss")
 
 (invoke-open-unit/sig (require-library "gbr.ss" "guibuilder") 
 		      mred 
