@@ -4,7 +4,7 @@
 ;; Testable classes go between last wx: class and first mred: class.
 ;; Keep track of currently active frame and focused window.
 ;;
-;; (mred:test:get-active-frame    => active frame or dialog-box.
+;; (mred:test:get-active-frame)   => active frame or dialog-box.
 ;; (mred:test:get-focused-window) => window with keyboard focus.
 ;;
 ;; on-activate applies to wx:frame and wx:dialog-box.
