@@ -173,8 +173,10 @@
 		      (lambda (e)
 			(expand-expr e env attributes vocab))
 		      contents)))
-	      (when (and (language<=? 'structured)
-		      (not (top-level-varref? (car bodies))))
+	      (when (or (and (language<=? 'core)
+			  (not (top-level-varref? (car bodies))))
+		      (and (language<=? 'structured)
+			(not (varref? (car bodies)))))
 		(static-error expr
 		  "First term after parenthesis is illegal in an application"))
 	      (set-top-level-status attributes top-level?)
