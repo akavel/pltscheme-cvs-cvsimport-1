@@ -275,10 +275,10 @@
 
   (define introduce-fresh-identifier
     (lambda (new-name source)
-      (z:make-symbol (zodiac-origin source)
+      (z:make-symbol (make-origin 'micro 'never-mind)
 	(zodiac-start source) (zodiac-finish source)
 	new-name new-name '())))
-
+  
   (define introduce-bound-id
     (lambda (binding-gen name-gen old-id old-id-marks)
       (let* ((base-name (binding-var old-id))

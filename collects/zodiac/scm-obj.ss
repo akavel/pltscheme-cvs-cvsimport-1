@@ -460,9 +460,9 @@
 	      (lambda (p-env)
 		(let* ((kwd-pos (pat:pexpand 'kwd  p-env kwd))
 			(captured-this
-			  (introduce-identifier 'this kwd-pos))
+			  (introduce-fresh-identifier 'this kwd-pos))
 			(captured-super-init
-			  (introduce-identifier 'super-init kwd-pos))
+			  (introduce-fresh-identifier 'super-init kwd-pos))
 			(new-p-env (pat:extend-penv
 				     'this captured-this
 				     (pat:extend-penv
@@ -493,9 +493,9 @@
 	      (lambda (p-env)
 		(let* ((kwd-pos (pat:pexpand 'kwd p-env kwd))
 			(captured-this
-			  (introduce-identifier 'this kwd-pos))
+			  (introduce-fresh-identifier 'this kwd-pos))
 			(captured-super-init
-			  (introduce-identifier 'super-init kwd-pos))
+			  (introduce-fresh-identifier 'super-init kwd-pos))
 			(new-p-env (pat:extend-penv
 				     'this captured-this
 				     (pat:extend-penv
