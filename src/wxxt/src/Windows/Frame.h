@@ -89,6 +89,7 @@ protected:
     int        num_status;
     wxBitmap   *frame_icon;
     Bool       being_destroyed;
+    long       last_shown_time;
 };
 
 #endif // Frame_h
