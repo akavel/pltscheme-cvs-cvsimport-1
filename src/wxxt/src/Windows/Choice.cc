@@ -55,7 +55,7 @@ wxChoice::wxChoice(wxPanel *panel, wxFunction function, char *label,
 		   int x, int y, int width, int height,
 		   int n, char *choices[], long style, char *name) : wxItem()
 {
-    __type = wxTYPE_BUTTON;
+    __type = wxTYPE_CHOICE;
 
     choice_menu = DEBUG_NEW wxMenu(NULL, (wxFunction)&(wxChoice::MenuEventCallback));
     num_choices = 0;
