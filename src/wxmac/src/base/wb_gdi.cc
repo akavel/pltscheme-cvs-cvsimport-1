@@ -1500,5 +1500,5 @@ int wxFontNameDirectory::GetFamily(int fontid)
   return item->family;
 }
 
-#include "wx_rgn.h"
-#include "wb_rgn.cc"
+#include "::::wxcommon:Region.h"
+#include "::::wxcommon:Region.cxx"
