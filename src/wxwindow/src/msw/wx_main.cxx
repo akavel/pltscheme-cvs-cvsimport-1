@@ -519,6 +519,8 @@ static int parse_command_line(int count, char **command, char *buf, int maxargs)
   return count;
 }
 
+extern "C" int main(int, char**);
+
 #ifdef __WATCOMC__
 //***It's really principal for Watcom that WinMain should be PASCAL,
 //***not FAR PASCAL!!   D.Chubraev
@@ -616,7 +618,7 @@ extern "C" int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE WXUNUSED(hPrevIns
   return main(count, command);
 }
 
-int wxEntry(int argc, char **argc)
+int wxEntry(int argc, char **argv)
 {
   wxTheApp->argc = argc;
   wxTheApp->argv = argv;

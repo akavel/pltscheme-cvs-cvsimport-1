@@ -152,22 +152,19 @@ void wxbFrame::OnActivate(Bool WXUNUSED(flag))
 }
 
 // Default menu selection behaviour - display a help string
-void wxbFrame::OnMenuSelect(int id)
+void wxbFrame::OnMenuSelect(long id)
 {
-  if (StatusLineExists())
-  {
-    if (id == -1)
-      SetStatusText("");
-    else
-    {
-      wxMenuBar *menuBar = GetMenuBar();
-      if (menuBar)
-      {
-        char *helpString = GetMenuBar()->GetHelpString(id);
-        if (helpString)
-          SetStatusText(helpString);
+  if (StatusLineExists()) {
+    wxMenuBar *menuBar = GetMenuBar();
+    if (menuBar) {
+      char *helpString = GetMenuBar()->GetHelpString(id);
+      if (helpString) {
+	SetStatusText(helpString);
+	return;
       }
     }
+
+    SetStatusText("");
   }
 }
 
@@ -198,12 +195,12 @@ void wxbFrame::Centre(int direction)
 }
 
 // Call this to simulate a menu command
-void wxbFrame::Command(int id)
+void wxbFrame::Command(long id)
 {
   ProcessCommand(id);
 }
 
-void wxbFrame::ProcessCommand(int id)
+void wxbFrame::ProcessCommand(long id)
 {
   OnMenuCommand(id);
 }
