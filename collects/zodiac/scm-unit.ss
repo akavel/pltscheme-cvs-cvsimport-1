@@ -1001,6 +1001,7 @@
 			      (vars (pat:pexpand '(var ...)
 				      p-env kwd))
 			      (_ (for-each valid-syntactic-id? vars))
+			      (_ (distinct-valid-syntactic-id/s? vars))
 			      (_ (for-each
 				   (lambda (var)
 				     (ensure-not-keyword var)
