@@ -8,6 +8,10 @@
  * Copyright:	(c) 1993, AIAI, University of Edinburgh
  */
 
+#if defined(_MSC_VER)
+# include "wx.h"
+#else
+
 #ifdef __GNUG__
 #pragma implementation "wx_list.h"
 #endif
@@ -39,6 +43,8 @@
 #   define  Uses_wxStringList
 #   include "wx.h"
 #endif // #ifndef wx_xt
+
+#endif
 
 #include <stdarg.h>
 #include <string.h>
@@ -765,18 +771,29 @@ wxChildNode *wxChildList::FindNode(wxChildNode *after)
     i++;
   } else
     i = 0;
-  for (; i < size; i++)
+
+  return NextNode(i);
+}
+
+wxChildNode *wxChildList::NextNode(int &pos)
+{
+  int i;
+
+  for (i = pos; i < size; i++) {
     if (nodes[i]) {
       wxChildNode *node = nodes[i];
-
-      if (node->Data())
+      
+      if (node->Data()) {
+	pos = i + 1;
 	return node;
+      }
       /* GC: */
       node->strong = NULL;
       node->weak = NULL;
       nodes[i] = NULL;
       n--;
     }
+  }
 
   return NULL;
 }
@@ -789,7 +806,7 @@ void wxChildList::Show(wxObject *object, int show)
     if (nodes[i] && (nodes[i]->Data() == object)) {
       wxChildNode *node = nodes[i];
 
-      if (show) {
+      if (show > 0) {
 	if (node->strong)
 	  return;
 	node->strong = object;
@@ -799,6 +816,8 @@ void wxChildList::Show(wxObject *object, int show)
 	  return;
 	node->weak = new WXGC_ATOMIC wxObject*;
 	*node->weak = object;
+	if (show < 0)
+	  GC_general_register_disappearing_link((void **)node->weak, object);
 	node->strong = NULL;
       }
       return;
