@@ -354,9 +354,7 @@ Bool wxDialogBox::Show(Bool show)
 {
   wxWnd *dialog = (wxWnd *)handle;
 
-
-
-  if (show == IsShown()) {
+  if (!!show == !!IsShown()) {
     if (show)
       wxwmBringWindowToTop(dialog->handle);
     return TRUE;
@@ -364,7 +362,6 @@ Bool wxDialogBox::Show(Bool show)
 
   SetShown(show);
 
-#if WXGARBAGE_COLLECTION_ON /* MATTHEW: GC */
   if (!modal) {
     if (show) {
       if (!wxModelessWindows.Member(this))
@@ -376,7 +373,6 @@ Bool wxDialogBox::Show(Bool show)
     wxTopLevelWindows(this)->Show(this, show);
   } else
     window_parent->GetChildren()->Show(this, show);
-#endif
 
   if (modal)
   {
