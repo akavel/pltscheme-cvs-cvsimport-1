@@ -1044,16 +1044,19 @@ void wxDC::StartPage(void)
 {
   if (!wxSubType(__type, wxTYPE_DC_PRINTER))
     return;
-  if (cdc)
+  if (cdc) {
     ::StartPage(cdc);
+    SetMapMode(mapping_mode);
+  }
 }
 
 void wxDC::EndPage(void)
 {
   if (!wxSubType(__type, wxTYPE_DC_PRINTER))
     return;
-  if (cdc)
+  if (cdc) {
     ::EndPage(cdc);
+  }
 }
 
 float wxDC::GetCharHeight(void)
@@ -1436,6 +1439,34 @@ static BOOL DoPrintDlg(PRINTDLG *pd, HWND parent)
 
   return PrintDlg(pd);
 }
+
+#if 0
+extern "C" void (*scheme_console_printf)(char *str, ...);
+static void ShowCaps(char *who, HDC dc)
+{
+  char buffer[1024];
+  SIZE vp, wp;
+
+  ::GetViewportExtEx(dc, &vp);
+  ::GetWindowExtEx(dc, &wp);
+
+  sprintf(buffer,
+	  "%s: size: %d %d; res: %d %d; pixels: %d %d; physical: %d %d vp: %ld %ld; wp: %ld %ld",
+	  who,
+	  GetDeviceCaps(dc, HORZSIZE),
+	  GetDeviceCaps(dc, VERTSIZE),
+	  GetDeviceCaps(dc, HORZRES),
+	  GetDeviceCaps(dc, VERTRES),
+	  GetDeviceCaps(dc, LOGPIXELSX),
+	  GetDeviceCaps(dc, LOGPIXELSY),
+	  GetDeviceCaps(dc, PHYSICALWIDTH),
+	  GetDeviceCaps(dc, PHYSICALHEIGHT),
+	  vp.cx, vp.cy,
+	  wp.cx, wp.cy);
+  
+  scheme_console_printf("%s\n", buffer);
+}
+#endif
 
 wxPrinterDC::wxPrinterDC(char *driver_name, char *device_name, char *file, Bool interactive)
 {
