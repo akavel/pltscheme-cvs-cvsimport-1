@@ -44,7 +44,6 @@
 
 (define (zodiac:make-see expander)
   (opt-lambda ((show-raw? #t))
-    (zodiac:invoke-system)
     (parameterize ([current-prompt-read
 		    (lambda ()
 		      (newline)
@@ -67,6 +66,10 @@
 (define zodiac:see (zodiac:make-see 
 		    (lambda (in)
 		      (zodiac:scheme-expand-program (list in)))))
+
+(define zodiac:see-parsed (zodiac:make-see 
+			   (lambda (in)
+			     (zodiac:scheme-expand-program (list in)))))
 
 (define zodiac:spidey-see (zodiac:make-see 
 			   (lambda (in)
