@@ -1041,12 +1041,26 @@ void scheme_add_atexit_closer(Scheme_Exit_Closer_Func f)
 
 void scheme_schedule_custodian_close(Scheme_Custodian *c)
 {
+  /* This procedure might be called by a garbage collector to register
+     a resource-based kill. */
+
   if (!scheduled_kills) {
     REGISTER_SO(scheduled_kills);
     scheduled_kills = scheme_null;
   }
 
   scheduled_kills = scheme_make_pair((Scheme_Object *)c, scheduled_kills);
+  scheme_fuel_counter = 0;
+}
+
+static void check_scheduled_kills()
+{
+  while (scheduled_kills && !SCHEME_NULLP(scheduled_kills)) {
+    Scheme_Object *k;
+    k = SCHEME_CAR(scheduled_kills);
+    scheduled_kills = SCHEME_CDR(scheduled_kills);
+    scheme_close_managed((Scheme_Custodian *)scheduled_kills);
+  }
 }
 
 /*========================================================================*/
@@ -2152,13 +2166,8 @@ void scheme_thread_block(float sleep_time)
     exit_or_escape(p);
   }
 
-  /* Check scheduled_kills early and often! */
-  while (scheduled_kills && !SCHEME_NULLP(scheduled_kills)) {
-    Scheme_Object *k;
-    k = SCHEME_CAR(scheduled_kills);
-    scheduled_kills = SCHEME_CDR(scheduled_kills);
-    scheme_close_managed((Scheme_Custodian *)scheduled_kills);
-  }
+  /* Check scheduled_kills early and often. */
+  check_scheduled_kills();
 
   if (scheme_active_but_sleeping)
     scheme_wake_up();
@@ -2184,13 +2193,8 @@ void scheme_thread_block(float sleep_time)
   scheme_check_keyboard_input();
 #endif
 
-  /* Check scheduled_kills early and often! */
-  while (scheduled_kills && !SCHEME_NULLP(scheduled_kills)) {
-    Scheme_Object *k;
-    k = SCHEME_CAR(scheduled_kills);
-    scheduled_kills = SCHEME_CDR(scheduled_kills);
-    scheme_close_managed((Scheme_Custodian *)scheduled_kills);
-  }
+  /* Check scheduled_kills early and often. */
+  check_scheduled_kills();
 
   if (!do_atomic && (sleep_time >= 0.0)) {
     /* Find the next process. Skip processes that are definitely
@@ -2362,6 +2366,9 @@ void scheme_thread_block(float sleep_time)
 #ifdef USE_WIN32_THREAD_TIMER
   scheme_start_itimer_thread(MZ_THREAD_QUANTUM_USEC);
 #endif
+
+  /* Check scheduled_kills early and often. */
+  check_scheduled_kills();
 
   MZTHREADELEM(p, fuel_counter) = p->engine_weight;
 }
