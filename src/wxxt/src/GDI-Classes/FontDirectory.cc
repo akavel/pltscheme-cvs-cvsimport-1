@@ -514,7 +514,7 @@ int wxFontNameDirectory::FindOrCreateFontId(const char *name, int family)
     return id;
 
   id = GetNewFontId();
-  s = new char[strlen(name) + 2];
+  char *s = new char[strlen(name) + 2];
   strcpy(s + 1, name);
   s[0] = '@';
   Initialize(id, family, s);
