@@ -1953,7 +1953,7 @@
 	    (static-error expr "Malformed reference-file"))))))
 
   (add-primitivized-micro-form 'reference-file beginner-vocabulary reference-file-macro)
-  (add-on-demand-form 'macro 'reference-file common-vocabulary reference-file-macro)
+  (add-on-demand-form 'micro 'reference-file common-vocabulary reference-file-macro)
 
   (define require-library-micro
     (let* ((kwd '())
