@@ -59,14 +59,15 @@
   (define cj-eval
     (lambda (program)
       (let ([program (elab-program (parse-program program))])
-        (big-step cj-reductions
-                  (list program empty-store
-                        (texpr->rexpr (program-main program)))))))
+        (cdr (big-step cj-reductions
+                       (list program empty-store
+                             (texpr->rexpr (program-main program))))))))
 
   (define cj-step
     (lambda (program)
       (let ([program (elab-program (parse-program program))])
-        (small-step-sequence cj-reductions
-                             (list program
-                                   empty-store
-                                   (texpr->rexpr (program-main program))))))))
+        (map cdr (small-step-sequence
+                  cj-reductions
+                  (list program
+                        empty-store
+                        (texpr->rexpr (program-main program)))))))))
