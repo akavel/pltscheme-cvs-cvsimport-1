@@ -41,6 +41,13 @@
 
   ; --------------------------------------------------------------------
 
+  (define-struct (unit-binding struct:lexical-binding) ())
+
+  (define create-unit-binding+marks
+    (create-binding+marks make-unit-binding))
+
+  ; --------------------------------------------------------------------
+
   (define (make-put-get-remove attr)
     (define put
       (lambda (attributes v)
@@ -344,7 +351,7 @@
   (add-sym-micro c/imports-vocab
     (lambda (expr env attributes vocab)
       (register-import expr attributes)
-      (create-lexical-binding+marks expr)))
+      (create-unit-binding+marks expr)))
 
   ; ----------------------------------------------------------------------
 
@@ -1051,7 +1058,7 @@
 		    (expr-expr (expand-expr
 				 (pat:pexpand 'val p-env kwd)
 				 env attributes vocab)))
-	      (when (check-import var-p attributes)
+	      (when (unit-binding? (resolve var-p env vocab))
 		(static-error
 		  "set!" 'term:no-set!-imported
 		  var-p "cannot mutate imported identifier"))
@@ -1075,12 +1082,6 @@
       (lambda (expr env attributes vocab)
 	(let loop ((r (resolve expr env vocab)))
 	  (cond
-	    ((or (macro-resolution? r) (micro-resolution? r))
-	      (if (check-export expr attributes)
-		(loop top-level-resolution)
-		(static-error
-		  "keyword" 'term:keyword-out-of-context expr
-		  "invalid use of keyword ~s" (z:symbol-orig-name expr))))
 	    ((lambda-binding? r)
 	      (create-lambda-varref r expr))
 	    ((lexical-binding? r)
@@ -1088,6 +1089,10 @@
 	    ((top-level-resolution? r)
 	      (check-for-signature-name expr attributes)
 	      (process-unit-top-level-resolution expr attributes))
+	    ((or (macro-resolution? r) (micro-resolution? r))
+	      (if (check-export expr attributes)
+		(loop top-level-resolution)
+		(loop (ensure-not-keyword expr env vocab))))
 	    (else
 	      (internal-error expr "Invalid resolution in unit delta: ~s"
 		r)))))))

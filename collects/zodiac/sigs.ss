@@ -66,7 +66,7 @@
     set-top-level-status get-top-level-status at-top-level?
     set-internal-define-status get-internal-define-status at-internal-define?
     as-nested
-    process-top-level-resolution ensure-not-macro/micro
+    process-top-level-resolution ensure-not-keyword
     check-for-signature-name
     (struct parsed (back))
     (struct varref (var))

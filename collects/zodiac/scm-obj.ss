@@ -145,10 +145,9 @@
 	    (create-supervar-varref r expr))
 	  ((superinit-binding? r)
 	    (create-superinit-varref r expr))
-	  ((or (macro-resolution? r) (micro-resolution? r))
-	    (static-error
-	      "keyword" 'term:keyword-out-of-context expr
-	      "invalid use of keyword ~s" (z:symbol-orig-name expr)))
+	  ((ensure-not-keyword expr env vocab)
+	    (internal-error expr
+	      "Not keyword or anything recognized in obj: ~s" r))
 	  (else
 	    (internal-error expr "Invalid resolution in obj: ~s" r))))))
 

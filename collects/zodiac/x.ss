@@ -164,7 +164,7 @@
       ; (printf "in ~s~n" (get-vocabulary-name vocab))
       ;	(printf "in vocabulary~n") (print-env vocab)
       ;	(printf "in attributes~n") (hash-table-map attributes cons)
-      ;	(printf "in~n") (print-env env)
+      ; (printf "in~n") (print-env env)
       ; (newline)
       (cond
 	((z:symbol? expr)

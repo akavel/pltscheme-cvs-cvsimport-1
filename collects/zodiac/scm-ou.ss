@@ -36,10 +36,8 @@
 		  ((or (macro-resolution? r) (micro-resolution? r))
 		    (if (and (inside-unit? attributes)
 			     (check-export expr attributes))
-			(loop top-level-resolution)
-		      (static-error
-			"keyword" 'term:keyword-out-of-context expr
-			"invalid use of keyword ~s" (z:symbol-orig-name expr))))
+		      (loop top-level-resolution)
+		      (loop (ensure-not-keyword expr env vocab))))
 		  (else
 		    (internal-error expr "Invalid resolution in ou: ~s" r))))))))
 
