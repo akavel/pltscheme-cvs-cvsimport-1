@@ -16,6 +16,8 @@
  * Copyright (c) 1985 by Supoj Sutanthavibul
  */
 
+#include "wx.h"
+
 #if USE_SPLINES
 
 void wxbDC::DrawSpline(int n, wxPoint pts[])
