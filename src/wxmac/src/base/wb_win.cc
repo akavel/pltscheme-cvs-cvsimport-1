@@ -131,7 +131,7 @@ void wxbWindow::DestroyChildren(void)
     wxChildNode *node;
     while ((node = children->First()) != (wxNode *)NULL) {
       wxWindow *child;
-      if ((child = dynamic_cast<wxWindow *>(node->Data())) != (wxWindow *)NULL)) {
+      if ((child = (wxWindow *)(node->Data())) != (wxWindow *)NULL)) {
 //      child->DestroyChildren();
         delete child;
       }
@@ -148,7 +148,7 @@ void wxbWindow::MakeModal(Bool modal)
     wxChildNode *node = wxTopLevelWindows(ContextWindow())->First();
     while (node)
     {
-      wxWindow *win = dynamic_cast<wxWindow *>(node->Data());
+      wxWindow *win = (wxWindow *)(node->Data());
       if (win != this)
         win->Enable(!modal);
 
@@ -170,7 +170,7 @@ void wxbWindow::SetName(char *name)
 wxWindow *wxbWindow::ContextWindow()
 {
 	if (wxSubType(__type, wxTYPE_FRAME))
-		return dynamic_cast<wxWindow *>(this);
+		return (wxWindow *)(this);
 	if (wxSubType(__type, wxTYPE_DIALOG_BOX))
 		return ((wxDialogBox *)this)->cFrame;
 	return NULL;

@@ -55,7 +55,7 @@ void wxbDC::DrawPolygon(wxList *list, float xoffset, float yoffset,int fillStyle
 
   int i = 0;
   for(wxNode *node = list->First(); node; node = node->Next()) {
-    wxPoint *point = dynamic_cast<wxPoint *>(node->Data());
+    wxPoint *point = (wxPoint *)(node->Data());
     points[i].x = point->x;
     points[i++].y = point->y;
   }
@@ -70,7 +70,7 @@ void wxbDC::DrawLines(wxList *list, float xoffset, float yoffset)
 
   int i = 0;
   for(wxNode *node = list->First(); node; node = node->Next()) {
-    wxPoint *point = dynamic_cast<wxPoint *>(node->Data());
+    wxPoint *point = (wxPoint *)(node->Data());
     points[i].x = point->x;
     points[i++].y = point->y;
   }
