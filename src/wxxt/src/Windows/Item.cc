@@ -95,18 +95,18 @@ void wxItem::SetLabelColour(wxColour *col)
 // functions to execute item
 //-----------------------------------------------------------------------------
 
-void wxItem::Command(wxCommandEvent &WXUNUSED(event))
+void wxItem::Command(wxCommandEvent *WXUNUSED(event))
 {
 }
 
-void wxItem::ProcessCommand(wxCommandEvent &event)
+void wxItem::ProcessCommand(wxCommandEvent *event)
 {
-    if (callback) {
-	(void)(*callback)(*this, event);
-    } else {
-	if (parent)
-	    parent->GetEventHandler()->OnCommand(*this, event);
-    }
+  if (callback) {
+    callback(this, event);
+  } else {
+    if (parent)
+      parent->GetEventHandler()->OnCommand(this, event);
+  }
 }
 
 char *wxGetCtlLabel(char *label)

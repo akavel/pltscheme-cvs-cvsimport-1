@@ -39,9 +39,8 @@
 //-----------------------------------------------------------------------------
 
 // references to global data for compatibility
-Bool&  wxApp::wantDebugOutput = wxAPP_DEBUGOUTPUT;
-char*& wxApp::wx_class        = wxAPP_CLASS;
-char*& wxApp::appName         = wxAPP_NAME;
+char* wxApp::wx_class        = wxAPP_CLASS;
+char* wxApp::appName         = wxAPP_NAME;
 
 wxApp::wxApp()
 {

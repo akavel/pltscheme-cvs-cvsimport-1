@@ -150,11 +150,11 @@ public:
 	{ return event_handler; }
     virtual void SetEventHandler(wxEvtHandler *handler)
 	{ event_handler = handler; }
-    virtual void OnChar(wxKeyEvent& event);
-    virtual void OnCommand(wxWindow& win, wxCommandEvent& event);
-    virtual void OnEvent(wxMouseEvent& event);
+    virtual void OnChar(wxKeyEvent* event);
+    virtual void OnCommand(wxWindow* win, wxCommandEvent* event);
+    virtual void OnEvent(wxMouseEvent* event);
     virtual void OnPaint(void);
-    virtual void OnScroll(wxScrollEvent& event);
+    virtual void OnScroll(wxScrollEvent* event);
     virtual Bool PreOnChar(wxWindow *, wxKeyEvent *);
     virtual Bool PreOnEvent(wxWindow *, wxMouseEvent *);
     // get the associated device context

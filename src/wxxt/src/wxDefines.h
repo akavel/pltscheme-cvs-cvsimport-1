@@ -45,7 +45,7 @@ typedef int Bool;
 // typedef for wxWindows callback functions
 class wxObject;
 class wxCommandEvent;
-typedef void (*wxFunction)(wxObject&, wxCommandEvent&);
+typedef void (*wxFunction)(wxObject*, wxCommandEvent*);
 
 // defines for port
 #define wx_x

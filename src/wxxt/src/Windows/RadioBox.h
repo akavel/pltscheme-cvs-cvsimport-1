@@ -75,7 +75,7 @@ public:
     virtual char  *GetLabel(void)	{ return wxItem::GetLabel(); }
     virtual void  SetLabel(char *label)	{ wxItem::SetLabel(label); }
     virtual Bool  Show(Bool show)	{ return wxItem::Show(show); }
-    void Command(wxCommandEvent &event);
+    void Command(wxCommandEvent *event);
     void SetSelectedButtonFocus();
 
     int ButtonFocus(int which);

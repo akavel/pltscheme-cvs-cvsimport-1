@@ -207,7 +207,7 @@ void wxCheckBox::SetValue(Bool state)
     XtVaSetValues(X->handle, XtNon, Boolean(state), NULL);
 }
 
-void wxCheckBox::Command(wxCommandEvent &event)
+void wxCheckBox::Command(wxCommandEvent *event)
 {
   ProcessCommand (event);
 }
@@ -220,7 +220,9 @@ void wxCheckBox::OnEventCallback(Widget WXUNUSED(w),
 				 XtPointer clientData, XtPointer WXUNUSED(ptr))
 {
     wxCheckBox     *checkbox = (wxCheckBox*)clientData;
-    wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_CHECKBOX_COMMAND);
+    wxCommandEvent *event;
 
-    checkbox->ProcessCommand(*event);
+    event = new wxCommandEvent(wxEVENT_TYPE_CHECKBOX_COMMAND);
+
+    checkbox->ProcessCommand(event);
 }

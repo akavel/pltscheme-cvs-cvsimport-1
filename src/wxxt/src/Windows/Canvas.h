@@ -76,7 +76,7 @@ public:
     // override parent methods
     virtual void ChangeColours(void);
     // overriden callback methods
-    virtual void OnChar(wxKeyEvent &event);
+    virtual void OnChar(wxKeyEvent *event);
 private:
     int	h_size, h_units, h_units_per_page,
 	v_size, v_units, v_units_per_page;

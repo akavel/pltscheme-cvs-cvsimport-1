@@ -50,8 +50,8 @@ public:
     // virtual void      SetButtonColour(wxColour *col) { SetForegroundColour(col); }
     // virtual void      SetLabelColour(wxColour *col);
     // functions to execute item
-    virtual void  Command(wxCommandEvent &event);
-            void  ProcessCommand(wxCommandEvent &event);
+    virtual void  Command(wxCommandEvent *event);
+            void  ProcessCommand(wxCommandEvent *event);
 protected:
     wxFunction callback;
     wxColour   *label_fg;

@@ -53,7 +53,7 @@ public:
 		long style=0, char *name="button");
 
     void AllowResize(Bool allow);
-    void Command(wxCommandEvent& event);
+    void Command(wxCommandEvent* event);
     void SetAlignment(long alignment);
     void SetDefault(void);
     void SetLabel(char *label);

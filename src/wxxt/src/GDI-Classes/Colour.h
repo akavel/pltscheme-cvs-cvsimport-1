@@ -44,12 +44,12 @@ class wxColour : public wxObject { // colour representation
 public:
     wxColour(void);
     wxColour(unsigned char r, unsigned char g, unsigned char b);
-    wxColour(wxColour& col);
+    wxColour(wxColour* col);
     wxColour(const char *col);
     ~wxColour(void);
 
-    wxColour& operator = (wxColour& src);
-    wxColour& operator = (const char *src);
+    wxColour* CopyFrom(wxColour*);
+    wxColour* CopyFrom(const char*);
 
     Bool Ok(void) { return (X!=NULL); }
 
@@ -95,7 +95,7 @@ public:
     ~wxColourDatabase(void);
 
     wxColour *FindColour(const char *colour);
-    char *FindName(wxColour& colour);
+    char *FindName(wxColour* colour);
 };
 
 #endif // Colour_h

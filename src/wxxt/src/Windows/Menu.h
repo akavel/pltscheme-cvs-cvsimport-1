@@ -44,7 +44,7 @@ class wxCommandEvent;
 class wxColour;
 class wxFont;
 
-typedef void (*wxFunction)(wxObject&, wxCommandEvent&);
+typedef void (*wxFunction)(wxObject*, wxCommandEvent*);
 
 typedef void *wxMenuItem;
 

@@ -60,7 +60,7 @@ public:
     virtual char  *GetLabel(void);
 
 
-    void Command(wxCommandEvent &event);
+    void Command(wxCommandEvent *event);
 
 private:
 #   ifdef Have_Xt_Types

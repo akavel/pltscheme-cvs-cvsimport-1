@@ -52,9 +52,8 @@ public:
     // data
     int    argc;
     char** argv;
-    static Bool&  wantDebugOutput;
-    static char*& wx_class;
-    static char*& appName;
+    static char* wx_class;
+    static char* appName;
 private:
     friend int wxEntry(int argc, char **argv);
 

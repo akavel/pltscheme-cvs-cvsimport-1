@@ -45,7 +45,7 @@ public:
 
     int   GetValue(void) { return value; }
     void  SetValue(int value);
-    void Command(wxCommandEvent &event);
+    void Command(wxCommandEvent *event);
 
     void OnSize(int width, int height);
 

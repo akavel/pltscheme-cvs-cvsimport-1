@@ -113,7 +113,6 @@ public:
     void  DrawLines(int n, wxIntPoint pts[], int xoff=0, int yoff=0);
     void  DrawLines(wxList *pts, float xoff=0, float yoff=0);
     void  DrawPoint(float x, float y);
-    void  DrawPoint(wxPoint &pt)  { DrawPoint(pt.x, pt.y); }
     void  DrawPolygon(int n, wxPoint pts[], float xoff=0, float yoff=0,
 			      int fill=wxODDEVEN_RULE);
     void  DrawPolygon(wxList *pts, float xoff=0, float yoff=0,

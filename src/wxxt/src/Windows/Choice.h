@@ -65,15 +65,15 @@ public:
     int   GetColumns(void) { return 1; }
     void  SetColoumns(int WXUNUSED(n=1)) {};
 
-    void Command(wxCommandEvent &event);
+    void Command(wxCommandEvent *event);
 
-    void OnEvent(wxMouseEvent&);
-    void OnChar(wxKeyEvent&);
+    void OnEvent(wxMouseEvent*);
+    void OnChar(wxKeyEvent*);
 
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget, XtPointer, XtPointer);
-    static void MenuEventCallback(wxObject&, wxCommandEvent&);
+    static void MenuEventCallback(wxObject*, wxCommandEvent*);
 #endif
     wxMenu *choice_menu;
     int    num_choices;

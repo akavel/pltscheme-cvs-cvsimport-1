@@ -435,7 +435,7 @@ Bool wxRadioBox::Show(int item, Bool show)
   return FALSE;
 }
 
-void wxRadioBox::Command(wxCommandEvent &event)
+void wxRadioBox::Command(wxCommandEvent *event)
 {
   ProcessCommand(event);
 }
@@ -469,11 +469,13 @@ void wxRadioBox::SetSelectedButtonFocus()
 void wxRadioBox::EventCallback(Widget WXUNUSED(w), XtPointer dclient, XtPointer WXUNUSED(dcall))
 {
     wxRadioBox     *radioBox = (wxRadioBox*)dclient;
-    wxCommandEvent *event = new wxCommandEvent(wxEVENT_TYPE_RADIOBOX_COMMAND);
+    wxCommandEvent *event;
+
+    event = new wxCommandEvent(wxEVENT_TYPE_RADIOBOX_COMMAND);
 
     radioBox->SetSelectedButtonFocus();
 
-    radioBox->ProcessCommand(*event);
+    radioBox->ProcessCommand(event);
 }
 
 extern "C" Boolean has_focus_now(Widget w);

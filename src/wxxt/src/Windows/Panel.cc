@@ -256,11 +256,12 @@ void wxPanel::Tab(int pixels)
 
 void wxPanel::OnDefaultAction(wxItem *WXUNUSED(item))
 {
-    wxButton *but = GetDefaultItem();
-    if (but) {
-	wxCommandEvent event(wxEVENT_TYPE_BUTTON_COMMAND);
-	but->Command(event);
-    }
+  wxButton *but = GetDefaultItem();
+  if (but) {
+    wxCommandEvent *event;
+    event = new wxCommandEvent(wxEVENT_TYPE_BUTTON_COMMAND);
+    but->Command(event);
+  }
 }
 
 //-----------------------------------------------------------------------------

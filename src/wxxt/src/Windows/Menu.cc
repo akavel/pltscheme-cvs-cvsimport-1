@@ -430,16 +430,18 @@ void wxMenu::EventCallback(Widget WXUNUSED(w), XtPointer dclient, XtPointer dcal
 
     /* MATTHEW: check item */
     if (item && (item->ID != -1)) {
+      wxPopupEvent *event;
+
       if (item->type == MENU_TOGGLE)
 	item->set = (!item->set);
       
-      wxPopupEvent *event = new wxPopupEvent();
+      event = new wxPopupEvent();
       
       event->menuId = item->ID;
 
       // call callback function
       if (menu->callback)
-	(void)(*(menu->callback))(*menu, *event);
+	menu->callback(menu, event);
     }
 }
 
