@@ -17,13 +17,13 @@
   ; ----------------------------------------------------------------------
 
   (define reference-namespace (make-namespace))
-  (define primitive-eval (current-eval))
+  (define-struct z:syntax (name))
 
   (define (make-mz-binding s)
     (parameterize ([current-namespace reference-namespace])
-      (primitive-eval
-       `(#%define-macro ,s (#%lambda args (error 'macro "dummy ~s macro got ~a" ',s args))))
-      (global-defined-value s)))
+      (let ([v (make-z:syntax s)])
+	(global-defined-value s v)
+	v)))
   
   (define (syntax-symbol->id s)
     (with-handlers ([void (lambda (x) (make-mz-binding s))])
