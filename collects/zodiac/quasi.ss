@@ -116,6 +116,6 @@
 	(else
 	  (static-error expr "Malformed quasiquote"))))))
 
-(add-primitivized-micro-form 'quasiquote intermediate-vocabulary quasiquote-micro)
+(add-primitivized-micro-form 'quasiquote advanced-vocabulary quasiquote-micro)
 (add-primitivized-micro-form 'quasiquote scheme-vocabulary quasiquote-micro)
 
