@@ -119,6 +119,26 @@ Bool wxSlider::Create(wxPanel *panel, wxFunction func, char *label,
     return TRUE;
 }
 
+void wxSlider::OnSize(int width, int height)
+{
+  float swidth, sheight; char tempstring[80];
+  Dimension length;
+  sprintf(tempstring, "-%d", max(abs(maximum), abs(minimum)));
+  GetTextExtent(tempstring, &swidth, &sheight);
+  swidth += 8; sheight += 8; // shadows and margin
+  if (style & wxVERTICAL) {
+    XtVaGetValues(X->handle, XtNheight, &length, NULL);
+    if (length > height) length = height;
+    XfwfResizeThumb(X->handle, 1.0, min(0.9,sheight/length));
+  } else {
+    XtVaGetValues(X->handle, XtNwidth, &length, NULL);
+    if (length > width) length = width;
+    XfwfResizeThumb(X->handle, min(0.9, swidth/length), 1.0);
+  }
+
+  wxItem::OnSize(width, height);
+}
+
 //-----------------------------------------------------------------------------
 // methods to access internal data
 //-----------------------------------------------------------------------------

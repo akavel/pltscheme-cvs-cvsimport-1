@@ -48,6 +48,9 @@ public:
     void  SetButtonColour(wxColour *col);
     void  SetValue(int value);
     void Command(wxCommandEvent &event);
+
+    void OnSize(int width, int height);
+
 private:
 #   ifdef Have_Xt_Types
     static void EventCallback(Widget, XtPointer, XtPointer);
