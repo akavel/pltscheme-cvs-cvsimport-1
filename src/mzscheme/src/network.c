@@ -2607,7 +2607,7 @@ static void register_tcp_listener_sync()
 {
 #ifdef USE_TCP
   scheme_add_evt(scheme_listener_type, tcp_check_accept, tcp_accept_needs_wakeup, NULL, 0);
-  scheme_add_evt(scheme_listener_type, (Scheme_Ready_Fun)tcp_check_accept_evt, tcp_accept_evt_needs_wakeup, NULL, 0);
+  scheme_add_evt(scheme_tcp_accept_evt_type, (Scheme_Ready_Fun)tcp_check_accept_evt, tcp_accept_evt_needs_wakeup, NULL, 0);
 # ifdef UDP_IS_SUPPORTED
   scheme_add_evt(scheme_udp_evt_type, (Scheme_Ready_Fun)udp_evt_check_ready, udp_evt_needs_wakeup, NULL, 0);
 # endif
@@ -3131,10 +3131,10 @@ static Scheme_Object *do_udp_send_it(const char *name, Scheme_UDP *udp,
     udp->bound = 1; /* in case it's not bound already, send[to] binds it */
 
     if (dest_addr)
-      x = sendto(udp->s, bstr + start, end - start, 
+      x = sendto(udp->s, bstr XFORM_OK_PLUS start, end - start, 
 		 0, (struct sockaddr *)dest_addr, sizeof(tcp_address));
     else
-      x = send(udp->s, bstr + start, end - start, 0);
+      x = send(udp->s, bstr XFORM_OK_PLUS start, end - start, 0);
 
     if (x == -1) {
       errid = SOCK_ERRNO();
@@ -3345,7 +3345,7 @@ static int do_udp_recv(const char *name, Scheme_UDP *udp, char *bstr, long start
 
     {
       int asize = sizeof(udp_src_addr);
-      x = recvfrom(udp->s, bstr + start, end - start, 0,
+      x = recvfrom(udp->s, bstr XFORM_OK_PLUS start, end - start, 0,
 		   (struct sockaddr *)&udp_src_addr, &asize);
     }
 
@@ -3382,7 +3382,9 @@ static int do_udp_recv(const char *name, Scheme_UDP *udp, char *bstr, long start
     if (udp->previous_from_addr && !strcmp(SCHEME_BYTE_STR_VAL(udp->previous_from_addr), buf)) {
       v[1] = udp->previous_from_addr;
     } else {
-      v[1] = scheme_make_immutable_sized_byte_string(buf, -1, 1);
+      Scheme_Object *vv;
+      vv = scheme_make_immutable_sized_byte_string(buf, -1, 1);
+      v[1] = vv;
       udp->previous_from_addr = v[1];
     }
 
@@ -3530,7 +3532,7 @@ static int udp_evt_check_ready(Scheme_Object *_uw, Scheme_Schedule_Info *sinfo)
 			 uw->str, uw->offset, uw->offset + uw->len, 
 			 (uw->with_addr ? &dest_addr : 0), 0);
       if (SCHEME_TRUEP(r)) {
-	scheme_set_sync_target(sinfo, r, NULL, NULL, 0, 0);
+	scheme_set_sync_target(sinfo, scheme_void, NULL, NULL, 0, 0);
 	return 1;
       } else
 	return 0;
