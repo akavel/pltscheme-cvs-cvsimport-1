@@ -1175,6 +1175,11 @@ highlight border with.
   return TRUE;
 }
 
+@proc Boolean has_focus_now($)
+{
+  return $traversal_focus;
+}
+
 @IMPORTS
 
 @incl <stdio.h>

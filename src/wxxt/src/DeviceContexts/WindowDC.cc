@@ -173,7 +173,6 @@ Bool wxWindowDC::Blit(float xdest, float ydest, float w, float h, wxBitmap *src,
       SetPen(wxBLACK_PEN);
     }
 
-    // until I know how to scale bitmaps
     int scaled_width
 	= src->GetWidth()  < XLOG2DEVREL(w) ? src->GetWidth()  : XLOG2DEVREL(w);
     int scaled_height

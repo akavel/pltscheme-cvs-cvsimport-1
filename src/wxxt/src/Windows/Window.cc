@@ -349,10 +349,15 @@ void wxWindow::GetClientSize(int *width, int *height)
       /* Handle window is possibly bigger than actual visible area */
       Dimension xs, ys;
       xws_get_scroll_area(X->scroll, &xs, &ys);
-      if (xs < dww)
+      if (wxSubType(__type, wxTYPE_LIST_BOX)) {
 	dww = xs;
-      if (ys < dhh)
 	dhh = ys;
+      } else {
+	if (xs < dww)
+	  dww = xs;
+	if (ys < dhh)
+	  dhh = ys;
+      }
     }
 
     XtVaGetValues(X->frame, XtNwidth, &fw, XtNheight, &fh, NULL);

@@ -171,6 +171,7 @@ public:
 
     void      ForEach(void (*foreach)(wxWindow *w, void *data), void *data);
 
+    Bool GetsFocus(void) { return TRUE; }
 
 protected:
     // create and destroy associated device context
