@@ -26,6 +26,8 @@
 		    #f
 		    "config.ss"))
 
+  (define PORT-NUMBER (get-config 'port-number 7979))
+  (define HTTPS-PORT-NUMBER (get-config 'https-port-number (add1 PORT-NUMBER)))
   (define SESSION-TIMEOUT (get-config 'session-timeout 300))
   (define MAX-UPLOAD (get-config 'max-upload 500000))
   (define MAX-UPLOAD-KEEP (get-config 'max-upload-keep 9))
@@ -195,7 +197,7 @@
 
   (LOG "server started ------------------------------")
 
-  (define stop-status (serve-status))
+  (define stop-status (serve-status HTTPS-PORT-NUMBER))
   
   (define session-count 0)
 
@@ -203,7 +205,7 @@
 		  (lambda (msg exn)
 		    (LOG msg))])
     (run-server
-     7979
+     PORT-NUMBER
      (lambda (r w)
        (parameterize ([current-session (begin
 					 (set! session-count (add1 session-count))
@@ -219,13 +221,22 @@
 					     (exn-message exn)
 					     (format "~e" exn))])
 				(LOG "ERROR: ~a" msg)
-				(fprintf w "(server error: ~s)\n" msg)))])
+				(fprintf w "~s\n" msg)
+				;; see note on close-output-port below
+				(close-output-port w)))])
 	     (let ([protocol (read r-safe)])
 	       (if (eq? protocol 'original)
 		   (fprintf w "original\n")
 		   (error 'handin "unknown protocol: ~s" protocol)))
 	     (accept-submission-or-update assignment-list r r-safe w)
-	     (LOG "normal exit")))))
+	     (LOG "normal exit")
+	     ;; This close-output-port should not be necessary, and it's
+	     ;; here due to a deficiency in the SLL binding.
+	     ;; The problem is that a custodian shutdown of w is harsher
+	     ;; for SSL output than a normal close. A normal close
+	     ;; flushes an internal buffer that's not supposed to exist, while
+	     ;; the shutdown gives up immediately.
+	     (close-output-port w)))))
      SESSION-TIMEOUT
      (lambda (exn)
        (printf "~a~n" (if (exn? exn)
