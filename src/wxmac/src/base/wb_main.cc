@@ -78,6 +78,7 @@ void wxRegisterAbortWindow();
 void wxRegisterEntered();
 void wxRegisterOldFrontWindow();
 void wxRegisterCurCursor();
+void wxRegisterLastInstalledBar();
 
 
 void wxCommonInit(void)
@@ -98,6 +99,7 @@ void wxCommonInit(void)
   wxRegisterEntered();
   wxRegisterOldFrontWindow();
   wxRegisterCurCursor();
+  wxRegisterLastInstalledBar();
 }
 
 void wxCommonCleanUp(void)
