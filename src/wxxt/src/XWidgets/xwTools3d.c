@@ -1,7 +1,3 @@
-/*
- * $Id$
- */
-
 /***********************************************************
 Copyright 1987, 1988 by Digital Equipment Corporation, Maynard, Massachusetts,
 and the Massachusetts Institute of Technology, Cambridge, Massachusetts.
@@ -368,9 +364,11 @@ int        thickness,		/* thickness of shadow */
 Boolean    pushed		/* is toggle pushed(in) or released(out) */
 )
 {
-  XFillRectangle(dpy, win, /* pushed ? inGC : */ outGC,
-		 x+thickness, y+thickness,
-		 width-(2*thickness), width-(2*thickness));
+  if (outGC) {
+    XFillRectangle(dpy, win, /* pushed ? inGC : */ outGC,
+		   x+thickness, y+thickness,
+		   width-(2*thickness), width-(2*thickness));
+  }
   Xaw3dDrawRectangle(dpy, win, lightGC, shadowGC, (GC)0, fgGC,
 		     x, y, width, width, thickness,
 		     pushed ? XAW3D_XED : XAW3D_OUT);
@@ -432,9 +430,11 @@ Boolean    pushed		/* is radio pushed(in) or released(out) */
     pt[1].x = x+half;               pt[1].y = y;
     pt[4].x = x+half;               pt[4].y = y+thickness;
     XFillPolygon(dpy, win, topGC, pt, 6, Complex, CoordModeOrigin);
-    /* inner plain of radio button */
-    pt[2].x = x+half;               pt[2].y = y+width-thickness;
-    XFillPolygon(dpy, win, plainGC, pt+2, 4, Convex, CoordModeOrigin);
+    if (plainGC) {
+      /* inner plain of radio button */
+      pt[2].x = x+half;               pt[2].y = y+width-thickness;
+      XFillPolygon(dpy, win, plainGC, pt+2, 4, Convex, CoordModeOrigin);
+    }
 
 #if 0
     if (pushed) {
