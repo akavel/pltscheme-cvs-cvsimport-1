@@ -43,10 +43,9 @@ public:
 
     Bool Show(Bool show);
 
-    Bool ModalShowing() { return modal_showing; }
-    Bool ModalPleaseClose() { return modal_please_close; }
+    Bool ModalShowing() { return !!restore_disabled_windows; }
 private:
-    Bool modal_please_close, modal_showing;
+    wxList *restore_disabled_windows;
 };
 
 #endif // DialogBox_h
