@@ -1065,24 +1065,6 @@
 	  (add-primitivized-micro-form 'define-struct full-local-extract-vocab
 				       (make-ds-micro internal-handler #t)))))
 
-    (let* ((kwd '())
-	   (in-pattern '(_ (type-spec fields ...)))
-	   (out-pattern '(define-struct type-spec (fields ...)))
-	   (m&e (pat:make-match&env in-pattern kwd)))
-      (add-primitivized-macro-form 'define-structure intermediate-vocabulary
-	(lambda (expr env)
-	  (or (pat:match-and-rewrite expr m&e out-pattern kwd env)
-	      (static-error
-		"define-structure" 'kwd:define-structure
-		expr "malformed definition"))))
-      (let ([int-ds-macro (lambda (expr env)
-			    (or (pat:match-and-rewrite expr m&e out-pattern kwd env)
-				(static-error
-				  "define-structure" 'kwd:define-structure
-				  expr "malformed definition")))])
-	(add-primitivized-macro-form 'define-structure nobegin-local-extract-vocab int-ds-macro)
-	(add-primitivized-macro-form 'define-structure full-local-extract-vocab int-ds-macro)))
-
     (define (make-let-struct-micro begin? allow-supertype?)
       (let* ((kwd '())
 	     (in-pattern `(_ type-spec (fields ...) ,@(get-expr-pattern begin?)))
