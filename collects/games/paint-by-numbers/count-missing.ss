@@ -2,6 +2,8 @@
 
 string=? ; exec mzscheme -qr $0
 
+(printf "checking problems in ~s~n" (collection-path "games" "paint-by-numbers"))
+
 (require-library "sig.ss" "games" "paint-by-numbers")
 
 (require-library "errortrace.ss" "errortrace")
@@ -13,6 +15,12 @@ string=? ; exec mzscheme -qr $0
 
     (define total 0)
     (define total-missing 0)
+
+    (define (filter p l)
+      (cond
+       [(null? l) null]
+       [(p (car l)) (cons (car l) (filter p (cdr l)))]
+       [else (filter p (cdr l))]))
 
     (define (check-set problems set-name)
       (let ([missing (filter (lambda (x) x)
