@@ -371,8 +371,8 @@ int wxDoItemPres(wxItem *item, HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	  GetWindowRect((HWND)item->handle,&rect);
 	  pt.x -= rect.left;
 	  pt.y -= rect.top;
-	  event.x = pt.x;
-	  event.y = pt.y;
+	  event.x = (float)pt.x;
+	  event.y = (float)pt.y;
 	  
 	  if (item->CallPreOnChar(item, &event))
 	    return 0;

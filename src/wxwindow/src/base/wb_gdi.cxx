@@ -29,6 +29,8 @@
 
 #endif
 
+#include "wx_rgn.h"
+
 #include <stdio.h>
 #include <ctype.h>
 
@@ -1616,3 +1618,5 @@ int wxFontNameDirectory::GetFamily(int fontid)
   return item->family;
 }
 
+
+#include "wb_rgn.cxx"

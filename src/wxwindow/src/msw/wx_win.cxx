@@ -2059,12 +2059,13 @@ HBRUSH wxWnd::OnCtlColor(HDC pDC, HWND pWnd, UINT nCtlColor,
 
 // Set background brush, possibly deleting old one and
 // noting whether we can delete the current one.
-void wxWnd::SetBackgroundBrush(HBRUSH br, Bool canDelete)
+void wxWnd::SetBackgroundBrush(HBRUSH br, Bool canDelete, wxBrush *anchor)
 {
   if (background_brush && canDeleteBackgroundBrush)
     ::DeleteObject(background_brush);
   canDeleteBackgroundBrush = canDelete;
   background_brush = br;
+  backgroundBrushAnchor = anchor;
 }
 
 BOOL wxWnd::OnColorChange(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -2075,12 +2076,10 @@ BOOL wxWnd::OnColorChange(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 #if FAFA_LIB
   HBRUSH br = SetupBackground(hWnd) ;
 #if !USE_GREY_BACKGROUND
-  if (br)
-  {
-//    wnd->background_brush = br ;
+  if (br) {
     SetBackgroundBrush(br, FALSE);
   }
-  return 0 ;
+  return 0;
 #endif
 #endif
 #if CTL3D

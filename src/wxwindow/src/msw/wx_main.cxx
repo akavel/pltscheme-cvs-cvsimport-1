@@ -831,36 +831,34 @@ Bool wxYield(void)
 #if FAFA_LIB
 HBRUSH SetupBackground(HWND wnd)
 {
-char tmp[128] ;
+  char tmp[128];
 
-  CreatePensBrushes() ;
-  GetClassName(wnd,tmp,127) ;
-  if (strncmp(tmp,wxCanvasClassName,127)==0         ||
+  CreatePensBrushes();
+  GetClassName(wnd,tmp,127);
+  if (strncmp(tmp,wxCanvasClassName,127)==0
 #if !USE_GREY_BACKGROUND
-      strncmp(tmp,wxPanelClassName,127)==0          ||
+      || strncmp(tmp,wxPanelClassName,127)==0
 #endif
-      strncmp(tmp,wxMDIChildFrameClassName,127)==0
-     )
+      || strncmp(tmp,wxMDIChildFrameClassName,127)==0)
   {
 #ifdef WIN32
     SetClassLong(wnd,GCL_HBRBACKGROUND,(LONG)NULL) ;
 #else
     SetClassWord(wnd,GCW_HBRBACKGROUND,(WORD)NULL) ;
 #endif
-    return brushBack ;
-  }
-  else if (strncmp(tmp,wxFrameClassName,127)==0     ||
-           strncmp(tmp,wxMDIFrameClassName,127)==0
-          )
+    return brushBack;
+  } else if (strncmp(tmp,wxFrameClassName,127)==0
+	     || strncmp(tmp,wxMDIFrameClassName,127)==0)
   {
 #ifdef WIN32
     SetClassLong(wnd,GCL_HBRBACKGROUND,(LONG)NULL) ;
 #else
     SetClassWord(wnd,GCW_HBRBACKGROUND,(WORD)NULL) ;
 #endif
-    return brushFrame ;
+    return brushFrame;
   }
-  return NULL ;
+
+  return NULL;
 }
 #endif
  

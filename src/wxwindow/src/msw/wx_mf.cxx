@@ -160,10 +160,9 @@ wxMetaFileDC::wxMetaFileDC(char *file)
   ok = TRUE;
   SetMapMode(MM_TEXT);
 
-  current_logical_function = -1;
   current_pen = wxBLACK_PEN;
   current_brush = wxBLACK_BRUSH;
-  current_background_brush = wxWHITE_BRUSH;
+  current_background_color = *wxWHITE;
   current_text_foreground = *wxBLACK;
   current_text_background = *wxWHITE;
   Colour = wxColourDisplay();

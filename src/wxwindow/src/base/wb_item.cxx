@@ -246,7 +246,6 @@ void wxbItem::DrawSelectionHandles(wxPanelDC *dc, Bool WXUNUSED(erase))
   
   dc->SetOptimization(FALSE);
 
-  dc->SetLogicalFunction(wxCOPY);
   dc->SetPen(wxBLACK_PEN);
   dc->SetBrush(wxBLACK_BRUSH);
 

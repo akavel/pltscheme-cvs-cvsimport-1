@@ -53,8 +53,8 @@ wxbDC::wxbDC(void)
   __type = wxTYPE_DC;
   min_x = 0; min_y = 0; max_x = 0; max_y = 0;
   title = NULL;
-  clipping = FALSE;
-  autoSetting = TRUE ;
+  clipping = NULL;
+  autoSetting = TRUE;
   dcOptimize = TRUE;
 }
 

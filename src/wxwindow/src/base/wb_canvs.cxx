@@ -50,25 +50,6 @@ void wxbCanvas::AllowDoubleClick(int value)
   doubleClickAllowed = value ;
 }
 
-void wxbCanvas::SetClippingRegion(float cx, float cy, float cw, float ch)
-{
-  if (wx_dc)
-    wx_dc->SetClippingRegion(cx, cy, cw, ch);
-}
-
-/* MATTHEW: [8] */
-void wxbCanvas::GetClippingRegion(float *cx, float *cy, float *cw, float *ch)
-{
-  if (wx_dc)
-    wx_dc->GetClippingRegion(cx, cy, cw, ch);
-}
-
-void wxbCanvas::DestroyClippingRegion(void)
-{
-  if (wx_dc)
-    wx_dc->DestroyClippingRegion();
-}
-
 wxCanvasDC *wxbCanvas::GetDC(void)
 {
   return wx_dc;
