@@ -372,7 +372,7 @@ int wxDoItemPres(wxItem *item, HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	  POINT pt;
 	  GetCursorPos(&pt);
 	  RECT rect;
-	  GetWindowRect(item->handle,&rect);
+	  GetWindowRect((HWND)item->handle,&rect);
 	  pt.x -= rect.left;
 	  pt.y -= rect.top;
 	  event.x = pt.x;
@@ -403,7 +403,7 @@ LONG APIENTRY _EXPORT
   if (!wxDoItemPres(item, hWnd, message, wParam, lParam, &r))
     return r;
 
-  return CallWindowProc(item->oldWndProc, hWnd, message, wParam, lParam);
+  return CallWindowProc((WNDPROC)item->oldWndProc, hWnd, message, wParam, lParam);
 }
 
 wxItem *wxFindControlFromHandle(HWND hWnd)

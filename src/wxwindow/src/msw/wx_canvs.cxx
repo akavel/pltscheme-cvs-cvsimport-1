@@ -79,7 +79,7 @@ Create (wxWindow * parent, int x, int y, int width, int height, long style,
 	  msflags |= WS_VSCROLL;
 
   wxCanvasWnd *wnd = new wxCanvasWnd (cparent, this, x, y, width, height, msflags);
-  wnd->SetBackgroundBrush(GetStockObject(WHITE_BRUSH), FALSE);
+  wnd->SetBackgroundBrush((HBRUSH)GetStockObject(WHITE_BRUSH), FALSE);
   wnd->background_colour = RGB(255, 255, 255);
 #if DEBUG > 1
   wxDebugMsg ("wxCanvas::Create: stock white background_brush is %X\n", wnd->background_brush);
