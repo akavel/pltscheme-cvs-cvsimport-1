@@ -16,7 +16,7 @@
 
   (link
     [run : mred:test:run^
-      ((reference-unit/sig "strun.ss"))]
+      ((reference-unit/sig "strun.ss") wx)]
     
     [prim : mred:test:primitives^
       ((reference-unit/sig "stprims.ss") wx testable keymap run)]
