@@ -23,6 +23,16 @@ static void wxsFillPrivateColor(wxDC *dc, wxColour *c)
 #endif
 }
 
+#ifdef wx_msw
+extern void wxNotifyCancelEndSession();
+#endif
+static void wxCancelQuit()
+{
+#ifdef wx_msw
+  wxNotifyCancelEndSession();
+#endif
+}
+
 #ifndef wxGETDIR
 # define wxGETDIR 0
 #endif
@@ -119,5 +129,7 @@ extern class wxDialogBox *objscheme_unbundle_wxDialogBox(Scheme_Object *obj, con
 @ "flush-display" : void wxFlushDisplay();
 
 @ "fill-private-color" : void wxsFillPrivateColor(wxDC!, wxColour!);
+
+@ "cancel-quit" : void wxCancelQuit();
 
 @END
