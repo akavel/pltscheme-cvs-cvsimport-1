@@ -33,9 +33,9 @@
     (let ([mz-version (version)]
           [stamp-collection
            (with-handlers ([exn:fail:filesystem? (lambda (exn) #f)])
-             (collection-path "cvs-time-stamp"))])
+             (collection-path "repos-time-stamp"))])
       (if (and stamp-collection (file-exists? (build-path stamp-collection "stamp.ss")))
-          (format "~a-cvs~a" mz-version (dynamic-require '(lib "stamp.ss" "cvs-time-stamp") 'stamp))
+          (format "~a-cvs~a" mz-version (dynamic-require '(lib "stamp.ss" "repos-time-stamp") 'stamp))
           mz-version)))
   
   
@@ -74,7 +74,7 @@
         (or (directory-exists? (build-path helpdir ".svn"))
             (directory-exists? (build-path helpdir "CVS"))
             (with-handlers ([exn:fail:filesystem? (lambda (x) #f)])
-              (collection-path "cvs-time-stamp"))))))
+              (collection-path "repos-time-stamp"))))))
   
   (define hexifiable '(#\: #\; #\? #\& #\% #\# #\< #\> #\+))
   
